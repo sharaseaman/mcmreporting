@@ -22,9 +22,45 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/info', {
-      templateUrl: '/views/templates/info.html',
-      controller: 'InfoController',
+    .when('/new', {
+      templateUrl: '/views/templates/new.html',
+      controller: 'NewController',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/edit', {
+      templateUrl: '/views/templates/edit.html',
+      controller: 'EditController',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/core', {
+      templateUrl: '/views/templates/core.html',
+      controller: 'CoreController',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/custom', {
+      templateUrl: '/views/templates/custom.html',
+      controller: 'CustomController',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/manage', {
+      templateUrl: '/views/templates/manage.html',
+      controller: 'ManageController',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
