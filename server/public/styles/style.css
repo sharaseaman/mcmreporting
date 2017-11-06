@@ -11,7 +11,7 @@ body, html {
   }
   
   .instructions {
-    background-color: teal;
+    background-color:#147d91;
     color: orange;
     font-family: "PT Sans", Arial, Helvetica, sans-serif;
     padding: 15px;
@@ -48,7 +48,7 @@ body, html {
   .btn-danger{
     margin-left: 10px;
   }
-  .btn-default {
+#logout {
     float: right;
   }
   .btn-success {
