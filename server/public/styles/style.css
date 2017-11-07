@@ -51,6 +51,10 @@ body, html {
 #logout {
     float: right;
   }
+
+  .md-form {
+    padding: 20px;
+  }
   .btn-success {
     margin: 10px;
     float: left;
