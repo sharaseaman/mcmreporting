@@ -1,0 +1,33 @@
+<div class="navbar">
+    <div class="container">
+      <ul>
+        <li><a href="#/user">User Home</a></li>
+        <li><a href="#/new">New Form</a></li>
+        <li><a href="#/edit">Edit Form</a></li>        
+        <li><a href="#/core">Core Reports</a></li>
+        <li><a href="#/custom">Custom Reports</a></li>
+        <li><a href="#/manage">Manage Users</a></li> 
+        <button class="btn btn-default" id="logout" ng-click="uc.userService.logout()">Log Out</button>                
+      </ul>
+    </div>
+  </div>
+
+  <div class="md-form">
+    <input id="born" ng-model="" type="text" placeholder="MCM Case Number">
+    <input id="born" ng-model="" type="text" placeholder="Name">
+        <select name="Age" placeholder="Age"id="yes" ng-model="ac.input.sigEventRating">   
+        <option value="" disabled selected>Age</option>                             
+        <option value="0-3">0-3</option>
+      </select>
+      <select name="Case Type" placeholder="Case Type"id="yes" ng-model="ac.input.sigEventRating">   
+        <option value="" disabled selected>Case Type</option>    
+                                
+        <option value="Runaway">Runaway</option>
+        <option value="Abduction by Family Member">Abduction by Family Member</option>
+        <option value="Abduction by Acquaintance">Abduction by Acquaintance</option>
+        <option value="Stranger Abduction">Stranger Abduction</option>
+        <option value="LIM">LIM</option>
+        
+        
+      </select>
+</div>
