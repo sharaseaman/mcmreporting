@@ -1,7 +1,7 @@
 var myApp = angular.module('myApp', ['ngRoute']);
 
 /// Routes ///
-myApp.config(function($routeProvider, $locationProvider) {
+myApp.config(function ($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
   console.log('myApp -- config')
   $routeProvider
@@ -17,7 +17,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
@@ -26,7 +26,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/new.html',
       controller: 'NewController',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
@@ -35,7 +35,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/edit.html',
       controller: 'EditController',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
@@ -44,7 +44,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/core.html',
       controller: 'CoreController',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
@@ -53,7 +53,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/custom.html',
       controller: 'CustomController',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
@@ -62,7 +62,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/manage.html',
       controller: 'ManageController',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
