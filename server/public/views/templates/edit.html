@@ -14,5 +14,64 @@
 <div class="container">
   <p>
     In Edit
+
+    <div class="md-form">
+      <input id="born" ng-model="" type="text" placeholder="MCM Case Number">
+      <select name="Age" placeholder="Age" id="yes" ng-model="ac.input.sigEventRating">
+        <option value="" disabled selected>Age</option>
+        <option value="0-2">0-2</option>
+        <option value="3-7">3-7</option>
+        <option value="8-12">8-12</option>
+        <option value="13-17">13-17</option>
+        <option value="18+">18+</option>
+      </select>
+      <input id="city" ng-model="" type="text" placeholder="City Missing From">
+      <input id="county" ng-model="" type="text" placeholder="County Missing From">
+      <input id="state" ng-model="" type="text" placeholder="State Missing From">
+      
+      <input id="familyMembers" ng-model="" type="text" placeholder="Number of Family Members Involved in Search">
+      
+      <select name="Case Type" placeholder="Case Type" id="yes" ng-model="ac.input.sigEventRating">
+        <option value="" disabled selected>Case Type</option>
+        <option value="Runaway">Runaway</option>
+        <option value="Abduction by Family Member">Abduction by Family Member</option>
+        <option value="Abduction by Acquaintance">Abduction by Acquaintance</option>
+        <option value="Stranger Abduction">Stranger Abduction</option>
+        <option value="LIM">LIM</option>
+      </select>
+
+      <select name="Vulnerabilities" placeholder="Vulnerabilities" id="vulnerabilities" ng-model="">
+        <option value="" disabled selected>Vulnerabilities</option>
+        <option value="ADD/ADHD">ADD/ADHD</option>
+        <option value="ASD">ASD (Autism Spectrum Disorder</option>
+        <option value="Anxiety">Anxiety</option>
+        <option value="Bi-Polar Disorder">Bi-Polar Disorder</option>
+        <option value="Depression (Clinical)">Depression (Clinical)</option>
+        <option value="Depression (Situational)">Depression (Situational)</option>
+        <option value="Drug Use/Abuse">Drug Use/Abuse</option>
+        <option value="Economic Exploitation">Economic Exploitation</option>
+        <option value="Emotional Abuse">Emotional Abuse</option>
+        <option value="Gang Association">Gang Association</option>
+        <option value="ODD">ODD (Oppositional Defiant Disorder)</option>
+        <option value="Labor Exploitation">Labor Exploitation</option>
+        <option value="Luring/Grooming by Adult">Luring/Grooming by Adult</option>
+        <option value="Luring/Grooming by Child">Luring/Grooming by Child</option>
+        <option value="Missing From Care">Missing From Care</option>
+        <option value="Physical Abuse">Physical Abuse</option>
+        <option value="Runaway">Runaway</option>
+        <option value="Sexual Abuse">Sexual Abuse</option>
+        <option value="Sexual Exploitation">Sexual Exploitation</option>
+        <option value="Sexual Minority">Sexual Minority (LGBTQ, etc.)</option>
+      </select>
+
+      <input type="text" name="" id="jurisdiction" placeholder="Law Enforcement Jurisdiction">
+      <input type="text" name="" id="schoolDisctrict" placeholder="School District Number">
+      <select name="" id="outcome">
+        <option value="" disabled selected>Outcome</option>
+        <option value="Missing Found Safe">Missing Found Safe</option>
+        <option value="Missing Found Injured">Missing Found Injured</option>
+        <option value="Missing Found Deceased">Missing Found Deceased</option>
+      </select>
+    </div>
   </p>
 </div>

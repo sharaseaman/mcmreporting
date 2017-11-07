@@ -33,7 +33,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/edit', {
       templateUrl: '/views/templates/edit.html',
-      controller: 'EditController',
+      controller: 'EditController as ec',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
