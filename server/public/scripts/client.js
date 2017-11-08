@@ -57,15 +57,8 @@ myApp.config(function ($routeProvider, $locationProvider) {
           return UserService.getuser();
         }
       }
-    }).when('/user', {
-      templateUrl: '/views/templates/user.html',
-      controller: 'NavController as nc',
-      resolve: {
-        getuser : function(UserService){
-          return UserService.getuser();
-        }
-      }
     })
+ 
     
     .when('/manage', {
       templateUrl: '/views/templates/manage.html',
