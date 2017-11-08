@@ -27,8 +27,7 @@ router.get('/', function(req, res) {
                     } else {
                         // failure best handled on the server. do redirect here.
                         console.log('not logged in');
-                        // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
-                        res.send(false);
+                        res.send(403);
                       } //end Authentication if/else
                     }//end else
                 }) //end query
