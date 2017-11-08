@@ -10,7 +10,7 @@ myApp.service('UserService', function ($http, $location) {
     //on page load, GET all case_data from DB to the DOM
     return $http({
       method: 'GET',
-      url: '/chart'
+      url: '/charts'
     })
       .then(function (res) {
         //match case_data to service
@@ -75,5 +75,5 @@ myApp.service('UserService', function ($http, $location) {
       $location.path('/home');
     });
   };
->>>>>>> master
+
 });
