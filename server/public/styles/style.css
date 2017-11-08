@@ -104,3 +104,10 @@ body, html {
     text-decoration: underline;
     color: orange;
   }
+  .md-form {
+    margin: 20px;
+    padding: 40px;
+    padding-top: 40px;
+    margin-bottom: 20px;
+  }
+  .top-buffer { margin-top:20px; }
