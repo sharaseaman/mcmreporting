@@ -58,6 +58,8 @@ myApp.config(function ($routeProvider, $locationProvider) {
         }
       }
     })
+ 
+    
     .when('/manage', {
       templateUrl: '/views/templates/manage.html',
       controller: 'ManageController as mc',
