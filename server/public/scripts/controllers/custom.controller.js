@@ -1,5 +1,5 @@
-myApp.controller('CustomController', function(UserService) {
-    console.log('CustomController created');
+myApp.controller('CustomReportController', function(UserService) {
+    console.log('CustomReportController created');
     var vm = this;
     vm.userService = UserService;
   });
