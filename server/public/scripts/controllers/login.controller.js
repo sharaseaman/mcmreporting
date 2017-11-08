@@ -3,9 +3,11 @@ myApp.controller('LoginController', function($http, $location, UserService) {
     var vm = this;
     vm.user = {
       username: '',
-      password: ''
+      password: '',
     };
     vm.message = '';
+    
+    
 
     vm.login = function() {
       console.log('LoginController -- login');
@@ -17,6 +19,10 @@ myApp.controller('LoginController', function($http, $location, UserService) {
           if(response.data.username) {
             console.log('LoginController -- login -- success: ', response.data);
             // location works with SPA (ng-route)
+            console.log('response.data.username', response.data.username);
+            console.log('response.data.admin', response.data.admin);
+            
+            
             $location.path('/user'); // http://localhost:5000/#/user
           } else {
             console.log('LoginController -- login -- failure: ', response);

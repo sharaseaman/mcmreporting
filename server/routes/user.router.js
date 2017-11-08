@@ -9,9 +9,12 @@ router.get('/', function(req, res) {
     // send back user object from database
     console.log('logged in', req.user);
     var userInfo = {
-      username : req.user.username
+      username : req.user.username,
+      admin: req.user.admin     //shara added 
     };
     res.send(userInfo);
+    console.log('userInfo is =', userInfo); //shara added
+    
   } else {
     // failure best handled on the server. do redirect here.
     console.log('not logged in');
