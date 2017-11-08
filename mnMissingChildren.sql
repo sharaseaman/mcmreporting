@@ -7,7 +7,8 @@ CREATE TABLE "users" (
 
 --research data table --
 CREATE TABLE "case_data" (
-"id" serial primary key, 
+"id" serial primary key,
+"mcm_number" varchar (20), 
 "intake_date" timestamp,
 "age" integer,
 "gender" text, 
@@ -27,7 +28,7 @@ CREATE TABLE "case_data" (
 
 --field reference tables--
 
-CREATE TABLE "counties" (
+CREATE TABLE "users" (
 "id" serial primary key,
 "username" varchar (20),
 "password" varchar (240)
