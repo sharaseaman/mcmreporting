@@ -110,4 +110,18 @@ body, html {
     padding-top: 40px;
     margin-bottom: 20px;
   }
-  .top-buffer { margin-top:20px; }
+  .top-buffer { 
+    margin-top:20px; 
+  }
+  #vulnerabilities {
+    float: right;
+  }
+
+  .form-group.required .control-label:after {
+    content:"*";
+    color:red;
+  }
+
+  #MCM Case Number {
+  background-color : #d1d1d1; 
+  }

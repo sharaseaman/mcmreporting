@@ -13,58 +13,73 @@
 </div>
 <form role="form" class='form-horizontal'>
   <div class="md-form">
-    <div class="col-sm-6">
+    <div class="col-sm-8">
       <div class="form-group">
-          <div class="row top-buffer">
-        <section id="inputArea" class="card card-image">
-          <input id="MCM Case Number" ng-model="" type="number" placeholder="MCM Case Number">
-          <input id="Date Last Seen" ng-model="" type="number" placeholder="Date Last Seen">
-          <input id="Date Reported Missing to Police" ng-model="" type="number" placeholder="Date Reported Missing to Police">
-          <input id="Name" ng-model="" type="text" placeholder="Name"><br>
-          <input id="Age" ng-model="" type="number" placeholder="Age">
-          <select name="Gender" placeholder="Gender" id="yes" ng-model="">   
+        <div class="row top-buffer">
+          <div class="form-group required">
+            <!-- <section id="inputArea" class="card card-image"> -->
+                <!-- <label class="control-label">Required Field</label> -->
+            <input id="MCM Case Number" required="true" ng-model="" type="number" placeholder="MCM Case Number">
+            <input id="Date Last Seen" ng-model="" type="number" placeholder="Date Last Seen">
+            <input id="Date Reported Missing to Police" style="width:250px;" ng-model="" type="number" placeholder="Date Reported Missing to Police">
+            <!-- </select> -->
+            <select name="Case Type" placeholder="Case Type" id="yes" ng-model="">   
+      <option value="" disabled selected>Case Type</option>                                
+      <option value="Runaway">Runaway</option>
+      <option value="Abduction by Family Member">Abduction by Family Member</option>
+      <option value="Abduction by Acquaintance">Abduction by Acquaintance</option>
+      <option value="Stranger Abduction">Stranger Abduction</option>
+      <option value="LIM">LIM</option>    
+    </select>
+          </div>
+
+          <div class="form-group">
+            <input id="Name" ng-model="" type="text" placeholder="Name">
+            <input id="Age" ng-model="" type="number" placeholder="Age">
+            <select name="Gender" placeholder="Gender" id="yes" ng-model="">   
           <option value="" disabled selected>Gender</option>                             
           <option value="Male">Male</option>
           <option value="Female">Female</option>   
-          <option value="Non-Binary">Non-Binary</option>             
-        </select>
-          <select name="Case Type" placeholder="Case Type" id="yes" ng-model="">   
-        <option value="" disabled selected>Case Type</option>                                
-        <option value="Runaway">Runaway</option>
-        <option value="Abduction by Family Member">Abduction by Family Member</option>
-        <option value="Abduction by Acquaintance">Abduction by Acquaintance</option>
-        <option value="Stranger Abduction">Stranger Abduction</option>
-        <option value="LIM">LIM</option>    
-      </select>
-          <input id="State Missing From" ng-model="" type="number" placeholder="State Missing From">
-          <input id="County Missing From" ng-model="" type="number" placeholder="County Missing From">
-          <input id="City Missing From" ng-model="" type="number" placeholder="City Missing From">
-          <input id="School District Where Child Was Enrolled" ng-model="" type="number" placeholder="School District Where Child Was Enrolled">
+          <option value="Non-Binary">Non-Binary</option> 
+            </select>
+            <select name="Race/Ethnicity" placeholder="Race/Ethnicity" id="yes" ng-model="">   
+            <option value="" disabled selected>Race/Ethnicity</option>                                
+            <option value="African American">African American</option>
+            <option value="Asian/Pacific Islander">Asian/Pacific Islander
+            </option>
+            <option value="Caucasian
+            ">Caucasian
+          </option>
+            <option value="Latinx
+            ">Latinx
+          </option>
+            <option value="Native American
+            ">Native American
+          </option>    
+          </select>
+          </div>
+          <div class="form-group">
+            <input id="State Missing From" ng-model="" type="number" placeholder="State Missing From">
+            <input id="County Missing From" ng-model="" type="number" placeholder="County Missing From">
+            <input id="City Missing From" ng-model="" type="number" placeholder="City Missing From">
+            <input id="School District Where Child Was Enrolled" style="width:300px;" ng-model="" type="number" placeholder="School District Where Child Was Enrolled">
+          </div>
+          <div class="form-group">
+              <input id="Law Enforcement Agency on case" style="width:250px;"ng-model="" type="number" placeholder="Law Enforcement Agency on case">
+              <select name="Jurisdictional denial?" placeholder="Jurisdictional denial" id="yes" ng-model="">   
+                    <option value="" disabled selected>Jurisdictional denial?</option>                                                    
+                    <option value="Yes">Yes
+                        <option value="No">No   
+                        </select>                   
+                  </div>
 
-          <select name="Race/Ethnicity" placeholder="Race/Ethnicity" id="yes" ng-model="">   
-    <option value="" disabled selected>Race/Ethnicity</option>                                
-    <option value="African American">African American</option>
-    <option value="Asian/Pacific Islander">Asian/Pacific Islander
-    </option>
-    <option value="Caucasian
-    ">Caucasian
-  </option>
-    <option value="Latinx
-    ">Latinx
-  </option>
-    <option value="Native American
-    ">Native American
-  </option>    
-  </select>
-      </div>
+        </div>
       </div>
     </div>
     </section>
-
     <div class="form-check">
-      <div class="col-sm-6">
+      <div class="col-sm-4" id="vulnerabilities">
         <div class="form-group">
-
           <h3>Vulnerabilities</h3>
           <input type="checkbox" name="ADD/ADHD" value="ADD/ADHD" input type="checkbox" /> ADD/ADHD<br>
           <input type="checkbox" name="ASD (Autism Spectrum Disorder)" value="ASD (Autism Spectrum Disorder)" input type="checkbox"
@@ -98,8 +113,6 @@
           <input type="checkbox" name="Sexual Exploitation (history)" value="Sexual Exploitation (history)" input type="checkbox" />          Sexual Exploitation (history) <br>
           <input type="checkbox" name="Sexual Minority (LGBTQ, etc)" value="Sexual Minority (LGBTQ, etc)" input type="checkbox" />          Sexual Minority (LGBTQ, etc) <br>
         </div>
-      </div>
     </div>
-
   </div>
 </form>
