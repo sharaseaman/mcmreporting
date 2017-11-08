@@ -14,7 +14,9 @@ var port = process.env.PORT || 5001;
 
 // Body parser middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 // Serve back static files
 app.use(express.static('./server/public'));
@@ -34,6 +36,6 @@ app.use('/user', userRouter);
 app.use('/', indexRouter);
 
 // Listen //
-app.listen(port, function(){
-   console.log('Listening on port:', port);
+app.listen(port, function () {
+    console.log('Listening on port:', port);
 });
