@@ -28,12 +28,6 @@ CREATE TABLE "case_data" (
 
 --field reference tables--
 
-CREATE TABLE "users" (
-"id" serial primary key,
-"username" varchar (20),
-"password" varchar (240)
-);
-
 CREATE TABLE "cities" (
 "id" serial primary key
 "city" varchar (20)
