@@ -24,7 +24,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/new', {
       templateUrl: '/views/templates/new.html',
-      controller: 'NewController',
+      controller: 'NewController as nc',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
@@ -33,7 +33,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/edit', {
       templateUrl: '/views/templates/edit.html',
-      controller: 'EditController',
+      controller: 'EditController as ec',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
@@ -42,7 +42,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/core', {
       templateUrl: '/views/templates/core.html',
-      controller: 'CoreController',
+      controller: 'CoreController as cc',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
@@ -51,7 +51,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/custom', {
       templateUrl: '/views/templates/custom.html',
-      controller: 'CustomController',
+      controller: 'CustomReportController as cr',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
@@ -60,7 +60,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/manage', {
       templateUrl: '/views/templates/manage.html',
-      controller: 'ManageController',
+      controller: 'ManageController as mc',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
