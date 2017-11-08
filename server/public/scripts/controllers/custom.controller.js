@@ -3,3 +3,4 @@ myApp.controller('CustomReportController', function (UserService) {
   var vm = this;
   vm.userService = UserService;
 });
+
