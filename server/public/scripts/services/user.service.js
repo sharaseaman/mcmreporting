@@ -4,38 +4,6 @@ myApp.service('UserService', function ($http, $location) {
 
   self.userObject = {};
 
-<<<<<<< HEAD
-    self.getuser = function() {
-      console.log('UserService -- getuser');
-      $http({
-        method: 'GET',
-        url: '/user',
-      }).then(function(response) {
-        if(response.data.username) {
-            // user has a curret session on the server
-            self.userObject.userName = response.data.username;
-            self.userObject.admin = response.data.admin;
-            console.log('UserService -- getuser -- User Data: ', self.userObject.userName);
-            console.log('this is admin value', self.userObject.admin);
-            
-        } else {
-            console.log('UserService -- getuser -- failure', response);
-            // user has no session, bounce them back to the login page
-            $location.path("/home");
-        }
-      });
-    };
-    self.logout = function() {
-      console.log('UserService -- logout');
-      $http({
-        method: 'GET',
-        url: '/user/logout'
-      }).then(function(response) {
-        console.log('UserService -- logout -- logged out');
-        $location.path('/home');
-      });
-    };    
-=======
   // return {
   //   userObject : userObject,
 
@@ -66,5 +34,4 @@ myApp.service('UserService', function ($http, $location) {
       $location.path('/home');
     });
   };
->>>>>>> styling
 });

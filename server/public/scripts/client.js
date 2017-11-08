@@ -24,7 +24,7 @@ myApp.config(function ($routeProvider, $locationProvider) {
     })
     .when('/new', {
       templateUrl: '/views/templates/new.html',
-      controller: 'NewController',
+      controller: 'NewController as nwc',      
       resolve: {
         getuser: function (UserService) {
           return UserService.getuser();

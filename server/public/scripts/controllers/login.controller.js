@@ -1,37 +1,3 @@
-<<<<<<< HEAD
-myApp.controller('LoginController', function($http, $location, UserService) {
-    console.log('LoginController created');
-    var vm = this;
-    vm.user = {
-      username: '',
-      password: '',
-    };
-    vm.message = '';
-    
-    
-
-    vm.login = function() {
-      console.log('LoginController -- login');
-      if(vm.user.username === '' || vm.user.password === '') {
-        vm.message = "Enter your username and password!";
-      } else {
-        console.log('LoginController -- login -- sending to server...', vm.user);
-        $http.post('/', vm.user).then(function(response) {
-          if(response.data.username) {
-            console.log('LoginController -- login -- success: ', response.data);
-            // location works with SPA (ng-route)
-            console.log('response.data.username', response.data.username);
-            console.log('response.data.admin', response.data.admin);
-            
-            
-            $location.path('/user'); // http://localhost:5000/#/user
-          } else {
-            console.log('LoginController -- login -- failure: ', response);
-            vm.message = "Wrong!!";
-          }
-        }).catch(function(response){
-          console.log('LoginController -- registerUser -- failure: ', response);
-=======
 myApp.controller('LoginController', function ($http, $location, UserService) {
   console.log('LoginController created');
   var vm = this;
@@ -54,7 +20,6 @@ myApp.controller('LoginController', function ($http, $location, UserService) {
           $location.path('/user'); // http://localhost:5000/#/user
         } else {
           console.log('LoginController -- login -- failure: ', response);
->>>>>>> styling
           vm.message = "Wrong!!";
         }
       }).catch(function (response) {
