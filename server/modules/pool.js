@@ -1,8 +1,8 @@
 /**
-* You'll need to use environment variables in order to deploy your
-* pg-pool configuration to Heroku.
-* It will look something like this:
-**/
+ * You'll need to use environment variables in order to deploy your
+ * pg-pool configuration to Heroku.
+ * It will look something like this:
+ **/
 
 var pg = require('pg');
 var url = require('url');
