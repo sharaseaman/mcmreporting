@@ -9,7 +9,7 @@ var sessionConfig = require('./modules/session.config');
 var indexRouter = require('./routes/index.router');
 var userRouter = require('./routes/user.router');
 var registerRouter = require('./routes/register.router');
-var chartsRouter = require('.routes/charts.router')
+var chartsRouter = require('./routes/charts.router')
 
 var port = process.env.PORT || 5001;
 
