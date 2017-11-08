@@ -9,7 +9,7 @@ CREATE TABLE "users" (
 CREATE TABLE "case_data" (
 "id" serial primary key,
 "mcm_number" varchar (20), 
-"intake_date" timestamp,
+"intake_date" TIMESTAMP DEFAULT NOW(),
 "age" integer,
 "gender" text, 
 "last_seen" date,

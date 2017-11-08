@@ -3,6 +3,47 @@ myApp.service('UserService', function ($http, $location) {
   var self = this;
 
   self.userObject = {};
+  self.chartData = { data: [] };
+  self.mainChartYears = [];
+
+  self.getChartData = function () {
+    //on page load, GET all case_data from DB to the DOM
+    return $http({
+      method: 'GET',
+      url: '/chart'
+    })
+      .then(function (res) {
+        //match case_data to service
+        self.chartData.data = res.data;
+        return self.chartData.data
+      })
+      .then(function (res){
+        //add a year based on intake_date
+        self.addYearToRecord = res.forEach(function(element){
+          element.year = element.intake_date.slice(0,4);
+        });
+
+        //then create an object with an array for each year's data record
+        self.filteredYears = res.reduce(function (prev, curr) {
+          if (!prev[curr.year]) {
+            prev[curr.year] = [];
+          }
+
+          prev[curr.year].push(curr);
+
+          return prev;
+        }, {});
+
+        //get the keys (years) for this object
+        self.mainChartYears = Object.keys(self.filteredYears);
+
+        //map the data records to the appropriate year's array
+        self.filteredYears = self.mainChartYears.map(function (year) {
+          return self.filteredYears[year].length;
+
+        });
+      })
+  };
 
   // return {
   //   userObject : userObject,
@@ -34,4 +75,5 @@ myApp.service('UserService', function ($http, $location) {
       $location.path('/home');
     });
   };
+>>>>>>> master
 });
