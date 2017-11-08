@@ -48,7 +48,7 @@ CREATE TABLE "law_enforcement" (
 "id" serial primary key
 );
 
-CREATE TABLE "school_districts" (
+CREATE TABLE "schools" (
 "id" serial primary key,
 "school" varchar (100)
 );
