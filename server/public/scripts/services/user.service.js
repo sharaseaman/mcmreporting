@@ -89,8 +89,8 @@ myApp.service('UserService', function ($http, $location) {
     });
   };
 
-  // updates the admin privledges 
-  self.updatePrivledges = function(user) {
+  // updates the admin priviledges 
+  self.updatePriviledges = function(user) {
     return $http({
       method: 'PUT',
       url: '/manage',
