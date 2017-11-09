@@ -26,6 +26,7 @@ myApp.controller('ManageController', function (UserService) {
       user.admin = !user.admin;
       console.log('New admin value:', user.admin);
       UserService.updatePrivledges(user);
+
     }
 
   });
