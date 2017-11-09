@@ -4,7 +4,6 @@ myApp.service('UserService', function ($http, $location) {
 
   self.userObject = {};
   self.chartData = { data: [] };
-  self.mainChartYears = [];
 
   self.getChartData = function () {
     //on page load, GET all case_data from DB to the DOM
@@ -17,10 +16,10 @@ myApp.service('UserService', function ($http, $location) {
         self.chartData.data = res.data;
         return self.chartData.data
       })
-      .then(function (res){
+      .then(function (res) {
         //add a year based on intake_date
-        self.addYearToRecord = res.forEach(function(element){
-          element.year = element.intake_date.slice(0,4);
+        self.addYearToRecord = res.forEach(function (element) {
+          element.year = element.intake_date.slice(0, 4);
         });
 
         //then create an object with an array for each year's data record
@@ -28,20 +27,47 @@ myApp.service('UserService', function ($http, $location) {
           if (!prev[curr.year]) {
             prev[curr.year] = [];
           }
-
           prev[curr.year].push(curr);
-
           return prev;
         }, {});
 
         //get the keys (years) for this object
         self.mainChartYears = Object.keys(self.filteredYears);
 
-        //map the data records to the appropriate year's array
+        //all mcm_cases filtered by year
+        self.filteredYearArr = self.mainChartYears.map(function (year) {
+          return self.filteredYears[year];
+        });
+
+        //get length of each year's array
         self.filteredYears = self.mainChartYears.map(function (year) {
           return self.filteredYears[year].length;
-
         });
+
+        console.log('self.filteredYearArr', self.filteredYearArr);
+
+        //for each year's array, create an array for each case type
+        self.caseTypeFilter = self.filteredYearArr.forEach(function (year) {
+          // console.log('year Array', year)
+          self.addCaseTypeFilter= year.reduce(function (prev, curr) {
+            if (!prev[curr.start_case_type]) {
+              prev[curr.start_case_type] = [];
+            }
+            prev[curr.start_case_type].push(curr);
+            return prev;
+          }, []);
+
+          self.filteredCaseType = self.addCaseTypeFilter.map(function (year) {
+            return self.filteredCaseType[year];
+          });
+
+          console.log('maybe?', self.addCaseTypeFilter);
+
+        })
+        
+        // console.log('self.caseTypeFilter', self.caseTypeFilter);
+        // console.log('self.filteredCaseType', self.filteredCaseType);
+
       })
   };
 
@@ -60,8 +86,8 @@ myApp.service('UserService', function ($http, $location) {
         self.userObject.admin = response.data.admin;
         console.log('UserService -- getuser -- User Data: ', self.userObject.userName);
         console.log('UserService -- getuser -- User Data: ', self.userObject.admin);
-        
-        
+
+
       } else {
         console.log('UserService -- getuser -- failure', response);
         // user has no session, bounce them back to the login page

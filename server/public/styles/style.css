@@ -4,11 +4,16 @@ body, html {
     font-family: "PT Sans", Arial, Helvetica, sans-serif;
     /* font-size: 14px; */
   }
-  
-  .center {
-    margin: auto;
-    width: 50%;
-    padding: 10px;
+
+  .coreCharts {
+    padding: 20px;
+    width: 400px; 
+    height: 400px;
+    float: left;
+  }
+
+  .chartTitles {
+    text-align: center;
   }
   
   .instructions .container h1 {

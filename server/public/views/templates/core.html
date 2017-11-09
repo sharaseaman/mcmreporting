@@ -1,28 +1,46 @@
-
 <div ng-include="'views/partials/nav.html'"></div>
 
-
-
-
-
-<div class="navbar">
-  <div class="container" ng-init="cc.getChartData()">
-    <ul>
-      <li><a href="#/user">User Home</a></li>
-      <li><a href="#/new">New Form</a></li>
-      <li><a href="#/edit">Edit Form</a></li>
-      <li><a href="#/core">Core Reports</a></li>
-      <li><a href="#/custom">Custom Reports</a></li>
-      <li><a href="#/manage">Manage Users</a></li>
-      <button class="btn btn-default" id="logout" ng-click="uc.userService.logout()">Log Out</button>
-    </ul>
-
-    <div style="width:400px" class="center">
-      <p>Number of Cases per Year</p>
-      <canvas id="mainBarChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
-      </canvas>
-    </div>
-    
+<div class="container" ng-init="cc.getChartData()">
+  <div class="coreCharts">
+    <p class="chartTitles">Number of Cases per Year</p>
+    <canvas id="mainBarChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+    </canvas>
   </div>
-</div>
 
+  <div class='coreCharts'>
+    <p class="chartTitles">Number of Cases by Type</p>
+    <canvas id="caseTypeChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+    </canvas>
+  </div>
+
+  <div class='coreCharts'>
+      <p class="chartTitles">Number of cases by Minnesota county</p>
+      <canvas id="countyChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+        </canvas>
+  </div>
+
+  <div class='coreCharts'>
+      <p class="chartTitles">Number of cases by school district</p>
+      <canvas id="schoolChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+        </canvas>
+  </div>
+
+  <div class='coreCharts'>
+      <p class="chartTitles">Number of people served (including missing person, and all loved ones we worked with)</p>
+      <canvas id="servedChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+        </canvas>
+  </div>
+
+  <div class='coreCharts'>
+      <p class="chartTitles">Number of cases by vulnerability</p>
+      <canvas id="vulnerabilityChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+        </canvas>
+  </div>
+
+  <div class='coreCharts'>
+      <p class="chartTitles">Number of cases by the age group</p>
+      <canvas id="ageChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+        </canvas>
+  </div>
+
+</div>
