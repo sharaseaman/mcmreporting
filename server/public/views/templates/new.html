@@ -15,22 +15,24 @@
   <div class="md-form">
     <div class="col-sm-8">
       <div class="form-group">
-        <div class="row top-buffer">
-          <!-- <div class="form-group required"> -->
-            <input id="MCM Case Number" required="true"  type="number" placeholder="MCM Case Number">
-            <input id="Date Last Seen" type="number" placeholder="Date Last Seen">
-            <input id="Date Reported Missing to Police" style="width:250px;" type="number" placeholder="Date Reported Missing to Police">
-          </div>
-          <div class="form-group">
-            <input id="Name" type="text" placeholder="Name">
-            <input id="Age" type="number" placeholder="Age">
-            <select name="Gender" placeholder="Gender" id="yes" >   
+        <!-- <div class="row top-buffer"> -->
+        <!-- <div class="form-group required"> -->
+        <input id="MCMCaseNumber" required="true" type="number" placeholder="MCM Case Number">
+      </div>
+      <div class="form-group">
+        Date Last Seen <input id="DateLastSeen" type="date" style="width:150px;" placeholder="Date Last Seen"> Date Reported
+        Missing to Police <input id="DateReportedMissingtoPolice" style="width:150px;" type="date" placeholder="Date Reported Missing to Police">        Date of Intake to MCM <input id="DateofintaketoMCM" style="width:150px;" type="date" placeholder="Date of Intake to MCM">
+      </div>
+      <div class="form-group">
+        <input id="Name" type="text" placeholder="Name">
+        <input id="Age" type="number" placeholder="Age">
+        <select name="Gender" placeholder="Gender" id="yes">   
           <option value="" disabled selected>Gender</option>                             
           <option value="Male">Male</option>
           <option value="Female">Female</option>   
           <option value="Non-Binary">Non-Binary</option> 
             </select>
-            <select name="Race/Ethnicity" placeholder="Race/Ethnicity" id="yes" >   
+        <select name="Race/Ethnicity" placeholder="Race/Ethnicity" id="yes">   
             <option value="" disabled selected>Race/Ethnicity</option>                                
             <option value="African American">African American</option>
             <option value="Asian/Pacific Islander">Asian/Pacific Islander
@@ -45,23 +47,77 @@
             ">Native American
           </option>    
           </select>
-          </div>
-          <div class="form-group">
-            <input id="State Missing From"  type="number" placeholder="State Missing From">
-            <input id="County Missing From"  type="number" placeholder="County Missing From">
-            <input id="City Missing From" type="number" placeholder="City Missing From">
-            <input id="School District Where Child Was Enrolled" style="width:300px;" type="number" placeholder="School District Where Child Was Enrolled">
-          </div>
-          <div class="form-group">
-            <input id="Law Enforcement Agency on case" style="width:250px;"  type="number" placeholder="Law Enforcement Agency on case">
-            <select name="Jurisdictional denial?" placeholder="Jurisdictional denial" id="yes" >   
-                    <option value="" disabled selected>Jurisdictional denial?</option>                                                    
-                    <option value="Yes">Yes
-                        <option value="No">No   
-                        </select>
-          </div>
-          <div class="form-group">
-            <select name="Case Type When Opened" placeholder="Case Type When Opened" id="yes" >   
+      </div>
+      <div class="form-group">
+        <select name="StateMissingFrom" type="number" placeholder="State Missing From">
+            <option value="" disabled selected>State Missing From</option>                                            
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>
+        <input id="CountyMissingFrom" type="number" placeholder="County Missing From">
+        <input id="CityMissingFrom" type="number" placeholder="City Missing From">
+        <input id="SchoolDistrictWhereChildWasEnrolled" style="width:300px;" type="number" placeholder="School District Where Child Was Enrolled">
+      </div>
+      <div class="form-group">
+        <input id="LawEnforcementAgencyonCase" style="width:250px;" type="number" placeholder="Law Enforcement Agency on case">
+        <select name="Jurisdictional denial?" placeholder="Jurisdictional denial" id="yes">  
+                <option value="" disabled selected>Jurisdictional denial?</option>                                                    
+                <option value="Yes">Yes
+                    <option value="No">No   
+                    </select>
+        <input id="FamilyMembersInvolvedInSearch" style="width:250px;" type="number" placeholder="Family Members Involved in Search">
+      </div>
+      <div class="form-group">
+        <select name="Case Type When Opened" placeholder="Case Type When Opened" id="yes">   
                           <option value="" disabled selected>Case Type When Opened</option>                             
                           <option value="Runaway
                           ">Runaway
@@ -76,11 +132,11 @@
                         ">Stranger Abduction                        
                       </option> 
                       <option value="Abduction by Acquaintance
-                      ">LIM (Lost, Injured, Otherwise Missing)
-                      
+                      ">LIM (Lost, Injured, Otherwise Missing)   
                     </option> 
                             </select>
-            <select name="Case Type When Closed" placeholder="Case Type When Closed" id="yes" >   
+
+        <select name="Case Type When Closed" placeholder="Case Type When Closed" id="yes">   
                             <option value="" disabled selected>Case Type When Closed</option>                             
                             <option value="Runaway
                             ">Runaway
@@ -95,26 +151,43 @@
                           ">Stranger Abduction                        
                         </option> 
                         <option value="Abduction by Acquaintance
-                        ">LIM (Lost, Injured, Otherwise Missing)
-                        
+                        ">LIM (Lost, Injured, Otherwise Missing)                   
                       </option> 
                               </select>
-
-            <select name="Case Disposition" placeholder="Case Disposition" id="yes">   
+        <select name="Case Status" placeholder="Case Status" id="yes">   
+                                  <option value="" disabled selected>Case Status</option>                             
+                                  <option value="Open                          
+                                  ">Open                           
+                                </option>
+                                  <option value="Closed                            
+                                  ">Closed                           
+                                </option>   
+                                  <option value="Suspended - out of contact                                  
+                                  ">Suspended - out of contact                                  
+                                </option> 
+                                <option value="Suspended - false information                                
+                                ">Suspended - false information                                
+                              </option> 
+                                    </select>
+      </div>
+      <div class="form-group">
+        <select name="Case Disposition" placeholder="Case Disposition" id="yes">   
                             <option value="" disabled selected>Case Disposition</option>                             
-                            <option value="Missing Found Safe                            
-                            ">Missing Found Safe                            
+                            <option value="Child found safe                           
+                            ">Child found safe                            
                           </option>
-                            <option value="Missing Found Deceased                            
-                            ">Missing Found Deceased                            
+                            <option value="Child found harmed/injured/neglected                            
+                            ">Child found harmed/injured/neglected                            
                           </option>   
-                            <option value="Missing Found Injured
-                            ">Missing Found Injured                            
+                            <option value="Child found deceased                            
+                            ">Child found deceased                            
                           </option> 
+                          <option value="Child placed in Care                          
+                          ">Child placed in Care                          
+                        </option> 
                               </select>
-          </div>
-          <div class="form-group">
-            <select name="Referral Type" placeholder="Referral Type" id="yes">   
+
+        <select name="Referral Type" placeholder="Referral Type" id="yes">   
                                   <option value="" disabled selected>Referral Type</option>                             
                                   <option value="Word of Mouth                                  
                                   ">Word of Mouth                           
@@ -133,47 +206,46 @@
                           <option value="Referral by County Worker                          
                           ">Referral by County Worker                                 
                         </option> 
-              </select>
-          </div>
-        </div>
+                      </select>
       </div>
+      <button type="button" class="btn btn-info">Submit</button>
     </div>
-  </div>
-  </section>
-  <div class="form-check">
-    <div class="col-sm-4" id="vulnerabilities">
-      <div class="form-group">
-        <h3>Vulnerabilities</h3>
-        <input type="checkbox" name="ADD/ADHD" value="ADD/ADHD" input type="checkbox" /> ADD/ADHD<br>
-        <input type="checkbox" name="ASD (Autism Spectrum Disorder)" value="ASD (Autism Spectrum Disorder)" input type="checkbox"
-        /> ASD (Autism Spectrum Disorder) <br>
-        <input type="checkbox" name="Alcohol use/abuse" value="Alcohol use/abuse" input type="checkbox" /> Alcohol use/abuse
-        <br>
-        <input type="checkbox" name="Anxiety" input type="checkbox" /> Anxiety <br>
-        <input type="checkbox" name="Bi-Polar Disorder" value="Bi-Polar Disorder" input type="checkbox" /> Bi-Polar Disorder<br>
-        <input type="checkbox" name="Depression (clinical)" value="Depression (clinical)" input type="checkbox" /> Depression
-        (clinical) <br>
-        <input type="checkbox" name="Depression (situational)" value="Depression (situational)" input type="checkbox" />        Depression (situational) <br>
-        <input type="checkbox" name="Drug use/abuse" value="Drug use/abuse" input type="checkbox" /> Drug use/abuse <br>
-        <input type="checkbox" name="Economic exploitation (history)" value="Economic exploitation (history)" input type="checkbox"
-        /> Economic exploitation (history) <br>
-        <input type="checkbox" name="Emotional Abuse (history)" value="Emotional Abuse (history)" input type="checkbox" />        Emotional Abuse (history) <br>
-        <input type="checkbox" name="Gang Association" value="Gang Association" input type="checkbox" /> Gang Association
-        <br>
-        <input type="checkbox" name="ODD (Oppositional Defiant Disorder)" value="ODD (Oppositional Defiant Disorder)" input type="checkbox"
-        /> ODD (Oppositional Defiant Disorder) <br>
-        <input type="checkbox" name="Labor Exploitation (history)" value="Labor Exploitation (history)" input type="checkbox" />        Labor Exploitation (history) <br>
-        <input type="checkbox" name="Luring/grooming by adult" value="Luring/grooming by adult" input type="checkbox" />        Luring/grooming by adult <br>
-        <input type="checkbox" name="Luring/grooming by child" value="Luring/grooming by child" input type="checkbox" />        Luring/grooming by child <br>
-        <input type="checkbox" name="Missing From Care" value="Missing From Care" input type="checkbox" /> Missing From Care
-        <br>
-        <input type="checkbox" name="Physical Abuse (history)" value="Physical Abuse (history)" input type="checkbox" />        Physical Abuse (history)<br>
-        <input type="checkbox" name="Runaway (history)" value="Runaway (history)" input type="checkbox" /> Runaway (history)
-        <br>
-        <input type="checkbox" name="Sexual Abuse (history)" value="Sexual Abuse (history)" input type="checkbox" /> Sexual
-        Abuse (history) <br>
-        <input type="checkbox" name="Sexual Exploitation (history)" value="Sexual Exploitation (history)" input type="checkbox" />        Sexual Exploitation (history) <br>
-        <input type="checkbox" name="Sexual Minority (LGBTQ, etc)" value="Sexual Minority (LGBTQ, etc)" input type="checkbox" />        Sexual Minority (LGBTQ, etc) <br>
+    <div class="form-check">
+      <div class="col-sm-4" id="vulnerabilities">
+        <div class="form-group">
+          <h3>Vulnerabilities</h3>
+          <input type="checkbox" name="ADD/ADHD" value="ADD/ADHD" input type="checkbox" /> ADD/ADHD<br>
+          <input type="checkbox" name="ASD (Autism Spectrum Disorder)" value="ASD (Autism Spectrum Disorder)" input type="checkbox"
+          /> ASD (Autism Spectrum Disorder) <br>
+          <input type="checkbox" name="Alcohol use/abuse" value="Alcohol use/abuse" input type="checkbox" /> Alcohol use/abuse
+          <br>
+          <input type="checkbox" name="Anxiety" input type="checkbox" /> Anxiety <br>
+          <input type="checkbox" name="Bi-Polar Disorder" value="Bi-Polar Disorder" input type="checkbox" /> Bi-Polar Disorder<br>
+          <input type="checkbox" name="Depression (clinical)" value="Depression (clinical)" input type="checkbox" /> Depression
+          (clinical) <br>
+          <input type="checkbox" name="Depression (situational)" value="Depression (situational)" input type="checkbox" />          Depression (situational) <br>
+          <input type="checkbox" name="Drug use/abuse" value="Drug use/abuse" input type="checkbox" /> Drug use/abuse <br>
+          <input type="checkbox" name="Economic exploitation (history)" value="Economic exploitation (history)" input type="checkbox"
+          /> Economic exploitation (history) <br>
+          <input type="checkbox" name="Emotional Abuse (history)" value="Emotional Abuse (history)" input type="checkbox" />          Emotional Abuse (history) <br>
+          <input type="checkbox" name="Gang Association" value="Gang Association" input type="checkbox" /> Gang Association
+          <br>
+          <input type="checkbox" name="ODD (Oppositional Defiant Disorder)" value="ODD (Oppositional Defiant Disorder)" input type="checkbox"
+          /> ODD (Oppositional Defiant Disorder) <br>
+          <input type="checkbox" name="Labor Exploitation (history)" value="Labor Exploitation (history)" input type="checkbox" />          Labor Exploitation (history) <br>
+          <input type="checkbox" name="Luring/grooming by adult" value="Luring/grooming by adult" input type="checkbox" />          Luring/grooming by adult <br>
+          <input type="checkbox" name="Luring/grooming by child" value="Luring/grooming by child" input type="checkbox" />          Luring/grooming by child <br>
+          <input type="checkbox" name="Missing From Care" value="Missing From Care" input type="checkbox" /> Missing From
+          Care
+          <br>
+          <input type="checkbox" name="Physical Abuse (history)" value="Physical Abuse (history)" input type="checkbox" />          Physical Abuse (history)<br>
+          <input type="checkbox" name="Runaway (history)" value="Runaway (history)" input type="checkbox" /> Runaway (history)
+          <br>
+          <input type="checkbox" name="Sexual Abuse (history)" value="Sexual Abuse (history)" input type="checkbox" /> Sexual
+          Abuse (history) <br>
+          <input type="checkbox" name="Sexual Exploitation (history)" value="Sexual Exploitation (history)" input type="checkbox" />          Sexual Exploitation (history) <br>
+          <input type="checkbox" name="Sexual Minority (LGBTQ, etc)" value="Sexual Minority (LGBTQ, etc)" input type="checkbox" />          Sexual Minority (LGBTQ, etc) <br>
+        </div>
       </div>
     </div>
   </div>

@@ -4,6 +4,14 @@ body, html {
     font-family: "PT Sans", Arial, Helvetica, sans-serif;
     /* font-size: 14px; */
   }
+
+  #MCMCaseNumber, #Age, #StateMissingFrom, #CountyMissingFrom, #CityMissingFrom, #SchoolDistrictWhereChildWasEnrolled, #LawEnforcementAgencyonCase, #FamilyMembersInvolvedInSearch {
+    border: 2px solid red;    
+  }
+  .form-group{
+    padding: 18px;
+    margin: 10px;
+  }
   
   .instructions .container h1 {
     /* font-size: 32px;
@@ -106,13 +114,13 @@ body, html {
   }
   .md-form {
     margin: 20px;
-    padding: 40px;
-    padding-top: 40px;
+    padding: 25px;
+    /* padding-top: 40px; */
     margin-bottom: 20px;
   }
-  .top-buffer { 
+  /* .top-buffer { 
     margin-top:20px; 
-  }
+  } */
   #vulnerabilities {
     float: right;
   }
@@ -121,7 +129,7 @@ body, html {
     content:"*";
     color:red;
   }
-
-  #MCM Case Number {
-  background-color : #d1d1d1; 
+  .btn-info {
+    float: left;
   }
+
