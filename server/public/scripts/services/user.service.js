@@ -5,6 +5,7 @@ myApp.service('UserService', function ($http, $location) {
   self.userObject = {};
   self.chartData = { data: [] };
   self.mainChartYears = [];
+  self.users = {};
 
   self.getChartData = function () {
     //on page load, GET all case_data from DB to the DOM
@@ -79,13 +80,35 @@ myApp.service('UserService', function ($http, $location) {
 
 //gets all users back on manage page so they can be edited -shara
   self.getAllUsers = function () {
-    $http({
+    return $http({
       method: 'GET',
       url: '/manage',
     }).then(function (response) {
+      self.users.list = response.data;
       console.log('this is response in user before if', response.data);
     });
   };
 
-});
+  // updates the admin privledges 
+  self.updatePrivledges = function(user) {
+    return $http({
+      method: 'PUT',
+      url: '/manage',
+      data: user
+    }).then(function (response) {
+      console.log('Response', response.data);
+    })
+  }
 
+  // deletes the user from the db
+  self.deleteUser = function(user) {
+    return $http({
+      method: 'DELETE',
+      url: '/manage',
+      data: user
+    }).then(function (response) {
+      console.log('Delete Response', response.data);
+    })
+  }
+
+});
