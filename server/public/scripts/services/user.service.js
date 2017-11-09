@@ -45,9 +45,6 @@ myApp.service('UserService', function ($http, $location) {
       })
   };
 
-  // return {
-  //   userObject : userObject,
-
   self.getuser = function () {
     console.log('UserService -- getuser');
     $http({
@@ -77,6 +74,16 @@ myApp.service('UserService', function ($http, $location) {
     }).then(function (response) {
       console.log('UserService -- logout -- logged out');
       $location.path('/home');
+    });
+  };
+
+//gets all users back on manage page so they can be edited -shara
+  self.editUsers = function () {
+    $http({
+      method: 'GET',
+      url: '/manage',
+    }).then(function (response) {
+      console.log('this is response in user before if', response.data);
     });
   };
 
