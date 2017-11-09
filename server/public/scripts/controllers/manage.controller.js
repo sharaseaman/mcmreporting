@@ -3,4 +3,11 @@ myApp.controller('ManageController', function (UserService) {
     var vm = this;
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
+
+
+    //basic function to test manage route and get call
+    vm.editUsers = function(){
+      UserService.editUsers();
+    }
+
   });
