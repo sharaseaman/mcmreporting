@@ -1,6 +1,11 @@
 myApp.controller('NewController', function (UserService) {
     console.log('NewController as nwc created');
     var vm = this;
+
+
+
+
+
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
 
