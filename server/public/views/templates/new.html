@@ -7,7 +7,7 @@
       <div class="form-group">
         <div class="row top-buffer">
           <!-- <div class="form-group required"> -->
-            <input id="MCM Case Number" required="true"  type="number" placeholder="MCM Case Number">
+            <input id="MCM Case Number" required="true"  type="number" placeholder="MCM Case Number" ng-model="nwc.caseIn">
             <input id="Date Last Seen" type="number" placeholder="Date Last Seen">
             <input id="Date Reported Missing to Police" style="width:250px;" type="number" placeholder="Date Reported Missing to Police">
           </div>
@@ -166,5 +166,6 @@
         <input type="checkbox" name="Sexual Minority (LGBTQ, etc)" value="Sexual Minority (LGBTQ, etc)" input type="checkbox" />        Sexual Minority (LGBTQ, etc) <br>
       </div>
     </div>
+    <button ng-click='nwc.printPDF()'>PDF</button>     
   </div>
 </form>
