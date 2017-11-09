@@ -11,10 +11,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr >   
-                        <td>{{}}</td>
-                        <td>{{}}</td>
-                        <td>{{}}</td>
+                    <tr ng-repeat="user in mc.users">   
+                        <td>{{user.username}}</td>
+                        <td><input type="checkbox" autocomplete="off" ng-click="mc.editPrivledge(user)" ng-checked="user.admin"></td>
+                        <td><button type="button" ng-click="mc.deleteUser(user)"></button></td>
+
+                        
+                        
                     </tr>
                 </tbody>
             </table>
