@@ -7,8 +7,8 @@ myApp.controller('ManageController', function (UserService) {
 
 
     //basic function to test manage route and get call
-    vm.editUsers = function(){
-      UserService.editUsers().then(function() {
+    vm.getAllUsers = function(){
+      UserService.getAllUsers().then(function() {
         vm.users = UserService.users.list;
         console.log('vm.users', vm.users);
       })
@@ -17,7 +17,7 @@ myApp.controller('ManageController', function (UserService) {
     vm.deleteUser = function(user) {
       console.log('In deleteUser', user.username);
       UserService.deleteUser(user).then(function () {
-        vm.editUsers();
+        vm.getAllUsers();
       })
     }
 

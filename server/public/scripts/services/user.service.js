@@ -79,7 +79,7 @@ myApp.service('UserService', function ($http, $location) {
   };
 
 //gets all users back on manage page so they can be edited -shara
-  self.editUsers = function () {
+  self.getAllUsers = function () {
     return $http({
       method: 'GET',
       url: '/manage',
@@ -100,6 +100,7 @@ myApp.service('UserService', function ($http, $location) {
     })
   }
 
+  // deletes the user from the db
   self.deleteUser = function(user) {
     return $http({
       method: 'DELETE',
