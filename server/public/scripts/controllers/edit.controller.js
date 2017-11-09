@@ -4,6 +4,7 @@ myApp.controller('EditController', function(UserService) {
     vm.userService = UserService;
 
     vm.getData = function (mcmNum) {
-      
+      console.log('In getData');
+      console.log('MCM Number', mcmNum);
     }
   });
