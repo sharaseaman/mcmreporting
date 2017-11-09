@@ -6,8 +6,8 @@ myApp.controller('ManageController', function (UserService) {
 
 
     //basic function to test manage route and get call
-    vm.editUsers = function(){
-      UserService.editUsers();
+    vm.getAllUsers = function(){
+      UserService.getAllUsers();
     }
 
   });

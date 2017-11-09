@@ -5,7 +5,7 @@
   <div class="md-form">
     <div class="col-sm-8">
       <div class="form-group">
-        <input id="MCMCaseNumber" required="true" type="number" placeholder="MCM Case Number">
+        <input id="MCMCaseNumber" required="true" type="number" placeholder="MCM Case Number" ng-model="nwc.caseIn">
         <label for="DateofintaketoMCM">Date of Intake to MCM </label>
         <input id="DateofintaketoMCM" style="width:150px;" type="date" placeholder="Date of Intake to MCM">
       </div>
@@ -241,5 +241,6 @@
         </div>
       </div>
     </div>
+    <button ng-click='nwc.printPDF()'>PDF</button>     
   </div>
 </form>

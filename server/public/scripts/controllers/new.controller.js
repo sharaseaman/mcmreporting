@@ -1,5 +1,5 @@
 myApp.controller('NewController', function (UserService) {
-    console.log('NewController created');
+    console.log('NewController as nwc created');
     var vm = this;
 
 
@@ -8,4 +8,16 @@ myApp.controller('NewController', function (UserService) {
 
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
+
+    //shara working on pdf below
+    var pdf = new jsPDF();
+    
+        vm.printPDF = function () {
+            console.log('test');
+    
+            pdf.text(10, 10, 'Name: ' + vm.caseIn);
+  
+            pdf.save();
+        }
+    //shara working on pdf above
   });

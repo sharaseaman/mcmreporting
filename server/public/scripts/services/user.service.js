@@ -78,7 +78,7 @@ myApp.service('UserService', function ($http, $location) {
   };
 
 //gets all users back on manage page so they can be edited -shara
-  self.editUsers = function () {
+  self.getAllUsers = function () {
     $http({
       method: 'GET',
       url: '/manage',
