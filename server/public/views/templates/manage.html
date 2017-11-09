@@ -1,13 +1,21 @@
-<div class="navbar">
-    <div class="container">
-      <ul>
-        <li><a href="#/user">User Home</a></li>
-        <li><a href="#/new">New Form</a></li>
-        <li><a href="#/edit">Edit Form</a></li>        
-        <li><a href="#/core">Core Reports</a></li>
-        <li><a href="#/custom">Custom Reports</a></li>
-        <li><a href="#/manage">Manage Users</a></li> 
-        <button class="btn btn-default" id="logout" ng-click="uc.userService.logout()">Log Out</button>                
-      </ul>
-    </div>
-  </div>
+<div ng-include="'views/partials/nav.html'"></div>
+
+<div id="manage" ng-init="mc.editUsers()">
+        <h2>Current Users</h2>    
+        <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >   
+                        <td>{{}}</td>
+                        <td>{{}}</td>
+                        <td>{{}}</td>
+                    </tr>
+                </tbody>
+            </table>
+</div>

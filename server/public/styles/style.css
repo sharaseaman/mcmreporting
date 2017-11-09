@@ -5,6 +5,12 @@ body, html {
     /* font-size: 14px; */
   }
   
+  .center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+  
   .instructions .container h1 {
     /* font-size: 32px;
     font-weight: 600; */
@@ -103,4 +109,25 @@ body, html {
   li a:hover {
     text-decoration: underline;
     color: orange;
+  }
+  .md-form {
+    margin: 20px;
+    padding: 40px;
+    padding-top: 40px;
+    margin-bottom: 20px;
+  }
+  .top-buffer { 
+    margin-top:20px; 
+  }
+  #vulnerabilities {
+    float: right;
+  }
+
+  .form-group.required .control-label:after {
+    content:"*";
+    color:red;
+  }
+
+  #MCM Case Number {
+  background-color : #d1d1d1; 
   }
