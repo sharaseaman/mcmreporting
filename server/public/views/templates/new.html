@@ -15,13 +15,15 @@
   <div class="md-form">
     <div class="col-sm-8">
       <div class="form-group">
-        <!-- <div class="row top-buffer"> -->
-        <!-- <div class="form-group required"> -->
         <input id="MCMCaseNumber" required="true" type="number" placeholder="MCM Case Number">
+        <label for="DateofintaketoMCM">Date of Intake to MCM </label>
+        <input id="DateofintaketoMCM" style="width:150px;" type="date" placeholder="Date of Intake to MCM">
       </div>
       <div class="form-group">
-        Date Last Seen <input id="DateLastSeen" type="date" style="width:150px;" placeholder="Date Last Seen"> Date Reported
-        Missing to Police <input id="DateReportedMissingtoPolice" style="width:150px;" type="date" placeholder="Date Reported Missing to Police">        Date of Intake to MCM <input id="DateofintaketoMCM" style="width:150px;" type="date" placeholder="Date of Intake to MCM">
+        <label for="DateLastSeen">Date Last Seen: </label>
+        <input id="DateLastSeen" type="date" style="width:150px;" placeholder="Date Last Seen">
+        <label for="DateReportedMissingtoPolice">Date Reported Missing to Police: </label>
+        <input id="DateReportedMissingtoPolice" style="width:150px;" type="date" placeholder="Date Reported Missing to Police">
       </div>
       <div class="form-group">
         <input id="Name" type="text" placeholder="Name">
@@ -154,6 +156,7 @@
                         ">LIM (Lost, Injured, Otherwise Missing)                   
                       </option> 
                               </select>
+
         <select name="Case Status" placeholder="Case Status" id="yes">   
                                   <option value="" disabled selected>Case Status</option>                             
                                   <option value="Open                          
@@ -168,7 +171,7 @@
                                 <option value="Suspended - false information                                
                                 ">Suspended - false information                                
                               </option> 
-                                    </select>
+        </select>
       </div>
       <div class="form-group">
         <select name="Case Disposition" placeholder="Case Disposition" id="yes">   
@@ -232,19 +235,19 @@
           <br>
           <input type="checkbox" name="ODD (Oppositional Defiant Disorder)" value="ODD (Oppositional Defiant Disorder)" input type="checkbox"
           /> ODD (Oppositional Defiant Disorder) <br>
-          <input type="checkbox" name="Labor Exploitation (history)" value="Labor Exploitation (history)" input type="checkbox" />          Labor Exploitation (history) <br>
-          <input type="checkbox" name="Luring/grooming by adult" value="Luring/grooming by adult" input type="checkbox" />          Luring/grooming by adult <br>
-          <input type="checkbox" name="Luring/grooming by child" value="Luring/grooming by child" input type="checkbox" />          Luring/grooming by child <br>
+          <input type="checkbox" name="Labor Exploitation (history)" value="Labor Exploitation (history)" input type="checkbox" />Labor Exploitation (history) <br>
+          <input type="checkbox" name="Luring/grooming by adult" value="Luring/grooming by adult" input type="checkbox" />Luring/grooming by adult <br>
+          <input type="checkbox" name="Luring/grooming by child" value="Luring/grooming by child" input type="checkbox" />Luring/grooming by child <br>
           <input type="checkbox" name="Missing From Care" value="Missing From Care" input type="checkbox" /> Missing From
           Care
           <br>
-          <input type="checkbox" name="Physical Abuse (history)" value="Physical Abuse (history)" input type="checkbox" />          Physical Abuse (history)<br>
+          <input type="checkbox" name="Physical Abuse (history)" value="Physical Abuse (history)" input type="checkbox" /> Physical Abuse (history)<br>
           <input type="checkbox" name="Runaway (history)" value="Runaway (history)" input type="checkbox" /> Runaway (history)
           <br>
           <input type="checkbox" name="Sexual Abuse (history)" value="Sexual Abuse (history)" input type="checkbox" /> Sexual
           Abuse (history) <br>
-          <input type="checkbox" name="Sexual Exploitation (history)" value="Sexual Exploitation (history)" input type="checkbox" />          Sexual Exploitation (history) <br>
-          <input type="checkbox" name="Sexual Minority (LGBTQ, etc)" value="Sexual Minority (LGBTQ, etc)" input type="checkbox" />          Sexual Minority (LGBTQ, etc) <br>
+          <input type="checkbox" name="Sexual Exploitation (history)" value="Sexual Exploitation (history)" input type="checkbox" />Sexual Exploitation (history) <br>
+          <input type="checkbox" name="Sexual Minority (LGBTQ, etc.)" value="Sexual Minority (LGBTQ, etc.)" input type="checkbox" />Sexual Minority (LGBTQ, etc.) <br>
         </div>
       </div>
     </div>
