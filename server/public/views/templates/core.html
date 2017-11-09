@@ -1,13 +1,10 @@
-<div class="navbar">
-  <div class="container">
-    <ul>
-      <li><a href="#/user">User Home</a></li>
-      <li><a href="#/new">New Form</a></li>
-      <li><a href="#/edit">Edit Form</a></li>
-      <li><a href="#/core">Core Reports</a></li>
-      <li><a href="#/custom">Custom Reports</a></li>
-      <li><a href="#/manage">Manage Users</a></li>
-      <button class="btn btn-default" id="logout" ng-click="uc.userService.logout()">Log Out</button>
-    </ul>
+<div ng-include="'views/partials/nav.html'"></div>
+  <div class="container" ng-init="cc.getChartData()">
+     <div style="width:400px" class="center">
+      <p>Number of Cases per Year</p>
+      <canvas id="mainBarChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+      </canvas>
+    </div>   
   </div>
-</div>
+
+

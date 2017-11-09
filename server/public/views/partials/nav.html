@@ -1,13 +1,21 @@
+<div ng-app="myApp">
+<div ng-controller="NavController as nc">
 <div class="navbar">
-  <div class="container">
-    <ul>
-      <li><a href="#/user">User Home</a></li>
-      <li><a href="#/new">New Form</a></li>
-      <li><a href="#/edit">Edit Form</a></li>
-      <li><a href="#/core">Core Reports</a></li>
-      <li><a href="#/custom">Custom Reports</a></li>
-      <li><a href="#/manage">Manage Users</a></li>
-      <button class="btn btn-default" id="logout" ng-click="uc.userService.logout()">Log Out</button>
-    </ul>
+
+    <div class="container">
+
+      <ul>
+        <li><a href="#/user">User Home</a></li>
+        <li><a href="#/new">New Form</a></li>
+        <li><a href="#/edit">Edit Form</a></li>        
+        <li><a href="#/core">Core Reports</a></li>
+        <li><a href="#/custom">Custom Reports</a></li>
+        <li><a href="#/manage" ng-if="nc.userObject.admin">Manage Users</a></li> 
+        <!-- shara added to line above -->
+        <button class="btn btn-default" id="logout" ng-click="nc.userService.logout()">Log Out</button>                
+      </ul>
+    </div>
   </div>
+</div>
+  
 </div>
