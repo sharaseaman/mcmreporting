@@ -6,7 +6,6 @@ myApp.service('UserService', function ($http, $location) {
   self.chartData = { data: [] };
   self.mainChartYears = [];
   self.users = {};
-
   self.getChartData = function () {
     //on page load, GET all case_data from DB to the DOM
     return $http({
@@ -102,8 +101,10 @@ myApp.service('UserService', function ($http, $location) {
 
   // deletes the user from the db
   self.deleteUser = function(user) {
+    console.log('this is user on delete service', user);
+    
     return $http({
-      method: 'DELETE',
+      method: 'POST',
       url: '/manage',
       data: user
     }).then(function (response) {
