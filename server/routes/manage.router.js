@@ -31,9 +31,9 @@ router.get('/', function(req, res) {
   router.put('/', function (req, res) {
     if (req.isAuthenticated()) {
         pool.connect(function (connectionError, client, done) {
-            console.log('req.body ->', req.body);
-            console.log('this is req.body.username',req.body.username);
-            console.log('this is req.body.username',req.body.admin);
+            console.log('put route manage ->', req.body);
+            console.log('put route manage req.body.username',req.body.username);
+            console.log('put route manage req.body.username',req.body.admin);
             var userNameEdit = req.body.username;
             var userAdminEdit = req.body.admin
             if (connectionError) {
@@ -55,18 +55,18 @@ router.get('/', function(req, res) {
     }
 });
 
-router.delete('/', function (req, res) {
+router.post('/', function (req, res) {
   if (req.isAuthenticated()) {
       pool.connect(function (connectionError, client, done) {
           console.log('req.body ->', req.body);
           console.log('delete router req.body.username',req.body.username);
-          var userNameEdit = req.body.username;
+          var userNamedelete = req.body.username;
           if (connectionError) {
               console.log(connectionError);
               res.sendStatus(501);
           } else {
               var pQuery = 'DELETE FROM users WHERE username=$1';
-             var valueArray = [userNameEdit];
+             var valueArray = [userNamedelete];
               client.query(pQuery, valueArray, function (queryError, resultObj) {
                   done();
               })
