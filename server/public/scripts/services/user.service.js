@@ -4,7 +4,6 @@ myApp.service('UserService', function ($http, $location) {
 
   self.userObject = {};
   self.chartData = { data: [] };
-  self.mainChartYears = [];
   self.users = {};
 
   self.getChartData = function () {
@@ -18,32 +17,81 @@ myApp.service('UserService', function ($http, $location) {
         self.chartData.data = res.data;
         return self.chartData.data
       })
-      .then(function (res){
+      .then(function (res) {
         //add a year based on intake_date
-        self.addYearToRecord = res.forEach(function(element){
-          element.year = element.intake_date.slice(0,4);
+        self.addYearToRecord = res.forEach(function (element) {
+          element.year = element.intake_date.slice(0, 4);
         });
 
-        //then create an object with an array for each year's data record
-        self.filteredYears = res.reduce(function (prev, curr) {
-          if (!prev[curr.year]) {
-            prev[curr.year] = [];
-          }
-
-          prev[curr.year].push(curr);
-
-          return prev;
-        }, {});
+        var totalsByYear = self.formatDataToChart(res, 'year');
 
         //get the keys (years) for this object
-        self.mainChartYears = Object.keys(self.filteredYears);
+        self.mainChartYears = totalsByYear.xAxisValues;
+        console.log('self.mainChartYears', self.mainChartYears);
 
-        //map the data records to the appropriate year's array
-        self.filteredYears = self.mainChartYears.map(function (year) {
-          return self.filteredYears[year].length;
+        //get length of each year's array
+        self.filteredYears = totalsByYear.yAxisValues;
+        console.log('self.filteredYears', self.filteredYears);
+
+
+        var totalsByCaseTypeOverall = self.formatDataToChart(res, 'start_case_type');
+        
+        //get the keys (years) for this object
+        self.startCaseLabel = totalsByCaseTypeOverall.xAxisValues;
+        console.log('self.startCaseLabel', self.startCaseLabel);
+
+        //get length of each year's array
+        self.filteredStartCase = totalsByCaseTypeOverall.yAxisValues;
+        console.log('self.filteredStartCase', self.filteredStartCase);
+
+        var dataFor2017 = self.getDataOfYear(res, '2017');
+        var totalsByCaseType = self.formatDataToChart(dataFor2017, 'start_case_type');
+        
+        self.caseTypeLabels = totalsByCaseType.xAxisValues;
+        // console.log('self.caseTypeLabels', self.caseTypeLabels);
+
+        self.filteredCases = totalsByCaseType.yAxisValues;
+        // console.log('self.filteredCases', self.filteredCases);
 
         });
-      })
+
+  };
+
+  
+  self.getDataOfYear = function(data, year) {
+    return data.filter(function(entry) {
+      return entry.year === year;
+    });
+  };
+
+  self.formatDataToChart = function(data, xAxisDataPoint) {
+    //then create an object with an array for each year's data record
+    var dataGroupedXAxisDataPoint = data.reduce(function (prev, curr) {
+      const groupLabel = curr[xAxisDataPoint];
+
+      if (!prev[groupLabel]) {
+        prev[groupLabel] = [];
+      }
+
+      prev[groupLabel].push(curr);
+
+      return prev;
+    }, {});
+
+    var xAxisValues = Object.keys(dataGroupedXAxisDataPoint);
+
+    var yAxisValues = xAxisValues.map(function (label) {
+      return dataGroupedXAxisDataPoint[label].length;
+    });
+
+    return {
+      xAxisValues: xAxisValues,
+      yAxisValues: yAxisValues
+    };
+  };
+
+  self.updateChartYear = function (selectedYear) {
+    console.log('service', selectedYear)
   };
 
   self.getuser = function () {
@@ -58,8 +106,8 @@ myApp.service('UserService', function ($http, $location) {
         self.userObject.admin = response.data.admin;
         console.log('UserService -- getuser -- User Data: ', self.userObject.userName);
         console.log('UserService -- getuser -- User Data: ', self.userObject.admin);
-        
-        
+
+
       } else {
         console.log('UserService -- getuser -- failure', response);
         // user has no session, bounce them back to the login page
