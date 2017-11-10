@@ -106,4 +106,33 @@ router.get('/cities', function(req, res) {
     }
   }); //end schools get call
 
+  router.post('/newIntake', function(req, res) {
+    var newIntake = req.body;
+    console.log('In Post for new intake', newIntake);
+    // check if logged in
+    if (req.isAuthenticated()) {
+      pool.connect(function (conErr, client, done) {
+        if (conErr) {
+          res.sendStatus(500);
+        } else {
+          var sqlQuery = 'INSERT INTO case_data (intake_date, age, gender, last_seen, reported_missing, people_served, city, county, state, school, start_case_type, referral_type, mcm_number) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)'
+          var valueArray = [newIntake.intake_date, newIntake.age, newIntake.gender, newIntake.last_seen, newIntake.reported_missing, newIntake.people_served, newIntake.city, newIntake.county, newIntake.state, newIntake.school, newIntake.start_case_type, newIntake.referral_type, newIntake.MCM_case]
+          client.query(sqlQuery, valueArray, function (queryErr, resultObj) {
+            done();
+            if (queryErr) {
+              res.sendStatus(500);
+            } else {
+              res.send(resultObj.rows);
+            }
+          });
+        }
+      })
+    } else {
+      // failure best handled on the server. do redirect here.
+      console.log('not logged in');
+      // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
+      res.send(false);
+    }
+  }); //end schools get call
+
 module.exports = router;
