@@ -4,6 +4,7 @@ myApp.service('UserService', function ($http, $location) {
 
   self.userObject = {};
   self.chartData = { data: [] };
+  self.users = {};
 
   self.getChartData = function () {
     //on page load, GET all case_data from DB to the DOM
@@ -93,9 +94,6 @@ myApp.service('UserService', function ($http, $location) {
     console.log('service', selectedYear)
   };
 
-  // return {
-  //   userObject : userObject,
-
   self.getuser = function () {
     console.log('UserService -- getuser');
     $http({
@@ -127,5 +125,40 @@ myApp.service('UserService', function ($http, $location) {
       $location.path('/home');
     });
   };
+
+//gets all users back on manage page so they can be edited -shara
+  self.getAllUsers = function () {
+    return $http({
+      method: 'GET',
+      url: '/manage',
+    }).then(function (response) {
+      self.users.list = response.data;
+      console.log('this is response in user before if', response.data);
+    });
+  };
+
+  // updates the admin priviledges 
+  self.updatePriviledges = function(user) {
+    return $http({
+      method: 'PUT',
+      url: '/manage',
+      data: user
+    }).then(function (response) {
+      console.log('Response', response.data);
+    })
+  }
+
+  // deletes the user from the db
+  self.deleteUser = function(user) {
+    console.log('this is user on delete service', user);
+    
+    return $http({
+      method: 'POST',
+      url: '/manage',
+      data: user
+    }).then(function (response) {
+      console.log('Delete Response', response.data);
+    })
+  }
 
 });
