@@ -32,8 +32,19 @@ myApp.service('UserService', function ($http, $location) {
         self.filteredYears = totalsByYear.yAxisValues;
         console.log('self.filteredYears', self.filteredYears);
 
-        var dataFor2014 = self.getDataOfYear(res, '2017');
-        var totalsByCaseType = self.formatDataToChart(dataFor2014, 'start_case_type');
+
+        var totalsByCaseTypeOverall = self.formatDataToChart(res, 'start_case_type');
+        
+        //get the keys (years) for this object
+        self.startCaseLabel = totalsByCaseTypeOverall.xAxisValues;
+        console.log('self.startCaseLabel', self.startCaseLabel);
+
+        //get length of each year's array
+        self.filteredStartCase = totalsByCaseTypeOverall.yAxisValues;
+        console.log('self.filteredStartCase', self.filteredStartCase);
+
+        var dataFor2017 = self.getDataOfYear(res, '2017');
+        var totalsByCaseType = self.formatDataToChart(dataFor2017, 'start_case_type');
         
         self.caseTypeLabels = totalsByCaseType.xAxisValues;
         // console.log('self.caseTypeLabels', self.caseTypeLabels);

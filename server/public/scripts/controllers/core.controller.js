@@ -3,8 +3,19 @@ myApp.controller('CoreController', function (UserService, $scope) {
   var vm = this;
   vm.userService = UserService;
   vm.chartData = UserService.chartData;
+  vm.selectedYear;
+
+  vm.getSelectedYear = function() {
+    console.log('selectedYear', vm.selectedYear)
+    if (vm.selectedYear !== undefined) {
+      return "You have selected: Year " + vm.selectedYear;
+    } else {
+      return "Please select an Year";
+    }
+  };
 
   Chart.defaults.scale.ticks.beginAtZero = true;
+
 
   vm.updateChartYear = function (selectedYear) {
     UserService.updateChartYear(selectedYear);
@@ -17,6 +28,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
         vm.filteredYears = UserService.filteredYears;
         vm.caseTypeLabels = UserService.caseTypeLabels
         vm.filteredCases = UserService.filteredCases;
+        vm.startCaseLabel = UserService.startCaseLabel;
+        vm.filteredStartCase = UserService.filteredStartCase;
 
 
         var ctx = document.getElementById("mainBarChart");
@@ -29,6 +42,31 @@ myApp.controller('CoreController', function (UserService, $scope) {
               backgroundColor: 'rgba(54, 162, 235, 0.2)',
               borderColor: 'rgba(54, 162, 235, 0.2)',
               data: vm.filteredYears,
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  callback: function (value) { if (value % 1 === 0) { return value; } }
+                }
+              }]
+            }
+          }
+        });
+
+        var ctc = document.getElementById("testChart");
+        var myChart = new Chart(ctc, {
+          type: 'bar',
+          data: {
+            labels: vm.startCaseLabel,
+            datasets: [{
+              label: 'Overall Start Case Type',
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 0.2)',
+              data: vm.filteredStartCase,
               borderWidth: 1
             }]
           },
