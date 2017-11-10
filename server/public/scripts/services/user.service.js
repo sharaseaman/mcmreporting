@@ -22,53 +22,64 @@ myApp.service('UserService', function ($http, $location) {
           element.year = element.intake_date.slice(0, 4);
         });
 
-        //then create an object with an array for each year's data record
-        self.filteredYears = res.reduce(function (prev, curr) {
-          if (!prev[curr.year]) {
-            prev[curr.year] = [];
-          }
-          prev[curr.year].push(curr);
-          return prev;
-        }, {});
+        var totalsByYear = self.formatDataToChart(res, 'year');
 
         //get the keys (years) for this object
-        self.mainChartYears = Object.keys(self.filteredYears);
-
-        //all mcm_cases filtered by year
-        self.filteredYearArr = self.mainChartYears.map(function (year) {
-          return self.filteredYears[year];
-        });
+        self.mainChartYears = totalsByYear.xAxisValues;
+        console.log('self.mainChartYears', self.mainChartYears);
 
         //get length of each year's array
-        self.filteredYears = self.mainChartYears.map(function (year) {
-          return self.filteredYears[year].length;
+        self.filteredYears = totalsByYear.yAxisValues;
+        console.log('self.filteredYears', self.filteredYears);
+
+        var dataFor2014 = self.getDataOfYear(res, '2017');
+        var totalsByCaseType = self.formatDataToChart(dataFor2014, 'start_case_type');
+        
+        self.caseTypeLabels = totalsByCaseType.xAxisValues;
+        // console.log('self.caseTypeLabels', self.caseTypeLabels);
+
+        self.filteredCases = totalsByCaseType.yAxisValues;
+        // console.log('self.filteredCases', self.filteredCases);
+
         });
 
-        console.log('self.filteredYearArr', self.filteredYearArr);
+  };
 
-        //for each year's array, create an array for each case type
-        self.caseTypeFilter = self.filteredYearArr.forEach(function (year) {
-          // console.log('year Array', year)
-          self.addCaseTypeFilter= year.reduce(function (prev, curr) {
-            if (!prev[curr.start_case_type]) {
-              prev[curr.start_case_type] = [];
-            }
-            prev[curr.start_case_type].push(curr);
-            return prev;
-          }, []);
+  
+  self.getDataOfYear = function(data, year) {
+    return data.filter(function(entry) {
+      return entry.year === year;
+    });
+  };
 
-          self.filteredCaseType = self.addCaseTypeFilter.map(function (year) {
-            return self.filteredCaseType[year];
-          });
+  self.formatDataToChart = function(data, xAxisDataPoint) {
+    //then create an object with an array for each year's data record
+    var dataGroupedXAxisDataPoint = data.reduce(function (prev, curr) {
+      const groupLabel = curr[xAxisDataPoint];
 
-          console.log('maybe?', self.addCaseTypeFilter);
+      if (!prev[groupLabel]) {
+        prev[groupLabel] = [];
+      }
 
-        })
-        
-        // console.log('self.caseTypeFilter', self.caseTypeFilter);
-        // console.log('self.filteredCaseType', self.filteredCaseType);
+      prev[groupLabel].push(curr);
 
-      })
+      return prev;
+    }, {});
+
+    var xAxisValues = Object.keys(dataGroupedXAxisDataPoint);
+
+    var yAxisValues = xAxisValues.map(function (label) {
+      return dataGroupedXAxisDataPoint[label].length;
+    });
+
+    return {
+      xAxisValues: xAxisValues,
+      yAxisValues: yAxisValues
+    };
+  };
+
+  self.updateChartYear = function (selectedYear) {
+    console.log('service', selectedYear)
   };
 
   // return {
