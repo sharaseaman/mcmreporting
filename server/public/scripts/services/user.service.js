@@ -66,6 +66,13 @@ myApp.service('UserService', function ($http, $location) {
       }
     });
   };
+
+  // get the data from an existing form to edit
+  self.getExistingForm = function (mcmNum) {
+    console.log('In getExistingForm');
+  }
+
+
   self.logout = function () {
     console.log('UserService -- logout');
     $http({

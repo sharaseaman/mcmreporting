@@ -4,9 +4,11 @@
   <p>
     In Edit
 
+
+    <input id="caseNum" ng-model="ec.caseIn" type="text" placeholder="MCM Case Number">
+    <button type="button" ng-click="ec.getData(ec.caseIn)">Enter</button>
     <div class="md-form">
-      <input id="born" ng-model="" type="text" placeholder="MCM Case Number">
-      <select name="Age" placeholder="Age" id="yes" ng-model="ac.input.sigEventRating">
+      <select name="Age" placeholder="Age" id="yes" ng-model="ec.age">
         <option value="" disabled selected>Age</option>
         <option value="0-2">0-2</option>
         <option value="3-7">3-7</option>
@@ -14,13 +16,13 @@
         <option value="13-17">13-17</option>
         <option value="18+">18+</option>
       </select>
-      <input id="city" ng-model="" type="text" placeholder="City Missing From">
-      <input id="county" ng-model="" type="text" placeholder="County Missing From">
-      <input id="state" ng-model="" type="text" placeholder="State Missing From">
+      <input id="city" ng-model="ec.city" type="text" placeholder="City Missing From">
+      <input id="county" ng-model="ec.county" type="text" placeholder="County Missing From">
+      <input id="state" ng-model="ec.state" type="text" placeholder="State Missing From">
       
-      <input id="familyMembers" ng-model="" type="text" placeholder="Number of Family Members Involved in Search">
+      <input id="familyMembers" ng-model="ec.familyMembers" type="text" placeholder="Number of Family Members Involved in Search">
       
-      <select name="Case Type" placeholder="Case Type" id="yes" ng-model="ac.input.sigEventRating">
+      <select name="Case Type" placeholder="Case Type" id="yes" ng-model="ec.caseType">
         <option value="" disabled selected>Case Type</option>
         <option value="Runaway">Runaway</option>
         <option value="Abduction by Family Member">Abduction by Family Member</option>
@@ -29,7 +31,7 @@
         <option value="LIM">LIM</option>
       </select>
 
-      <select name="Vulnerabilities" placeholder="Vulnerabilities" id="vulnerabilities" ng-model="">
+      <select name="Vulnerabilities" placeholder="Vulnerabilities" id="vulnerabilities" ng-model="ec.vulnerabilities">
         <option value="" disabled selected>Vulnerabilities</option>
         <option value="ADD/ADHD">ADD/ADHD</option>
         <option value="ASD">ASD (Autism Spectrum Disorder</option>

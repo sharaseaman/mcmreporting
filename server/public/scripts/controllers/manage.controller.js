@@ -17,7 +17,7 @@ myApp.controller('ManageController', function (UserService) {
     vm.deleteUser = function(user) {
       console.log('In deleteUser', user.username);
       UserService.userToDelete = user;
-      UserService.deleteUser().then(function () {
+      UserService.deleteUser(user).then(function () {
         vm.getAllUsers();
       })
     }
