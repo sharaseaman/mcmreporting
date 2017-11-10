@@ -6,7 +6,6 @@ myApp.service('UserService', function ($http, $location) {
   self.chartData = { data: [] };
   self.mainChartYears = [];
   self.users = {};
-
   self.getChartData = function () {
     //on page load, GET all case_data from DB to the DOM
     return $http({
