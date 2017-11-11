@@ -5,6 +5,7 @@ myApp.service('UserService', function ($http, $location) {
   self.userObject = {};
   self.chartData = { data: [] };
   self.users = {};
+  self.cities = {};
 
   self.getChartData = function () {
     //on page load, GET all case_data from DB to the DOM
@@ -160,5 +161,40 @@ myApp.service('UserService', function ($http, $location) {
       console.log('Delete Response', response.data);
     })
   }
+
+
+  self.getCities = function () {
+    //on submit, posts all required fields to database
+  return $http({
+      method: 'GET',
+      url: '/forms/cities'
+  }).then(function (response){
+    self.cities = response.data;
+    console.log(response.data);
+  })
+};  
+
+  // self.postInputData = function () {
+  //   //on submit, posts all required fields to database
+  //   return $http({
+  //     method: 'POST',
+  //     url: '/newIntake'
+  //   })
+  //     .then(function (res) {
+  //       //match case_data to service
+  //       self.chartData.data = res.data;
+  //       return self.chartData.data
+  //     })
+  //     .then(function (res) {
+  //       //add a year based on intake_date
+  //       self.addYearToRecord = res.forEach(function (element) {
+  //         element.year = element.intake_date.slice(0, 4);
+  //       });
+      
+   
+
+
+
+
 
 });

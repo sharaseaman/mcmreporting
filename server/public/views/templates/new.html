@@ -9,21 +9,23 @@
     <div class="form-group" id="MissingPerson'sInfo">
       <input id="MCMCaseNumber" ng-model="nwc.caseIn" type="number" placeholder="MCM Case Number" required>
       <label for="DateofintaketoMCM">Date of Intake to MCM </label>
-      <input id="DateofIntaketoMCM" style="width:150px;"ng-model="nwc.DateofIntaketoMCMIn" type="date" placeholder="Date of Intake to MCM">
+      <input id="DateofIntaketoMCM" style="width:150px;" ng-model="nwc.DateofIntaketoMCMIn" type="date" placeholder="Date of Intake to MCM">
     </div>
     <div class="form-group">
       <label for="DateofDissapearance">Date of Dissapearance: </label>
-      <input id="DateofDissapearance" ng-model="nwc.DateofDissapearanceIn"type="date" style="width:150px;" placeholder="Date of Dissapearance">
+      <input id="DateofDissapearance" ng-model="nwc.DateofDissapearanceIn" type="date" style="width:150px;" placeholder="Date of Dissapearance">
       <label for="DateLastSeen">Date Last Seen: </label>
-      <input id="DateLastSeen" ng-model="nwc.DateLastSeenIn" type="date" style="width:150px;" placeholder="Date Last Seen">
+      <input id="DateLastSeen" ng-model="nwc.DateLastSeenIn" type="date" style="width:150px;" placeholder="Time Last Seen">
+      <label for="TimeLastSeen">Time Last Seen: </label>
+      <input id="TimeLastSeen" ng-model="nwc.TimeLastSeenIn" type="time" style="width:150px;" placeholder="Time Last Seen">
       <label for="DateReportedMissingtoPolice">Date Reported Missing to Police: </label>
-      <input id="DateReportedMissingtoPolice" ng-model="nwc.DateReportedMissingtoPoliceIn"style="width:150px;" type="date" placeholder="Date Reported Missing to Police">
+      <input id="DateReportedMissingtoPolice" ng-model="nwc.DateReportedMissingtoPoliceIn" style="width:150px;" type="date" placeholder="Date Reported Missing to Police">
       <label for="LocationLastSeenCrossSt.">Location Last Seen/Cross St. </label>
-      <input id="LocationLastSeenCrossSt." ng-model="nwc.LocationLastSeenCrossStIn"style="width:150px;" type="date" placeholder="Location Last Seen/Cross St.">
+      <input id="LocationLastSeenCrossSt." ng-model="nwc.LocationLastSeenCrossStIn" style="width:150px;" type="date" placeholder="Location Last Seen/Cross St.">
     </div>
     <div class="form-group">
-      <input id="Name" ng-model="nwc.NameIn"type="text" placeholder="Name (Last, First, Middle)">
-      <input id="Age" ng-model="nwc.AgeIn"type="number" placeholder="Age"required>
+      <input id="Name" ng-model="nwc.NameIn" type="text" placeholder="Name (Last, First, Middle)">
+      <input id="Age" ng-model="nwc.AgeIn" type="number" placeholder="Age" required>
       <select name="Gender" ng-model="nwc.GenderIn" placeholder="Gender" id="yes">   
           <option value="" disabled selected>Gender</option>                             
           <option value="Male">Male</option>
@@ -34,15 +36,15 @@
       <input id="Weight" ng-model="nwc.WeightIn" type="text" placeholder="Weight">
       <!-- </div> -->
       <!-- <div class="form-group" id="ReportingLawEnforcement"> -->
-      <input id="Other" ng-model="nwc.OtherIn"type="text" placeholder="Other">
-      <input id="CaseNumber" ng-model="nwc.CaseNumberIn"type="text" placeholder="Case Number">
+      <input id="Other" ng-model="nwc.OtherIn" type="text" placeholder="Other">
+      <input id="CaseNumber" ng-model="nwc.CaseNumberIn" type="text" placeholder="Case Number">
       <input id="Office/Detective" ng-model="nwc.OfficeDetectiveIn" type="text" placeholder="Officer/Detective">
       <label for="LEPhoneNumber"> LE Phone Number </label>
       <input id="LEPhoneNumber" ng-model="nwc.LEPhoneNumberIn" type="text" placeholder="LE Phone Number">
       <label for="StreetAddress"> Street Address</label>
-      <input id="StreetAddress" ng-model="nwc.StreetAddressIn"type="text" placeholder="Street Address">
+      <input id="StreetAddress" ng-model="nwc.StreetAddressIn" type="text" placeholder="Street Address">
       <!-- <div class="form-group"> -->
-      <select name="StateMissingFrom" ng-model="nwc.StateMissingFromIn" type="number" placeholder="State Missing From"required>
+      <select name="StateMissingFrom" ng-model="nwc.StateMissingFromIn" type="number" placeholder="State Missing From" required>
                   <option value="" disabled selected>State Missing From</option>                                            
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -96,8 +98,12 @@
                   <option value="WI">Wisconsin</option>
                   <option value="WY">Wyoming</option>
                 </select>
-      <input id="CountyMissingFrom" ng-model="nwc.CountyMissingFromIn"type="number" placeholder="County Missing From"required>
-      <input id="CityMissingFrom" ng-model="nwc.CityMissingFromIn"type="number" placeholder="City Missing From"required>
+      <input id="CountyMissingFrom" ng-model="nwc.CountyMissingFromIn" type="number" placeholder="County Missing From" required>
+      <!-- <input id="CityMissingFrom" ng-model="nwc.CityMissingFromIn"type="number" placeholder="City Missing From"required> -->
+      <select name="CityMissingFrom" ng-model="nwc.CityMissingFromIn" placeholder="City Missing From" id="yes" required>
+          <option  value="{{nwc.CityMissingFromIn}}">{{nwc.CityMissingFromIn}}</option>
+          <!-- ng-repeat="nwc.CityMissingFromIn in nwc.CityMissingFromIns"  -->
+     
       <input id="SchoolDistrictWhereChildWasEnrolled" ng-model="nwc.SchoolDistrictWhereChildWasEnrolledIn" style="width:300px;" type="number" placeholder="School District Where Child Was Enrolled"required>
       <!-- </div> -->
       <!-- <div class="form-group"> -->
@@ -107,10 +113,11 @@
                       <option value="Yes">Yes
                           <option value="No">No   
                           </select>
-      <input id="FamilyMembersInvolvedInSearch" ng-model="nwc.FamilyMembersInvolvedInSearchIn" style="width:250px;" type="number" placeholder="Family Members Involved in Search"required>
+      <input id="FamilyMembersInvolvedInSearch" ng-model="nwc.FamilyMembersInvolvedInSearchIn" style="width:250px;" type="number"
+        placeholder="Family Members Involved in Search" required>
     </div>
     <div class="form-group">
-      <select name="CaseTypeWhenOpened" ng-model="nwc.CaseTypeWhenOpenedIn" placeholder="Case Type When Opened" id="yes"required>   
+      <select name="CaseTypeWhenOpened" ng-model="nwc.CaseTypeWhenOpenedIn" placeholder="Case Type When Opened" id="yes" required>   
                                 <option value="" disabled selected>Case Type When Opened</option>                             
                                 <option value="Runaway
                                 ">Runaway
@@ -165,7 +172,7 @@
               </select>
     </div>
     <div class="form-group">
-      <select name="CaseDisposition" ng-model="nwc.CaseDispositionIn" placeholder="Case Disposition" id="yes"required>   
+      <select name="CaseDisposition" ng-model="nwc.CaseDispositionIn" placeholder="Case Disposition" id="yes" required>   
                                   <option value="" disabled selected>Case Disposition</option>                             
                                   <option value="Child found safe                           
                                   ">Child found safe                            
@@ -202,9 +209,6 @@
                               </option> 
                             </select>
     </div>
-
-
-
 
     <h3> Distinguishing Characteristics</h3>
     <label for="HairColor"> Hair Color</label>
@@ -265,7 +269,8 @@
         </select>
     <textarea name="commentWithOthers" ng-model="nwc.commentWithOthersIn" form="usrform"></textarea>
     <label for="HighRiskActivity"> Were they involved in high risk activity?</label>
-    <select name="HighRiskActivity" ng-model="nwc.HighRiskActivityIn" placeholder="Were they involved in high risk activity?" id="yes">   
+    <select name="HighRiskActivity" ng-model="nwc.HighRiskActivityIn" placeholder="Were they involved in high risk activity?"
+      id="yes">   
             <option value="" disabled selected></option>                             
             <option value="Yes">Yes</option>
             <option value="No">No</option>   
@@ -287,7 +292,7 @@
     <input id="Pants/Skirt" ng-model="nwc.PantsSkirtIn" type="text" placeholder="Pants/Skirt">
     <input id="Jewelry" ng-model="nwc.JewelryIn" type="text" placeholder="Jewelry">
     <input id="Backpack/Purse" ng-model="nwc.BackpackPurseIn" type="text" placeholder="Backpack/Purse">
-    <input id="Hat/Other" ng-model="nwc.HatOtherIn"  type="text" placeholder="Hat or other accessories">
+    <input id="Hat/Other" ng-model="nwc.HatOtherIn" type="text" placeholder="Hat or other accessories">
     <input id="Other" ng-model="nwc.OtherIn" type="text" placeholder="Other (cell phone, toy, pet, etc.)">
     <!-- </div> -->
 
@@ -307,7 +312,7 @@
         <option value="Yes">Yes</option>
         <option value="No">No</option>   
     </select>
-    <textarea name="commentPhoto" ng-model="nwc.commentPhotoIn"  form="usrform"></textarea>
+    <textarea name="commentPhoto" ng-model="nwc.commentPhotoIn" form="usrform"></textarea>
 
 
 
@@ -317,7 +322,7 @@
     <div class="col-sm-8">
       <div class="form-group" id="Vulnerabilities">
         <label for="LeftBefore"> Has this person left before? </label>
-        <select name="LeftBefore" ng-model="nwc.LeftBeforeIn"placeholder="" id="yes">   
+        <select name="LeftBefore" ng-model="nwc.LeftBeforeIn" placeholder="" id="yes">   
         <option value="" disabled selected></option>                             
         <option value="Yes">Yes</option>
         <option value="No">No</option>   
@@ -392,16 +397,13 @@
           </div>
         </div>
       </div>
-<<<<<<< HEAD
     </div>
     <button ng-click='nwc.printPDF()'>PDF</button>     
   </div>
-=======
     <!-- </div> -->
 
 
-    <h3> PERSON REQUESTING ASSISTANCE IN JUVENILE CASE UNDER THE AGE OF 18
-        YEARS </h3>
+    <h3> Person Requesting Assistance In Juvenile Case Under The Age Of 18 Years </h3>
 
         <input id="Name" ng-model="nwc.NameIn" type="text" placeholder="Name">
         <input id="StreetAddress" ng-model="nwc.StreetAddressIn" type="number" placeholder="Street Address">
@@ -421,10 +423,10 @@
         <textarea name="commentDate" ng-model="nwc.commentDateIn" form="usrform"></textarea>
         <label for="ReferredBy"> Referred By:</label>
         <textarea name="commentReferredBy" ng-model="nwc.commentReferredBy" form="usrform"></textarea>
-
+        <br>
+        <br>
         <button type="button" ng-click="nwc.userService.logout()" class="btn btn-info">Submit</button>
 
-
       </div>
->>>>>>> sweetalerts
+    </div>
 </form>
