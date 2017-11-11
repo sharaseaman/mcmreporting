@@ -5,9 +5,9 @@
     In Edit
 
 
-    <input id="caseNum" ng-model="ec.caseIn" type="text" placeholder="MCM Case Number">
+    <input id="caseNum" ng-model="ec.caseIn" type="text" placeholder="MCM Case Number" required>
     <button type="button" ng-click="ec.getData(ec.caseIn)">Enter</button>
-    <div class="md-form">
+    <form class="md-form form-group" ng-submit="ec.updateData()" ng-if="ec.showEditForm">
       <select name="Age" placeholder="Age" id="yes" ng-model="ec.age">
         <option value="" disabled selected>Age</option>
         <option value="0-2">0-2</option>
@@ -55,14 +55,16 @@
         <option value="Sexual Minority">Sexual Minority (LGBTQ, etc.)</option>
       </select>
 
-      <input type="text" name="" id="jurisdiction" placeholder="Law Enforcement Jurisdiction">
-      <input type="text" name="" id="schoolDisctrict" placeholder="School District Number">
-      <select name="" id="outcome">
+      <input type="text" name="" id="jurisdiction" placeholder="Law Enforcement Jurisdiction" ng-model="ec.jurisdiction">
+      <input type="text" name="" id="schoolDisctrict" placeholder="School District Number" ng-model="ec.schoolDisctrict">
+      <select name="" id="outcome" ng-model="ec.outcome">
         <option value="" disabled selected>Outcome</option>
         <option value="Missing Found Safe">Missing Found Safe</option>
         <option value="Missing Found Injured">Missing Found Injured</option>
         <option value="Missing Found Deceased">Missing Found Deceased</option>
       </select>
-    </div>
+
+      <button type="submit">Submit</button>
+    </form>
   </p>
 </div>
