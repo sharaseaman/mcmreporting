@@ -21,11 +21,11 @@ myApp.controller('ManageController', function (UserService) {
       })
     }
 
-    vm.editPrivledge = function(user) {
+    vm.editPriviledge = function(user) {
       console.log('In editPrivledge', user.username);
       user.admin = !user.admin;
       console.log('New admin value:', user.admin);
-      UserService.updatePrivledges(user);
+      UserService.updatePriviledges(user);
 
     }
 
