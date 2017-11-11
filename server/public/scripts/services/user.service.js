@@ -61,15 +61,6 @@ myApp.service('UserService', function ($http, $location) {
         var totalsByReferralOverall = self.formatDataToChart(res, 'referral_type');
           self.referralLabel = totalsByReferralOverall.xAxisValues;
           self.filteredReferral = totalsByReferralOverall.yAxisValues;
-
-        //Deep Dive into Year Charts
-        var dataFor2017 = self.getDataOfYear(res, '2014');
-        var totalsByCaseType = self.formatDataToChart(dataFor2017, 'start_case_type');
-        self.caseTypeLabels = totalsByCaseType.xAxisValues;
-        // console.log('self.caseTypeLabels', self.caseTypeLabels);
-        self.filteredCases = totalsByCaseType.yAxisValues;
-        // console.log('self.filteredCases', self.filteredCases);
-
         });
   };
 
@@ -104,7 +95,7 @@ myApp.service('UserService', function ($http, $location) {
     return data.filter(function(entry) {
       return entry.year === year;
     });
-  };
+  };  
 
   self.formatDataToChart = function(data, xAxisDataPoint) {
     //then create an object with an array for each year's data record
@@ -134,7 +125,39 @@ myApp.service('UserService', function ($http, $location) {
 
   self.updateChartYear = function (selectedYear) {
     self.selectedYear = selectedYear.toString();
-    console.log('self.selectedYear', self.selectedYear)
+    //Deep Dive into Year Charts on Main MCM table
+    var dataForUserYear = self.getDataOfYear(self.chartData.data, self.selectedYear);
+  
+    var totalsByCaseType = self.formatDataToChart(dataForUserYear, 'start_case_type');
+    self.userCaseTypeLabels = totalsByCaseType.xAxisValues;
+    self.userFilteredCases = totalsByCaseType.yAxisValues;
+
+    var totalsByUserCounty = self.formatDataToChart(dataForUserYear, 'county_name');
+    self.userCountyLabels = totalsByUserCounty.xAxisValues;
+    self.userFilteredCounty = totalsByUserCounty.yAxisValues;
+
+    var totalsByUserSchool = self.formatDataToChart(dataForUserYear, 'school_name');
+    self.userSchoolLabels = totalsByUserSchool.xAxisValues;
+    self.userFilteredSchool = totalsByUserSchool.yAxisValues;
+
+    var totalsByUserServed = self.formatDataToChart(dataForUserYear, 'people_served');
+    self.userPeopleServedLabels = totalsByUserServed.xAxisValues;
+    self.userFilteredPeopleServed = totalsByUserServed.yAxisValues;
+
+    var totalsByUserAge = self.formatDataToChart(dataForUserYear, 'age');
+    self.userAgeLabels = totalsByUserAge.xAxisValues;
+    self.userFilteredAge = totalsByUserAge.yAxisValues;
+
+
+    //Deep Dive into Year Charts on Join Charts
+    var dataForUserYearJoin = self.getDataOfYear(self.joinChartData.data, self.selectedYear);
+    
+    var totalsByUserVulnerability = self.formatDataToChart(dataForUserYearJoin, 'vulnerability');
+    self.userVulnerabilityLabels = totalsByUserVulnerability.xAxisValues;    
+    self.userFilteredVulnerability = totalsByUserVulnerability.yAxisValues;
+    console.log('self.userVulnerabilityLabels',self.userVulnerabilityLabels);
+    console.log('self.userFilteredVulnerability', self.userFilteredVulnerability);
+
   };
 
   self.getuser = function () {
