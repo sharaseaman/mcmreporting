@@ -44,8 +44,8 @@ CREATE TABLE "counties" (
     ('Wilkin'), ('Winona'), ('Wright'), ('Yellow Medicine');
 
 CREATE TABLE "law_enforcement" (
-"agency" varchar (100),
-"id" serial primary key
+"id" serial primary key,
+"agency" varchar (100)
 );
 
 CREATE TABLE "schools" (
