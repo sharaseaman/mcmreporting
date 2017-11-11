@@ -20,7 +20,6 @@ myApp.service('UserService', function ($http, $location) {
         return self.chartData.data
       })
       .then(function (res) {
-        console.log('red', res);
         //add a year based on intake_date
         self.addYearToRecord = res.forEach(function (element) {
           element.year = element.intake_date.slice(0, 4);

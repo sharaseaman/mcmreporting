@@ -418,8 +418,6 @@ myApp.controller('CoreController', function (UserService, $scope) {
         // });
 
       });
-
-
   }
 
   vm.getJoinTableData = function () {
