@@ -4,7 +4,9 @@ myApp.service('UserService', function ($http, $location) {
 
   self.userObject = {};
   self.chartData = { data: [] };
+  self.joinChartData = { data: [] };
   self.users = {};
+  self.selectedYear = '';
 
   self.getChartData = function () {
     //on page load, GET all case_data from DB to the DOM
@@ -18,46 +20,87 @@ myApp.service('UserService', function ($http, $location) {
         return self.chartData.data
       })
       .then(function (res) {
+        console.log('red', res);
         //add a year based on intake_date
         self.addYearToRecord = res.forEach(function (element) {
           element.year = element.intake_date.slice(0, 4);
         });
 
+        //Global Charts
         var totalsByYear = self.formatDataToChart(res, 'year');
-
-        //get the keys (years) for this object
-        self.mainChartYears = totalsByYear.xAxisValues;
-        console.log('self.mainChartYears', self.mainChartYears);
-
-        //get length of each year's array
-        self.filteredYears = totalsByYear.yAxisValues;
-        console.log('self.filteredYears', self.filteredYears);
-
+          self.mainChartYears = totalsByYear.xAxisValues;
+          self.filteredYears = totalsByYear.yAxisValues;
 
         var totalsByCaseTypeOverall = self.formatDataToChart(res, 'start_case_type');
+          self.startCaseLabel = totalsByCaseTypeOverall.xAxisValues;
+          self.filteredStartCase = totalsByCaseTypeOverall.yAxisValues;
+
+        var totalsByStateOverall = self.formatDataToChart(res, 'state');
+          self.stateOverallLabel = totalsByStateOverall.xAxisValues;
+          self.filteredStateOverall = totalsByStateOverall.yAxisValues;
         
-        //get the keys (years) for this object
-        self.startCaseLabel = totalsByCaseTypeOverall.xAxisValues;
-        console.log('self.startCaseLabel', self.startCaseLabel);
+        var totalsByCountyOverall = self.formatDataToChart(res, 'county_name');
+          self.countiesOverallLabel = totalsByCountyOverall.xAxisValues;
+          self.filteredCountiesOverall = totalsByCountyOverall.yAxisValues;
 
-        //get length of each year's array
-        self.filteredStartCase = totalsByCaseTypeOverall.yAxisValues;
-        console.log('self.filteredStartCase', self.filteredStartCase);
+        var totalsByDistrictOverall = self.formatDataToChart(res, 'school_name');
+          self.districtOverallLabel = totalsByDistrictOverall.xAxisValues;
+          self.filteredDistrictsOverall = totalsByDistrictOverall.yAxisValues;
 
-        var dataFor2017 = self.getDataOfYear(res, '2017');
+        var totalsByPeopleServedOverall = self.formatDataToChart(res, 'people_served');
+          self.peopleServedOverallLabel = totalsByPeopleServedOverall.xAxisValues;
+          self.filteredPeopleServedOverall = totalsByPeopleServedOverall.yAxisValues;
+
+        var totalsByAgeOverall = self.formatDataToChart(res, 'age');
+          self.ageOverallLabel = totalsByAgeOverall.xAxisValues;
+          self.filteredAgeOverall = totalsByAgeOverall.yAxisValues;
+          
+        var totalsByGenderOverall = self.formatDataToChart(res, 'gender');
+          self.genderOverallLabel = totalsByGenderOverall.xAxisValues;
+          self.filteredGenderOverall = totalsByGenderOverall.yAxisValues;
+
+        var totalsByReferralOverall = self.formatDataToChart(res, 'referral_type');
+          self.referralLabel = totalsByReferralOverall.xAxisValues;
+          self.filteredReferral = totalsByReferralOverall.yAxisValues;
+
+        //Deep Dive into Year Charts
+        var dataFor2017 = self.getDataOfYear(res, '2014');
         var totalsByCaseType = self.formatDataToChart(dataFor2017, 'start_case_type');
-        
         self.caseTypeLabels = totalsByCaseType.xAxisValues;
         // console.log('self.caseTypeLabels', self.caseTypeLabels);
-
         self.filteredCases = totalsByCaseType.yAxisValues;
         // console.log('self.filteredCases', self.filteredCases);
 
         });
-
   };
 
-  
+  self.getJoinTableData = function () {
+    //this function gets all data from the db from the join tables (case_vulnerabilities, case_lawenforcement_denial, case_race_ethnicity)
+      return $http({
+        method: 'GET',
+        url: '/charts/join_tables_reports'
+      })
+        .then(function (res) {
+          self.joinChartData.data = res.data;
+          return self.joinChartData.data
+        })
+        .then(function (res) {
+          //Global Charts
+          var totalsByVulnerabilitiesOverall = self.formatDataToChart(res, 'vulnerability');
+            self.vulnerabilitiesOverallLabel = totalsByVulnerabilitiesOverall.xAxisValues;
+            self.filteredVulnerabilitiesOverall = totalsByVulnerabilitiesOverall.yAxisValues;
+            
+          var totalsByLawEnforcementOverall = self.formatDataToChart(res, 'agency');
+            self.lawEnforcementOverallLabel = totalsByLawEnforcementOverall.xAxisValues;
+            self.filteredLawEnforcementOverall = totalsByLawEnforcementOverall.yAxisValues;
+
+          var totalsByRaceEthnicityOverall = self.formatDataToChart(res, 'race_ethnicity');
+            self.raceEthnicityOverallLabel = totalsByRaceEthnicityOverall.xAxisValues;
+            self.filteredRaceEthnicityOverall = totalsByRaceEthnicityOverall.yAxisValues;
+
+        })
+  };
+
   self.getDataOfYear = function(data, year) {
     return data.filter(function(entry) {
       return entry.year === year;
@@ -91,7 +134,8 @@ myApp.service('UserService', function ($http, $location) {
   };
 
   self.updateChartYear = function (selectedYear) {
-    console.log('service', selectedYear)
+    self.selectedYear = selectedYear.toString();
+    console.log('self.selectedYear', self.selectedYear)
   };
 
   self.getuser = function () {
