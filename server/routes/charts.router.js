@@ -2,7 +2,7 @@ var router = require('express').Router();
 var path = require('path');
 var pool = require('../modules/pool.js');
 
-// Handles Ajax request for user information if user is authenticated
+//get for all case data
 router.get('/', function(req, res) {
     console.log('In Charts Get for all case data');
     // check if logged in
