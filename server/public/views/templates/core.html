@@ -151,61 +151,62 @@
             </div>
           </div>
 
-          <md-content class="md-padding">
+          <md-content class="md-padding" ng-show=cc.selectedYear>
               <div flex-xs flex-gt-xs="50" layout="column">
                 <md-card>
                   <md-card-header>
                     <md-card-header-text>
-                      <span class="md-title">Number of Cases by Type by selected year (2017)</span>
+                      <span class="md-title">Number of Cases by Type in {{cc.selectedYear}}</span>
                     </md-card-header-text>
                   </md-card-header>
-                  <canvas id="caseTypeChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                  <canvas id="userCaseTypeChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                   </canvas>
                 </md-card>
                 <md-card>
                   <md-card-header>
                     <md-card-header-text>
-                      <span class="md-title">Number of Cases by MN County by selected year (2017)</span>
+                      <span class="md-title">Number of Cases by MN County in {{cc.selectedYear}}</span>
                     </md-card-header-text>
                   </md-card-header>
-                  <canvas id="countyChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                  <canvas id="userCountyChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                   </canvas>
                 </md-card>
                 <md-card>
                   <md-card-header>
                     <md-card-header-text>
-                      <span class="md-title">Number of Cases by School District by selected year (2017)</span>
+                      <span class="md-title">Number of Cases by School District in {{cc.selectedYear}}</span>
                     </md-card-header-text>
                   </md-card-header>
-                  <canvas id="schoolChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                  <canvas id="userSchoolChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                   </canvas>
                 </md-card>
                 <md-card>
                   <md-card-header>
                     <md-card-header-text>
-                      <span class="md-title">Number of Cases by People Served by selected year (2017)</span>
+                      <span class="md-title">Number of Cases by People Served in {{cc.selectedYear}}</span>
                     </md-card-header-text>
                   </md-card-header>
-                  <canvas id="servedChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                  <canvas id="userPeopleServedChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                   </canvas>
                 </md-card>
                 <md-card>
                   <md-card-header>
                     <md-card-header-text>
-                      <span class="md-title">Number of Cases by Vulnerability by selected year (2017)</span>
+                      <span class="md-title">Number of Cases by Vulnerability in {{cc.selectedYear}}</span>
+                      <span class="md-subhead">Note: Cases can have more than one listed vulnerability.</span>
                     </md-card-header-text>
                   </md-card-header>
-                  <canvas id="vulnerabilityChart" class="chart chart-bar" chart-data="data" chart-labels="labels"
+                  <canvas id="userVulnerabilityChart" class="chart chart-bar" chart-data="data" chart-labels="labels"
                     chart-series="series">
                   </canvas>
                 </md-card>
                 <md-card>
                   <md-card-header>
                     <md-card-header-text>
-                      <span class="md-title">Number of Cases by Age Group Served by selected year (2017)</span>
+                      <span class="md-title">Number of Cases by Age in {{cc.selectedYear}}</span>
                     </md-card-header-text>
                   </md-card-header>
-                  <canvas id="ageChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                  <canvas id="userAgeChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                   </canvas>
                 </md-card>
             </md-content>

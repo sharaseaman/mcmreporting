@@ -7,8 +7,173 @@ myApp.controller('CoreController', function (UserService, $scope) {
 
   vm.getSelectedYear = function() { 
     if (vm.selectedYear !== undefined) {
-      selectedYear = vm.selectedYear
+      selectedYear = vm.selectedYear;
       UserService.updateChartYear(selectedYear);
+        //User Selected Year Charts 
+        vm.userCaseTypeLabels = UserService.userCaseTypeLabels;
+        vm.userFilteredCases = UserService.userFilteredCases;
+        vm.userCountyLabels = UserService.userCountyLabels;
+        vm.userFilteredCounty = UserService.userFilteredCounty;
+        vm.userSchoolLabels = UserService.userSchoolLabels;
+        vm.userFilteredSchool = UserService.userFilteredSchool;
+        vm.userPeopleServedLabels = UserService.userPeopleServedLabels;
+        vm.userFilteredPeopleServed = UserService.userFilteredPeopleServed;
+        vm.userAgeLabels = UserService.userAgeLabels;
+        vm.userFilteredAge = UserService.userFilteredAge;
+
+        vm.userVulnerabilityLabels = UserService.userVulnerabilityLabels;
+        vm.userFilteredVulnerability = UserService.userFilteredVulnerability;
+
+        var ctc = document.getElementById("userCaseTypeChart");
+        var myChart = new Chart(ctc, {
+          type: 'bar',
+          data: {
+            labels: vm.userCaseTypeLabels,
+            datasets: [{
+              label: 'Case Type',
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 0.2)',
+              data: vm.userFilteredCases,
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  callback: function (value) { if (value % 1 === 0) { return value; } }
+                }
+              }]
+            }
+          }
+      });
+
+      var ctc = document.getElementById("userCountyChart");
+      var myChart = new Chart(ctc, {
+        type: 'bar',
+        data: {
+          labels: vm.userCountyLabels,
+          datasets: [{
+            label: 'MN County',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 0.2)',
+            data: vm.userFilteredCounty,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                callback: function (value) { if (value % 1 === 0) { return value; } }
+              }
+            }]
+          }
+        }
+    });
+
+    var ctc = document.getElementById("userSchoolChart");
+    var myChart = new Chart(ctc, {
+      type: 'bar',
+      data: {
+        labels: vm.userSchoolLabels,
+        datasets: [{
+          label: 'School Districts',
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 0.2)',
+          data: vm.userFilteredSchool,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              callback: function (value) { if (value % 1 === 0) { return value; } }
+            }
+          }]
+        }
+      }
+  });
+
+  var ctc = document.getElementById("userPeopleServedChart");
+  var myChart = new Chart(ctc, {
+    type: 'bar',
+    data: {
+      labels: vm.userPeopleServedLabels,
+      datasets: [{
+        label: 'People Served',
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 0.2)',
+        data: vm.userFilteredPeopleServed,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            callback: function (value) { if (value % 1 === 0) { return value; } }
+          }
+        }]
+      }
+    }
+});
+
+var ctc = document.getElementById("userVulnerabilityChart");
+var myChart = new Chart(ctc, {
+  type: 'bar',
+  data: {
+    labels: vm.userVulnerabilityLabels,
+    datasets: [{
+      label: 'Vulnerability',
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: 'rgba(54, 162, 235, 0.2)',
+      data: vm.userFilteredVulnerability,
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          callback: function (value) { if (value % 1 === 0) { return value; } }
+        }
+      }]
+    }
+  }
+});
+
+var ctc = document.getElementById("userAgeChart");
+var myChart = new Chart(ctc, {
+  type: 'bar',
+  data: {
+    labels: vm.userAgeLabels,
+    datasets: [{
+      label: 'Age',
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: 'rgba(54, 162, 235, 0.2)',
+      data: vm.userFilteredAge,
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          callback: function (value) { if (value % 1 === 0) { return value; } }
+        }
+      }]
+    }
+  }
+});
+
     } else {
       return "Please select an Year";
     }
@@ -19,18 +184,15 @@ myApp.controller('CoreController', function (UserService, $scope) {
   vm.getChartData = function () {
     UserService.getChartData()
       .then(function () {
+        //GlobalCharts
         vm.mainChartYears = UserService.mainChartYears;
         vm.filteredYears = UserService.filteredYears;
-        vm.caseTypeLabels = UserService.caseTypeLabels
-        vm.filteredCases = UserService.filteredCases;
         vm.startCaseLabel = UserService.startCaseLabel;
         vm.filteredStartCase = UserService.filteredStartCase;
         vm.referralLabel = UserService.referralLabel; 
         vm.filteredReferral = UserService.filteredReferral;
-      
         vm.stateOverallLabel = UserService.stateOverallLabel;
         vm.filteredStateOverall = UserService.filteredStateOverall;
-
         vm.countiesOverallLabel = UserService.countiesOverallLabel;
         vm.filteredCountiesOverall = UserService.filteredCountiesOverall;
         vm.districtOverallLabel = UserService.districtOverallLabel;
@@ -266,159 +428,7 @@ myApp.controller('CoreController', function (UserService, $scope) {
             }
           }
         });
-
-        var ctc = document.getElementById("caseTypeChart");
-        var myChart = new Chart(ctc, {
-          type: 'bar',
-          data: {
-            labels: vm.caseTypeLabels,
-            datasets: [{
-              label: 'Case Type',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
-              data: vm.filteredCases,
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true,
-                  callback: function (value) { if (value % 1 === 0) { return value; } }
-                }
-              }]
-            }
-          }
-        });
-
-        // var ctc = document.getElementById("countyChart");
-        // var myChart = new Chart(ctc, {
-        //   type: 'bar',
-        //   data: {
-        //     labels: ['Runaway', 'Acquaintance Abduction', 'Family Abduction', 'Stranger Abduction', 'LIM', 'Prevention'],
-        //     datasets: [{
-        //       label: 'Case Type',
-        //       backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        //       borderColor: 'rgba(54, 162, 235, 0.2)',
-        //       data: [1, 2, 3, 4, 5, 6],
-        //       borderWidth: 1
-        //     }]
-        //   },
-        //   options: {
-        //     scales: {
-        //       yAxes: [{
-        //         ticks: {
-        //           beginAtZero: true,
-        //           callback: function (value) { if (value % 1 === 0) { return value; } }
-        //         }
-        //       }]
-        //     }
-        //   }
-        // });
-
-        // var ctc = document.getElementById("schoolChart");
-        // var myChart = new Chart(ctc, {
-        //   type: 'bar',
-        //   data: {
-        //     labels: ['Runaway', 'Acquaintance Abduction', 'Family Abduction', 'Stranger Abduction', 'LIM', 'Prevention'],
-        //     datasets: [{
-        //       label: 'Case Type',
-        //       backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        //       borderColor: 'rgba(54, 162, 235, 0.2)',
-        //       data: [1, 2, 3, 4, 5, 6],
-        //       borderWidth: 1
-        //     }]
-        //   },
-        //   options: {
-        //     scales: {
-        //       yAxes: [{
-        //         ticks: {
-        //           beginAtZero: true,
-        //           callback: function (value) { if (value % 1 === 0) { return value; } }
-        //         }
-        //       }]
-        //     }
-        //   }
-        // });
-
-        // var ctc = document.getElementById("servedChart");
-        // var myChart = new Chart(ctc, {
-        //   type: 'bar',
-        //   data: {
-        //     labels: ['Runaway', 'Acquaintance Abduction', 'Family Abduction', 'Stranger Abduction', 'LIM', 'Prevention'],
-        //     datasets: [{
-        //       label: 'Case Type',
-        //       backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        //       borderColor: 'rgba(54, 162, 235, 0.2)',
-        //       data: [1, 2, 3, 4, 5, 6],
-        //       borderWidth: 1
-        //     }]
-        //   },
-        //   options: {
-        //     scales: {
-        //       yAxes: [{
-        //         ticks: {
-        //           beginAtZero: true,
-        //           callback: function (value) { if (value % 1 === 0) { return value; } }
-        //         }
-        //       }]
-        //     }
-        //   }
-        // });
-
-        // var ctc = document.getElementById("vulnerabilityChart");
-        // var myChart = new Chart(ctc, {
-        //   type: 'bar',
-        //   data: {
-        //     labels: ['Runaway', 'Acquaintance Abduction', 'Family Abduction', 'Stranger Abduction', 'LIM', 'Prevention'],
-        //     datasets: [{
-        //       label: 'Case Type',
-        //       backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        //       borderColor: 'rgba(54, 162, 235, 0.2)',
-        //       data: [1, 2, 3, 4, 5, 6],
-        //       borderWidth: 1
-        //     }]
-        //   },
-        //   options: {
-        //     scales: {
-        //       yAxes: [{
-        //         ticks: {
-        //           beginAtZero: true,
-        //           callback: function (value) { if (value % 1 === 0) { return value; } }
-        //         }
-        //       }]
-        //     }
-        //   }
-        // });
-
-        // var ctc = document.getElementById("ageChart");
-        // var myChart = new Chart(ctc, {
-        //   type: 'bar',
-        //   data: {
-        //     labels: ['0-2', '3-7', '8-12', '13-18', '18+'],
-        //     datasets: [{
-        //       label: 'Case Type',
-        //       backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        //       borderColor: 'rgba(54, 162, 235, 0.2)',
-        //       data: [1, 2, 3, 4, 5],
-        //       borderWidth: 1
-        //     }]
-        //   },
-        //   options: {
-        //     scales: {
-        //       yAxes: [{
-        //         ticks: {
-        //           beginAtZero: true,
-        //           callback: function (value) { if (value % 1 === 0) { return value; } }
-        //         }
-        //       }]
-        //     }
-        //   }
-        // });
-
       });
-  }
 
   vm.getJoinTableData = function () {
     UserService.getJoinTableData()
@@ -509,4 +519,6 @@ myApp.controller('CoreController', function (UserService, $scope) {
 
 
   }
-});
+
+}
+})
