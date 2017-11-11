@@ -1,4 +1,75 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
-
-
+<div class="container">
+    <div class="md-padding" ng-cloak>
+            <h1 class="md-title">Select Report Filters:</h1>
+            <div layout="row">
+                <md-input-container>
+                    <label>Case Type</label>
+                    <md-select ng-model="caseType">
+                        <md-option ng-repeat="caseType in cr.caseType" value="{{caseType}}">{{caseType}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>State</label>
+                    <md-select ng-model="state">
+                        <md-option ng-repeat="state in cr.states" value="{{state}}">{{state}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>MN County</label>
+                    <md-select ng-model="county">
+                        <md-option ng-repeat="county in cr.mnCounties" value="{{county}}">{{county}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>School District</label>
+                    <md-select ng-model="district">
+                        <md-option ng-repeat="district in cr.schoolDistricts" value="{{district}}">{{district}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Law Enforcement Agency</label>
+                    <md-select ng-model="agency">
+                        <md-option ng-repeat="agency in cr.agencies" value="{{agency}}">{{agency}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Jurisdictional Denial</label>
+                    <md-select ng-model="denial">
+                        <md-option ng-repeat="denial in cr.agencyDenial" value="{{denial}}">{{denial}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Vulnerability</label>
+                    <md-select ng-model="vulnerability">
+                        <md-option ng-repeat="vulnerability in cr.vulnerabilities" value="{{vulnerability}}">{{vulnerability}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Age</label>
+                    <md-select ng-model="age">
+                        <md-option ng-repeat="age in cr.ages" value="{{age}}">{{age}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Gender</label>
+                    <md-select ng-model="gender">
+                        <md-option ng-repeat="gender in cr.genders" value="{{gender}}">{{gender}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Race/Ethnicity</label>
+                    <md-select ng-model="race">
+                        <md-option ng-repeat="race in cr.raceEthnicity" value="{{race}}">{{race}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Referral Source</label>
+                    <md-select ng-model="source">
+                        <md-option ng-repeat="source in cr.referralSource" value="{{source}}">{{source}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+    </div>
+</div>
