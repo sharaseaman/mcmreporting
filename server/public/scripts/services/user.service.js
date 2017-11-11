@@ -171,6 +171,33 @@ myApp.service('UserService', function ($http, $location) {
   })
 };  
 
+self.getCounties = function () {
+  //on submit, posts all required fields to database
+return $http({
+    method: 'GET',
+    url: '/forms/counties'
+})
+};  
+
+
+self.getCounties = function () {
+  //on submit, posts all required fields to database
+return $http({
+    method: 'GET',
+    url: '/forms/counties'
+})
+}; 
+
+self.getAgencies = function () {
+  return $http({
+    method: 'Get',
+    url: '/forms/lawEnforcement'
+  })
+};
+
+
+
+
   // self.postInputData = function () {
   //   //on submit, posts all required fields to database
   //   return $http({

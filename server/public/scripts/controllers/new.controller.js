@@ -17,6 +17,17 @@ myApp.controller('NewController', function (UserService) {
     return vm.objects = response.data;
   });
 
+  UserService.getCounties().then(function (response){
+    return vm.objects = response.data;
+  });
+
+  UserService.getAgencies().then(function (response){
+    return vm.objects = response.data;
+  });
+
+  UserService.postAgencies().then(function (response){
+    return vm.objects = response.data;
+  });
 
 
 
