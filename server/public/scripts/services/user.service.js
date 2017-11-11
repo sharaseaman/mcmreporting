@@ -168,9 +168,6 @@ myApp.service('UserService', function ($http, $location) {
   return $http({
       method: 'GET',
       url: '/forms/cities'
-  }).then(function (response){
-    self.cities = response.data;
-    console.log(response.data);
   })
 };  
 

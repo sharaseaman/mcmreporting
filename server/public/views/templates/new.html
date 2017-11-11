@@ -100,10 +100,17 @@
                 </select>
       <input id="CountyMissingFrom" ng-model="nwc.CountyMissingFromIn" type="number" placeholder="County Missing From" required>
       <!-- <input id="CityMissingFrom" ng-model="nwc.CityMissingFromIn"type="number" placeholder="City Missing From"required> -->
-      <select name="CityMissingFrom" ng-model="nwc.CityMissingFromIn" placeholder="City Missing From" id="yes" required>
-          <option  value="{{nwc.CityMissingFromIn}}">{{nwc.CityMissingFromIn}}</option>
-          <!-- ng-repeat="nwc.CityMissingFromIn in nwc.CityMissingFromIns"  -->
      
+      
+       
+          
+      <select ng-model="nwc.CityMissingFromIn" ng-change="nwc.itemChange()">
+          <option ng-repeat="cityObj in nwc.objects" ng-value="cityObj.city"> {{cityObj.city}}</option>
+        </select>
+
+
+
+
       <input id="SchoolDistrictWhereChildWasEnrolled" ng-model="nwc.SchoolDistrictWhereChildWasEnrolledIn" style="width:300px;" type="number" placeholder="School District Where Child Was Enrolled"required>
       <!-- </div> -->
       <!-- <div class="form-group"> -->

@@ -1,20 +1,23 @@
 myApp.controller('NewController', function (UserService) {
     console.log('NewController as nwc created');
     var vm = this;
+  
+    vm.itemChange = function(){
+      console.log('inside itemchange');
+      console.log(vm.CityMissingFromIn);
+  
+    }
 
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
 
 
-   UserService.getCities().then(function () {
-        vm.CityMissingFromIn = UserService.cities;
-        console.log('vm.CityMissingFromIn.city',vm.CityMissingFromIn.input.city)
-    })
+   UserService.getCities().then(function (response){
+    console.log('cities', response.data);
+    return vm.objects = response.data;
+  });
 
-    // var Labels = vm.CityMissingFromIn.map(function (object) {
-    //     return [object.city];
-    //     console.log("object.city", object.city);
-    //   });
+
 
 
     //shara working on pdf below
