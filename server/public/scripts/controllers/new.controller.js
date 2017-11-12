@@ -20,6 +20,13 @@ myApp.controller('NewController', function (UserService) {
   
     }
 
+
+    vm.schoolChange = function(){
+      console.log('inside itemchange');
+      // console.log(vm.CityMissingFromIn);
+  
+    }
+
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
 
@@ -36,6 +43,29 @@ myApp.controller('NewController', function (UserService) {
   UserService.getAgencies().then(function (response){
     return vm.objects = response.data;
   });
+
+  UserService.getSchools().then(function (response){
+    console.log('schools', response.data);
+    
+    return vm.objects = response.data;
+  });
+
+  // UserService.postInputData().then(function (response){
+    
+  // }
+
+  vm.click = function (){
+
+    
+    UserService.postInputData(vm.input);
+  };
+
+//create object with following required fields:
+
+  // mcm_number, intake_date, age, gender, 
+  // last_seen, reported_missing, people_served, 
+  // city, county, state, school, start_case_type, referral_type, mcm_number
+
 
   // UserService.postAgencies().then(function (response){
   //   return vm.objects = response.data;
