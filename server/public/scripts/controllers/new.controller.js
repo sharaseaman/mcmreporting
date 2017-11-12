@@ -1,31 +1,22 @@
 myApp.controller('NewController', function (UserService) {
     console.log('NewController as nwc created');
     var vm = this;
-  
-    vm.agencyChange = function(){
-      console.log('inside itemchange');
-      // console.log(vm.CityMissingFromIn);
-  
-    }
-
-    vm.countyChange = function(){
-      console.log('inside itemchange');
-      // console.log(vm.CityMissingFromIn);
-  
-    }
-
-    vm.cityChange = function(){
-      console.log('inside itemchange');
-      // console.log(vm.CityMissingFromIn);
-  
-    }
+    var newIntake = [];
 
 
-    vm.schoolChange = function(){
-      console.log('inside itemchange');
-      // console.log(vm.CityMissingFromIn);
+
+    
   
+    vm.itemChange = function(){
+      console.log('inside itemchange');
+      console.log(vm.SchoolDistrictWhereChildWasEnrolledIn);
     }
+
+    // vm.agencyChange = function(){
+    //   console.log('inside itemchange');
+    //   // console.log(vm.SchoolDistrictWhereChildWasEnrolledIn);
+    // }
+
 
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
@@ -50,33 +41,38 @@ myApp.controller('NewController', function (UserService) {
     return vm.objects = response.data;
   });
 
-  // UserService.postInputData().then(function (response){
-    
-  // }
-
-  vm.click = function (){
-
-    
-    UserService.postInputData(vm.input);
-  };
-
-//create object with following required fields:
-
-  // mcm_number, intake_date, age, gender, 
-  // last_seen, reported_missing, people_served, 
-  // city, county, state, school, 
-start_case_type, referral_type, mcm_number
-
-  // nwc.caseIn, nwc.DateofIntaketoMCMIn, nwc.AgeIn, nwc.GenderIn, 
-  // nwc.DateLastSeenIn, nwc.DateReportedMissingtoPoliceIn, ??
-  // nwc.CityMissingFromIn, nwc.CountyMissingFromIn, nwc.StateMissingFromIn
-  // nwc.SchoolDistrictWhereChildWasEnrolledIn, 
-  // nwc.CaseTypeWhenOpenedIn, nwc.ReferralTypeIn ??
-
   
-  // UserService.postAgencies().then(function (response){
-  //   return vm.objects = response.data;
-  // });
+  vm.click = function () {
+    console.log('in click');
+
+    var newIntake = {
+      // mcm_number: vm.caseIn,
+      // intake_date: vm.DateofIntaketoMCMIn,
+      // age: vm.AgeIn,
+      // gender: vm.GenderIn,
+      // last_seen: vm.DateLastSeenIn,
+      // reported_missing: vm.DateReportedMissingtoPoliceIn,
+      // people_served: ???,
+      // city: vm.CityMissingFromIn,
+      // county: vm.CountyMissingFromIn,
+      state: vm.StateMissingFromIn,
+      // school: vm.SchoolDistrictWhereChildWasEnrolledIn,
+      // start_case_type: vm.CaseTypeWhenOpenedIn,
+      // referral_type: vm.ReferralTypeIn,
+      // mcm_number:   ???,
+    };
+
+    console.log('newIntake', newIntake);
+    swal({
+        title: 'Required fields will be sent to database',
+        width: 600,
+        padding: 100,
+        background: '#fff url(assets/page.JPG)'
+    }).then(function () {
+        UserService.postInputData(newIntake);
+        $location.path('/forms/newIntake');
+    });
+};
 
 
 

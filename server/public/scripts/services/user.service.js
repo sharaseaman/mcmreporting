@@ -45,13 +45,13 @@ myApp.service('UserService', function ($http, $location) {
     })
   };
 
-  self.postInputData = function () {
+  self.postInputData = function (newIntake) {
     return $http({
       method: 'POST',
-      url: '/forms/newIntake'
+      url: '/forms/newIntake',
+      data: newIntake
     })
   };
-
 
 
 
