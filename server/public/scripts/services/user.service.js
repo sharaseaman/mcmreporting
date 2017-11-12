@@ -9,6 +9,36 @@ myApp.service('UserService', function ($http, $location) {
   self.cities = {};
   self.selectedYear = '';
 
+
+  self.getCities = function () {
+    //on submit, posts all required fields to database
+  return $http({
+      method: 'GET',
+      url: '/forms/cities'
+  })
+};  
+
+self.getCounties = function () {
+  //on submit, posts all required fields to database
+return $http({
+    method: 'GET',
+    url: '/forms/counties'
+})
+};  
+
+
+self.getAgencies = function () {
+  return $http({
+    method: 'GET',
+    url: '/forms/lawEnforcement'
+  })
+};
+
+
+
+
+
+
   self.getChartData = function () {
     //on page load, GET all case_data from DB to the DOM
     return $http({
@@ -229,39 +259,7 @@ myApp.service('UserService', function ($http, $location) {
   }
 
 
-  self.getCities = function () {
-    //on submit, posts all required fields to database
-  return $http({
-      method: 'GET',
-      url: '/forms/cities'
-  })
-};  
-
-self.getCounties = function () {
-  //on submit, posts all required fields to database
-return $http({
-    method: 'GET',
-    url: '/forms/counties'
-})
-};  
-
-
-self.getCounties = function () {
-  //on submit, posts all required fields to database
-return $http({
-    method: 'GET',
-    url: '/forms/counties'
-})
-}; 
-
-self.getAgencies = function () {
-  return $http({
-    method: 'Get',
-    url: '/forms/lawEnforcement'
-  })
-};
-
-
+ 
 
 
   // self.postInputData = function () {

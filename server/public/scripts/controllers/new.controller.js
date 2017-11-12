@@ -2,9 +2,21 @@ myApp.controller('NewController', function (UserService) {
     console.log('NewController as nwc created');
     var vm = this;
   
-    vm.itemChange = function(){
+    vm.agencyChange = function(){
       console.log('inside itemchange');
-      console.log(vm.CityMissingFromIn);
+      // console.log(vm.CityMissingFromIn);
+  
+    }
+
+    vm.countyChange = function(){
+      console.log('inside itemchange');
+      // console.log(vm.CityMissingFromIn);
+  
+    }
+
+    vm.cityChange = function(){
+      console.log('inside itemchange');
+      // console.log(vm.CityMissingFromIn);
   
     }
 
@@ -25,9 +37,9 @@ myApp.controller('NewController', function (UserService) {
     return vm.objects = response.data;
   });
 
-  UserService.postAgencies().then(function (response){
-    return vm.objects = response.data;
-  });
+  // UserService.postAgencies().then(function (response){
+  //   return vm.objects = response.data;
+  // });
 
 
 
