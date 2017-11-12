@@ -64,9 +64,16 @@ myApp.controller('NewController', function (UserService) {
 
   // mcm_number, intake_date, age, gender, 
   // last_seen, reported_missing, people_served, 
-  // city, county, state, school, start_case_type, referral_type, mcm_number
+  // city, county, state, school, 
+start_case_type, referral_type, mcm_number
 
+  // nwc.caseIn, nwc.DateofIntaketoMCMIn, nwc.AgeIn, nwc.GenderIn, 
+  // nwc.DateLastSeenIn, nwc.DateReportedMissingtoPoliceIn, ??
+  // nwc.CityMissingFromIn, nwc.CountyMissingFromIn, nwc.StateMissingFromIn
+  // nwc.SchoolDistrictWhereChildWasEnrolledIn, 
+  // nwc.CaseTypeWhenOpenedIn, nwc.ReferralTypeIn ??
 
+  
   // UserService.postAgencies().then(function (response){
   //   return vm.objects = response.data;
   // });
