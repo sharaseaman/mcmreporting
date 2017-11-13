@@ -8,7 +8,7 @@
     <!-- <div class="col-sm-8"> -->
     <div class="form-group" id="MissingPerson'sInfo">
       <input id="MCMCaseNumber" ng-model="nwc.caseIn" type="number" placeholder="MCM Case Number" required>
-      <label for="DateofintaketoMCM">Date of Intake to MCM </label>
+      <label for="DateofintaketoMCM" ng-model="nwc.dateIn">Date of Intake to MCM </label>
       <input id="DateofIntaketoMCM" style="width:150px;"ng-model="nwc.DateofIntaketoMCMIn" type="date" placeholder="Date of Intake to MCM">
     </div>
     <div class="form-group">
@@ -239,7 +239,7 @@
               <option value="Yes">Yes</option>
               <option value="No">No</option>   
           </select>
-    <select name="TattoosOrPiercings" ng-model="TattoosOrPiercingsIn" placeholder="Tattoos or Piercings?" id="yes">   
+    <select name="TattoosOrPiercings" ng-model="nwc.TattoosOrPiercingsIn" placeholder="Tattoos or Piercings?" id="yes">   
               <option value="" disabled selected>Tattoos or Piercings?</option>                             
               <option value="Yes">Yes</option>
               <option value="No">No</option>   
