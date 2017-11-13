@@ -95,11 +95,11 @@ body, html {
     height: 100px;    
   }
   
-  .navbar {
+  md-nav-bar {
     background-color: lightgoldenrodyellow;
     width: 100%;
     border-radius: 0px;
-  }
+    margin-left: 20px;  }
   
   ul {
     list-style-type: none;
