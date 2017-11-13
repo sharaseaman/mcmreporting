@@ -54,4 +54,5 @@ router.get('/join_tables_reports', function(req, res) {
     res.send(false);
   }
 });
+
 module.exports = router;
