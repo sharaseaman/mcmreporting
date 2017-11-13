@@ -3,6 +3,7 @@ myApp.controller('NewController', function (UserService) {
     var vm = this;
     var newIntake = [];
   
+
     vm.itemChange = function(){
       console.log('inside itemchange');
       console.log(vm.SchoolDistrictWhereChildWasEnrolledIn);
