@@ -185,16 +185,15 @@ myApp.service('UserService', function ($http, $location) {
 
   // get the data from an existing form to edit
   self.getExistingForm = function (mcmNum) {
-    console.log('In getExistingForm');
+    console.log('In getExistingForm', mcmNum);
 
-    // $http call to get all data from existing form
-  //   return $http({
-  //     method: 'GET',
-  //     url: ,
-  //     data: 
-  //   }).then(function (response) {
-  //     console.log('Response', response);
-  //   })
+    //$http call to get all data from existing form
+    return $http({
+      method: 'GET',
+      url: '/forms/caseToEdit/' + mcmNum
+    }).then(function (response) {
+      console.log('Response', response);
+    })
   }
 
 
@@ -220,16 +219,16 @@ myApp.service('UserService', function ($http, $location) {
     });
   };
 
-  // self.updateForm = function (editedForm) {
-  //   console.log('In updateForm');
-  //   $http({
-  //     method: 'PUT',
-  //     url: ,
-  //     data: editedForm
-  //   }).then(function (response) {
-  //     console.log('Response', response);
-  //   })
-  // }
+  self.updateForm = function (editedForm) {
+    console.log('In updateForm');
+    $http({
+      method: 'PUT',
+      url: '/editIntake',
+      data: editedForm
+    }).then(function (response) {
+      console.log('Response', response);
+    })
+  }
 
   // updates the admin priviledges 
   self.updatePriviledges = function(user) {

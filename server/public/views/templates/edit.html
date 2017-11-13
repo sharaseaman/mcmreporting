@@ -7,23 +7,42 @@
 
     <input id="caseNum" ng-model="ec.caseIn" type="text" placeholder="MCM Case Number" required>
     <button type="button" ng-click="ec.getData(ec.caseIn)">Enter</button>
-    <form class="md-form form-group" ng-submit="ec.updateData()" ng-if="ec.showEditForm">
-      <select name="Age" placeholder="Age" id="yes" ng-model="ec.age">
-        <option value="" disabled selected>Age</option>
-        <option value="0-2">0-2</option>
-        <option value="3-7">3-7</option>
-        <option value="8-12">8-12</option>
-        <option value="13-17">13-17</option>
-        <option value="18+">18+</option>
+    <!-- <form class="md-form form-group" ng-submit="ec.updateData()" ng-if="ec.showEditForm"> -->
+      <form class="md-form form-group" ng-submit="ec.updateData()">
+      <input name="Age" placeholder="Age" id="yes" ng-model="ec.age"></input>
+      <select name="Gender" id="gender" ng-model="ec.gender">
+        <option value="" disabled selected>Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Non-binary">Non-binary</option>
       </select>
+
+      <label for="DateLastSeen">Date Last Seen: </label>
+      <input id="DateLastSeen" ng-model="ec.DateLastSeenIn" type="date" style="width:150px;" placeholder="Date Last Seen">
+      <label for="DateReportedMissingtoPolice">Date Reported Missing to Police: </label>
+      <input id="DateReportedMissingtoPolice" ng-model="ec.DateReportedMissingtoPoliceIn" style="width:150px;" type="date" placeholder="Date Reported Missing to Police">
+
       <input id="city" ng-model="ec.city" type="text" placeholder="City Missing From">
       <input id="county" ng-model="ec.county" type="text" placeholder="County Missing From">
       <input id="state" ng-model="ec.state" type="text" placeholder="State Missing From">
       
       <input id="familyMembers" ng-model="ec.familyMembers" type="text" placeholder="Number of Family Members Involved in Search">
       
-      <select name="Case Type" placeholder="Case Type" id="yes" ng-model="ec.caseType">
+      <select name="Starting Case Type" placeholder="Starting Case Type" id="yes" ng-model="ec.startingCaseType">
         <option value="" disabled selected>Case Type</option>
+        <option value="Runaway">Runaway</option>
+        <option value="Abduction by Family Member">Abduction by Family Member</option>
+        <option value="Abduction by Acquaintance">Abduction by Acquaintance</option>
+        <option value="Stranger Abduction">Stranger Abduction</option>
+        <option value="LIM">LIM</option>
+      </select>
+
+      <label for="DateClosed">Date Reported Missing to Police: </label>
+      <input id="DateClosed" ng-model="ec.DateClosed" style="width:150px;" type="date" placeholder="Date Closed">
+
+      <select name="Ending Case Type" placeholder="Ending Case Type" id="yes" ng-model="ec.endingCaseType">
+        <option value="" disabled selected>Case Type</option>
+        <option value="null"></option>
         <option value="Runaway">Runaway</option>
         <option value="Abduction by Family Member">Abduction by Family Member</option>
         <option value="Abduction by Acquaintance">Abduction by Acquaintance</option>
@@ -57,11 +76,86 @@
 
       <input type="text" name="" id="jurisdiction" placeholder="Law Enforcement Jurisdiction" ng-model="ec.jurisdiction">
       <input type="text" name="" id="schoolDisctrict" placeholder="School District Number" ng-model="ec.schoolDisctrict">
-      <select name="" id="outcome" ng-model="ec.outcome">
+      <select name="" id="disposition" ng-model="ec.disposition">
         <option value="" disabled selected>Outcome</option>
         <option value="Missing Found Safe">Missing Found Safe</option>
         <option value="Missing Found Injured">Missing Found Injured</option>
         <option value="Missing Found Deceased">Missing Found Deceased</option>
+      </select>
+
+      <div class="form-check">
+        <div class="col-sm-4" id="vulnerabilities">
+          <div class="form-group">
+            <h3>Vulnerabilities</h3>
+            <input type="checkbox" ng-model="ec.ADDIn" name="ADD/ADHD" value="ADD/ADHD" input type="checkbox" /> ADD/ADHD
+            <br>
+            <input type="checkbox" ng-model="ec.AutisimIn" name="ASD (Autism Spectrum Disorder)" value="ASD (Autism Spectrum Disorder)"
+              input type="checkbox" /> ASD (Autism Spectrum Disorder)
+            <br>
+            <input type="checkbox" ng-model="ec.AlcoholIn" name="Alcohol use/abuse" value="Alcohol use/abuse" input type="checkbox"
+            /> Alcohol use/abuse
+            <br>
+            <input type="checkbox" ng-model="ec.AnxietyIn" name="Anxiety" input type="checkbox" /> Anxiety
+            <br>
+            <input type="checkbox" ng-model="ec.BiPolarIn" name="BiPolar Disorder" value="BiPolar Disorder" input type="checkbox" /> Bi-Polar Disorder
+            <br>
+            <input type="checkbox" ng-model="ec.DepressionClinicalIn" name="Depression (clinical)" value="Depression (clinical)" input
+              type="checkbox" /> Depression (clinical)
+            <br>
+            <input type="checkbox" ng-model="ec.DespressionSituationalIn" name="Depression (situational)" value="Depression (situational)"
+              input type="checkbox" /> Depression (situational)
+            <br>
+            <input type="checkbox" ng-model="ec.DrugUseIn" name="Drug use/abuse" value="Drug use/abuse" input type="checkbox" /> Drug use/abuse
+            <br>
+            <input type="checkbox" ng-model="ec.EconomicIn" name="Economic exploitation (history)" value="Economic exploitation (history)"
+              input type="checkbox" /> Economic exploitation (history)
+            <br>
+            <input type="checkbox" ng-model="ec.EmotionalAbuseIn" name="Emotional Abuse (history)" value="Emotional Abuse (history)"
+              input type="checkbox" /> Emotional Abuse (history)
+            <br>
+            <input type="checkbox" ng-model="ec.GangIn" name="Gang Association" value="Gang Association" input type="checkbox" /> Gang Association
+            <br>
+            <input type="checkbox" ng-model="ec.ODDIn" name="ODD (Oppositional Defiant Disorder)" value="ODD (Oppositional Defiant Disorder)"
+              input type="checkbox" /> ODD (Oppositional Defiant Disorder)
+            <br>
+            <input type="checkbox" ng-model="ec.LaborIn" name="Labor Exploitation (history)" value="Labor Exploitation (history)" input
+              type="checkbox" /> Labor Exploitation (history)
+            <br>
+            <input type="checkbox" ng-model="ec.LuringAdultIn" name="Luring/grooming by adult" value="Luring/grooming by adult" input
+              type="checkbox" /> Luring/grooming by adult
+            <br>
+            <input type="checkbox" ng-model="ec.LuringChildIn" name="Luring/grooming by child" value="Luring/grooming by child" input
+              type="checkbox" /> Luring/grooming by child
+            <br>
+            <input type="checkbox" ng-model="ec.MissingFromCareIn" name="Missing From Care" value="Missing From Care" input type="checkbox"
+            /> Missing From Care
+            <br>
+            <input type="checkbox" ng-model="ec.PhysicalAbuseIn" name="Physical Abuse (history)" value="Physical Abuse (history)" input
+              type="checkbox" /> Physical Abuse (history)
+            <br>
+            <input type="checkbox" ng-model="ec.RunawayIn" name="Runaway (history)" value="Runaway (history)" input type="checkbox"
+            /> Runaway (history)
+            <br>
+            <input type="checkbox" ng-model="ec.SexualAbuseIn" name="Sexual Abuse (history)" value="Sexual Abuse (history)" input type="checkbox"
+            /> Sexual Abuse (history)
+            <br>
+            <input type="checkbox" ng-model="ec.SexualExploitationIn" name="Sexual Exploitation (history)" value="Sexual Exploitation (history)"
+              input type="checkbox" /> Sexual Exploitation (history)
+            <br>
+            <input type="checkbox" ng-model="ec.SexualMinorityIn" name="Sexual Minority (LGBTQ, etc.)" value="Sexual Minority (LGBTQ, etc.)"
+              input type="checkbox" /> Sexual Minority (LGBTQ, etc.)
+            <br>
+          </div>
+        </div>
+      </div>
+
+      <select name="Referral Type" placeholder="Referral Type" id="yes" ng-model="ec.referralType">
+        <option value="" disabled selected>Referral Type</option>
+        <option value="Word of Mouth">Word of Mouth</option>
+        <option value="Facebook">Facebook</option>
+        <option value="Website">Website</option>
+        <option value="Referral by Law Enforcement">Referral by Law Enforcement</option>
+        <option value="Referral by County Worker">Referral by County Worker</option>
       </select>
 
       <button type="submit">Submit</button>
