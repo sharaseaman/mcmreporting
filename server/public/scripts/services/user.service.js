@@ -3,17 +3,66 @@ myApp.service('UserService', function ($http, $location) {
   var self = this;
 
   self.userObject = {};
-  self.chartData = { data: [] };
-  self.joinChartData = { data: [] };
+  self.chartData = {
+    data: []
+  };
+  self.joinChartData = {
+    data: []
+  };
   self.users = {};
+  self.cities = {};
   self.selectedYear = '';
+
+
+  self.getCities = function () {
+    //on submit, posts all required fields to database
+    return $http({
+      method: 'GET',
+      url: '/forms/cities'
+    })
+  };
+
+  self.getCounties = function () {
+    //on submit, posts all required fields to database
+    return $http({
+      method: 'GET',
+      url: '/forms/counties'
+    })
+  };
+
+
+  self.getAgencies = function () {
+    return $http({
+      method: 'GET',
+      url: '/forms/lawEnforcement'
+    })
+  };
+
+  self.getSchools = function () {
+    return $http({
+      method: 'GET',
+      url: '/forms/schools'
+    })
+  };
+
+  self.postInputData = function (newIntake) {
+    return $http({
+      method: 'POST',
+      url: '/forms/newIntake',
+      data: newIntake
+    })
+  };
+
+
+
+
 
   self.getChartData = function () {
     //on page load, GET all case_data from DB to the DOM
     return $http({
-      method: 'GET',
-      url: '/charts'
-    })
+        method: 'GET',
+        url: '/charts'
+      })
       .then(function (res) {
         //match case_data to service
         self.chartData.data = res.data;
@@ -27,46 +76,46 @@ myApp.service('UserService', function ($http, $location) {
 
         //Global Charts
         var totalsByYear = self.formatDataToChart(res, 'year');
-          self.mainChartYears = totalsByYear.xAxisValues;
-          self.filteredYears = totalsByYear.yAxisValues;
+        self.mainChartYears = totalsByYear.xAxisValues;
+        self.filteredYears = totalsByYear.yAxisValues;
 
         var totalsByCaseTypeOverall = self.formatDataToChart(res, 'start_case_type');
-          self.startCaseLabel = totalsByCaseTypeOverall.xAxisValues;
-          self.filteredStartCase = totalsByCaseTypeOverall.yAxisValues;
+        self.startCaseLabel = totalsByCaseTypeOverall.xAxisValues;
+        self.filteredStartCase = totalsByCaseTypeOverall.yAxisValues;
 
         var totalsByStateOverall = self.formatDataToChart(res, 'state');
-          self.stateOverallLabel = totalsByStateOverall.xAxisValues;
-          self.filteredStateOverall = totalsByStateOverall.yAxisValues;
-        
+        self.stateOverallLabel = totalsByStateOverall.xAxisValues;
+        self.filteredStateOverall = totalsByStateOverall.yAxisValues;
+
         var totalsByCountyOverall = self.formatDataToChart(res, 'county_name');
-          self.countiesOverallLabel = totalsByCountyOverall.xAxisValues;
-          self.filteredCountiesOverall = totalsByCountyOverall.yAxisValues;
+        self.countiesOverallLabel = totalsByCountyOverall.xAxisValues;
+        self.filteredCountiesOverall = totalsByCountyOverall.yAxisValues;
 
         var totalsByDistrictOverall = self.formatDataToChart(res, 'school_name');
-          self.districtOverallLabel = totalsByDistrictOverall.xAxisValues;
-          self.filteredDistrictsOverall = totalsByDistrictOverall.yAxisValues;
+        self.districtOverallLabel = totalsByDistrictOverall.xAxisValues;
+        self.filteredDistrictsOverall = totalsByDistrictOverall.yAxisValues;
 
         var totalsByPeopleServedOverall = self.formatDataToChart(res, 'people_served');
-          self.peopleServedOverallLabel = totalsByPeopleServedOverall.xAxisValues;
-          self.filteredPeopleServedOverall = totalsByPeopleServedOverall.yAxisValues;
+        self.peopleServedOverallLabel = totalsByPeopleServedOverall.xAxisValues;
+        self.filteredPeopleServedOverall = totalsByPeopleServedOverall.yAxisValues;
 
         var totalsByAgeOverall = self.formatDataToChart(res, 'age');
-          self.ageOverallLabel = totalsByAgeOverall.xAxisValues;
-          self.filteredAgeOverall = totalsByAgeOverall.yAxisValues;
-          
+        self.ageOverallLabel = totalsByAgeOverall.xAxisValues;
+        self.filteredAgeOverall = totalsByAgeOverall.yAxisValues;
+
         var totalsByGenderOverall = self.formatDataToChart(res, 'gender');
-          self.genderOverallLabel = totalsByGenderOverall.xAxisValues;
-          self.filteredGenderOverall = totalsByGenderOverall.yAxisValues;
+        self.genderOverallLabel = totalsByGenderOverall.xAxisValues;
+        self.filteredGenderOverall = totalsByGenderOverall.yAxisValues;
 
         var totalsByReferralOverall = self.formatDataToChart(res, 'referral_type');
-          self.referralLabel = totalsByReferralOverall.xAxisValues;
-          self.filteredReferral = totalsByReferralOverall.yAxisValues;
-        });
+        self.referralLabel = totalsByReferralOverall.xAxisValues;
+        self.filteredReferral = totalsByReferralOverall.yAxisValues;
+      });
   };
 
   self.getJoinTableData = function () {
     //this function gets all data from the db from the join tables (case_vulnerabilities, case_lawenforcement_denial, case_race_ethnicity)
-      return $http({
+    return $http({
         method: 'GET',
         url: '/charts/join_tables_reports'
       })
@@ -98,13 +147,13 @@ myApp.service('UserService', function ($http, $location) {
         })
   };
 
-  self.getDataOfYear = function(data, year) {
-    return data.filter(function(entry) {
+  self.getDataOfYear = function (data, year) {
+    return data.filter(function (entry) {
       return entry.year === year;
     });
-  };  
+  };
 
-  self.formatDataToChart = function(data, xAxisDataPoint) {
+  self.formatDataToChart = function (data, xAxisDataPoint) {
     //then create an object with an array for each year's data record
     var dataGroupedXAxisDataPoint = data.reduce(function (prev, curr) {
       const groupLabel = curr[xAxisDataPoint];
@@ -134,7 +183,7 @@ myApp.service('UserService', function ($http, $location) {
     self.selectedYear = selectedYear.toString();
     //Deep Dive into Year Charts on Main MCM table
     var dataForUserYear = self.getDataOfYear(self.chartData.data, self.selectedYear);
-  
+
     var totalsByCaseType = self.formatDataToChart(dataForUserYear, 'start_case_type');
     self.userCaseTypeLabels = totalsByCaseType.xAxisValues;
     self.userFilteredCases = totalsByCaseType.yAxisValues;
@@ -215,7 +264,7 @@ myApp.service('UserService', function ($http, $location) {
     });
   };
 
-//gets all users back on manage page so they can be edited -shara
+  //gets all users back on manage page so they can be edited -shara
   self.getAllUsers = function () {
     return $http({
       method: 'GET',
@@ -227,7 +276,7 @@ myApp.service('UserService', function ($http, $location) {
   };
 
   // updates the admin priviledges 
-  self.updatePriviledges = function(user) {
+  self.updatePriviledges = function (user) {
     return $http({
       method: 'PUT',
       url: '/manage',
@@ -238,9 +287,9 @@ myApp.service('UserService', function ($http, $location) {
   }
 
   // deletes the user from the db
-  self.deleteUser = function(user) {
+  self.deleteUser = function (user) {
     console.log('this is user on delete service', user);
-    
+
     return $http({
       method: 'POST',
       url: '/manage',
@@ -249,5 +298,16 @@ myApp.service('UserService', function ($http, $location) {
       console.log('Delete Response', response.data);
     })
   }
+
+
+
+
+
+
+
+
+
+
+
 
 });
