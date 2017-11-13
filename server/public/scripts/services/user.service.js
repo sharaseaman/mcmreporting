@@ -174,13 +174,14 @@ myApp.service('UserService', function ($http, $location) {
 
   self.submitCustomFilters = function (userCustomFilters){
     console.log('service obj', userCustomFilters)
-    // $http({
-    //   method:"GET",
-    //   url: "/charts/custom",
-    //   data: userCustomFilters
-    // }).then(function (res){
-    //   console.log('back with custom filtered data', res);
-    // })
+    //pending BE user filtered report query
+    $http({
+      method:"GET",
+      url: "/charts/custom",
+      data: userCustomFilters
+    }).then(function (res){
+      console.log('back with custom filtered data', res);
+    })
   };
 
   self.getuser = function () {

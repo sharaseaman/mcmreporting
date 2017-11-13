@@ -12,6 +12,7 @@ myApp.controller('CoreController', function (UserService, $scope) {
     if (vm.selectedYear !== undefined) {
       selectedYear = vm.selectedYear;
       UserService.updateChartYear(selectedYear);
+      
       //User Selected Year Charts 
       vm.userCaseTypeLabels = UserService.userCaseTypeLabels;
       vm.userFilteredCases = UserService.userFilteredCases;
@@ -32,6 +33,7 @@ myApp.controller('CoreController', function (UserService, $scope) {
       vm.userFilteredRace = UserService.userFilteredRace;
 
       var ctc = document.getElementById("userCaseTypeChart");
+      
       var myChart = new Chart(ctc, {
         type: 'bar',
         data: {
@@ -45,8 +47,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
           }]
         },
         options: {
+          title: {
+              display: true,
+              position: "top",
+              text: "Case Type in " + vm.selectedYear,
+              fontSize: 18
+          },
           scales: {
+            xAxes:[{
+              scaleLabel: {
+                display: true,
+                labelString: 'Case Type'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -70,8 +88,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "MN Counties in " + vm.selectedYear,
+            fontSize: 18
+        },
           scales: {
+            xAxes:[{
+              scaleLabel: {
+                display: true,
+                labelString: 'MN County'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -95,8 +129,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "School Districts in " + vm.selectedYear,
+            fontSize: 18
+        },
           scales: {
+            xAxes:[{
+              scaleLabel: {
+                display: true,
+                labelString: 'MN School District'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -120,8 +170,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "People Served in " + vm.selectedYear,
+            fontSize: 18
+        },
           scales: {
+            xAxes:[{
+              scaleLabel: {
+                display: true,
+                labelString: 'People Served'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -145,8 +211,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "Vulnerabilities in " + vm.selectedYear,
+            fontSize: 18
+        },
           scales: {
+            xAxes:[{
+              scaleLabel: {
+                display: true,
+                labelString: 'Vulnerability'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -170,8 +252,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "Age in " + vm.selectedYear,
+            fontSize: 18
+        },
           scales: {
+            xAxes:[{
+              scaleLabel: {
+                display: true,
+                labelString: 'Age'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -195,8 +293,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "Law Enforcement Agencies in " + vm.selectedYear,
+            fontSize: 18
+        },
           scales: {
+            xAxes:[{
+              scaleLabel: {
+                display: true,
+                labelString: 'Law Enforcement Agency'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -220,8 +334,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "Race/ Ethnicity in " + vm.selectedYear,
+            fontSize: 18
+        },
           scales: {
+            xAxes:[{
+              scaleLabel: {
+                display: true,
+                labelString: 'Race/Ethnicity'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -273,8 +403,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases per year",
+              fontSize: 18
+          },
             scales: {
+              xAxes:[{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Year'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -298,8 +444,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by Start Case Type",
+              fontSize: 18
+          },
             scales: {
+              xAxes:[{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Case Type'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -323,8 +485,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by State",
+              fontSize: 18
+          },
             scales: {
+              xAxes:[{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'State'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -348,8 +526,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by MN County",
+              fontSize: 18
+          },
             scales: {
+              xAxes:[{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'MN County'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -373,8 +567,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by MN School District",
+              fontSize: 18
+          },
             scales: {
+              xAxes:[{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'MN School District'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -398,8 +608,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by People Served",
+              fontSize: 18
+          },
             scales: {
+              xAxes:[{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'People Served'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -423,8 +649,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by Age",
+              fontSize: 18
+          },
             scales: {
+              xAxes:[{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Age'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -448,8 +690,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases Gender",
+              fontSize: 18
+          },
             scales: {
+              xAxes:[{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Gender'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -473,8 +731,24 @@ myApp.controller('CoreController', function (UserService, $scope) {
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by Referral Source",
+              fontSize: 18
+          },
             scales: {
+              xAxes:[{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Referral Source'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -509,8 +783,18 @@ myApp.controller('CoreController', function (UserService, $scope) {
               }]
             },
             options: {
+              title: {
+                display: true,
+                position: "top",
+                text: "Number of Cases by Vulnerability",
+                fontSize: 18
+            },
               scales: {
                 yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Number of Cases'
+                  },
                   ticks: {
                     beginAtZero: true,
                     callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -534,8 +818,18 @@ myApp.controller('CoreController', function (UserService, $scope) {
               }]
             },
             options: {
+              title: {
+                display: true,
+                position: "top",
+                text: "Number of Cases by Law Enforcement Agency",
+                fontSize: 18
+            },
               scales: {
                 yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Number of Cases'
+                  },
                   ticks: {
                     beginAtZero: true,
                     callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -559,8 +853,18 @@ myApp.controller('CoreController', function (UserService, $scope) {
               }]
             },
             options: {
+              title: {
+                display: true,
+                position: "top",
+                text: "Number of Cases by Race/ Ethnicity",
+                fontSize: 18
+            },
               scales: {
                 yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Number of Cases'
+                  },
                   ticks: {
                     beginAtZero: true,
                     callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -575,5 +879,126 @@ myApp.controller('CoreController', function (UserService, $scope) {
 
     }
 
+  };
+
+  vm.saveMainBarChart = function () {
+    mainBarChart.toBlob(function(blob){
+      saveAs(blob,'Number_of_Cases_per_Year')
+    });
+  };
+
+  vm.saveStartCaseTypeChart = function () {
+    startCaseTypeChart.toBlob(function(blob){
+      saveAs(blob,'Cases_by_Start_Case_Type')
+    });
+  };
+
+  vm.saveStateOverallChart = function () {
+    stateOverallChart.toBlob(function(blob){
+      saveAs(blob,'Cases_by_State')
+    });
+  };
+
+  vm.saveCountiesOverallChart = function () {
+    countiesOverallChart.toBlob(function(blob){
+      saveAs(blob,'Cases_by_MN_Counties')
+    });
+  };
+
+  vm.savePeopleServedOverallChart = function () {
+    peopleServedOverallChart.toBlob(function(blob){
+      saveAs(blob,'Cases_by_People_Served')
+    });
+  };
+
+  vm.saveAgeOverallChart = function () {
+    ageOverallChart.toBlob(function(blob){
+      saveAs(blob,'Cases_by_Age')
+    });
+  };
+
+  vm.saveDistrictOverallChart = function () {
+    districtOverallChart.toBlob(function(blob){
+      saveAs(blob,'Cases_by_School_District')
+    });
+  };
+
+  vm.saveGenderOverallChart = function () {
+    genderOverallChart.toBlob(function(blob){
+      saveAs(blob,'Cases_by_Gender')
+    });
+  };
+
+  vm.saveVulnerabilitiesOverallChart = function () {
+    vulnerabilitiesOverallChart.toBlob(function(blob){
+      saveAs(blob,'Cases_by_Vulnerability')
+    });
+  };
+
+  vm.saveLawEnforcementOverallChart = function () {
+    lawEnforcementOverallChart.toBlob(function(blob){
+      saveAs(blob,'Cases_by_Law_Enforcement_Agency')
+    });
+  };
+
+  vm.saveRaceEthnicityOverallChart = function () {
+    raceEthnicityOverallChart.toBlob(function(blob){
+      saveAs(blob,'Cases_by_Race_Ethnicity')
+    });
+  };
+
+  vm.saveReferralsChart = function () {
+    referralsChart.toBlob(function(blob){
+      saveAs(blob,'Referrals_by_Source')
+    });
+  };
+
+  vm.saveuserCaseTypeChart = function (){
+    userCaseTypeChart.toBlob(function(blob){
+      saveAs(blob,'Case_Type_Chart_'+vm.selectedYear)
+    });
   }
+
+  vm.saveuserCountyChart = function (){
+    userCountyChart.toBlob(function(blob){
+      saveAs(blob,'MN_County_Chart_'+vm.selectedYear)
+    });
+  }
+
+  vm.saveuserSchoolChart = function (){
+    userSchoolChart.toBlob(function(blob){
+      saveAs(blob,'MN_School_District_Chart_'+vm.selectedYear)
+    });
+  }
+
+  vm.saveuserPeopleServedChart = function (){
+    userPeopleServedChart.toBlob(function(blob){
+      saveAs(blob,'People_Served_Chart_'+vm.selectedYear)
+    });
+  }
+
+  vm.saveuserVulnerabilityChart = function (){
+    userVulnerabilityChart.toBlob(function(blob){
+      saveAs(blob,'Vulnerability_Chart_'+vm.selectedYear)
+    });
+  }
+
+  vm.saveuserAgeChart = function (){
+    userAgeChart.toBlob(function(blob){
+      saveAs(blob,'Age_Chart_'+vm.selectedYear)
+    });
+  }
+
+  vm.saveuserLawEnforcementChart = function (){
+    userLawEnforcementChart.toBlob(function(blob){
+      saveAs(blob,'MN_Law_Enforcement_Agency_Chart_'+vm.selectedYear)
+    });
+  }
+
+  vm.saveuserRaceChart = function (){
+    userRaceChart.toBlob(function(blob){
+      saveAs(blob,'Race_Ethnicity_Chart_'+vm.selectedYear)
+    });
+  }
+
 })
