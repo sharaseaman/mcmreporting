@@ -2,423 +2,834 @@
 
 </div>
 <form role="form" class='form-vertical'>
-  <div class="md-form">
+  <div class="md-form" ng-init="UserService.getCounties(); UserService.getCities(); UserService.getAgencies(); UserService.getSchools();">
+
+    <div layout='row' layout-fill layout-margin>
+
+      <md-input-container>
+        <input id="MCMCaseNumber" ng-model="nwc.caseIn" type="number" placeholder="MCM Case Number" required>
+      </md-input-container>
+
+      <md-input-container>
+        <input id="DateofIntaketoMCM" style="width:150px;" ng-model="nwc.DateofIntaketoMCMIn" type="date" placeholder="Date of Intake to MCM">
+      </md-input-container>
+
+    </div>
 
     <h3> Missing Person's Info </h3>
-    <!-- <div class="col-sm-8"> -->
-    <div class="form-group" id="MissingPerson'sInfo">
-      <input id="MCMCaseNumber" ng-model="nwc.caseIn" type="number" placeholder="MCM Case Number" required>
-      <label for="DateofintaketoMCM">Date of Intake to MCM </label>
-      <input id="DateofIntaketoMCM" style="width:150px;"ng-model="nwc.DateofIntaketoMCMIn" type="date" placeholder="Date of Intake to MCM">
-    </div>
-    <div class="form-group">
-      <label for="DateofDissapearance">Date of Dissapearance: </label>
-      <input id="DateofDissapearance" ng-model="nwc.DateofDissapearanceIn"type="date" style="width:150px;" placeholder="Date of Dissapearance">
-      <label for="DateLastSeen">Date Last Seen: </label>
-      <input id="DateLastSeen" ng-model="nwc.DateLastSeenIn" type="date" style="width:150px;" placeholder="Date Last Seen">
-      <label for="DateReportedMissingtoPolice">Date Reported Missing to Police: </label>
-      <input id="DateReportedMissingtoPolice" ng-model="nwc.DateReportedMissingtoPoliceIn"style="width:150px;" type="date" placeholder="Date Reported Missing to Police">
-      <label for="LocationLastSeenCrossSt.">Location Last Seen/Cross St. </label>
-      <input id="LocationLastSeenCrossSt." ng-model="nwc.LocationLastSeenCrossStIn"style="width:150px;" type="date" placeholder="Location Last Seen/Cross St.">
-    </div>
-    <div class="form-group">
-      <input id="Name" ng-model="nwc.NameIn"type="text" placeholder="Name (Last, First, Middle)">
-      <input id="Age" ng-model="nwc.AgeIn"type="number" placeholder="Age"required>
-      <select name="Gender" ng-model="nwc.GenderIn" placeholder="Gender" id="yes">   
-          <option value="" disabled selected>Gender</option>                             
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>   
-          <option value="Non-Binary">Non-Binary</option> 
-            </select>
-      <input id="Height" ng-model="nwc.HeightIn" type="text" placeholder="Height">
-      <input id="Weight" ng-model="nwc.WeightIn" type="text" placeholder="Weight">
-      <!-- </div> -->
-      <!-- <div class="form-group" id="ReportingLawEnforcement"> -->
-      <input id="Other" ng-model="nwc.OtherIn"type="text" placeholder="Other">
-      <input id="CaseNumber" ng-model="nwc.CaseNumberIn"type="text" placeholder="Case Number">
-      <input id="Office/Detective" ng-model="nwc.OfficeDetectiveIn" type="text" placeholder="Officer/Detective">
-      <label for="LEPhoneNumber"> LE Phone Number </label>
-      <input id="LEPhoneNumber" ng-model="nwc.LEPhoneNumberIn" type="text" placeholder="LE Phone Number">
-      <label for="StreetAddress"> Street Address</label>
-      <input id="StreetAddress" ng-model="nwc.StreetAddressIn"type="text" placeholder="Street Address">
-      <!-- <div class="form-group"> -->
-      <select name="StateMissingFrom" ng-model="nwc.StateMissingFromIn" type="number" placeholder="State Missing From"required>
-                  <option value="" disabled selected>State Missing From</option>                                            
-                  <option value="AL">Alabama</option>
-                  <option value="AK">Alaska</option>
-                  <option value="AZ">Arizona</option>
-                  <option value="AR">Arkansas</option>
-                  <option value="CA">California</option>
-                  <option value="CO">Colorado</option>
-                  <option value="CT">Connecticut</option>
-                  <option value="DE">Delaware</option>
-                  <option value="DC">District Of Columbia</option>
-                  <option value="FL">Florida</option>
-                  <option value="GA">Georgia</option>
-                  <option value="HI">Hawaii</option>
-                  <option value="ID">Idaho</option>
-                  <option value="IL">Illinois</option>
-                  <option value="IN">Indiana</option>
-                  <option value="IA">Iowa</option>
-                  <option value="KS">Kansas</option>
-                  <option value="KY">Kentucky</option>
-                  <option value="LA">Louisiana</option>
-                  <option value="ME">Maine</option>
-                  <option value="MD">Maryland</option>
-                  <option value="MA">Massachusetts</option>
-                  <option value="MI">Michigan</option>
-                  <option value="MN">Minnesota</option>
-                  <option value="MS">Mississippi</option>
-                  <option value="MO">Missouri</option>
-                  <option value="MT">Montana</option>
-                  <option value="NE">Nebraska</option>
-                  <option value="NV">Nevada</option>
-                  <option value="NH">New Hampshire</option>
-                  <option value="NJ">New Jersey</option>
-                  <option value="NM">New Mexico</option>
-                  <option value="NY">New York</option>
-                  <option value="NC">North Carolina</option>
-                  <option value="ND">North Dakota</option>
-                  <option value="OH">Ohio</option>
-                  <option value="OK">Oklahoma</option>
-                  <option value="OR">Oregon</option>
-                  <option value="PA">Pennsylvania</option>
-                  <option value="RI">Rhode Island</option>
-                  <option value="SC">South Carolina</option>
-                  <option value="SD">South Dakota</option>
-                  <option value="TN">Tennessee</option>
-                  <option value="TX">Texas</option>
-                  <option value="UT">Utah</option>
-                  <option value="VT">Vermont</option>
-                  <option value="VA">Virginia</option>
-                  <option value="WA">Washington</option>
-                  <option value="WV">West Virginia</option>
-                  <option value="WI">Wisconsin</option>
-                  <option value="WY">Wyoming</option>
-                </select>
-      <input id="CountyMissingFrom" ng-model="nwc.CountyMissingFromIn"type="number" placeholder="County Missing From"required>
-      <input id="CityMissingFrom" ng-model="nwc.CityMissingFromIn"type="number" placeholder="City Missing From"required>
-      <input id="SchoolDistrictWhereChildWasEnrolled" ng-model="nwc.SchoolDistrictWhereChildWasEnrolledIn" style="width:300px;" type="number" placeholder="School District Where Child Was Enrolled"required>
-      <!-- </div> -->
-      <!-- <div class="form-group"> -->
-      <input id="LawEnforcementAgencyonCase" ng-model="nwc.LawEnforcementAgencyonCaseIn" style="width:250px;" type="number" placeholder="Law Enforcement Agency on case"required>
-      <select name="JurisdictionalDenial" ng-model="nwc.JurisdictionalDenialIn" placeholder="Jurisdictional denial" id="yes">  
-                      <option value="" disabled selected>Jurisdictional denial?</option>                                                    
-                      <option value="Yes">Yes
-                          <option value="No">No   
-                          </select>
-      <input id="FamilyMembersInvolvedInSearch" ng-model="nwc.FamilyMembersInvolvedInSearchIn" style="width:250px;" type="number" placeholder="Family Members Involved in Search"required>
-    </div>
-    <div class="form-group">
-      <select name="CaseTypeWhenOpened" ng-model="nwc.CaseTypeWhenOpenedIn" placeholder="Case Type When Opened" id="yes"required>   
-                                <option value="" disabled selected>Case Type When Opened</option>                             
-                                <option value="Runaway
-                                ">Runaway
-                              </option>
-                                <option value="Abduction by Family Member
-                                ">Abduction by Family Member
-                              </option>   
-                                <option value="Abduction by Acquaintance
-                                ">Abduction by Acquaintance
-                              </option> 
-                              <option value="Abduction by Acquaintance
-                              ">Stranger Abduction                        
-                            </option> 
-                            <option value="Abduction by Acquaintance
-                            ">LIM (Lost, Injured, Otherwise Missing)   
-                          </option> 
-                                  </select>
+    <br>
 
-      <select name="CaseTypeWhenClosed" ng-model="nwc.CaseTypeWhenClosedIn" placeholder="Case Type When Closed" id="yes">   
-                                  <option value="" disabled selected>Case Type When Closed</option>                             
-                                  <option value="Runaway
-                                  ">Runaway
-                                </option>
-                                  <option value="Abduction by Family Member
-                                  ">Abduction by Family Member
-                                </option>   
-                                  <option value="Abduction by Acquaintance
-                                  ">Abduction by Acquaintance
-                                </option> 
-                                <option value="Abduction by Acquaintance
-                                ">Stranger Abduction                        
-                              </option> 
-                              <option value="Abduction by Acquaintance
-                              ">LIM (Lost, Injured, Otherwise Missing)                   
-                            </option> 
-                                    </select>
-
-      <select name="CaseStatus" ng-model="nwc.CaseStatusIn" placeholder="Case Status" id="yes">   
-                                        <option value="" disabled selected>Case Status</option>                             
-                                        <option value="Open                          
-                                        ">Open                           
-                                      </option>
-                                        <option value="Closed                            
-                                        ">Closed                           
-                                      </option>   
-                                        <option value="Suspended - out of contact                                  
-                                        ">Suspended - out of contact                                  
-                                      </option> 
-                                      <option value="Suspended - false information                                
-                                      ">Suspended - false information                                
-                                    </option> 
-              </select>
-    </div>
-    <div class="form-group">
-      <select name="CaseDisposition" ng-model="nwc.CaseDispositionIn" placeholder="Case Disposition" id="yes"required>   
-                                  <option value="" disabled selected>Case Disposition</option>                             
-                                  <option value="Child found safe                           
-                                  ">Child found safe                            
-                                </option>
-                                  <option value="Child found harmed/injured/neglected                            
-                                  ">Child found harmed/injured/neglected                            
-                                </option>   
-                                  <option value="Child found deceased                            
-                                  ">Child found deceased                            
-                                </option> 
-                                <option value="Child placed in Care                          
-                                ">Child placed in Care                          
-                              </option> 
-                                    </select>
-
-      <select name="ReferralType" ng-model="nwc.ReferralTypeIn" placeholder="Referral Type" id="yes">   
-                                        <option value="" disabled selected>Referral Type</option>                             
-                                        <option value="Word of Mouth                                  
-                                        ">Word of Mouth                           
-                                      </option>
-                                        <option value="Facebook                                  
-                                        ">Facebook                                  
-                                      </option>   
-                                        <option value="Website                                  
-                                        ">Website                                  
-                                      </option> 
-                                    </option>   
-                                    <option value="Referral by Law Enforcement                              
-                                    ">Referral by Law Enforcement                              
-                                  </option> 
-                                </option>   
-                                <option value="Referral by County Worker                          
-                                ">Referral by County Worker                                 
-                              </option> 
-                            </select>
-    </div>
+    <div layout='row' layout-fill layout-margin>
 
 
+      <md-input-container>
+        <input id="Name" ng-model="nwc.NameIn" type="text" style="width:200px;" placeholder="Name of Missing Person">
+      </md-input-container>
+
+      <md-input-container>
+        <input id="DateofDissapearance" ng-model="nwc.DateofDissapearanceIn" type="date" placeholder="Date of Dissapearance">
+      </md-input-container>
+
+      <md-input-container>
+        <input id="DateLastSeen" ng-model="nwc.DateLastSeenIn" type="date" style="width:150px;" placeholder="Date Last Seen">
+      </md-input-container>
+
+      <md-input-container>
+        <input id="TimeLastSeen" ng-model="nwc.TimeLastSeenIn" type="time" style="width:150px;" placeholder="Time Last Seen">
+      </md-input-container>
+
+      <md-input-container>
+        <input id="DateReportedMissingtoPolice" ng-model="nwc.DateReportedMissingtoPoliceIn" style="width:250px;" type="date" placeholder="Date Reported Missing to Police">
+      </md-input-container>
+
+      <md-input-container>
+        <input id="LocationLastSeenCrossSt." ng-model="nwc.LocationLastSeenCrossStIn" style="width:200px;" type="text" placeholder="Location Last Seen/Cross St.">
+      </md-input-container>
+
+
+
+    </div>
+
+    <div layout='row' layout-fill layout-margin>
+
+      <md-input-container>
+        <input id="FamilyMembersInvolvedInSearch" ng-model="nwc.FamilyMembersInvolvedInSearchIn" style="width:250px;" type="number"
+          placeholder="Family Members Involved in Search" required>
+      </md-input-container>
+
+      <md-input-container>
+        <label>State Missing From</label>
+        <md-select name="StateMissingFrom" ng-model="nwc.StateMissingFromIn" ng-change="nwc.itemChange()" type="number" placeholder="State Missing From"
+          required>
+          <md-option value="" disabled md-selected>State Missing From</md-option>
+          <md-option value="AL">Alabama</md-option>
+          <md-option value="AK">Alaska</md-option>
+          <md-option value="AZ">Arizona</md-option>
+          <md-option value="AR">Arkansas</md-option>
+          <md-option value="CA">California</md-option>
+          <md-option value="CO">Colorado</md-option>
+          <md-option value="CT">Connecticut</md-option>
+          <md-option value="DE">Delaware</md-option>
+          <md-option value="DC">District Of Columbia</md-option>
+          <md-option value="FL">Florida</md-option>
+          <md-option value="GA">Georgia</md-option>
+          <md-option value="HI">Hawaii</md-option>
+          <md-option value="ID">Idaho</md-option>
+          <md-option value="IL">Illinois</md-option>
+          <md-option value="IN">Indiana</md-option>
+          <md-option value="IA">Iowa</md-option>
+          <md-option value="KS">Kansas</md-option>
+          <md-option value="KY">Kentucky</md-option>
+          <md-option value="LA">Louisiana</md-option>
+          <md-option value="ME">Maine</md-option>
+          <md-option value="MD">Maryland</md-option>
+          <md-option value="MA">Massachusetts</md-option>
+          <md-option value="MI">Michigan</md-option>
+          <md-option value="MN">Minnesota</md-option>
+          <md-option value="MS">Mississippi</md-option>
+          <md-option value="MO">Missouri</md-option>
+          <md-option value="MT">Montana</md-option>
+          <md-option value="NE">Nebraska</md-option>
+          <md-option value="NV">Nevada</md-option>
+          <md-option value="NH">New Hampshire</md-option>
+          <md-option value="NJ">New Jersey</md-option>
+          <md-option value="NM">New Mexico</md-option>
+          <md-option value="NY">New York</md-option>
+          <md-option value="NC">North Carolina</md-option>
+          <md-option value="ND">North Dakota</md-option>
+          <md-option value="OH">Ohio</md-option>
+          <md-option value="OK">Oklahoma</md-option>
+          <md-option value="OR">Oregon</md-option>
+          <md-option value="PA">Pennsylvania</md-option>
+          <md-option value="RI">Rhode Island</md-option>
+          <md-option value="SC">South Carolina</md-option>
+          <md-option value="SD">South Dakota</md-option>
+          <md-option value="TN">Tennessee</md-option>
+          <md-option value="TX">Texas</md-option>
+          <md-option value="UT">Utah</md-option>
+          <md-option value="VT">Vermont</md-option>
+          <md-option value="VA">Virginia</md-option>
+          <md-option value="WA">Washington</md-option>
+          <md-option value="WV">West Virginia</md-option>
+          <md-option value="WI">Wisconsin</md-option>
+          <md-option value="WY">Wyoming</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container flex>
+        <label>City Missing From</label>
+        <md-select ng-model="nwc.CityMissingFromIn" ng-change="nwc.itemChange()" required>
+          <md-option value="" disabled md-selected>City Missing From</md-option>
+          <md-option ng-repeat="cityObj in nwc.cities" ng-value="cityObj.city"> {{cityObj.city}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container style="margin-right: 10px;width: 20%;">
+        <label>County Missing From</label>
+        <md-select ng-model="nwc.CountyMissingFromIn" ng-change="nwc.itemChange()" required>
+          <md-option value="" disabled md-selected>County Missing From</md-option>
+          <md-option ng-repeat="countyObj in nwc.counties" ng-value="countyObj.county"> {{countyObj.county}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container style="margin-right: 10px;width: 20%;">
+        <label>School District Where Child Was Enrolled </label>
+        <md-select ng-model="nwc.SchoolDistrictWhereChildWasEnrolledIn" ng-change="nwc.itemChange()" required>
+          <md-option value="" disabled md-selected>School District Where Child Was Enrolled</md-option>
+          <md-option ng-repeat="schoolObj in nwc.schools" ng-value="schoolObj.school"> {{schoolObj.school}}</md-option>
+        </md-select>
+      </md-input-container>
+
+
+
+    </div>
+
+    <div layout='row' layout-fill layout-margin>
+      <md-input-container>
+        <input id="Age" ng-model="nwc.AgeIn" type="number" placeholder="Age" required>
+      </md-input-container>
+
+
+      <md-input-container>
+        <label>Gender</label>
+        <md-select ng-model="nwc.GenderIn" ng-change="nwc.itemChange()">
+          <md-option value="Male">Male</md-option>
+          <md-option value="Female">Female</md-option>
+          <md-option value="Non-Binary">Non-Binary</md-option>
+        </md-select>
+      </md-input-container>
+
+
+      <md-input-container>
+        <input id="Height" ng-model="nwc.HeightIn" type="text" placeholder="Height">
+      </md-input-container>
+
+      <md-input-container>
+        <input id="Weight" ng-model="nwc.WeightIn" type="text" placeholder="Weight">
+      </md-input-container>
+
+      <md-input-container>
+        <input id="Other" ng-model="nwc.OtherIn" type="text" placeholder="Other">
+      </md-input-container>
+    </div>
 
 
     <h3> Distinguishing Characteristics</h3>
-    <label for="HairColor"> Hair Color</label>
-    <input id="HairColor" ng-model="nwc.HairColorIn" type="text" placeholder="Hair Color">
-    <label for="HairStyle"> Hair Style</label>
-    <input id="HairStyle" ng-model="nwc.HairStyleIn" type="text" placeholder="Hair Style">
-    <label for="EyeColor"> Eye Color</label>
-    <input id="EyeColor" ng-model="nwc.EyeColorIn" type="text" placeholder="Eye Color">
-    <label for="EyeFeatures"> Eye Features</label>
-    <input id="EyeFeatures" ng-model="nwc.EyeFeaturesIn" type="text" placeholder="Eye Features">
-    <select name="Race/Ethnicity" ng-model="nwc.RaceEthnicityIn" placeholder="Race/Ethnicity" id="yes">   
-            <option value="" disabled selected>Race/Ethnicity</option>                                
-            <option value="African American">African American</option>
-            <option value="Asian/Pacific Islander">Asian/Pacific Islander
-            </option>
-            <option value="Caucasian
-            ">Caucasian
-          </option>
-            <option value="Latinx
-            ">Latinx
-          </option>
-            <option value="Native American
-            ">Native American
-          </option>    
-          </select>
-    <label for="FacialHair"> Facial Hair</label>
-    <input id="FacialHair" ng-model="nwc.FacialHairIn" type="text" placeholder="Facial Hair">
-    <label for="EyeBrowFeatures"> Eye Brow Features</label>
-    <input id="EyeBrowFeatures" ng-model="nwc.EyeBrowFeaturesIn" type="text" placeholder="Eye Brow Features">
-    <select name="GlassesOrContacts" ng-model="nwc.GlassesOrContactsIn" placeholder="Glasses or Contacts?" id="yes">   
-              <option value="" disabled selected>Glasses or Contacts?</option>                             
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>   
-          </select>
-    <select name="TattoosOrPiercings" ng-model="TattoosOrPiercingsIn" placeholder="Tattoos or Piercings?" id="yes">   
-              <option value="" disabled selected>Tattoos or Piercings?</option>                             
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>   
-          </select>
-    <textarea name="commentTattoos" ng-model="nwc.commentTattoosIn" form="usrform">Enter text here...</textarea>
-    <label for="DentalCharacteristics"> Dental Characteristics?</label>
-    <input id="DentalCharacteristics" ng-model="nwc.DentalCharacteristicsIn" type="text" placeholder="Dental Characteristics?">
-    <select name="ScarsOrBirthmarks" ng-model="nwc.ScarsOrBirthmarksIn" placeholder="Scars or Birthmarks?" id="yes">   
-              <option value="" disabled selected>Scars or Birthmarks?</option>                             
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>   
-          </select>
-    <textarea name="commentScars" ng-model="nwc.commentScarsIn" form="usrform">Enter text here...</textarea>
-    <!-- </div> -->
+    <br>
+
+    <div layout='row' layout-fill layout-margin>
+
+
+      <md-input-container>
+        <input id="HairColor" ng-model="nwc.HairColorIn" type="text" placeholder="Hair Color">
+      </md-input-container>
+
+      <md-input-container>
+        <input id="HairStyle" ng-model="nwc.HairStyleIn" type="text" placeholder="Hair Style">
+      </md-input-container>
+
+
+      <md-input-container>
+        <input id="EyeColor" ng-model="nwc.EyeColorIn" type="text" placeholder="Eye Color">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Race/Ethnicity</label>
+        <md-select name="RaceEthnicity" ng-model="nwc.RaceEthnicityIn" ng-change="nwc.itemChange()" id="yes">
+          <md-option value="AfricanAmerican">African American</md-option>
+          <md-option value="AsianPacificIslander">Asian Pacific Islander</md-option>
+          <md-option value="Caucasian">Caucasian</md-option>
+          <md-option value="Latinx">Latinx</md-option>
+          <md-option value="NativeAmerican">Native American</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container>
+        <input id="FacialHair" ng-model="nwc.FacialHairIn" type="text" placeholder="Facial Hair">
+      </md-input-container>
+
+      <md-input-container>
+        <input id="EyeBrowFeatures" ng-model="nwc.EyeBrowFeaturesIn" type="text" placeholder="Eye Brow Features">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Glasses or Contacts?</label>
+        <md-select name="GlassesOrContacts" ng-model="nwc.GlassesOrContactsIn" ng-change="nwc.itemChange()" placeholder="Glasses or Contacts?"
+          id="yes">
+          <md-option value="No">No</md-option>
+          <md-option value="Glasses">Glasses</md-option>
+          <md-option value="Contacts">Contacts</md-option>
+        </md-select>
+      </md-input-container>
+
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+
+    </div>
+
+    <div layout='row' layout-fill layout-margin>
+
+
+      <md-input-container flex>
+        <label>Tattoos or Piercings?</label>
+        <md-select name="TattoosOrPiercings" ng-model="TattoosOrPiercingsIn" ng-change="nwc.itemChange()" placeholder="Tattoos or Piercings?"
+          id="yes">
+          <md-option value="" disabled md-selected>Tattoos or Piercings?</md-option>
+          <md-option value="Yes">Yes</md-option>
+          <md-option value="No">No</md-option>
+        </md-select>
+      </md-input-container>
+
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+
+
+      <md-input-container flex>
+        <input id="DentalCharacteristics" ng-model="nwc.DentalCharacteristicsIn" type="text" placeholder="Dental Characteristics?">
+      </md-input-container>
+
+      <md-input-container flex>
+        <label>Scars or Birthmarks?</label>
+        <md-select name="ScarsOrBirthmarks" ng-model="nwc.ScarsOrBirthmarksIn" ng-change="nwc.itemChange()" width="400px" placeholder="Scars or Birthmarks?"
+          id="yes">
+          <md-option value="" disabled md-selected>Scars or Birthmarks?</md-option>
+          <md-option value="Yes">Yes</md-option>
+          <md-option value="No">No</md-option>
+        </md-select>
+      </md-input-container>
+
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+
+    </div>
+
+    <h3>Reporting Law Enforcement </h3>
+    <br>
+
+    <div layout='row' layout-fill layout-margin>
+
+      <md-input-container flex>
+        <input id="Other" ng-model="nwc.OtherIn" type="text" placeholder="Other">
+      </md-input-container>
+
+      <md-input-container flex>
+        <label>Law Enforcement Agency On Case</label> 
+        <md-select ng-model="nwc.LawEnforcementAgencyonCaseIn" ng-change="nwc.itemChange()">
+          <md-option value="" disabled md-selected>Law Enforcement Agency</md-option>
+          <md-option ng-repeat="AgencyObj in nwc.agencies" ng-value="AgencyObj.agency"> {{AgencyObj.agency}}</md-option>
+        </md-select>
+      </md-input-container>
+
+
+      <md-input-container flex>
+        <input id="CaseNumber" ng-model="nwc.CaseNumberIn" type="number" placeholder="Case Number">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="Office/Detective" ng-model="nwc.OfficeDetectiveIn" type="text" placeholder="Officer/Detective">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="LEPhoneNumber" ng-model="nwc.LEPhoneNumberIn" type="text" placeholder="LE Phone Number">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="StreetAddress" ng-model="nwc.StreetAddressIn" type="text" placeholder="Street Address">
+      </md-input-container>
+
+
+      <md-input-container flex>
+        <label>Jurisdictional Denial?</label>
+        <md-select ng-model="nwc.JurisdictionalDenialIn" ng-change="nwc.itemChange()" placeholder="Jurisdictional denial" id="yes">
+          <md-option value="" disabled md-selected>Jurisdictional denial?</md-option>
+          <md-option value="Yes">Yes</md-option>
+          <md-option value="No">No </md-option>
+        </md-select>
+      </md-input-container flex>
+
+    </div>
+
+
+    <div layout='row' layout-fill layout-margin>
+
+
+      <md-select name="CaseTypeWhenOpened" ng-model="nwc.CaseTypeWhenOpenedIn" ng-change="nwc.itemChange()" placeholder="Case Type When Opened"
+        id="yes" required>
+        <md-option value="" disabled md-selected>Case Type When Opened</md-option>
+        <md-option value="RunawayOpened">Runaway
+        </md-option>
+        <md-option value="AbductionbyFamilyMemberOpened">Abduction by Family Member
+        </md-option>
+        <md-option value="AbductionbyAcquaintanceOpened">Abduction by Acquaintance
+        </md-option>
+        <md-option value="AbductionbyStrangerOpened">Stranger Abduction
+        </md-option>
+        <md-option value="LIMOpened">LIM (Lost, Injured, Otherwise Missing)
+        </md-option>
+      </md-select>
+
+      <md-select name="CaseTypeWhenClosed" ng-model="nwc.CaseTypeWhenClosedIn" ng-change="nwc.itemChange()" placeholder="Case Type When Closed"
+        id="yes">
+        <md-option value="" disabled md-selected>Case Type When Closed</md-option>
+        <md-option value="RunawayClosed">Runaway
+        </md-option>
+        <md-option value="AbductionbyFamilyMemberClosed">Abduction by Family Member
+        </md-option>
+        <md-option value="AbductionbyAcquaintanceClosed">Abduction by Acquaintance
+        </md-option>
+        <md-option value="AbductionbyStrangerClosed">Stranger Abduction
+        </md-option>
+        <md-option value="LIMClosed">LIM (Lost, Injured, Otherwise Missing)
+        </md-option>
+      </md-select>
+
+      <md-select name="CaseStatus" ng-model="nwc.CaseStatusIn" ng-change="nwc.itemChange()" placeholder="Case Status" id="yes">
+        <md-option value="" disabled md-selected>Case Status</md-option>
+        <md-option value="Open">Open
+        </md-option>
+        <md-option value="Closed">Closed
+        </md-option>
+        <md-option value="SuspendedOutofContact">Suspended - out of contact
+        </md-option>
+        <md-option value="SuspendedFalseInformation">Suspended - false information
+        </md-option>
+      </md-select>
+
+      <md-select name="CaseDisposition" ng-model="nwc.CaseDispositionIn" ng-change="nwc.itemChange()" placeholder="Case Disposition"
+        id="yes" required>
+        <md-option value="" disabled md-selected>Case Disposition</md-option>
+        <md-option value="ChildFoundSafe">Child found safe
+        </md-option>
+        <md-option value="ChildFoundHarmed/injured/neglected">Child found harmed/injured/neglected
+        </md-option>
+        <md-option value="ChildFoundDeceased">Child found deceased
+        </md-option>
+        <md-option value="ChildPlacedinCare">Child placed in Care
+        </md-option>
+      </md-select>
+
+      <md-select name="ReferralType" ng-model="nwc.ReferralTypeIn" ng-change="nwc.itemChange()" placeholder="Referral Type" id="yes">
+        <md-option value="" disabled md-selected>Referral Type</md-option>
+        <md-option value="Word of Mouth">Word of Mouth
+        </md-option>
+        <md-option value="Facebook">Facebook
+        </md-option>
+        <md-option value="Website">Website
+        </md-option>
+        </md-option>
+        <md-option value="ReferralByLaw Enforcement">Referral by Law Enforcement
+        </md-option>
+        </md-option>
+        <md-option value="ReferralByCountyWorker">Referral by County Worker
+        </md-option>
+      </md-select>
+
+    </div>
+
+
+
 
 
     <h3> Specific Questions to Occurrence </h3>
-    <label for="WithOthers"> Was the missing person with anyone?</label>
-    <select name="WithOthers" ng-model="nwc.WithOthersIn" placeholder="Was the missing person with anyone?" id="yes">   
-            <option value="" disabled selected></option>                             
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>   
-        </select>
-    <textarea name="commentWithOthers" ng-model="nwc.commentWithOthersIn" form="usrform"></textarea>
-    <label for="HighRiskActivity"> Were they involved in high risk activity?</label>
-    <select name="HighRiskActivity" ng-model="nwc.HighRiskActivityIn" placeholder="Were they involved in high risk activity?" id="yes">   
-            <option value="" disabled selected></option>                             
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>   
-        </select>
-    <textarea name="commentHighRisk" ng-model="nwc.commentHighRiskIn" form="usrform"></textarea>
-    <label for="DisturbingSituation"> Have they witnessed an incidence of violence or a disturbing situation?</label>
-    <select name="DisturbingSituation" ng-model="nwc.DisturbingSituationIn" placeholder="Have they witnessed an incidence of violence or a disturbing situation?"
-      id="yes">   
-            <option value="" disabled selected></option>                             
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>   
-        </select>
-    <textarea name="commentDisturbing" ng-model="nwc.commentDisturbingIn" form="usrform"></textarea>
-    <label for="ClothingWorn"> Clothing worn when last seen: Jacket/ Coat</label>
-    <input id="ClothingWorn" ng-model="nwc.ClothingWornIn" type="text" placeholder="Clothing worn when last seen: Jacket/ Coat">
-    <label for="ClothingWorn"> Clothing worn when last seen: Jacket/ Coat</label>
-    <input id="Jacket/Coat" ng-model="nwc.JacketCoatIn" type="text" placeholder="Jacket/Coat">
-    <input id="Shirt/Blouse" ng-model="nwc.ShirtBlouseIn" type="text" placeholder="Shirt/Blouse">
-    <input id="Pants/Skirt" ng-model="nwc.PantsSkirtIn" type="text" placeholder="Pants/Skirt">
-    <input id="Jewelry" ng-model="nwc.JewelryIn" type="text" placeholder="Jewelry">
-    <input id="Backpack/Purse" ng-model="nwc.BackpackPurseIn" type="text" placeholder="Backpack/Purse">
-    <input id="Hat/Other" ng-model="nwc.HatOtherIn"  type="text" placeholder="Hat or other accessories">
-    <input id="Other" ng-model="nwc.OtherIn" type="text" placeholder="Other (cell phone, toy, pet, etc.)">
-    <!-- </div> -->
+    <br>
+
+    <div layout='row' layout-fill layout-margin>
+
+      <md-input-container flex>
+        <label>Was the missing person with anyone?</label>
+        <md-select name="WithOthers" ng-model="nwc.WithOthersIn" ng-change="nwc.itemChange()" placeholder="Was the missing person with anyone?"
+          id="yes">
+          <md-option value="" disabled md-selected></md-option>
+          <md-option value="Yes">Yes</md-option>
+          <md-option value="No">No</md-option>
+        </md-select>
+      </md-input-container>
+
+      <mat-form-field class="example-full-width">
+        <textarea ng-model="nwc.commentWithOthersIn" matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+
+
+
+
+
+      <md-input-container flex>
+        <label>Were they involved in high risk activity?</label>
+
+        <md-select name="HighRiskActivity" ng-model="nwc.HighRiskActivityIn" ng-change="nwc.itemChange()" placeholder="Were they involved in high risk activity?"
+          id="yes">
+          <md-option value="" disabled md-selected></md-option>
+          <md-option value="Yes">Yes</md-option>
+          <md-option value="No">No</md-option>
+        </md-select>
+      </md-input-container>
+
+      <mat-form-field class="example-full-width">
+        <textarea ng-model="nwc.commentHighRiskIn" matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+
+
+    </div>
+
+    <div layout='row' layout-fill layout-margin>
+
+
+      <md-input-container flex>
+        <label for="DisturbingSituation"> Have they witnessed an incidence of violence or a disturbing situation?</label>
+        <md-select name="DisturbingSituation" ng-model="nwc.DisturbingSituationIn" ng-change="nwc.itemChange()" placeholder="Have they witnessed an incidence of violence or a disturbing situation?"
+          id="yes">
+          <md-option value="" disabled md-selected></md-option>
+          <md-option value="Yes">Yes</md-option>
+          <md-option value="No">No</md-option>
+        </md-select>
+
+      </md-input-container flex>
+
+      <mat-form-field class="example-full-width">
+        <textarea ng-model="nwc.commentDisturbingIn" matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+
+
+    </div>
+
+
+
+
+    <h4> Clothing Worn When Last Seen </h4>
+    <br>
+
+    <div layout='row' layout-fill layout-margin>
+
+
+      <md-input-container flex>
+        <input id="JacketCoat" ng-model="nwc.JacketCoatIn" type="text" placeholder="Jacket/Coat">
+      </md-input-container>
+
+
+      <md-input-container flex>
+        <input id="ShirtBlouse" ng-model="nwc.ShirtBlouseIn" type="text" placeholder="Shirt/Blouse">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="PantsSkirt" ng-model="nwc.PantsSkirtIn" type="text" placeholder="Pants/Skirt">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="Jewelry" ng-model="nwc.JewelryIn" type="text" placeholder="Jewelry">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="BackpackPurse" ng-model="nwc.BackpackPurseIn" type="text" placeholder="Backpack/Purse">
+      </md-input-container>
+
+
+    </div>
+
+    <div layout='row' layout-fill layout-margin>
+
+      <md-input-container flex>
+        <input id="HatOther" ng-model="nwc.HatOtherIn" type="text" placeholder="Hat or other accessories">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="Other" ng-model="nwc.OtherIn" type="text" placeholder="Other (cell phone, toy, pet, etc.)">
+      </md-input-container>
+
+    </div>
+
+
+    <!-- <textarea name="commentWithOthers" ng-model="nwc.commentWithOthersIn" ng-change="nwc.itemChange()" form="usrform"></textarea> -->
+
+    <!-- <textarea name="commentHighRisk" ng-model="nwc.commentHighRiskIn" form="usrform"></textarea> -->
+
+    <!-- <textarea name="commentDisturbing" ng-model="nwc.commentDisturbingIn" form="usrform"></textarea> -->
 
 
     <h3> Vehicle Information </h3>
-    <label for="Year"> Year</label>
-    <input id="Year" ng-model="nwc.YearIn" type="text" placeholder="Year">
-    <label for="Make"> Make</label>
-    <input id="Make" ng-model="nwc.MakeIn" type="text" placeholder="Make">
-    <label for="Model"> Model</label>
-    <input id="Model" ng-model="nwc.ModelIn" type="text" placeholder="Model">
-    <label for="License #"> License #</label>
-    <input id="License #" ng-model="nwc.LicenseIn" type="text" placeholder="License #">
-    <label for="PhotoAvailable"> Is there a photo available?</label>
-    <select name="PhotoAvailable" ng-model="nwc.PhotoAvailableIn" placeholder="" id="yes">   
-        <option value="" disabled selected></option>                             
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>   
-    </select>
-    <textarea name="commentPhoto" ng-model="nwc.commentPhotoIn"  form="usrform"></textarea>
+    <br>
+
+    <div layout='row' layout-fill layout-margin>
+
+
+      <md-input-container flex>
+        <input id="Year" ng-model="nwc.YearIn" type="text" placeholder="Year">
+      </md-input-container>
+
+
+      <md-input-container flex>
+        <input id="Make" ng-model="nwc.MakeIn" type="text" placeholder="Make">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="Model" ng-model="nwc.ModelIn" type="text" placeholder="Model">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="Make" ng-model="nwc.MakeIn" type="text" placeholder="Make">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="LicenseNumber" ng-model="nwc.LicenseIn" type="text" placeholder="License #">
+      </md-input-container>
 
 
 
-    <h3> Vulnerabilities and History </h3>
+      <md-input-container flex>
+        <label for="PhotoAvailable"> Is there a photo available?</label>
+        <md-select name="PhotoAvailable" ng-model="nwc.PhotoAvailableIn" ng-change="nwc.itemChange()" placeholder="" id="yes">
+          <md-option value="" disabled md-selected></md-option>
+          <md-option value="Yes">Yes</md-option>
+          <md-option value="No">No</md-option>
+        </md-select>
+      </md-input-container>
 
 
-    <div class="col-sm-8">
-      <div class="form-group" id="Vulnerabilities">
+    </div>
+
+
+    <h3> History </h3>
+    <br>
+    <div layout='row' layout-fill layout-margin>
+
+      <md-input-container flex>
         <label for="LeftBefore"> Has this person left before? </label>
-        <select name="LeftBefore" ng-model="nwc.LeftBeforeIn"placeholder="" id="yes">   
-        <option value="" disabled selected></option>                             
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>   
-    </select>
-        <label for="IfYes"> If YES, how long?</label>
-        <textarea name="commentLength" ng-model="nwc.commentLengthIn" form="usrform"></textarea>
+        <md-select name="LeftBefore" ng-model="nwc.LeftBeforeIn" ng-change="nwc.itemChange()" placeholder="" id="yes">
+          <md-option value="" disabled md-selected></md-option>
+          <md-option value="Yes">Yes</md-option>
+          <md-option value="No">No</md-option>
+        </md-select>
+      </md-input-container>
+
+      <mat-form-field class="example-full-width">
+        <textarea ng-model="nwc.commentLengthIn" matInput placeholder="If Yes, How Long?"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
         <label for="PreviouslyFound"> Where were they found previously?</label>
-        <textarea name="commentPreviouslyFound" ng-model="nwc.commentPreviouslyFoundIn" form="usrform"></textarea>
-        <label for="KnownCompanions"> Known companions: </label>
-        <textarea name="commentKnownCompanions" ng-model="nwc.commentKnownCompanionsIn" form="usrform"></textarea>
+        <textarea name="commentPreviouslyFound" ng-model="nwc.commentPreviouslyFoundIn" matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <label for="KnownCompanions"> Known Companions </label>
+        <textarea name="commentKnownCompanions" ng-model="nwc.commentKnownCompanionsIn" matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+
+
+    </div>
+
+    <div layout='row' layout-fill layout-margin>
+
+
+
+      <md-input-container>
         <label for="Vulnerabilities"> Is this person disabled or have mental or medical problems? </label>
-        <select name="LeftBefore" ng-model="nwc.LeftBeforeIn" placeholder="" id="yes">   
-        <option value="" disabled selected></option>                             
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>   
-    </select>
+        <md-select name="LeftBefore" ng-model="nwc.LeftBeforeIn" ng-change="nwc.itemChange()" placeholder="" id="yes">
+          <md-option value="" disabled md-selected></md-option>
+          <md-option value="Yes">Yes</md-option>
+          <md-option value="No">No</md-option>
+        </md-select>
+      </md-input-container>
+
+
+
+      <md-input-container flex>
         <label for="LifeThreatening"> Are they life threatening conditions? </label>
-        <select name="LifeThreatening" ng-model="nwc.LifeThreateningIn" placeholder="" id="yes">   
-        <option value="" disabled selected></option>                             
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>   
-    </select>
-        <textarea name="commentLifeThreatening" ng-model="nwc.commentLifeThreateningIn" form="usrform"></textarea>
-        <label for="Medications"> Medications: </label>
-        <textarea name="commentMedications" ng-model="nwc.commentMedicationsIn" form="usrform"></textarea>
+        <md-select name="LifeThreatening" ng-model="nwc.LifeThreateningIn" ng-change="nwc.itemChange()" placeholder="" id="yes">
+          <md-option value="" disabled md-selected></md-option>
+          <md-option value="Yes">Yes</md-option>
+          <md-option value="No">No</md-option>
+        </md-select>
+      </md-input-container>
+
+      <mat-form-field class="example-full-width">
+        <textarea name="commentLifeThreatening" ng-model="nwc.commentLifeThreateningIn" matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+
+      <label for="Medications"> Medications: </label>
+
+      <mat-form-field class="example-full-width">
+        <textarea name="commentMedications" ng-model="nwc.commentMedicationsIn" matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+    </div>
+
+
+    <div layout='row' layout-fill layout-margin>
+
+      <md-input-container flex>
         <label for="Abuse"> Has this person ever been a victim of abuse (mental, physical,
         sexual)? </label>
-        <select name="LifeThreatening" ng-model="nwc.LifeThreateningIn" placeholder="" id="yes">   
-        <option value="" disabled selected></option>                             
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>   
-    </select>
-        <label for="Abuse"> Explain:        
-    <textarea name="commentAbuse" ng-model="nwc.commentAbuseIn" form="usrform"></textarea>
+        <md-select name="AbuseIn" ng-model="nwc.AbuseIn" placeholder="" id="yes">
+          <md-option value="" disabled md-selected></md-option>
+          <md-option value="Yes">Yes</md-option>
+          <md-option value="No">No</md-option>
+        </md-select>
+      </md-input-container>
+
+
+      <mat-form-field class="example-full-width">
+        <textarea name="commentAbuse" ng-model="nwc.commentAbuseIn" matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+
+    </div>
+
+
+
+
+    <h3>Vulnerabilities</h3>
+
+    <div layout='row' layout-fill layout-margin>
+
+      <md-checkbox ng-model="nwc.ADDIn" aria-label="ADD/ADHD">
+        ADD/ADHD
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.AutisimIn" aria-label="ASD(Autism Spectrum Disorder)">
+        ASD (Autism Spectrum Disorder)
+      </md-checkbox>
+
+
+      <md-checkbox ng-model="nwc.AlcoholIn" aria-label="AlcoholUseAbuse">
+        Alcohol Use/Abuse
+      </md-checkbox>
+
+
+      <md-checkbox ng-model="nwc.AnxietyIn" aria-label="Anxiety">
+        Anxiety
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.BiPolarIn" aria-label="BiPolarDisorder">
+        Bi-Polar Disorder
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.DepressionClinicalIn" aria-label="Depression(clinical)">
+        Depression (clinical)
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.DespressionSituationalIn" aria-label="Depression (situational)">
+        Depression (situational)
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.DrugUseIn" aria-label="Drug Use/Abuse">
+        Drug Use/Abuse
+      </md-checkbox>
+
+    </div>
+
+    <div layout='row' layout-fill layout-margin>
+
+      <md-checkbox ng-model="nwc.EconomicIn" aria-label="EconomicExploitation(history)">
+        Economic exploitation (history)
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.EmotionalAbuseIn" aria-label="Emotional Abuse (history)">
+        Emotional Abuse (history)
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.GangIn" aria-label="Gang Association">
+        Gang Association
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.ODDIn" aria-label="ODD (Oppositional Defiant Disorder)">
+        ODD (Oppositional Defiant Disorder)
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.LaborIn" aria-label="Labor Exploitation (history)">
+        Labor Exploitation (history)
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.LuringAdultIn" aria-label="Luring/grooming by adult">
+        Luring/grooming by adult
+      </md-checkbox>
+
+
+    </div>
+    <div layout='row' layout-fill layout-margin>
+
+      <md-checkbox ng-model="nwc.LuringChildIn" aria-label="Luring/grooming by child">
+        Luring/grooming by child
+      </md-checkbox>
+
+
+      <md-checkbox ng-model="nwc.MissingFromCareIn" aria-label="Missing From Care">
+        Missing From Care
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.PhysicalAbuseIn" aria-label="Physical Abuse (history)">
+        Physical Abuse (history)
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.RunawayIn" aria-label="Runaway (history)">
+        Physical Abuse (history)
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.SexualAbuseIn" aria-label="Sexual Abuse (history)">
+        Sexual Abuse (history)
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.SexualExploitationIn" aria-label="Sexual Exploitation (history)">
+        Sexual Abuse (history)
+      </md-checkbox>
+
+      <md-checkbox ng-model="nwc.SexualMinorityIn" aria-label="Sexual Exploitation (history)">
+        Sexual Minority (LGBTQ, etc.)
+      </md-checkbox>
+
+    </div>
+
+<br>
+
+
+    <h3> Person Requesting Assistance In Juvenile Case Under The Age Of 18 Years </h3>
+    <br>
+
+    <div layout='row' layout-fill layout-margin>
+
+
+      <md-input-container flex>
+        <input id="Name" ng-model="nwc.PRANameIn" type="text" placeholder="Name">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="StreetAddress" ng-model="nwc.PRAStreetAddressIn" type="text" placeholder="Street Address">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="City" ng-model="nwc.PRACityIn" type="text" placeholder="City">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="State" ng-model="nwc.PRAStateIn" type="text" placeholder="State">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="ZIPCode" ng-model="nwc.PRAZIPCodeIn" type="number" placeholder="ZIP Code">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="HomePhone" ng-model="nwc.PRAHomePhoneIn" type="number" placeholder="Home Phone">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="WorkPhone" ng-model="nwc.PRAWorkPhoneIn" type="number" placeholder="Work Phone">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="HomePhone" ng-model="nwc.PRAHomePhoneIn" type="number" placeholder="Home Phone">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="CellPhone" ng-model="nwc.PRACellPhoneIn" type="number" placeholder="Cell Phone">
+      </md-input-container>
+
+      <md-input-container flex>
+        <input id="Email" ng-model="nwc.PRAEmailIn" type="text" placeholder="E-Mail Address">
+      </md-input-container>
+
+    </div>
+
+    <div layout='row' layout-fill layout-margin>
+
+
+      <md-input-container flex>
+        <label for="Name"> Name (printed)</label>
+      </md-input-container>
+
+      <md-input-container flex>
+        <label for="Signature"> Signature</label>
+      </md-input-container>
+
+      <md-input-container flex>
+        <label for="Date"> Date</label>
+
+      </md-input-container>
+
+
+      <md-input-container flex>
+        <label for="ReferredBy"> Referred By:</label>
+
+      </md-input-container>
+
+
+
+      <!-- <textarea name="commentName" ng-model="nwc.commentNameIn" form="usrform"></textarea>
+      <label for="Signature"> Signature</label>
+      <textarea name="commentSignature" ng-model="nwc.ommentSignatureIn" form="usrform"></textarea>
+      <label for="Date"> Date</label>
+      <textarea name="commentDate" ng-model="nwc.commentDateIn" form="usrform"></textarea>
+      <label for="ReferredBy"> Referred By:</label>
+      <textarea name="commentReferredBy" ng-model="nwc.commentReferredBy" form="usrform"></textarea>-->
+      <br>
+      <br> 
+      <br>
+    </div>
+
+    <div layout='row' layout-fill layout-margin>
+
+      <md-button type="button" ng-click="nwc.click()" class="btn btn-info">Submit</md-button>
+      <button ng-click='nwc.printPDF()'>PDF</button>
     </div>
   </div>
-
-    <div class="form-check">
-        <div class="col-sm-4" id="vulnerabilities">
-          <div class="form-group">
-            <h3>Vulnerabilities</h3>
-            <input type="checkbox" ng-model="nwc.ADDIn" name="ADD/ADHD" value="ADD/ADHD" input type="checkbox" /> ADD/ADHD<br>
-            <input type="checkbox" ng-model="nwc.AutisimIn" name="ASD (Autism Spectrum Disorder)" value="ASD (Autism Spectrum Disorder)" input type="checkbox"
-            /> ASD (Autism Spectrum Disorder) <br>
-            <input type="checkbox" ng-model="nwc.AlcoholIn" name="Alcohol use/abuse" value="Alcohol use/abuse" input type="checkbox" /> Alcohol use/abuse
-            <br>
-            <input type="checkbox" ng-model="nwc.AnxietyIn" name="Anxiety" input type="checkbox" /> Anxiety <br>
-            <input type="checkbox" ng-model="nwc.BiPolarIn" name="BiPolar Disorder" value="BiPolar Disorder" input type="checkbox" /> Bi-Polar Disorder<br>
-            <input type="checkbox" ng-model="nwc.DepressionClinicalIn" name="Depression (clinical)" value="Depression (clinical)" input type="checkbox" /> Depression
-            (clinical) <br>
-            <input type="checkbox" ng-model="nwc.DespressionSituationalIn" name="Depression (situational)" value="Depression (situational)" input type="checkbox" />        Depression (situational) <br>
-            <input type="checkbox" ng-model="nwc.DrugUseIn" name="Drug use/abuse" value="Drug use/abuse" input type="checkbox" /> Drug use/abuse <br>
-            <input type="checkbox" ng-model="nwc.EconomicIn" name="Economic exploitation (history)" value="Economic exploitation (history)" input type="checkbox"
-            /> Economic exploitation (history) <br>
-            <input type="checkbox" ng-model="nwc.EmotionalAbuseIn" name="Emotional Abuse (history)" value="Emotional Abuse (history)" input type="checkbox" />        Emotional Abuse (history) <br>
-            <input type="checkbox" ng-model="nwc.GangIn" name="Gang Association" value="Gang Association" input type="checkbox" /> Gang Association
-            <br>
-            <input type="checkbox" ng-model="nwc.ODDIn" name="ODD (Oppositional Defiant Disorder)" value="ODD (Oppositional Defiant Disorder)" input type="checkbox"
-            /> ODD (Oppositional Defiant Disorder) <br>
-            <input type="checkbox" ng-model="nwc.LaborIn" name="Labor Exploitation (history)" value="Labor Exploitation (history)" input type="checkbox" />        Labor Exploitation (history) <br>
-            <input type="checkbox" ng-model="nwc.LuringAdultIn" name="Luring/grooming by adult" value="Luring/grooming by adult" input type="checkbox" />        Luring/grooming by adult <br>
-            <input type="checkbox" ng-model="nwc.LuringChildIn" name="Luring/grooming by child" value="Luring/grooming by child" input type="checkbox" />        Luring/grooming by child <br>
-            <input type="checkbox" ng-model="nwc.MissingFromCareIn" name="Missing From Care" value="Missing From Care" input type="checkbox" /> Missing From Care
-            <br>
-            <input type="checkbox" ng-model="nwc.PhysicalAbuseIn" name="Physical Abuse (history)" value="Physical Abuse (history)" input type="checkbox" />        Physical Abuse (history)<br>
-            <input type="checkbox" ng-model="nwc.RunawayIn" name="Runaway (history)" value="Runaway (history)" input type="checkbox" /> Runaway (history)
-            <br>
-            <input type="checkbox" ng-model="nwc.SexualAbuseIn" name="Sexual Abuse (history)" value="Sexual Abuse (history)" input type="checkbox" /> Sexual
-            Abuse (history) <br>
-            <input type="checkbox" ng-model="nwc.SexualExploitationIn" name="Sexual Exploitation (history)" value="Sexual Exploitation (history)" input type="checkbox" />        Sexual Exploitation (history) <br>
-            <input type="checkbox" ng-model="nwc.SexualMinorityIn" name="Sexual Minority (LGBTQ, etc.)" value="Sexual Minority (LGBTQ, etc.)" input type="checkbox" />        Sexual Minority (LGBTQ, etc.) <br>
-          </div>
-        </div>
-      </div>
-    <!-- </div> -->
-
-
-    <h3> PERSON REQUESTING ASSISTANCE IN JUVENILE CASE UNDER THE AGE OF 18
-        YEARS </h3>
-
-        <input id="Name" ng-model="nwc.NameIn" type="text" placeholder="Name">
-        <input id="StreetAddress" ng-model="nwc.StreetAddressIn" type="number" placeholder="Street Address">
-        <input id="City" ng-model="nwc.CityIn" type="text" placeholder="City">
-        <input id="State" ng-model="nwc.StateIn" type="text" placeholder="State">
-        <input id="ZIPCode" ng-model="nwc.ZIPCodeIn" type="number" placeholder="ZIP Code">
-        <input id="HomePhone" ng-model="nwc.HomePhoneIn" type="number" placeholder="Home Phone">
-        <input id="WorkPhone" ng-model="nwc.WorkPhoneIn" type="number" placeholder="Work Phone">
-        <input id="CellPhone" ng-model="nwc.CellPhoneIn" type="number" placeholder="Cell Phone">
-        <input id="Email" ng-model="nwc.EmailIn" type="text" placeholder="E-Mail Address">
-        <input id="RelationtoMissingPerson" ng-model="nwc.RelationToMissingPersonIn" type="text" placeholder="Relation to Missing Person">
-        <label for="Name"> Name (printed)</label>
-        <textarea name="commentName" ng-model="nwc.commentNameIn" form="usrform"></textarea>
-        <label for="Signature"> Signature</label>
-        <textarea name="commentSignature" ng-model="nwc.ommentSignatureIn" form="usrform"></textarea>
-        <label for="Date"> Date</label>
-        <textarea name="commentDate" ng-model="nwc.commentDateIn" form="usrform"></textarea>
-        <label for="ReferredBy"> Referred By:</label>
-        <textarea name="commentReferredBy" ng-model="nwc.commentReferredBy" form="usrform"></textarea>
-
-        <button type="button" ng-click="nwc.userService.logout()" class="btn btn-info">Submit</button>
-
-
-      </div>
 </form>
