@@ -2,20 +2,11 @@ myApp.controller('NewController', function (UserService) {
     console.log('NewController as nwc created');
     var vm = this;
     var newIntake = [];
-
-
-
-    
   
     vm.itemChange = function(){
       console.log('inside itemchange');
       console.log(vm.SchoolDistrictWhereChildWasEnrolledIn);
     }
-
-    // vm.agencyChange = function(){
-    //   console.log('inside itemchange');
-    //   // console.log(vm.SchoolDistrictWhereChildWasEnrolledIn);
-    // }
 
 
     vm.userService = UserService;
@@ -46,20 +37,18 @@ myApp.controller('NewController', function (UserService) {
     console.log('in click');
 
     var newIntake = {
-      // mcm_number: vm.caseIn,
-      // intake_date: vm.DateofIntaketoMCMIn,
-      // age: vm.AgeIn,
-      // gender: vm.GenderIn,
-      // last_seen: vm.DateLastSeenIn,
-      // reported_missing: vm.DateReportedMissingtoPoliceIn,
-      // people_served: ???,
-      // city: vm.CityMissingFromIn,
-      // county: vm.CountyMissingFromIn,
+      mcm_number: vm.caseIn,
+      intake_date: vm.DateofIntaketoMCMIn,
+      age: vm.AgeIn,
+      gender: vm.GenderIn,
+      last_seen: vm.DateLastSeenIn,
+      reported_missing: vm.DateReportedMissingtoPoliceIn,
+      city: vm.CityMissingFromIn,
+      county: vm.CountyMissingFromIn,
       state: vm.StateMissingFromIn,
-      // school: vm.SchoolDistrictWhereChildWasEnrolledIn,
-      // start_case_type: vm.CaseTypeWhenOpenedIn,
-      // referral_type: vm.ReferralTypeIn,
-      // mcm_number:   ???,
+      school: vm.SchoolDistrictWhereChildWasEnrolledIn,
+      start_case_type: vm.CaseTypeWhenOpenedIn,
+      referral_type: vm.ReferralTypeIn,
     };
 
     console.log('newIntake', newIntake);
