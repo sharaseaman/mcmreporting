@@ -4,15 +4,12 @@ myApp.controller('NewController', function (UserService) {
     var newIntake = [];
   
 
-<<<<<<< HEAD
-=======
     vm.itemChange = function(){
       console.log('inside itemchange');
       console.log(vm.SchoolDistrictWhereChildWasEnrolledIn);
     }
 
 
->>>>>>> master
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
 
