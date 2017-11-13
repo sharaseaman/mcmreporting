@@ -16,21 +16,21 @@ myApp.controller('NewController', function (UserService) {
 
    UserService.getCities().then(function (response){
     console.log('cities', response.data);
-    return vm.objects = response.data;
+    return vm.cities = response.data;
   });
 
   UserService.getCounties().then(function (response){
-    return vm.objects = response.data;
+    return vm.counties = response.data;
   });
 
   UserService.getAgencies().then(function (response){
-    return vm.objects = response.data;
+    return vm.agencies = response.data;
   });
 
   UserService.getSchools().then(function (response){
     console.log('schools', response.data);
     
-    return vm.objects = response.data;
+    return vm.schools = response.data;
   });
 
   
