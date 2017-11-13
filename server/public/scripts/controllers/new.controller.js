@@ -70,7 +70,7 @@ myApp.controller('NewController', function (UserService) {
         background: '#fff url(assets/page.JPG)'
     }).then(function () {
         UserService.postInputData(newIntake);
-        $location.path('/forms/newIntake');
+        // $location.path('/forms/newIntake');
     });
 };
 
