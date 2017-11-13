@@ -1,11 +1,11 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
-<div class="container" ng-init="cc.getChartData()">
+<div class="container" ng-init="cc.getChartData(); cc.getJoinTableData()">
 
   <div ng-cloak>
     <md-content>
       <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab label="Global Database">
+        <md-tab label="Global Dashboard">
           <md-content class="md-padding">
             <div flex-xs flex-gt-xs="50" layout="column">
               <md-card>
@@ -14,26 +14,111 @@
                     <span class="md-title">Number of Cases per Year</span>
                   </md-card-header-text>
                 </md-card-header>
-                <canvas id="mainBarChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                <canvas id="mainBarChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
               </md-card>
               <md-card>
                 <md-card-header>
                   <md-card-header-text>
-                    <span class="md-title">Start Case Type</span>
+                    <span class="md-title">Cases by Start Case Type</span>
                   </md-card-header-text>
                 </md-card-header>
-                <canvas id="testChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                <canvas id="startCaseTypeChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
               </md-card>
               <md-card>
                 <md-card-header>
                   <md-card-header-text>
-                    <span class="md-title">LoremIpsum</span>
+                    <span class="md-title">Cases by State</span>
                   </md-card-header-text>
                 </md-card-header>
-                <!-- <canvas id="mainBarChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
-                </canvas> -->
+                <canvas id="stateOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                </canvas>
+              </md-card>
+              <md-card>
+                <md-card-header>
+                  <md-card-header-text>
+                    <span class="md-title">Cases by MN Counties</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <canvas id="countiesOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                </canvas>
+              </md-card>
+              <md-card>
+                <md-card-header>
+                  <md-card-header-text>
+                    <span class="md-title">Cases by People Served</span>
+                    <span class="md-subhead">Note: Includes missing person and all loved ones we worked with.</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <canvas id="peopleServedOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                </canvas>
+              </md-card>
+              <md-card>
+                <md-card-header>
+                  <md-card-header-text>
+                    <span class="md-title">Cases by Age</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <canvas id="ageOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                </canvas>
+              </md-card>
+              <md-card>
+                <md-card-header>
+                  <md-card-header-text>
+                    <span class="md-title">Cases by School District</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <canvas id="districtOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                </canvas>
+              </md-card>
+              <md-card>
+                <md-card-header>
+                  <md-card-header-text>
+                    <span class="md-title">Cases by Gender</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <canvas id="genderOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                </canvas>
+              </md-card>
+              <md-card>
+                <md-card-header>
+                  <md-card-header-text>
+                    <span class="md-title">Cases by Vulnerability</span>
+                    <span class="md-subhead">Note: Cases can have more than one listed vulnerability.</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <canvas id="vulnerabilitiesOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                </canvas>
+              </md-card>
+              <md-card>
+                <md-card-header>
+                  <md-card-header-text>
+                    <span class="md-title">Cases by Law Enforcement Agency</span>
+                    <span class="md-subhead">Note: Cases can have more than one listed Law Enforcement Agency.</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <canvas id="lawEnforcementOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                </canvas>
+              </md-card>
+              <md-card>
+                <md-card-header>
+                  <md-card-header-text>
+                    <span class="md-title">Cases by Race/Ethnicity</span>
+                    <span class="md-subhead">Note: Cases can have more than one listed race/ethnicity.</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <canvas id="raceEthnicityOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                </canvas>
+              </md-card>
+              <md-card>
+                <md-card-header>
+                  <md-card-header-text>
+                    <span class="md-title">Referrals by Source</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <canvas id="referralsChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                </canvas>
               </md-card>
           </md-content>
         </md-tab>
@@ -46,7 +131,7 @@
                     <span class="md-title">LoremIpsum</span>
                   </md-card-header-text>
                 </md-card-header>
-                <!-- <canvas id="mainBarChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                <!-- <canvas id="mainBarChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                     </canvas> -->
               </md-card>
           </md-content>
@@ -57,7 +142,7 @@
                 <div layout="row">
             <md-input-container>
                 <label>Year:</label>
-                <md-select ng-model="cc.selectedYear" md-selected-text="cc.getSelectedYear()">
+                <md-select ng-model="cc.selectedYear" ng-change="cc.getSelectedYear()">
                   <md-optgroup label="Select a Year">
                     <md-option ng-value="year" ng-repeat="year in cc.mainChartYears">{{year}}</md-option>
                   </md-optgroup>
@@ -66,61 +151,82 @@
             </div>
           </div>
 
-          <md-content class="md-padding">
+          <md-content class="md-padding" ng-show=cc.selectedYear>
               <div flex-xs flex-gt-xs="50" layout="column">
                 <md-card>
                   <md-card-header>
                     <md-card-header-text>
-                      <span class="md-title">Number of Cases by Type by selected year (2017)</span>
+                      <span class="md-title">Number of Cases by Type in {{cc.selectedYear}}</span>
                     </md-card-header-text>
                   </md-card-header>
-                  <canvas id="caseTypeChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                  <canvas id="userCaseTypeChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                   </canvas>
                 </md-card>
                 <md-card>
                   <md-card-header>
                     <md-card-header-text>
-                      <span class="md-title">Number of Cases by MN County by selected year (2017)</span>
+                      <span class="md-title">Number of Cases by MN County in {{cc.selectedYear}}</span>
                     </md-card-header-text>
                   </md-card-header>
-                  <canvas id="countyChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                  <canvas id="userCountyChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                   </canvas>
                 </md-card>
                 <md-card>
                   <md-card-header>
                     <md-card-header-text>
-                      <span class="md-title">Number of Cases by School District by selected year (2017)</span>
+                      <span class="md-title">Number of Cases by School District in {{cc.selectedYear}}</span>
                     </md-card-header-text>
                   </md-card-header>
-                  <canvas id="schoolChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                  <canvas id="userSchoolChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                   </canvas>
                 </md-card>
                 <md-card>
                   <md-card-header>
                     <md-card-header-text>
-                      <span class="md-title">Number of Cases by People Served by selected year (2017)</span>
+                      <span class="md-title">Number of Cases by People Served in {{cc.selectedYear}}</span>
                     </md-card-header-text>
                   </md-card-header>
-                  <canvas id="servedChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                  <canvas id="userPeopleServedChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                   </canvas>
                 </md-card>
                 <md-card>
                   <md-card-header>
                     <md-card-header-text>
-                      <span class="md-title">Number of Cases by Vulnerability by selected year (2017)</span>
+                      <span class="md-title">Number of Cases by Vulnerability in {{cc.selectedYear}}</span>
+                      <span class="md-subhead">Note: Cases can have more than one listed vulnerability.</span>
                     </md-card-header-text>
                   </md-card-header>
-                  <canvas id="vulnerabilityChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels"
+                  <canvas id="userVulnerabilityChart" class="chart chart-bar" chart-data="data" chart-labels="labels"
                     chart-series="series">
                   </canvas>
                 </md-card>
                 <md-card>
                   <md-card-header>
                     <md-card-header-text>
-                      <span class="md-title">Number of Cases by Age Group Served by selected year (2017)</span>
+                      <span class="md-title">Number of Cases by Age in {{cc.selectedYear}}</span>
                     </md-card-header-text>
                   </md-card-header>
-                  <canvas id="ageChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                  <canvas id="userAgeChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                  </canvas>
+                </md-card>
+                <md-card>
+                  <md-card-header>
+                    <md-card-header-text>
+                      <span class="md-title">Number of Cases by Law Enforcement Agency in {{cc.selectedYear}}</span>
+                      <span class="md-subhead">Note: Cases can have more than one listed Law Enforcement Agency.</span>
+                    </md-card-header-text>
+                  </md-card-header>
+                  <canvas id="userLawEnforcementChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                  </canvas>
+                </md-card>
+                <md-card>
+                  <md-card-header>
+                    <md-card-header-text>
+                      <span class="md-title">Number of Cases by Race/Ethnicity in {{cc.selectedYear}}</span>
+                      <span class="md-subhead">Note: Cases can have more than one listed race/ethnicity.</span>
+                    </md-card-header-text>
+                  </md-card-header>
+                  <canvas id="userRaceChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                   </canvas>
                 </md-card>
             </md-content>
@@ -130,23 +236,3 @@
     </md-content>
   </div>
 </div>
-
-      <!-- <div class="coreCharts">
-      <p class="chartTitles">Number of Cases per Year</p>
-      <canvas id="mainBarChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
-      </canvas>
-    </div>
-
-    <div class="coreCharts">
-      <p class="chartTitles">Overall Start Case Type</p>
-      <canvas id="testChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
-      </canvas>
-    </div> -->
-
-      <!-- <div class='coreCharts'>
-      <p class="chartTitles">Number of Cases by Type by selected year (2017)</p>
-      <canvas id="caseTypeChart" height="400" width="400" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
-      </canvas>
-    </div> -->
-
-
