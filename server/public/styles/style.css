@@ -21,11 +21,11 @@ body, html {
       margin-top: 0; 
   }
   
-  #MCMCaseNumber, #Age, #StateMissingFrom, #CountyMissingFrom, 
+  /* #MCMCaseNumber, #Age, #StateMissingFrom, #CountyMissingFrom, 
   #CityMissingFrom, #SchoolDistrictWhereChildWasEnrolled, 
   #LawEnforcementAgencyonCase, #FamilyMembersInvolvedInSearch {
     border: 2px solid red;    
-  }
+  } */
   .form-group{
     padding: 18px;
     margin: 10px;
