@@ -76,6 +76,10 @@ myApp.service('UserService', function ($http, $location) {
           return self.joinChartData.data
         })
         .then(function (res) {
+          self.addYearToRecord = res.forEach(function (element) {
+            element.year = element.intake_date.slice(0, 4);
+          });
+
           //Global Charts
           var totalsByVulnerabilitiesOverall = self.formatDataToChart(res, 'vulnerability');
             self.vulnerabilitiesOverallLabel = totalsByVulnerabilitiesOverall.xAxisValues;
@@ -85,6 +89,9 @@ myApp.service('UserService', function ($http, $location) {
             self.lawEnforcementOverallLabel = totalsByLawEnforcementOverall.xAxisValues;
             self.filteredLawEnforcementOverall = totalsByLawEnforcementOverall.yAxisValues;
 
+          var totalsByDenialOverall = self.formatDataToChart(res, 'jurisdictional_denial');
+            self.lawDenialOverallLabel = totalsByDenialOverall.xAxisValues;
+            
           var totalsByRaceEthnicityOverall = self.formatDataToChart(res, 'race_ethnicity');
             self.raceEthnicityOverallLabel = totalsByRaceEthnicityOverall.xAxisValues;
             self.filteredRaceEthnicityOverall = totalsByRaceEthnicityOverall.yAxisValues;
@@ -149,16 +156,32 @@ myApp.service('UserService', function ($http, $location) {
     self.userAgeLabels = totalsByUserAge.xAxisValues;
     self.userFilteredAge = totalsByUserAge.yAxisValues;
 
-
     //Deep Dive into Year Charts on Join Charts
-    var dataForUserYearJoin = self.getDataOfYear(self.joinChartData.data, self.selectedYear);
-    
-    var totalsByUserVulnerability = self.formatDataToChart(dataForUserYearJoin, 'vulnerability');
+    var dataForJoinUserYear = self.getDataOfYear(self.joinChartData.data, self.selectedYear);
+
+    var totalsByUserVulnerability = self.formatDataToChart(dataForJoinUserYear, 'vulnerability');
     self.userVulnerabilityLabels = totalsByUserVulnerability.xAxisValues;    
     self.userFilteredVulnerability = totalsByUserVulnerability.yAxisValues;
-    console.log('self.userVulnerabilityLabels',self.userVulnerabilityLabels);
-    console.log('self.userFilteredVulnerability', self.userFilteredVulnerability);
 
+    var totalsByUserLaw = self.formatDataToChart(dataForJoinUserYear, 'agency');
+    self.userLawLabels = totalsByUserLaw.xAxisValues;    
+    self.userFilteredLaw = totalsByUserLaw.yAxisValues;
+
+    var totalsByUserRace = self.formatDataToChart(dataForJoinUserYear, 'race_ethnicity');
+    self.userRaceLabels = totalsByUserRace.xAxisValues;    
+    self.userFilteredRace = totalsByUserRace.yAxisValues;
+
+  };
+
+  self.submitCustomFilters = function (userCustomFilters){
+    console.log('service obj', userCustomFilters)
+    // $http({
+    //   method:"GET",
+    //   url: "/charts/custom",
+    //   data: userCustomFilters
+    // }).then(function (res){
+    //   console.log('back with custom filtered data', res);
+    // })
   };
 
   self.getuser = function () {
