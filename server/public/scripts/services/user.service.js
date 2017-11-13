@@ -119,25 +119,32 @@ myApp.service('UserService', function ($http, $location) {
         method: 'GET',
         url: '/charts/join_tables_reports'
       })
-      .then(function (res) {
-        self.joinChartData.data = res.data;
-        return self.joinChartData.data
-      })
-      .then(function (res) {
-        //Global Charts
-        var totalsByVulnerabilitiesOverall = self.formatDataToChart(res, 'vulnerability');
-        self.vulnerabilitiesOverallLabel = totalsByVulnerabilitiesOverall.xAxisValues;
-        self.filteredVulnerabilitiesOverall = totalsByVulnerabilitiesOverall.yAxisValues;
+        .then(function (res) {
+          self.joinChartData.data = res.data;
+          return self.joinChartData.data
+        })
+        .then(function (res) {
+          self.addYearToRecord = res.forEach(function (element) {
+            element.year = element.intake_date.slice(0, 4);
+          });
 
-        var totalsByLawEnforcementOverall = self.formatDataToChart(res, 'agency');
-        self.lawEnforcementOverallLabel = totalsByLawEnforcementOverall.xAxisValues;
-        self.filteredLawEnforcementOverall = totalsByLawEnforcementOverall.yAxisValues;
+          //Global Charts
+          var totalsByVulnerabilitiesOverall = self.formatDataToChart(res, 'vulnerability');
+            self.vulnerabilitiesOverallLabel = totalsByVulnerabilitiesOverall.xAxisValues;
+            self.filteredVulnerabilitiesOverall = totalsByVulnerabilitiesOverall.yAxisValues;
+            
+          var totalsByLawEnforcementOverall = self.formatDataToChart(res, 'agency');
+            self.lawEnforcementOverallLabel = totalsByLawEnforcementOverall.xAxisValues;
+            self.filteredLawEnforcementOverall = totalsByLawEnforcementOverall.yAxisValues;
 
-        var totalsByRaceEthnicityOverall = self.formatDataToChart(res, 'race_ethnicity');
-        self.raceEthnicityOverallLabel = totalsByRaceEthnicityOverall.xAxisValues;
-        self.filteredRaceEthnicityOverall = totalsByRaceEthnicityOverall.yAxisValues;
+          var totalsByDenialOverall = self.formatDataToChart(res, 'jurisdictional_denial');
+            self.lawDenialOverallLabel = totalsByDenialOverall.xAxisValues;
+            
+          var totalsByRaceEthnicityOverall = self.formatDataToChart(res, 'race_ethnicity');
+            self.raceEthnicityOverallLabel = totalsByRaceEthnicityOverall.xAxisValues;
+            self.filteredRaceEthnicityOverall = totalsByRaceEthnicityOverall.yAxisValues;
 
-      })
+        })
   };
 
   self.getDataOfYear = function (data, year) {
@@ -197,16 +204,32 @@ myApp.service('UserService', function ($http, $location) {
     self.userAgeLabels = totalsByUserAge.xAxisValues;
     self.userFilteredAge = totalsByUserAge.yAxisValues;
 
-
     //Deep Dive into Year Charts on Join Charts
-    var dataForUserYearJoin = self.getDataOfYear(self.joinChartData.data, self.selectedYear);
+    var dataForJoinUserYear = self.getDataOfYear(self.joinChartData.data, self.selectedYear);
 
-    var totalsByUserVulnerability = self.formatDataToChart(dataForUserYearJoin, 'vulnerability');
-    self.userVulnerabilityLabels = totalsByUserVulnerability.xAxisValues;
+    var totalsByUserVulnerability = self.formatDataToChart(dataForJoinUserYear, 'vulnerability');
+    self.userVulnerabilityLabels = totalsByUserVulnerability.xAxisValues;    
     self.userFilteredVulnerability = totalsByUserVulnerability.yAxisValues;
-    console.log('self.userVulnerabilityLabels', self.userVulnerabilityLabels);
-    console.log('self.userFilteredVulnerability', self.userFilteredVulnerability);
 
+    var totalsByUserLaw = self.formatDataToChart(dataForJoinUserYear, 'agency');
+    self.userLawLabels = totalsByUserLaw.xAxisValues;    
+    self.userFilteredLaw = totalsByUserLaw.yAxisValues;
+
+    var totalsByUserRace = self.formatDataToChart(dataForJoinUserYear, 'race_ethnicity');
+    self.userRaceLabels = totalsByUserRace.xAxisValues;    
+    self.userFilteredRace = totalsByUserRace.yAxisValues;
+
+  };
+
+  self.submitCustomFilters = function (userCustomFilters){
+    console.log('service obj', userCustomFilters)
+    // $http({
+    //   method:"GET",
+    //   url: "/charts/custom",
+    //   data: userCustomFilters
+    // }).then(function (res){
+    //   console.log('back with custom filtered data', res);
+    // })
   };
 
   self.getuser = function () {
