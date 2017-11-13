@@ -118,7 +118,7 @@ router.post('/newIntake', function (req, res) {
       if (conErr) {
         res.sendStatus(500);
       } else {
-        var sqlQuery = 'INSERT INTO case_data (mcm_number, intake_date, age, gender, last_seen, reported_missing, people_served, city, county, state, school, start_case_type, end_case_type, disposition, close_date, referral_type) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)'
+        var sqlQuery = 'INSERT INTO case_data (mcm_number, intake_date, age, gender, last_seen, reported_missing, people_served, city, county, state, school, start_case_type, end_case_type, disposition, close_date, referral_type) VALUES ($1, $2, $3, $4, $5, $6, $7, (SELECT id FROM cities WHERE city = $8), (SELECT id FROM counties WHERE county = $9), $10, (SELECT id FROM schools WHERE school = $11), $12, $13, $14, $15, $16)'
         var valueArray = [newIntake.mcm_number, newIntake.intake_date, newIntake.age, newIntake.gender, newIntake.last_seen, newIntake.reported_missing, newIntake.people_served, newIntake.city, newIntake.county, newIntake.state, newIntake.school, newIntake.start_case_type, newIntake.end_case_type, newIntake.disposition, newIntake.close_date, newIntake.referral_type]
         client.query(sqlQuery, valueArray, function (queryErr, resultObj) {
           done();
