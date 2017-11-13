@@ -37,7 +37,7 @@ app.use('/register', registerRouter);
 app.use('/user', userRouter);
 app.use('/charts', chartsRouter);
 app.use('/manage', manageRouter);
-app.use('forms', formsRouter);
+app.use('/forms', formsRouter);
 
 
 // Catch all bucket, must be last!
