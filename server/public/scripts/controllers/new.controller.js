@@ -2,6 +2,7 @@ myApp.controller('NewController', function (UserService) {
   console.log('NewController as nwc created');
   var vm = this;
   var newIntake = [];
+  var vulnerabilities = [];
 
 
   vm.itemChange = function () {
@@ -39,27 +40,9 @@ myApp.controller('NewController', function (UserService) {
 
 
     // var vulnerabilities = {
-    //   vm.ADDIn,
-    //   vm.AutismIn,
-    //   vm.AlcoholIn,
-    //   vm.AnxietyIn,
-    //   vm.BiPolarIn,
-    //   vm.DepressionClinicalIn,
-    //   vm.DepressionSituationalIn,
-    //   vm.DrugUseIn,
-    //   vm.EconomicIn,
-    //   vm.EmotionalAbuseIn,
-    //   vm.GangIn,
-    //   vm.ODDIn,
-    //   vm.LaborIn,
-    //   vm.LuringAdultIn,
-    //   vm.LuringChildIn,
-    //   vm.MissingFromCareIn,
-    //   vm.PhysicalAbuseIn,
-    //   vm.RunawayIn,
-    //   vm.SexualAbuseIn,
-    //   vm.SexualExploitationIn,
-    //   vm.SexualMinorityIn
+    
+    //   case_data_id =   vm.newIntake.id,
+    //   vulnerabilities_id
     // };
 
     var newIntake = {
@@ -86,7 +69,7 @@ myApp.controller('NewController', function (UserService) {
   || newIntake.county == null|| newIntake.state == null || newIntake.school == null || newIntake.start_case_type == null|| newIntake.end_case_type == null
 || newIntake.disposition == null || newIntake.close_date == null || newIntake.referral_type == null) {
       swal({  
-        title: 'Please fill in all required fields.',
+        title: 'Please complete all required fields.',
         icon: "warning",        
         width: 600,
         padding: 100,
@@ -102,11 +85,14 @@ myApp.controller('NewController', function (UserService) {
         background: '#fff url(assets/page.JPG)'
       }).then(function () {
         UserService.postInputData(newIntake);
-        UserService.postVulnerabilities(vulnerabilities);
-      });
+      }).then(function (newIntake) {
+      //   console.log(newIntake.id)
+      //   UserService.postVulnerabilities(vulnerabilities);
+      })
     };
   };
 
+  //insert id into vulnerabilities object
 
   //shara working on pdf below
   var pdf = new jsPDF();
