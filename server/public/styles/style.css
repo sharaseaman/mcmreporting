@@ -23,6 +23,10 @@ tr:nth-child(even) {
     background-color: transparent !important; 
   }
 
+.chartNotes {
+    color: #666 !important;
+  }
+
   md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
     color: #147d91 !important;
     background-color: #147d91 !important;

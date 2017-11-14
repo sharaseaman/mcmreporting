@@ -90,12 +90,32 @@ myApp.service('UserService', function ($http, $location) {
 
           var totalsByDenialOverall = self.formatDataToChart(res, 'jurisdictional_denial');
             self.lawDenialOverallLabel = totalsByDenialOverall.xAxisValues;
+            console.log('self.lawEnforcementOverallLabel',self.lawEnforcementOverallLabel);
+          var something = self.getStackedChart(res,self.lawEnforcementOverallLabel,'jurisdictional_denial')
+            // self.stackedDenialTrue = totalsByDenialOverall
+            // self.stackedDenialFalse = totalsByDenialOverall
             
           var totalsByRaceEthnicityOverall = self.formatDataToChart(res, 'race_ethnicity');
             self.raceEthnicityOverallLabel = totalsByRaceEthnicityOverall.xAxisValues;
             self.filteredRaceEthnicityOverall = totalsByRaceEthnicityOverall.yAxisValues;
 
         })
+  };
+
+  self.getStackedChart = function (data, xAxisDataPoint, yAxisDataPoint) {
+    console.log('data',data);
+    console.log('xAxisDataPoint', xAxisDataPoint);
+    console.log('yAxisDataPoint', yAxisDataPoint);
+
+    data.forEach(function(element, yAxisDataPoint){
+      console.log(data.element.yAxisDataPoint)
+    //   if (data.yAxisDataPoint === true){
+    //     console.log('true')
+    //   } else {
+    //     console.log('false')
+    //   }
+    })
+
   };
 
   self.getDataOfYear = function(data, year) {

@@ -13,7 +13,7 @@
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
                   <md-button ng-click="cc.saveChart('mainBarChart')" class="md-icon-button md-accent" aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.6)"></md-icon>
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
@@ -21,8 +21,8 @@
                 <canvas id="startCaseTypeChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button ng-click="cc.saveChart('startCaseTypeChart')" class="md-fab md-mini md-primary" aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                  <md-button ng-click="cc.saveChart('startCaseTypeChart')" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
@@ -30,8 +30,8 @@
                 <canvas id="stateOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button ng-click="cc.saveChart('stateOverallChart')" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                  <md-button ng-click="cc.saveChart('stateOverallChart')" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
@@ -39,8 +39,8 @@
                 <canvas id="countiesOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button ng-click="cc.saveChart('countiesOverallChart')" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                  <md-button ng-click="cc.saveChart('countiesOverallChart')" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
@@ -48,8 +48,8 @@
                 <canvas id="peopleServedOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button ng-click="cc.saveChart('peopleServedOverallChart')" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                  <md-button ng-click="cc.saveChart('peopleServedOverallChart')" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
@@ -57,8 +57,8 @@
                 <canvas id="ageOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button ng-click="cc.saveChart('ageOverallChart')" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                  <md-button ng-click="cc.saveChart('ageOverallChart')" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
@@ -66,8 +66,8 @@
                 <canvas id="districtOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button ng-click="cc.saveChart('districtOverallChart')" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                  <md-button ng-click="cc.saveChart('districtOverallChart')" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
@@ -75,64 +75,74 @@
                 <canvas id="genderOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button ng-click="cc.saveChart('genderOverallChart')" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                  <md-button ng-click="cc.saveChart('genderOverallChart')" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
               <md-card>
                 <canvas id="vulnerabilitiesOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
-                <md-card-actions layout="row" layout-align="end center">
-                  <span class="md-subhead">Note: Cases can have more than one listed vulnerability.</span>
-                  <md-button ng-click="cc.saveChart('vulnerabilitiesOverallChart')" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                <md-card-actions layout="row" layout-align="start center">
+                    <md-card-icon-actions>
+                      <span class="chartNotes" layout-align="center center">Note: Cases can have more than one listed vulnerability.</span>
+                    </md-card-icon-actions>
+                      <md-button layout-align="end center" ng-click="cc.saveChart('vulnerabilitiesOverallChart')" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
               <md-card>
                 <canvas id="lawEnforcementOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
-                <md-card-actions layout="row" layout-align="end center">
-                  <span class="md-subhead">Note: Cases can have more than one listed Law Enforcement Agency.</span>
-                  <md-button ng-click="cc.saveChart('lawEnforcementOverallChart')" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
-                  </md-button>
+                <md-card-actions layout="row" layout-align="start center">
+                    <md-card-icon-actions>
+                        <span class="chartNotes">Note: Cases can have more than one listed Law Enforcement Agency.</span>
+                    </md-card-icon-actions>
+                    <md-button ng-click="cc.saveChart('lawEnforcementOverallChart')" class="md-icon-button md-accent" aria-label="Download chart">
+                        <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
+                      </md-button>
                 </md-card-actions>
               </md-card>
               <md-card>
                 <canvas id="raceEthnicityOverallChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
-                <md-card-actions layout="row" layout-align="end center">
-                    <span class="md-subhead">Note: Cases can have more than one listed Race/ Ethnicity.</span>
-                  <md-button ng-click="cc.saveChart('raceEthnicityOverallChart')" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
-                  </md-button>
+                <md-card-actions layout="row" layout-align="start center">
+                    <md-card-icon-actions>
+                        <span class="chartNotes">Note: Cases can have more than one listed Race/ Ethnicity.</span>
+                    </md-card-icon-actions>
+                    <md-button ng-click="cc.saveChart('raceEthnicityOverallChart')" class="md-icon-button md-accent" aria-label="Download chart">
+                        <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
+                      </md-button>
                 </md-card-actions>
               </md-card>
               <md-card>
                 <canvas id="referralsChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button ng-click="cc.saveChart('referralsChart')" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                  <md-button ng-click="cc.saveChart('referralsChart')" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
+            </div>
           </md-content>
         </md-tab>
         <md-tab label="Stacked Charts">
           <md-content class="md-padding">
             <div flex-xs flex-gt-xs="100" layout="column">
-              <md-card>
-                <md-card-header>
-                  <md-card-header-text>
-                    <span class="md-title">LoremIpsum</span>
-                  </md-card-header-text>
-                </md-card-header>
-                <!-- <canvas id="mainBarChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
-                    </canvas> -->
-              </md-card>
+                <md-card>
+                    <canvas id="lawEnforcementStackedOverall" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                    </canvas>
+                    <md-card-actions layout="row" layout-align="start center">
+                        <md-card-icon-actions>
+                            <span class="chartNotes">Note: Cases can have more than one listed Law Enforcement Agency.</span>
+                        </md-card-icon-actions>
+                        <md-button ng-click="cc.saveChart('lawEnforcementStackedOverall')" class="md-icon-button md-accent" aria-label="Download chart">
+                            <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
+                          </md-button>
+                    </md-card-actions>
+                  </md-card>
           </md-content>
         </md-tab>
         <md-tab label="Annual Dashboard">
@@ -155,8 +165,8 @@
                 <canvas id="userCaseTypeChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button ng-click="cc.saveChart('userCaseTypeChart',true)" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                  <md-button ng-click="cc.saveChart('userCaseTypeChart',true)" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
@@ -164,8 +174,8 @@
                 <canvas id="userCountyChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button ng-click="cc.saveChart('userCountyChart',true)" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                  <md-button ng-click="cc.saveChart('userCountyChart',true)" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
@@ -173,8 +183,8 @@
                 <canvas id="userSchoolChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button ng-click="cc.saveChart('userSchoolChart', true)" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                  <md-button ng-click="cc.saveChart('userSchoolChart', true)" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
@@ -182,48 +192,54 @@
                 <canvas id="userPeopleServedChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button ng-click="cc.saveChart('userPeopleServedChart',true)" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                  <md-button ng-click="cc.saveChart('userPeopleServedChart',true)" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
               <md-card>
                 <canvas id="userVulnerabilityChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
-                <md-card-actions layout="row" layout-align="end center">
-                  <span class="md-subhead">Note: Cases can have more than one listed vulnerability.</span>
-                  <md-button ng-click="cc.saveChart('userVulnerabilityChart', true)" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
-                  </md-button>
+                <md-card-actions layout="row" layout-align="start center">
+                    <md-card-icon-actions>
+                        <span class="chartNotes">Note: Cases can have more than one listed vulnerability.</span>
+                    </md-card-icon-actions>
+                    <md-button ng-click="cc.saveChart('userVulnerabilityChart', true)" class="md-icon-button md-accent" aria-label="Download chart">
+                        <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
+                      </md-button>
                 </md-card-actions>
               </md-card>
               <md-card>
                 <canvas id="userAgeChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button ng-click="cc.saveChart('userAgeChart', true)" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
+                  <md-button ng-click="cc.saveChart('userAgeChart', true)" class="md-icon-button md-accent" aria-label="Download chart">
+                    <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
               <md-card>
                 <canvas id="userLawEnforcementChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
-                <md-card-actions layout="row" layout-align="end center">
-                  <span class="md-subhead">Note: Cases can have more than one listed Law Enforcement Agency.</span>
-                  <md-button ng-click="cc.saveChart('userLawEnforcementChart', true)" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
-                  </md-button>
+                <md-card-actions layout="row" layout-align="start center">
+                    <md-card-icon-actions>
+                        <span class="chartNotes">Note: Cases can have more than one listed Law Enforcement Agency.</span>
+                    </md-card-icon-actions>
+                    <md-button ng-click="cc.saveChart('userLawEnforcementChart', true)" class="md-icon-button md-accent" aria-label="Download chart">
+                        <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
+                      </md-button>
                 </md-card-actions>
               </md-card>
               <md-card>
                 <canvas id="userRaceChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
-                <md-card-actions layout="row" layout-align="end center">
-                  <span class="md-subhead">Note: Cases can have more than one listed Race/ Ethnicity.</span>
-                  <md-button ng-click="cc.saveChart('userRaceChart', true)" class="md-fab md-mini md-primary " aria-label="Download chart">
-                    <md-icon ng_bind="'file_download'"></md-icon>
-                  </md-button>
+                <md-card-actions layout="row" layout-align="start center">
+                    <md-card-icon-actions>
+                        <span class="chartNotes">Note: Cases can have more than one listed Race/ Ethnicity.</span>
+                    </md-card-icon-actions>
+                    <md-button ng-click="cc.saveChart('userRaceChart', true)" class="md-icon-button md-accent" aria-label="Download chart">
+                        <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
+                      </md-button>
                 </md-card-actions>
               </md-card>
           </md-content>

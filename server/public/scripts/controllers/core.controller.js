@@ -8,6 +8,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
   Chart.defaults.scale.ticks.beginAtZero = true;
   Chart.defaults.scale.ticks.autoSkip = false;
   Chart.defaults.global.title.fontFamily = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
+  Chart.defaults.global.defaultFontColor = '#666';
+  Chart.defaults.global.defaultFontSize = 16;
 
   vm.getSelectedYear = function () {
 
@@ -777,6 +779,7 @@ myApp.controller('CoreController', function (UserService, $scope) {
             }
           }
         });
+
       });
 
     vm.getJoinTableData = function () {
@@ -788,6 +791,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           vm.filteredLawEnforcementOverall = UserService.filteredLawEnforcementOverall;
           vm.raceEthnicityOverallLabel = UserService.raceEthnicityOverallLabel;
           vm.filteredRaceEthnicityOverall = UserService.filteredRaceEthnicityOverall;
+          vm.stackedDenialTrue = UserService.stackedDenialTrue
+          vm.stackedDenialFalse = UserService.stackedDenialFalse
 
           var ctc = document.getElementById("vulnerabilitiesOverallChart");
           var myChart = new Chart(ctc, {
@@ -860,6 +865,57 @@ myApp.controller('CoreController', function (UserService, $scope) {
                   }
                 }],
                 yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Number of Cases'
+                  },
+                  ticks: {
+                    beginAtZero: true,
+                    callback: function (value) { if (value % 1 === 0) { return value; } }
+                  }
+                }]
+              }
+            }
+          });
+
+          var ctc = document.getElementById("lawEnforcementStackedOverall");
+          var myChart = new Chart(ctc, {
+            type: 'bar',
+            data: {
+              labels: vm.lawEnforcementOverallLabel,
+              datasets: [{
+                label: 'Jurisdictional Denial by Law Enforcement Agency',
+                backgroundColor: 'rgba(255, 102, 0, 0.4)',
+                borderColor: 'rgba(255, 102, 0, 0.4)',
+                data: vm.stackedDenialTrue,
+                borderWidth: 1
+              },
+              // {
+              //   label: 'Jurisdictional Denial by Law Enforcement Agency',
+              //   backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              //   borderColor: 'rgba(20, 125, 145, 0.4)',
+              //   data: vm.stackedDenialFalse,
+              //   borderWidth: 1
+              // }
+            ]},
+            options: {
+              title: {
+                display: true,
+                position: "top",
+                text: "Number of Cases by Law Enforcement Agency",
+                padding: 20,
+                fontSize: 18
+            },
+              scales: {
+                xAxes:[{
+                  stacked: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'MN Law Enforcement Agency'
+                  }
+                }],
+                yAxes: [{
+                  stacked: true,
                   scaleLabel: {
                     display: true,
                     labelString: 'Number of Cases'
