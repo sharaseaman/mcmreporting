@@ -6,6 +6,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
   vm.selectedYear;
 
   Chart.defaults.scale.ticks.beginAtZero = true;
+  Chart.defaults.scale.ticks.autoSkip = false;
+  Chart.defaults.global.title.fontFamily = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
 
   vm.getSelectedYear = function () {
 
@@ -40,8 +42,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userCaseTypeLabels,
           datasets: [{
             label: 'Case Type',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredCases,
             borderWidth: 1
           }]
@@ -50,7 +52,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           title: {
               display: true,
               position: "top",
-              text: "Case Type in " + vm.selectedYear,
+              text: "Number of Cases by Case Type (" + vm.selectedYear + ")",
+              padding: 20,
               fontSize: 18
           },
           scales: {
@@ -81,8 +84,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userCountyLabels,
           datasets: [{
             label: 'MN County',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredCounty,
             borderWidth: 1
           }]
@@ -91,7 +94,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           title: {
             display: true,
             position: "top",
-            text: "MN Counties in " + vm.selectedYear,
+            text: "Number of Cases by MN County (" + vm.selectedYear+ ")",
+            padding: 20,
             fontSize: 18
         },
           scales: {
@@ -122,8 +126,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userSchoolLabels,
           datasets: [{
             label: 'School Districts',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredSchool,
             borderWidth: 1
           }]
@@ -132,7 +136,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           title: {
             display: true,
             position: "top",
-            text: "School Districts in " + vm.selectedYear,
+            text: "Number of Cases by School District (" + vm.selectedYear+ ")",
+            padding: 20,
             fontSize: 18
         },
           scales: {
@@ -163,8 +168,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userPeopleServedLabels,
           datasets: [{
             label: 'People Served',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredPeopleServed,
             borderWidth: 1
           }]
@@ -173,7 +178,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           title: {
             display: true,
             position: "top",
-            text: "People Served in " + vm.selectedYear,
+            text: "Number of Cases by People Served (" + vm.selectedYear+ ")",
+            padding: 20,
             fontSize: 18
         },
           scales: {
@@ -204,8 +210,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userVulnerabilityLabels,
           datasets: [{
             label: 'Vulnerability',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredVulnerability,
             borderWidth: 1
           }]
@@ -214,7 +220,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           title: {
             display: true,
             position: "top",
-            text: "Vulnerabilities in " + vm.selectedYear,
+            text: "Number of Cases by Vulnerabilities (" + vm.selectedYear+ ")",
+            padding: 20,
             fontSize: 18
         },
           scales: {
@@ -245,8 +252,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userAgeLabels,
           datasets: [{
             label: 'Age',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredAge,
             borderWidth: 1
           }]
@@ -255,7 +262,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           title: {
             display: true,
             position: "top",
-            text: "Age in " + vm.selectedYear,
+            text: "Number of Cases by Age (" + vm.selectedYear+ ")",
+            padding: 20,
             fontSize: 18
         },
           scales: {
@@ -286,8 +294,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userLawLabels,
           datasets: [{
             label: 'Law Enforcement',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredLaw,
             borderWidth: 1
           }]
@@ -296,7 +304,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           title: {
             display: true,
             position: "top",
-            text: "Law Enforcement Agencies in " + vm.selectedYear,
+            text: "Number of Cases by Law Enforcement Agencies (" + vm.selectedYear+ ")",
+            padding: 20,
             fontSize: 18
         },
           scales: {
@@ -327,8 +336,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userRaceLabels,
           datasets: [{
             label: 'Race/ Ethnicity',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredRace,
             borderWidth: 1
           }]
@@ -337,7 +346,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           title: {
             display: true,
             position: "top",
-            text: "Race/ Ethnicity in " + vm.selectedYear,
+            text: "Number of Cases by Race/ Ethnicity (" + vm.selectedYear+ ")",
+            padding: 20,
             fontSize: 18
         },
           scales: {
@@ -396,17 +406,19 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.mainChartYears,
             datasets: [{
               label: 'Number of Cases per year',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredYears,
               borderWidth: 1
             }]
           },
           options: {
+            
             title: {
               display: true,
               position: "top",
               text: "Number of Cases per year",
+              padding: 20,
               fontSize: 18
           },
             scales: {
@@ -437,8 +449,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.startCaseLabel,
             datasets: [{
               label: 'Overall Start Case Type',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredStartCase,
               borderWidth: 1
             }]
@@ -448,6 +460,7 @@ myApp.controller('CoreController', function (UserService, $scope) {
               display: true,
               position: "top",
               text: "Number of Cases by Start Case Type",
+              padding: 20,
               fontSize: 18
           },
             scales: {
@@ -478,8 +491,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.stateOverallLabel,
             datasets: [{
               label: 'Cases by State',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredStateOverall,
               borderWidth: 1
             }]
@@ -489,6 +502,7 @@ myApp.controller('CoreController', function (UserService, $scope) {
               display: true,
               position: "top",
               text: "Number of Cases by State",
+              padding: 20,
               fontSize: 18
           },
             scales: {
@@ -519,8 +533,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.countiesOverallLabel,
             datasets: [{
               label: 'Cases by Counties',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredCountiesOverall,
               borderWidth: 1
             }]
@@ -530,6 +544,7 @@ myApp.controller('CoreController', function (UserService, $scope) {
               display: true,
               position: "top",
               text: "Number of Cases by MN County",
+              padding: 20,
               fontSize: 18
           },
             scales: {
@@ -560,8 +575,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.districtOverallLabel,
             datasets: [{
               label: 'Cases by MN School District',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredDistrictsOverall,
               borderWidth: 1
             }]
@@ -571,6 +586,7 @@ myApp.controller('CoreController', function (UserService, $scope) {
               display: true,
               position: "top",
               text: "Number of Cases by MN School District",
+              padding: 20,
               fontSize: 18
           },
             scales: {
@@ -601,8 +617,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.peopleServedOverallLabel,
             datasets: [{
               label: 'Number of Cases by People Served',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredPeopleServedOverall,
               borderWidth: 1
             }]
@@ -612,6 +628,7 @@ myApp.controller('CoreController', function (UserService, $scope) {
               display: true,
               position: "top",
               text: "Number of Cases by People Served",
+              padding: 20,
               fontSize: 18
           },
             scales: {
@@ -642,8 +659,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.ageOverallLabel,
             datasets: [{
               label: 'Number of Cases by Age',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredAgeOverall,
               borderWidth: 1
             }]
@@ -653,6 +670,7 @@ myApp.controller('CoreController', function (UserService, $scope) {
               display: true,
               position: "top",
               text: "Number of Cases by Age",
+              padding: 20,
               fontSize: 18
           },
             scales: {
@@ -683,8 +701,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.genderOverallLabel,
             datasets: [{
               label: 'Number of Cases by Gender',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredGenderOverall,
               borderWidth: 1
             }]
@@ -693,7 +711,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             title: {
               display: true,
               position: "top",
-              text: "Number of Cases Gender",
+              text: "Number of Cases by Gender",
+              padding: 20,
               fontSize: 18
           },
             scales: {
@@ -724,8 +743,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.referralLabel,
             datasets: [{
               label: 'Referrals by Source',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredReferral,
               borderWidth: 1
             }]
@@ -735,6 +754,7 @@ myApp.controller('CoreController', function (UserService, $scope) {
               display: true,
               position: "top",
               text: "Number of Cases by Referral Source",
+              padding: 20,
               fontSize: 18
           },
             scales: {
@@ -776,8 +796,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
               labels: vm.vulnerabilitiesOverallLabel,
               datasets: [{
                 label: 'Overall Vulnerabilities',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 0.2)',
+                backgroundColor: 'rgba(20, 125, 145, 0.4)',
+                borderColor: 'rgba(20, 125, 145, 0.4)',
                 data: vm.filteredVulnerabilitiesOverall,
                 borderWidth: 1
               }]
@@ -787,9 +807,16 @@ myApp.controller('CoreController', function (UserService, $scope) {
                 display: true,
                 position: "top",
                 text: "Number of Cases by Vulnerability",
+                padding: 20,
                 fontSize: 18
             },
               scales: {
+                xAxes:[{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Vulnerability'
+                  }
+                }],
                 yAxes: [{
                   scaleLabel: {
                     display: true,
@@ -811,8 +838,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
               labels: vm.lawEnforcementOverallLabel,
               datasets: [{
                 label: 'Overall Law Enforcement Agencies worked with',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 0.2)',
+                backgroundColor: 'rgba(20, 125, 145, 0.4)',
+                borderColor: 'rgba(20, 125, 145, 0.4)',
                 data: vm.filteredLawEnforcementOverall,
                 borderWidth: 1
               }]
@@ -822,9 +849,16 @@ myApp.controller('CoreController', function (UserService, $scope) {
                 display: true,
                 position: "top",
                 text: "Number of Cases by Law Enforcement Agency",
+                padding: 20,
                 fontSize: 18
             },
               scales: {
+                xAxes:[{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'MN Law Enforcement Agency'
+                  }
+                }],
                 yAxes: [{
                   scaleLabel: {
                     display: true,
@@ -846,8 +880,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
               labels: vm.raceEthnicityOverallLabel,
               datasets: [{
                 label: 'Number of Cases by Race/Ethnicity',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 0.2)',
+                backgroundColor: 'rgba(20, 125, 145, 0.4)',
+                borderColor: 'rgba(20, 125, 145, 0.4)',
                 data: vm.filteredRaceEthnicityOverall,
                 borderWidth: 1
               }]
@@ -857,9 +891,16 @@ myApp.controller('CoreController', function (UserService, $scope) {
                 display: true,
                 position: "top",
                 text: "Number of Cases by Race/ Ethnicity",
+                padding: 20,
                 fontSize: 18
             },
               scales: {
+                xAxes:[{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Race/ Ethnicity'
+                  }
+                }],
                 yAxes: [{
                   scaleLabel: {
                     display: true,
@@ -881,124 +922,17 @@ myApp.controller('CoreController', function (UserService, $scope) {
 
   };
 
-  vm.saveMainBarChart = function () {
-    mainBarChart.toBlob(function(blob){
-      saveAs(blob,'Number_of_Cases_per_Year')
+  vm.saveChart = function (id, shouldSaveWithYear) {
+    var yearString = '';
+    var ctx = document.getElementById(id);
+
+    if (shouldSaveWithYear){
+      yearString = vm.selectedYear;
+    }
+
+    ctx.toBlob(function(blob){
+      saveAs(blob, id + yearString)
     });
   };
-
-  vm.saveStartCaseTypeChart = function () {
-    startCaseTypeChart.toBlob(function(blob){
-      saveAs(blob,'Cases_by_Start_Case_Type')
-    });
-  };
-
-  vm.saveStateOverallChart = function () {
-    stateOverallChart.toBlob(function(blob){
-      saveAs(blob,'Cases_by_State')
-    });
-  };
-
-  vm.saveCountiesOverallChart = function () {
-    countiesOverallChart.toBlob(function(blob){
-      saveAs(blob,'Cases_by_MN_Counties')
-    });
-  };
-
-  vm.savePeopleServedOverallChart = function () {
-    peopleServedOverallChart.toBlob(function(blob){
-      saveAs(blob,'Cases_by_People_Served')
-    });
-  };
-
-  vm.saveAgeOverallChart = function () {
-    ageOverallChart.toBlob(function(blob){
-      saveAs(blob,'Cases_by_Age')
-    });
-  };
-
-  vm.saveDistrictOverallChart = function () {
-    districtOverallChart.toBlob(function(blob){
-      saveAs(blob,'Cases_by_School_District')
-    });
-  };
-
-  vm.saveGenderOverallChart = function () {
-    genderOverallChart.toBlob(function(blob){
-      saveAs(blob,'Cases_by_Gender')
-    });
-  };
-
-  vm.saveVulnerabilitiesOverallChart = function () {
-    vulnerabilitiesOverallChart.toBlob(function(blob){
-      saveAs(blob,'Cases_by_Vulnerability')
-    });
-  };
-
-  vm.saveLawEnforcementOverallChart = function () {
-    lawEnforcementOverallChart.toBlob(function(blob){
-      saveAs(blob,'Cases_by_Law_Enforcement_Agency')
-    });
-  };
-
-  vm.saveRaceEthnicityOverallChart = function () {
-    raceEthnicityOverallChart.toBlob(function(blob){
-      saveAs(blob,'Cases_by_Race_Ethnicity')
-    });
-  };
-
-  vm.saveReferralsChart = function () {
-    referralsChart.toBlob(function(blob){
-      saveAs(blob,'Referrals_by_Source')
-    });
-  };
-
-  vm.saveuserCaseTypeChart = function (){
-    userCaseTypeChart.toBlob(function(blob){
-      saveAs(blob,'Case_Type_Chart_'+vm.selectedYear)
-    });
-  }
-
-  vm.saveuserCountyChart = function (){
-    userCountyChart.toBlob(function(blob){
-      saveAs(blob,'MN_County_Chart_'+vm.selectedYear)
-    });
-  }
-
-  vm.saveuserSchoolChart = function (){
-    userSchoolChart.toBlob(function(blob){
-      saveAs(blob,'MN_School_District_Chart_'+vm.selectedYear)
-    });
-  }
-
-  vm.saveuserPeopleServedChart = function (){
-    userPeopleServedChart.toBlob(function(blob){
-      saveAs(blob,'People_Served_Chart_'+vm.selectedYear)
-    });
-  }
-
-  vm.saveuserVulnerabilityChart = function (){
-    userVulnerabilityChart.toBlob(function(blob){
-      saveAs(blob,'Vulnerability_Chart_'+vm.selectedYear)
-    });
-  }
-
-  vm.saveuserAgeChart = function (){
-    userAgeChart.toBlob(function(blob){
-      saveAs(blob,'Age_Chart_'+vm.selectedYear)
-    });
-  }
-
-  vm.saveuserLawEnforcementChart = function (){
-    userLawEnforcementChart.toBlob(function(blob){
-      saveAs(blob,'MN_Law_Enforcement_Agency_Chart_'+vm.selectedYear)
-    });
-  }
-
-  vm.saveuserRaceChart = function (){
-    userRaceChart.toBlob(function(blob){
-      saveAs(blob,'Race_Ethnicity_Chart_'+vm.selectedYear)
-    });
-  }
 
 })
