@@ -55,4 +55,47 @@ router.get('/join_tables_reports', function(req, res) {
   }
 });
 
+//get for custom tables
+router.get('/custom', function (req, res) {
+  var custom = req.body;
+  console.log('In Post for new intake', newIntake);
+  // check if logged in
+  if (req.isAuthenticated()) {
+    pool.connect(function (conErr, client, done) {
+      if (conErr) {
+        res.sendStatus(500);
+      } else {
+        var queryArray = []
+        var valueArray = []
+        if (custom.type !== undefined) {
+          'WHERE type = $1'
+          queryArray.push(type);
+          valueArray.push(custom.type);
+        }
+        
+
+        }
+
+
+        var sqlQuery = 'SELECT * FROM case_data WHERE'
+        
+        client.query(sqlQuery, valueArray, function (queryErr, resultObj) {
+          done();
+          if (queryErr) {
+            res.sendStatus(500);
+          } else {
+            res.sendStatus(202);
+          }
+        });
+      }
+    })
+  } else {
+    // failure best handled on the server. do redirect here.
+    console.log('not logged in');
+    // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
+    res.send(false);
+  }
+}); //end /newIntake
+
+
 module.exports = router;
