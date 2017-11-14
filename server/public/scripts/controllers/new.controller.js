@@ -37,6 +37,31 @@ myApp.controller('NewController', function (UserService) {
   vm.click = function () {
     console.log('in click');
 
+
+    // var vulnerabilities = {
+    //   vm.ADDIn,
+    //   vm.AutismIn,
+    //   vm.AlcoholIn,
+    //   vm.AnxietyIn,
+    //   vm.BiPolarIn,
+    //   vm.DepressionClinicalIn,
+    //   vm.DepressionSituationalIn,
+    //   vm.DrugUseIn,
+    //   vm.EconomicIn,
+    //   vm.EmotionalAbuseIn,
+    //   vm.GangIn,
+    //   vm.ODDIn,
+    //   vm.LaborIn,
+    //   vm.LuringAdultIn,
+    //   vm.LuringChildIn,
+    //   vm.MissingFromCareIn,
+    //   vm.PhysicalAbuseIn,
+    //   vm.RunawayIn,
+    //   vm.SexualAbuseIn,
+    //   vm.SexualExploitationIn,
+    //   vm.SexualMinorityIn
+    // };
+
     var newIntake = {
       mcm_number: vm.caseIn,
       intake_date: vm.DateofIntaketoMCMIn,
@@ -56,14 +81,13 @@ myApp.controller('NewController', function (UserService) {
       referral_type: vm.ReferralTypeIn
     };
 
-    // function validateForm(newIntake) {
-
     if (newIntake.mcm_number == null || newIntake.intake_date == null || newIntake.age == null || newIntake.gender == null
     || newIntake.last_seen == null || newIntake.reported_missing == null || newIntake.people_served == null|| newIntake.city == null
   || newIntake.county == null|| newIntake.state == null || newIntake.school == null || newIntake.start_case_type == null|| newIntake.end_case_type == null
 || newIntake.disposition == null || newIntake.close_date == null || newIntake.referral_type == null) {
       swal({  
         title: 'Please fill in all required fields.',
+        icon: "warning",        
         width: 600,
         padding: 100,
         background: '#fff url(assets/page.JPG)'
@@ -72,15 +96,15 @@ myApp.controller('NewController', function (UserService) {
       console.log('newIntake', newIntake);
       swal({
         title: 'Required fields submitted to database.',
+        icon: "success",
         width: 600,
         padding: 100,
         background: '#fff url(assets/page.JPG)'
       }).then(function () {
         UserService.postInputData(newIntake);
-        // $location.path('/forms/newIntake');
+        UserService.postVulnerabilities(vulnerabilities);
       });
     };
-  // }
   };
 
 
