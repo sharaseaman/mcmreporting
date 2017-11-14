@@ -58,7 +58,7 @@ router.get('/join_tables_reports', function(req, res) {
 //get for custom tables
 router.get('/custom', function (req, res) {
   var custom = req.body;
-  console.log('In Get for custom info', newIntake);
+  console.log('In Get for custom info', custom);
   // check if logged in
   if (req.isAuthenticated()) {
     pool.connect(function (conErr, client, done) {
@@ -138,8 +138,6 @@ var createQuery = function() {
   }) //client query
   }) //end tempArray.forEach
 }; //end create query
-
+});
 
 module.exports = router;
-
-
