@@ -108,6 +108,10 @@ body, html {
   li {
     float: left;
   }
+
+  li:last-child {
+    float: right;
+  }
   
   li a {
     display: block;

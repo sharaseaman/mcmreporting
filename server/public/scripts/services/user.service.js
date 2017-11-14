@@ -10,6 +10,7 @@ myApp.service('UserService', function ($http, $location) {
     data: []
   };
   self.users = {};
+
   self.cities = {};
   self.selectedYear = '';
 
@@ -261,6 +262,21 @@ myApp.service('UserService', function ($http, $location) {
       }
     });
   };
+
+  // get the data from an existing form to edit
+  self.getExistingForm = function (mcmNum) {
+    console.log('In getExistingForm', mcmNum);
+
+    //$http call to get all data from existing form
+    return $http({
+      method: 'GET',
+      url: '/forms/caseToEdit/' + mcmNum
+    }).then(function (response) {
+      console.log('Response', response);
+    })
+  }
+
+
   self.logout = function () {
     console.log('UserService -- logout');
     $http({
@@ -282,6 +298,17 @@ myApp.service('UserService', function ($http, $location) {
       console.log('this is response in user before if', response.data);
     });
   };
+
+  self.updateForm = function (editedForm) {
+    console.log('In updateForm');
+    $http({
+      method: 'PUT',
+      url: '/editIntake',
+      data: editedForm
+    }).then(function (response) {
+      console.log('Response', response);
+    })
+  }
 
   // updates the admin priviledges 
   self.updatePriviledges = function (user) {
