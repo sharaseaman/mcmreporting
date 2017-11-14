@@ -42,14 +42,18 @@ myApp.controller('NewController', function (UserService) {
       intake_date: vm.DateofIntaketoMCMIn,
       age: vm.AgeIn,
       gender: vm.GenderIn,
-      last_seen: vm.DateLastSeenIn,
+      last_seen: vm.DateLastSeenIn,      
       reported_missing: vm.DateReportedMissingtoPoliceIn,
+      people_served: vm.FamilyMembersInvolvedInSearchIn,      
       city: vm.CityMissingFromIn,
       county: vm.CountyMissingFromIn,
       state: vm.StateMissingFromIn,
       school: vm.SchoolDistrictWhereChildWasEnrolledIn,
       start_case_type: vm.CaseTypeWhenOpenedIn,
-      referral_type: vm.ReferralTypeIn,
+      end_case_type: vm.CaseTypeWhenClosedIn,
+      disposition: vm.CaseDispositionIn,
+      close_date: vm.DateCaseClosedIn,
+      referral_type: vm.ReferralTypeIn
     };
 
     console.log('newIntake', newIntake);
