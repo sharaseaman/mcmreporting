@@ -5,11 +5,11 @@ myApp.controller('NewController', function (UserService) {
     vm.caseIn = '';
     vm.DateofIntaketoMCMIn = '';    
     vm.NameIn = '';
-    vm.DateofDissapearanceIn = '';
+    // vm.DateofDisappearanceIn = '';
     vm.DateReportedMissingtoPoliceIn = '';
     vm.DateLastSeenIn = '';
     vm.TimeLastSeenIn = '';
-    vm.FamilyMembersInvolvedInSearch = '';
+    vm.FamilyMembersInvolvedInSearchIn = '';
     vm.LocationLastSeenCrossStIn = '';
     vm.DateReportedMissingtoPoliceIn = '';
     vm.CityMissingFromIn = '';
@@ -22,7 +22,7 @@ myApp.controller('NewController', function (UserService) {
     vm.CaseTypeWhenOpenedIn = '';
     vm.ReferralTypeIn = '';
     vm.WeightIn = '';
-    vm.NotesIn = '';
+    vm.OtherInfoIn = '';
     vm.HairColorIn = '';
     vm.HairStyleIn = '';
     vm.EyeColorIn = '';
@@ -35,7 +35,7 @@ myApp.controller('NewController', function (UserService) {
     vm.DentalCharacteristicsIn = '';
     vm.ScarsOrBirthmarksIn = '';
     vm.commentScarorBirthmarksIn = ''; //need ng model
-    vm.AgencyOtherIn = '';
+    vm.OtherLEIn = '';
     vm.LawEnforcementAgencyonCaseIn = '';
     vm.CaseNumberIn = '';
     vm.OfficeDetectiveIn = '';
@@ -206,7 +206,7 @@ myApp.controller('NewController', function (UserService) {
 
           vm.formatDateofIntaketoMCMIn = (vm.DateofIntaketoMCMIn.getMonth()+1) + '/' + vm.DateofIntaketoMCMIn.getDate() + '/' + vm.DateofIntaketoMCMIn.getFullYear();
           
-           vm.formatDateofDissapearanceIn = (vm.DateofDissapearanceIn.getMonth()+1) + '/' + vm.DateofDissapearanceIn.getDate() + '/' + vm.DateofDissapearanceIn.getFullYear();
+           vm.formatDateofDisappearanceIn = (vm.DateofDisappearanceIn.getMonth()+1) + '/' + vm.DateofDisappearanceIn.getDate() + '/' + vm.DateofDisappearanceIn.getFullYear();
 
            vm.formatDateReportedMissingtoPoliceIn = (vm.DateReportedMissingtoPoliceIn.getMonth()+1) + '/' + vm.DateReportedMissingtoPoliceIn.getDate() + '/' + vm.DateReportedMissingtoPoliceIn.getFullYear();
 
@@ -255,29 +255,31 @@ myApp.controller('NewController', function (UserService) {
             
             pdf.text(10, 120, 'State Missing From: ' + vm.StateMissingFromIn); 
             pdf.text(70, 120, 'City Missing From: ' + vm.CityMissingFromIn); 
-            pdf.text(125, 120, 'County Missing From: ' + vm.CountyMissingFromIn); 
+            pdf.text(10, 130, 'County Missing From: ' + vm.CountyMissingFromIn); 
 
-            pdf.text(10, 130, 'School District of Child: ' + vm.SchoolDistrictWhereChildWasEnrolledIn); 
+            pdf.text(125, 130, 'School District of Child: ' + vm.SchoolDistrictWhereChildWasEnrolledIn); 
             
             pdf.text(10, 140, 'Age: ' + vm.AgeIn); 
             pdf.text(50, 140, 'Gender: ' + vm.GenderIn);
             pdf.text(90, 140, 'Ht: ' + vm.HeightIn); 
             pdf.text(130, 140, 'Wt: ' + vm.WeightIn);
 
-            pdf.text(10, 150, 'Other: ' + vm.OtherIn);
+            // pdf.text(10, 150, 'Other: ' + vm.OtherIn);
             
             //Distinguishing Characteristics 
             pdf.setFontType('bold');
-            pdf.setFontSize(14);            
+            pdf.setFontSize(14);    
+            pdf.line(10, 150, 180, 150);
+            
             pdf.text(10,160, 'Distinguishing Characteristics') //add ' to persons shara
             pdf.setFontType('normal');
             pdf.setFontSize(12);
             pdf.text(10, 170, 'Hair Color: ' + vm.HairColorIn); 
-            pdf.text(60, 170, 'Hair Style: ' + vm.HairStyleIn);
-            pdf.text(110, 170, 'Eye Color: ' + vm.EyeColorIn);
+            pdf.text(80, 170, 'Hair Style: ' + vm.HairStyleIn);
+            pdf.text(130, 170, 'Eye Color: ' + vm.EyeColorIn);
             pdf.text(10, 180, 'Race/Ethniciy: ' + vm.RaceEthnicityIn);
-            pdf.text(60, 180, 'Facial Hair: ' + vm.FacialHairIn);
-            pdf.text(110, 180, 'Eye Brow Features: ' + vm.EyeBrowFeatures);
+            pdf.text(80, 180, 'Facial Hair: ' + vm.FacialHairIn);
+            pdf.text(130, 180, 'Eye Brow Features: ' + vm.EyeBrowFeatures);
             pdf.text(10, 190, 'Glasses/Contacts?: ' + vm.GlassesOrContactsIn);
             pdf.text(10, 200, 'Tattoos or Piercings: ' + vm.TattoosOrPiercingsIn);
             pdf.text(80, 200, 'Description: ' + vm.commentTattoosIn);
@@ -285,8 +287,27 @@ myApp.controller('NewController', function (UserService) {
             pdf.text(10, 210, 'Dental Characteristics: ' + vm.DentalCharacteristicsIn);
             pdf.text(10, 220, 'Scars or Birthmarks: ' + vm.ScarsOrBirthmarksIn);
             pdf.text(80, 220, 'Description: ');
+            pdf.line(10, 230, 180, 230);
             
+            pdf.text(10,240, 'Additional Notes:' + vm.OtherInfoIn);
+            
+
+            //page 2
+            pdf.addPage();
+            //page 2 header
+            pdf.addImage(imgData, 'JPEG', 5, 10, 60,30); //5,10 = x,y / 60, 30 = w,h    
+            pdf.setFontType('bold');  
+            pdf.setFontSize(18);         
+            pdf.text(70, 25, 'Missing Persons Intake Form');
+            pdf.setFontSize(12);
+            pdf.setFontType('bold');            
+            pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);  
+            pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);
+            pdf.line(10, 48, 180, 48);
+            // end of page 2 header
+            //page 2 input 
             //Reporting Law enforcement info
+
             pdf.setFontType('bold');
             pdf.setFontSize(14);                        
             pdf.text(10,210, 'Reporting Law Enforcement') 
@@ -306,23 +327,6 @@ myApp.controller('NewController', function (UserService) {
             pdf.text(10,310, 'Case Disposition:' + vm.CaseStatusIn);
             pdf.text(10,320, 'Referral Type:' + vm.CaseStatusIn);
             
-
-            pdf.addPage();
-            pdf.addImage(imgData, 'JPEG', 5, 10, 60,30); //5,10 = x,y / 60, 30 = w,h
-            //page 1
-            
-            pdf.setFontType('bold');  
-            pdf.setFontSize(18);         
-            pdf.text(70, 25, 'Missing Persons Intake Form');
-            
-             // pdf.addPage(0)
-             //input fields
-             
-             pdf.setFontSize(12);
-             pdf.setFontType('bold');            
-             pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);  
-             pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);
-             pdf.line(10, 48, 180, 48);
 
             pdf.save();
         }
