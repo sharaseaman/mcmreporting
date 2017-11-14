@@ -2,6 +2,7 @@ var router = require('express').Router();
 var path = require('path');
 var pool = require('../modules/pool.js');
 
+//Requests for populating form fields
 router.get('/cities', function (req, res) {
   console.log('In cities Get for intake');
   // check if logged in
@@ -106,6 +107,8 @@ router.get('/schools', function (req, res) {
   }
 }); //end schools get call
 
+
+//Requests for new intake forms.
 router.post('/newIntake', function (req, res) {
   var newIntake = req.body;
   console.log('In Post for new intake', newIntake);
@@ -115,14 +118,14 @@ router.post('/newIntake', function (req, res) {
       if (conErr) {
         res.sendStatus(500);
       } else {
-        var sqlQuery = 'INSERT INTO case_data (mcm_number, intake_date, age, gender, last_seen, reported_missing, people_served, city, county, state, school, start_case_type, referral_type, mcm_number) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)'
-        var valueArray = [newIntake.mcm_number, newIntake.intake_date, newIntake.age, newIntake.gender, newIntake.last_seen, newIntake.reported_missing, newIntake.people_served, newIntake.city, newIntake.county, newIntake.state, newIntake.school, newIntake.start_case_type, newIntake.referral_type]
+        var sqlQuery = 'INSERT INTO case_data (mcm_number, intake_date, age, gender, last_seen, reported_missing, people_served, city, county, state, school, start_case_type, end_case_type, disposition, close_date, referral_type) VALUES ($1, $2, $3, $4, $5, $6, $7, (SELECT id FROM cities WHERE city = $8), (SELECT id FROM counties WHERE county = $9), $10, (SELECT id FROM schools WHERE school = $11), $12, $13, $14, $15, $16)'
+        var valueArray = [newIntake.mcm_number, newIntake.intake_date, newIntake.age, newIntake.gender, newIntake.last_seen, newIntake.reported_missing, newIntake.people_served, newIntake.city, newIntake.county, newIntake.state, newIntake.school, newIntake.start_case_type, newIntake.end_case_type, newIntake.disposition, newIntake.close_date, newIntake.referral_type]
         client.query(sqlQuery, valueArray, function (queryErr, resultObj) {
           done();
           if (queryErr) {
             res.sendStatus(500);
           } else {
-            res.send(resultObj.rows);
+            res.sendStatus(202);
           }
         });
       }
@@ -133,7 +136,38 @@ router.post('/newIntake', function (req, res) {
     // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
     res.send(false);
   }
-}); //end input Post
+}); //end /newIntake
+
+router.post('/newVulnerabilities', function (req, res) {
+  var newVulnId = req.body.id;
+  var newVulnArray = req.body.array
+  console.log('In Post for new vulnerabilities', newVulnId, newVulnArray);
+  // check if logged in
+  if (req.isAuthenticated()) {
+    pool.connect(function (conErr, client, done) {
+      if (conErr) {
+        res.sendStatus(500);
+      } else {
+          for(let i = 0; i < newVulnArray.length; i++) {
+            var sqlQuery = 'INSERT INTO case_vulnerabilities (case_data_id, vulnerabilities_id) VALUES $1, (SELECT (id) FROM vulnerabilites WHERE vulnerability = $2) '
+            var valueArray = [newVulnId, newVulnArray[i]]
+        client.query(sqlQuery, valueArray, function (queryErr, resultObj) {
+          done();
+          if (queryErr) {
+            res.sendStatus(500);
+          } else {
+            res.send(202);
+          }
+        })};
+      }
+    })
+  } else {
+    // failure best handled on the server. do redirect here.
+    console.log('not logged in');
+    // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
+    res.send(false);
+  }
+}); //end input vulnerabilities Post
 
 router.get('/caseToEdit', function (req, res) {
   var mcmCase = req.body;
