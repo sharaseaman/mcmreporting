@@ -1,20 +1,24 @@
 <div ng-app="myApp">
 <div ng-controller="NavController as nc">
-<div class="navbar">
+<!-- <div class="navbar"> -->
+    
+  
 
-    <div class="container">
+    <!-- <div class="container"> -->
 
-      <ul class="navList">
-        <li class="navItem"><a href="#/user">User Home</a></li>
-        <li class="navItem"><a href="#/new">New Form</a></li>
-        <li class="navItem"><a href="#/edit">Edit Form</a></li>        
-        <li class="navItem"><a href="#/core">Core Reports</a></li>
-        <li class="navItem"><a href="#/custom">Custom Reports</a></li>
-        <li class="navItem"><a href="#/manage" ng-if="nc.userObject.admin">Manage Users</a></li> 
-        <li class="navItem"><a href="" id="logout" ng-click="nc.userService.logout()">Log Out</a></li>
-      </ul>
+
+      <ul>
+        <li><a href="#/user">User Home</a></li>
+        <li><a href="#/new">New Form</a></li>
+        <li><a href="#/edit">Edit Form</a></li>        
+        <li><a href="#/core">Core Reports</a></li>
+        <li><a href="#/custom">Custom Reports</a></li>
+        <li><a href="#/manage" ng-if="nc.userObject.admin">Manage Users</a></li> 
+        <!-- shara added to line above -->
+        <md-button class="btn btn-default" id="logout" ng-click="nc.userService.logout()">Log Out</md-button>                
+      </ul> 
     </div>
-  </div>
+ 
 </div>
   
 </div>
