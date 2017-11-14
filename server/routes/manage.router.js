@@ -48,12 +48,12 @@ router.get('/', function(req, res) {
                 })
             }
         });
-    }
-    else {
-        console.log('not logged in');
-        res.send(false);
-    }
+      } else {
+    console.log('not logged in');
+    res.send(false);
+  }
 });
+
 
 router.post('/', function (req, res) {
   if (req.isAuthenticated()) {

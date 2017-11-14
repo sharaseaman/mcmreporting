@@ -50,11 +50,11 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
       margin-top: 0; 
   }
   
-  #MCMCaseNumber, #Age, #StateMissingFrom, #CountyMissingFrom, 
+  /* #MCMCaseNumber, #Age, #StateMissingFrom, #CountyMissingFrom, 
   #CityMissingFrom, #SchoolDistrictWhereChildWasEnrolled, 
   #LawEnforcementAgencyonCase, #FamilyMembersInvolvedInSearch {
     border: 2px solid red;    
-  }
+  } */
   .form-group{
     padding: 18px;
     margin: 10px;
@@ -124,11 +124,11 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
     height: 100px;    
   }
   
-  .navbar {
+  md-nav-bar {
     background-color: lightgoldenrodyellow;
     width: 100%;
     border-radius: 0px;
-  }
+    margin-left: 20px;  }
   
   ul {
     list-style-type: none;
@@ -139,6 +139,10 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
   
   li {
     float: left;
+  }
+
+  li:last-child {
+    float: right;
   }
   
   li a {
