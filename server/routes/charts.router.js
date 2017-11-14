@@ -58,7 +58,7 @@ router.get('/join_tables_reports', function(req, res) {
 //get for custom tables
 router.get('/custom', function (req, res) {
   var custom = req.body;
-  console.log('In Post for new intake', newIntake);
+  console.log('In Get for custom info', newIntake);
   // check if logged in
   if (req.isAuthenticated()) {
     pool.connect(function (conErr, client, done) {
@@ -67,35 +67,79 @@ router.get('/custom', function (req, res) {
       } else {
         var queryArray = []
         var valueArray = []
-        if (custom.type !== undefined) {
-          'WHERE type = $1'
-          queryArray.push(type);
-          valueArray.push(custom.type);
+        var tempArray = []
+        if (custom.start_case_type !== undefined) {
+          var start_case_type = 'WHERE start_case_type = $'
+          tempArray.push(start_case_type);
+          valueArray.push(custom.start_case_type);
         }
-        
-
+        if (custom.state  !== undefined) {
+          var state  = 'WHERE age = $'
+          tempArray.push(state);
+          valueArray.push(custom.state);
         }
-
-
-        var sqlQuery = 'SELECT * FROM case_data WHERE'
+        if (custom.county_name !== undefined) {
+          var county_name = '(SELECT id FROM counties WHERE county = $'
+          tempArray.push(county_name);
+          valueArray.push(gender.county_name);
+        }
+        if (custom.school_name !== undefined) {
+          var school_name = '(SELECT id FROM schools WHERE school = $'
+          tempArray.push(school_name);
+          valueArray.push(custom.school_name);
+        }
+        if (custom.age !== undefined) {
+          var age = 'WHERE age = $'
+          tempArray.push(age);
+          valueArray.push(custom.age);
+        }
+        if (custom.gender !== undefined) {
+          var gender = 'WHERE gender = $'
+          tempArray.push(gender);
+          valueArray.push(custom.gender);
+        }
+        if (custom.referral_type !== undefined) {
+          var referral_type = 'WHERE referral_type = $'
+          tempArray.push(referral_type);
+          valueArray.push(referral_type);
+        } // end list of queries
         
-        client.query(sqlQuery, valueArray, function (queryErr, resultObj) {
-          done();
-          if (queryErr) {
-            res.sendStatus(500);
-          } else {
-            res.sendStatus(202);
-          }
-        });
-      }
-    })
+        createQuery();   
+      } //end pool else
+    }) //end pool.connect
+    } else {
+      console.log('not logged in');
+      res.send(false);//end if pool
+  } //end get custom charts - pairs w 59
+ 
+//_____________________
+
+var createQuery = function() { 
+  tempArray.forEach(function(currentValue, index, array) {  
+    if (currentValue == '(SELECT id FROM counties WHERE county = $' || '(SELECT id FROM schools WHERE school = $') {
+      count++
+      queryArray.push(currentValue+count+')')
+      console.log('this is the if statement')
+    } else {
+    count++
+    queryArray.push(currentValue+count)
+    console.log('this is the else statement')
+    } //end else 
+    var query = queryArray.join(', ');
+    console.log('query', query);
+    var sqlQuery = 'SELECT * FROM case_data' + query
+    client.query(sqlQuery, valueArray, function (queryErr, resultObj) {
+    done();
+    if (queryErr) {
+    res.sendStatus(500);
   } else {
-    // failure best handled on the server. do redirect here.
-    console.log('not logged in');
-    // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
-    res.send(false);
-  }
-}); //end /newIntake
+    res.send(resultObj.rows);
+  } //if/else
+  }) //client query
+  }) //end tempArray.forEach
+}; //end create query
 
 
 module.exports = router;
+
+
