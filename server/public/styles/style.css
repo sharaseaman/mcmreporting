@@ -2,11 +2,40 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: "PT Sans", Arial, Helvetica, sans-serif;
-  }
+  };
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
 
   .myApp md-content {
     background-color: transparent !important; 
   }
+
+.chartNotes {
+    color: #666 !important;
+  }
+
+  md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+    color: #147d91 !important;
+    background-color: #147d91 !important;
+}
+
+md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active
+{
+  color: #147d91 !important;
+}
 
   .myApp md-content md-tabs {
       background: #f6f6f6;
