@@ -1,24 +1,13 @@
 <div ng-app="myApp">
 <div ng-controller="NavController as nc">
 <!-- <div class="navbar"> -->
-    <md-nav-bar md-selected-nav-item="currentNavItem">
-        <md-toolbar class="md-hue-2">
-            <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-                <md-nav-item md-nav-href="#/user">User Home</md-nav-item>
-                <md-nav-item md-nav-href="#/new">New Form</md-nav-item>
-                <md-nav-item md-nav-href="#/edit">Edit Form</md-nav-item>
-                <md-nav-item md-nav-href="#/core">Core Reports</md-nav-item>                         
-                <md-nav-item md-nav-href="#/custom">Custom Reports</md-nav-item>
-                <md-nav-item md-nav-href="#/manage" ng-if="nc.userObject.admin">Manage Users</md-nav-item>                
-              </md-nav-bar>
-        </md-toolbar>
-    </md-content>
-  </md-nav-bar>
+    
   
 
     <!-- <div class="container"> -->
 
-      <!-- <ul>
+
+      <ul>
         <li><a href="#/user">User Home</a></li>
         <li><a href="#/new">New Form</a></li>
         <li><a href="#/edit">Edit Form</a></li>        
@@ -26,11 +15,10 @@
         <li><a href="#/custom">Custom Reports</a></li>
         <li><a href="#/manage" ng-if="nc.userObject.admin">Manage Users</a></li> 
         <!-- shara added to line above -->
-        <!-- <md-button class="btn btn-default" id="logout" ng-click="nc.userService.logout()">Log Out</md-button>                
-      </ul> --> 
-    <!-- </div> -->
-  
-  <!-- </div> -->
+        <md-button class="btn btn-default" id="logout" ng-click="nc.userService.logout()">Log Out</md-button>                
+      </ul> 
+    </div>
+ 
 </div>
   
 </div>
