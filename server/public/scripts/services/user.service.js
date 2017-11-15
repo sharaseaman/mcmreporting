@@ -152,19 +152,10 @@ myApp.service('UserService', function ($http, $location) {
         })
   };
 
-  self.getStackedChart = function (data, xAxisDataPoint, yAxisDataPoint) {
+  self.getStackedChart = function (data, xAxisLabel, yAxisFilter) {
     console.log('data',data);
-    console.log('xAxisDataPoint', xAxisDataPoint);
-    console.log('yAxisDataPoint', yAxisDataPoint);
-
-    data.forEach(function(element, yAxisDataPoint){
-      console.log(data.element.yAxisDataPoint)
-    //   if (data.yAxisDataPoint === true){
-    //     console.log('true')
-    //   } else {
-    //     console.log('false')
-    //   }
-    })
+    console.log('xAxisLabel', xAxisLabel);
+    console.log('yAxisFilter', yAxisFilter);
 
   };
 
@@ -287,8 +278,7 @@ myApp.service('UserService', function ($http, $location) {
     }).then(function (response) {
       console.log('Response', response);
     })
-  }
-
+  };
 
   self.logout = function () {
     console.log('UserService -- logout');
@@ -321,7 +311,7 @@ myApp.service('UserService', function ($http, $location) {
     }).then(function (response) {
       console.log('Response', response);
     })
-  }
+  };
 
   // updates the admin priviledges 
   self.updatePriviledges = function (user) {
@@ -332,7 +322,7 @@ myApp.service('UserService', function ($http, $location) {
     }).then(function (response) {
       console.log('Response', response.data);
     })
-  }
+  };
 
   // deletes the user from the db
   self.deleteUser = function (user) {
@@ -345,17 +335,6 @@ myApp.service('UserService', function ($http, $location) {
     }).then(function (response) {
       console.log('Delete Response', response.data);
     })
-  }
-
-
-
-
-
-
-
-
-
-
-
+  };
 
 });
