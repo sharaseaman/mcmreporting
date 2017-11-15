@@ -90,17 +90,17 @@ router.post('/custom', function (req, res) {
           valueArray.push(custom.school_name);
         }
         if (custom.age !== undefined) {
-          var age$ = 'WHERE age = $'
+          var age$ = ' age = $'
           tempArray.push(age$);
           valueArray.push(custom.age);
         }
         if (custom.gender !== undefined) {
-          var gender$ = 'WHERE gender = $'
+          var gender$ = ' gender = $'
           tempArray.push(gender$);
           valueArray.push(custom.gender);
         }
         if (custom.referral_type !== undefined) {
-          var referral_type$ = 'WHERE referral_type = $'
+          var referral_type$ = ' referral_type = $'
           tempArray.push(referral_type$);
           valueArray.push(custom.referral_type);
         } // end list of queries
