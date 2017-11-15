@@ -212,9 +212,10 @@ myApp.controller('NewController', function (UserService) {
 
           vm.formatDateLastSeenIn = (vm.DateLastSeenIn.getMonth()+1) + '/' + vm.DateLastSeenIn.getDate() + '/' + vm.DateLastSeenIn.getFullYear();
 
+          vm.formatDateCaseClosedIn = (vm.DateCaseClosedIn.getMonth()+1) + '/' + vm.DateCaseClosedIn.getDate() + '/' + vm.DateCaseClosedIn.getFullYear();
+
           vm.formatTimeLastSeenIn = vm.TimeLastSeenIn.toLocaleTimeString('en-US',{hour: '2-digit', minute:'2-digit', hour12: true });
 
-         
           
 
            //logo
@@ -246,15 +247,15 @@ myApp.controller('NewController', function (UserService) {
             pdf.setFontSize(12);            
             pdf.text(10, 70, 'Name of Missing Person: ' + vm.NameIn);
             
-            pdf.text(10, 80, 'Date of Dissapearance: ' + vm.formatDateofDissapearanceIn);
+            pdf.text(10, 80, 'Date of Dissapearance: ' + vm.formatDateofDisappearanceIn);
             pdf.text(90, 80, 'Date Reported To Police: ' + vm.formatDateReportedMissingtoPoliceIn); 
             
             pdf.text(10, 90, 'Date Last Seen: ' + vm.formatDateLastSeenIn);
             pdf.text(90, 90, 'Time Last Seen: ' + vm.formatTimeLastSeenIn); 
 
-            pdf.text(10, 100, 'Family Involved In Search: ' + vm.FamilyMembersInvolvedInSearch); 
+            pdf.text(10, 100, 'Family Involved In Search: ' + vm.FamilyMembersInvolvedInSearchIn); 
   
-            pdf.text(10, 110, 'Location Last Seen/Cross St: ' + vm.LocationLastSeenCrossStIn);
+            pdf.text(10, 110, 'Location Last Seen/Cross St:  ' + vm.LocationLastSeenCrossStIn);
             
             pdf.text(10, 120, 'State Missing From: ' + vm.StateMissingFromIn); 
             pdf.text(100, 120, 'City Missing From: ' + vm.CityMissingFromIn); 
@@ -293,7 +294,7 @@ myApp.controller('NewController', function (UserService) {
             // pdf.text(10, 240, setOtherInfoIn)
             pdf.text(10,240, 'Additional Information: ');
             var formatOtherInfoIn =  vm.OtherInfoIn;
-            var setOtherInfoIn = pdf.splitTextToSize(formatOtherInfoIn, 206);
+            var setOtherInfoIn = pdf.splitTextToSize(formatOtherInfoIn, 200);
             pdf.text(10,250, setOtherInfoIn);
             
 
@@ -320,12 +321,12 @@ myApp.controller('NewController', function (UserService) {
             pdf.setFontSize(12);                        
             pdf.text(10, 70, 'Law Enforcement Agency: ' + vm.LawEnforcementAgencyonCaseIn);
             pdf.text(110, 70, 'Case Number: ' + vm.CaseNumberIn);            
-            pdf.text(10, 80, 'Other: ' + vm.OtherIn);            
-            pdf.text(10, 90, 'Officer/Detective: ');
-            // pdf.line(43,92, 190,92);
-            pdf.text(10,100, 'LE Phone Number: ' + vm.LEPhoneNumberIn);   
-            pdf.text(10,110, 'Street Address: ' + vm.StreetAddressIn);
-            pdf.text(10,120, 'Jurisdictional Denial?: ' + vm.JurisdictionalDenialIn);
+            pdf.text(10, 80, 'Officer/Detective: ' + vm.OfficeDetectiveIn);
+            pdf.text(10,90, 'LE Phone Number: ' + vm.LEPhoneNumberIn);   
+            pdf.text(10,100, 'Street Address: ' + vm.StreetAddressIn);
+            pdf.text(10,110, 'Jurisdictional Denial?: ' + vm.JurisdictionalDenialIn);
+            pdf.text(10, 120, 'Other: ' + vm.OtherLEIn);            
+            
             pdf.line(10, 128, 206, 128);
             
             //case info
@@ -334,26 +335,24 @@ myApp.controller('NewController', function (UserService) {
             pdf.text(10, 140, 'Case Information ');
             pdf.setFontType('normal');  
             pdf.setFontSize(12);
-            pdf.text(10,150, 'Case Type When Opened: ' + vm.CaseTypeWhenOpenedIn);
-            pdf.text(10,160, 'Case Type When Closed: ' + vm.CaseTypeWhenClosedIn);
+            pdf.text(10,150, 'Case Type When Opened:  ' + vm.CaseTypeWhenOpenedIn);
+            pdf.text(10,160, 'Case Type When Closed:   ' + vm.CaseTypeWhenClosedIn);
             pdf.text(10,170, 'Case Status: ' + vm.CaseStatusIn);
-            pdf.text(100,170, 'Date Case Closed: ' + vm.DateCaseClosedIn);  //add date function            
+            pdf.text(100,170, 'Date Case Closed: ' + vm.formatDateCaseClosedIn);  //add date function           
             pdf.text(10,180, 'Case Disposition: ' + vm.CaseStatusIn);
-            pdf.text(10,190, 'Referral Type: ' + vm.CaseStatusIn);
-            pdf.line(10, 198, 206, 198);
+            pdf.text(100,180, 'Referral Type:     ' + vm.ReferralTypeIn);
+            pdf.line(10, 188, 206, 188);
             
             // Specific Questions to Occurrence
             pdf.setFontType('bold');
             pdf.setFontSize(14);  
-            pdf.text(10, 210, 'Specific Questions to Occurrence');
+            pdf.text(10, 200, 'Specific Questions to Occurrence');
             pdf.setFontType('normal');  
             pdf.setFontSize(12);
-            pdf.text(10,220, 'Was the person with anyone?: ' + vm.WithOthersIn);
-            pdf.text(10,230, 'Who ' + vm.commentWithOthersIn);
-            pdf.text(10,240, 'High Risk Activity In? ' + vm.HighRiskActivityIn);
-            pdf.text(10,250, 'Comment: ' + vm.commentHighRiskIn);
-            pdf.text(10,260, 'DisturbingSituationIn: ' + vm.DisturbingSituationIn);
-            pdf.text(10,270, 'Comment: ' + vm.commentDisturbingIn);
+            pdf.text(10,210, 'Was the person with anyone?: ' + vm.commentWithOthersIn);
+            pdf.text(10,220, 'High Risk Activity? ' + vm.commentHighRiskIn);
+            pdf.text(10,230, 'Disturbing Situation: ' + vm.DisturbingSituationIn);
+            pdf.text(10,240, 'Additional Comment: ' + vm.commentSpecificQuestions);
             
           //page 3
           pdf.addPage();
