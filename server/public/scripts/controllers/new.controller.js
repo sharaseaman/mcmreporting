@@ -214,10 +214,7 @@ myApp.controller('NewController', function (UserService) {
 
           vm.formatTimeLastSeenIn = vm.TimeLastSeenIn.toLocaleTimeString('en-US',{hour: '2-digit', minute:'2-digit', hour12: true });
 
-          var formatOtherInfoIn =  vm.OtherInfoIn;
-          
-                  // This line works. Try generating PDF.
-            var setOtherInfoIn = pdf.splitTextToSize(formatOtherInfoIn, 226)
+         
           
 
            //logo
@@ -256,7 +253,7 @@ myApp.controller('NewController', function (UserService) {
             pdf.text(90, 90, 'Time Last Seen: ' + vm.formatTimeLastSeenIn); 
 
             pdf.text(10, 100, 'Family Involved In Search: ' + vm.FamilyMembersInvolvedInSearch); 
-            
+  
             pdf.text(10, 110, 'Location Last Seen/Cross St: ' + vm.LocationLastSeenCrossStIn);
             
             pdf.text(10, 120, 'State Missing From: ' + vm.StateMissingFromIn); 
@@ -287,17 +284,16 @@ myApp.controller('NewController', function (UserService) {
             pdf.text(80, 180, 'Facial Hair: ' + vm.FacialHairIn);
             pdf.text(130, 180, 'Eye Brow Features: ' + vm.EyeBrowFeatures);
             pdf.text(10, 190, 'Glasses/Contacts?: ' + vm.GlassesOrContactsIn);
-            pdf.text(10, 200, 'Tattoos or Piercings: ' + vm.TattoosOrPiercingsIn);
-            pdf.text(80, 200, 'Description: ' + vm.commentTattoosIn);
-            pdf.line();
+          
+            pdf.text(10, 200, 'Tattoos or Piercings: ' + vm.commentTattoosIn);
             pdf.text(10, 210, 'Dental Characteristics: ' + vm.DentalCharacteristicsIn);
             pdf.text(10, 220, 'Scars or Birthmarks: ' + vm.ScarsOrBirthmarksIn);
-            pdf.text(80, 220, 'Description: ');
-            pdf.line(10, 230, 206, 230);
+            pdf.line(10, 230, 206, 230); 
            
             // pdf.text(10, 240, setOtherInfoIn)
             pdf.text(10,240, 'Additional Information: ');
-            
+            var formatOtherInfoIn =  vm.OtherInfoIn;
+            var setOtherInfoIn = pdf.splitTextToSize(formatOtherInfoIn, 206);
             pdf.text(10,250, setOtherInfoIn);
             
 
