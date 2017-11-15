@@ -254,10 +254,10 @@ myApp.controller('NewController', function (UserService) {
             pdf.text(10, 110, 'Location Last Seen/Cross St: ' + vm.LocationLastSeenCrossStIn);
             
             pdf.text(10, 120, 'State Missing From: ' + vm.StateMissingFromIn); 
-            pdf.text(70, 120, 'City Missing From: ' + vm.CityMissingFromIn); 
+            pdf.text(100, 120, 'City Missing From: ' + vm.CityMissingFromIn); 
             pdf.text(10, 130, 'County Missing From: ' + vm.CountyMissingFromIn); 
 
-            pdf.text(125, 130, 'School District of Child: ' + vm.SchoolDistrictWhereChildWasEnrolledIn); 
+            pdf.text(100, 130, 'School District of Child: ' + vm.SchoolDistrictWhereChildWasEnrolledIn); 
             
             pdf.text(10, 140, 'Age: ' + vm.AgeIn); 
             pdf.text(50, 140, 'Gender: ' + vm.GenderIn);
@@ -310,23 +310,117 @@ myApp.controller('NewController', function (UserService) {
 
             pdf.setFontType('bold');
             pdf.setFontSize(14);                        
-            pdf.text(10,210, 'Reporting Law Enforcement') 
+            pdf.text(10, 60, 'Reporting Law Enforcement') 
             pdf.setFontType('normal');  
             pdf.setFontSize(12);                        
-            pdf.text(10, 220, 'Other: ' + vm.OtherIn);
-            pdf.text(50,220, 'Law Enforcement Agency:' + vm.LawEnforcementAgencyonCaseIn);
-            pdf.text(10, 230, 'Case Number: ' + vm.CaseNumberIn);
-            pdf.text(10, 240, 'Officer/Detective:');
-            pdf.line(42,241, 190,241);
-            pdf.text(10,250, 'LE Phone Number' + vm.LEPhoneNumberIn);   
-            pdf.text(10,260, 'Street Address:' + vm.StreetAddressIn);
-            pdf.text(10,270, 'Jurisdictional Denial?:' + vm.JurisdictionalDenialIn);
-            pdf.text(10,280, 'Case Type When Opened:' + vm.CaseTypeWhenOpenedIn);
-            pdf.text(10,290, 'Case Type When Closed:' + vm.CaseTypeWhenClosedIn);
-            pdf.text(10,300, 'Case Status:' + vm.CaseStatusIn);
-            pdf.text(10,310, 'Case Disposition:' + vm.CaseStatusIn);
-            pdf.text(10,320, 'Referral Type:' + vm.CaseStatusIn);
+            pdf.text(10, 70, 'Law Enforcement Agency: ' + vm.LawEnforcementAgencyonCaseIn);
+            pdf.text(110, 70, 'Case Number: ' + vm.CaseNumberIn);            
+            pdf.text(10, 80, 'Other: ' + vm.OtherIn);            
+            pdf.text(10, 90, 'Officer/Detective: ');
+            // pdf.line(43,92, 190,92);
+            pdf.text(10,100, 'LE Phone Number: ' + vm.LEPhoneNumberIn);   
+            pdf.text(10,110, 'Street Address: ' + vm.StreetAddressIn);
+            pdf.text(10,120, 'Jurisdictional Denial?: ' + vm.JurisdictionalDenialIn);
+            pdf.line(10, 128, 180, 128);
             
+            //case info
+            pdf.setFontType('bold');
+            pdf.setFontSize(14);   
+            pdf.text(10, 140, 'Case Information ');
+            pdf.setFontType('normal');  
+            pdf.setFontSize(12);
+            pdf.text(10,150, 'Case Type When Opened: ' + vm.CaseTypeWhenOpenedIn);
+            pdf.text(10,160, 'Case Type When Closed: ' + vm.CaseTypeWhenClosedIn);
+            pdf.text(10,170, 'Case Status: ' + vm.CaseStatusIn);
+            pdf.text(100,170, 'Date Case Closed: ' + vm.DateCaseClosedIn);  //add date function            
+            pdf.text(10,180, 'Case Disposition: ' + vm.CaseStatusIn);
+            pdf.text(10,190, 'Referral Type: ' + vm.CaseStatusIn);
+            pdf.line(10, 198, 180, 198);
+            
+            // Specific Questions to Occurrence
+            pdf.setFontType('bold');
+            pdf.setFontSize(14);  
+            pdf.text(10, 210, 'Specific Questions to Occurrence');
+            pdf.setFontType('normal');  
+            pdf.setFontSize(12);
+            pdf.text(10,220, 'Was the person with anyone?: ' + vm.WithOthersIn);
+            pdf.text(10,230, 'Who ' + vm.commentWithOthersIn);
+            pdf.text(10,240, 'High Risk Activity In? ' + vm.HighRiskActivityIn);
+            pdf.text(10,250, 'Comment: ' + vm.commentHighRiskIn);
+            pdf.text(10,260, 'DisturbingSituationIn: ' + vm.DisturbingSituationIn);
+            pdf.text(10,270, 'Comment: ' + vm.commentDisturbingIn);
+            
+          //page 3
+          pdf.addPage();
+          //page 3 header
+          pdf.addImage(imgData, 'JPEG', 5, 10, 60,30);   
+          pdf.setFontType('bold');  
+          pdf.setFontSize(18);         
+          pdf.text(70, 25, 'Missing Persons Intake Form');
+          pdf.setFontSize(12);
+          pdf.setFontType('bold');            
+          pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);  
+          pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);
+          pdf.line(10, 48, 180, 48);
+          // end of page 3 header
+         
+          // //page 3 input
+          // //Clothing Worn When Last Seen
+          pdf.setFontType('bold');
+          pdf.setFontSize(14);                        
+          pdf.text(10, 60, 'Clothing Worn When Last Seen') 
+          pdf.setFontType('normal');  
+          pdf.setFontSize(12);                        
+          pdf.text(10, 70, 'Jacket/Coat: ' + vm.JacketCoatIn );
+          pdf.text(110, 70, 'Shirt/Blouse: ' + vm.ShirtBlouseIn);            
+          pdf.text(10, 80, 'Pants/Skirt: ' + vm.PantsSkirtIn);            
+          pdf.text(10, 90, 'Jewelry: ' + vm.JewelryIn);
+          pdf.text(10,100, 'BackPack/Purse: ' + vm.BackpackPurseIn);   
+          pdf.text(10,110, 'Hat/Other Accessories: ' + vm.HatOtherIn);
+          pdf.text(10,120, 'Other: ' + vm.addOtherIn);
+          pdf.line(10, 128, 180, 128);
+
+          // //Vehicle Information
+          pdf.setFontType('bold');
+          pdf.setFontSize(14);   
+          pdf.text(10, 140, 'Vehicle Information ');
+          pdf.setFontType('normal');  
+          pdf.setFontSize(12);
+          pdf.text(10,150, 'Year: ' + vm.VehicleYearIn);
+          pdf.text(50,150, 'Make: ' + vm.VehicleMakeIn);
+          pdf.text(90,150, 'Model: ' + vm.VehicleModelIn);
+          pdf.text(130,150, 'License #: ' + vm.VehicleLicenseIn);  
+          pdf.text(10,160, 'Color: ');  //add vm for color
+          pdf.text(50,160, 'Photo Available? ' + vm.PhotoAvailableIn);
+          pdf.line(10, 168, 180, 168);
+          
+          //History
+          pdf.setFontType('bold');
+          pdf.setFontSize(14);  
+          pdf.text(10, 180, 'Specific Questions to Occurrence');
+          pdf.setFontType('normal');  
+          pdf.setFontSize(12);
+          pdf.text(10,190, 'Has this person left before? ' );
+          // pdf.text(10,190, vm.WithOthersIn + vmcommentWithOthersIn);
+          pdf.text(10,200, 'Where were they found? ' + vm.HighRiskActivityIn);
+          pdf.text(80,200, 'Known Companions: ' + vm.commentHighRiskIn);
+          pdf.text(10,210, 'Disablity? ' + vm.DisturbingSituationIn);
+          pdf.text(80,210, 'Comment: ' + vm.commentDisturbingIn);
+          pdf.text(10,220, 'Mental Illness? ' + vm.DisturbingSituationIn);
+          pdf.text(80,220, 'Comment: ' + vm.commentDisturbingIn);
+          pdf.text(10,230, 'Life threatening conditions? ' + vm.DisturbingSituationIn);
+          pdf.text(80,230, 'Comment: ' + vm.commentDisturbingIn);    
+          pdf.text(10,240, 'Medications: ' + vm.DisturbingSituationIn);
+          pdf.text(10,250, 'Has this person ever been a victim of abuse? ' + vm.DisturbingSituationIn);
+          pdf.text(80,250, 'Comment ' + vm.DisturbingSituationIn);
+          
+
+          //Vulnerabilities
+          
+          //Person Requesting Assistance In Juvenile Case Under The Age Of 18 Years
+
+
+          //name / signture / date / referred by
 
             pdf.save();
         }
