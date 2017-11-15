@@ -55,6 +55,14 @@ myApp.service('UserService', function ($http, $location) {
   };
 
 
+// self.postVulnerabilities = function (vulnerabilities) {
+//   return $http({
+//     method: 'POST',
+//     url: '/forms/newVulnerabilities',
+//     data: vulnerabilities
+//   })
+// };
+
 
 
 
