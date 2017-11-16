@@ -96,7 +96,9 @@ router.get('/join_vulnerability', function (req, res) {
             res.sendStatus(500);
           } else {
             res.send(resultObj.rows);
+            console.log ('result', resultObj.rows)
           }
+
         });
       }
     })
@@ -159,12 +161,12 @@ router.post('/custom', function (req, res) {
           valueArray.push(custom.state)
         }
         if (custom.county_name !== undefined) {
-          var county_name$ = '(SELECT id FROM counties WHERE county = $'
+          var county_name$ = '(SELECT id FROM counties WHERE county_name = $'
           tempArray.push(county_name$);
           valueArray.push(custom.county_name);
         }
         if (custom.school_name !== undefined) {
-          var school_name$ = '(SELECT id FROM schools WHERE school = $'
+          var school_name$ = '(SELECT id FROM schools WHERE school_name = $'
           tempArray.push(school_name$);
           valueArray.push(custom.school_name);
         }
@@ -184,13 +186,35 @@ router.post('/custom', function (req, res) {
           valueArray.push(custom.referral_type);
         } // end if list
 
+      
         tempArray.forEach(function (currentValue, index, array) {
           console.log('line 113, currentValue', currentValue)
-          if (currentValue === '(SELECT id FROM counties WHERE county = $' || '(SELECT id FROM schools WHERE school = $' || 'law_enforcement.id = (SELECT id FROM law_enforcement WHERE agency = $'||'race_ethnicity.id = (SELECT id FROM race_ethnicity WHERE race_ethnicity = $' || 'vulnerability.id = (SELECT id FROM vulnerabilities WHERE vulnerability = $') {
+          if (currentValue === '(SELECT id FROM counties WHERE county = $')  {
             count++
             queryArray.push(currentValue + count + ')')
-            console.log('this is the if statement')
-          } else {
+            console.log('this is the county if statement')
+          } 
+          if (currentValue === '(SELECT id FROM schools WHERE school_name = $')  {
+            count++
+            queryArray.push(currentValue + count + ')')
+            console.log('this is the school if statement')  
+          }
+          if (currentValue === 'law_enforcement.id = (SELECT id FROM law_enforcement WHERE agency = $')  {
+            count++
+            queryArray.push(currentValue + count + ')')
+            console.log('this is the agency if statement')
+          } 
+          if (currentValue === 'race_ethnicity.id = (SELECT id FROM race_ethnicity WHERE race_ethnicity = $')  {
+            count++
+            queryArray.push(currentValue + count + ')')
+            console.log('this is the race/ethnicity if statement')
+          } 
+          if (currentValue === 'vulnerability.id = (SELECT id FROM vulnerabilities WHERE vulnerability = $')  {
+            count++
+            queryArray.push(currentValue + count + ')')
+            console.log('this is the vulnerability if statement')
+          }
+          else {
             count++
             queryArray.push(currentValue + count)
             console.log('this is the else statement')
@@ -204,7 +228,7 @@ router.post('/custom', function (req, res) {
         
           client.query(sqlQuery, valueArray, function (queryErr, resultObj) {
             done();
-            console.log('resultObj', resultObj)
+            console.log('resultObj', resultObj.rows)
             if (queryErr) {
               res.sendStatus(500);
             } else {
