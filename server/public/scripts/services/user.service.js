@@ -29,7 +29,6 @@ myApp.service('UserService', function ($http, $location) {
     })
   };
 
-
   self.getAgencies = function () {
     return $http({
       method: 'GET',
@@ -317,6 +316,7 @@ myApp.service('UserService', function ($http, $location) {
       url: "/charts/custom",
       data: userCustomFilters
     }).then(function (res) {
+      console.log('response', res)
       self.customReport.data = res.data
     })
   };

@@ -161,12 +161,12 @@ router.post('/custom', function (req, res) {
           valueArray.push(custom.state)
         }
         if (custom.county_name !== undefined) {
-          var county_name$ = '(SELECT id FROM counties WHERE county = $'
+          var county_name$ = '(SELECT id FROM counties WHERE county_name = $'
           tempArray.push(county_name$);
           valueArray.push(custom.county_name);
         }
         if (custom.school_name !== undefined) {
-          var school_name$ = '(SELECT id FROM schools WHERE school = $'
+          var school_name$ = '(SELECT id FROM schools WHERE school_name = $'
           tempArray.push(school_name$);
           valueArray.push(custom.school_name);
         }
@@ -194,7 +194,7 @@ router.post('/custom', function (req, res) {
             queryArray.push(currentValue + count + ')')
             console.log('this is the county if statement')
           } 
-          if (currentValue === '(SELECT id FROM schools WHERE school = $')  {
+          if (currentValue === '(SELECT id FROM schools WHERE school_name = $')  {
             count++
             queryArray.push(currentValue + count + ')')
             console.log('this is the school if statement')  
