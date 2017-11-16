@@ -28,7 +28,7 @@ myApp.controller('NewController', function (UserService) {
     vm.EyeColorIn = '';
     vm.RaceEthnicityIn = '';
     vm.FacialHairIn = '';
-    vm.EyeBrowFeaturesIn = '';
+    vm.EyeBrowFeatures = '';
     vm.GlassesOrContactsIn = '';
     vm.TattoosOrPiercingsIn = '';
     vm.commentTattoosIn = '';  //ng model
@@ -52,6 +52,7 @@ myApp.controller('NewController', function (UserService) {
     vm.HighRiskActivityIn = '';
     vm.commentHighRiskIn = '';
     vm.DisturbingSituationIn = '';
+    vm.commentSpecificQuestions = '';
     vm.commentDisturbingIn = '';
     vm.JacketCoatIn = '';
     vm.ShirtBlouseIn = '';
@@ -60,18 +61,21 @@ myApp.controller('NewController', function (UserService) {
     vm.BackpackPurseIn = '';
     vm.HatOtherIn = '';
     vm.addOtherIn = '';
+    vm.VehicleYearIn = '';
     vm.VehicleMakeIn = '';
     vm.VehicleModelIn = '';
     vm.VehicleMakeIn = '';
+    vm.vehicleColorIn = '';
     vm.VehicleLicenseIn = '';
     vm.PhotoAvailableIn = '';
     vm.LeftBeforeIn = '';
     vm.commentLengthIn = '';
     vm.commentPreviouslyFoundIn = '';
     vm.commentKnownCompanionsIn = '';
+    vm.DisabilityMentalIn = '';
     vm.LeftBeforeIn = '';
     vm.LifeThreateningIn = '';
-    vm.commentMedicationsIn ='';
+    vm.MedicationsIn ='';
     vm.AbuseIn = '';
     vm.commentAbuseIn = '';
     vm.ADDIn = '';
@@ -105,6 +109,7 @@ myApp.controller('NewController', function (UserService) {
     vm.PRAHomePhoneIn = '';
     vm.PRACellPhoneIn = '';
     vm.PRAEmailIn = '';
+    vm.OtherHistoryIn = '';
 
 
   vm.case_vulnerabilities = [{ name: "ADD/ADHD", value: false }, { name: "ASD", value: false }, { name: "Alcohol use/abuse", value: false},
@@ -250,6 +255,8 @@ myApp.controller('NewController', function (UserService) {
     
         vm.printPDF = function () {
 
+          
+
           vm.formatDateofIntaketoMCMIn = (vm.DateofIntaketoMCMIn.getMonth()+1) + '/' + vm.DateofIntaketoMCMIn.getDate() + '/' + vm.DateofIntaketoMCMIn.getFullYear();
           
            vm.formatDateofDisappearanceIn = (vm.DateofDisappearanceIn.getMonth()+1) + '/' + vm.DateofDisappearanceIn.getDate() + '/' + vm.DateofDisappearanceIn.getFullYear();
@@ -280,7 +287,7 @@ myApp.controller('NewController', function (UserService) {
             pdf.setFontSize(12);
             pdf.setFontType('bold');            
             pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);  
-            pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);
+            pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn); //vm.formatDateofIntaketoMCMIn
             pdf.line(10, 48, 206, 48);
 
             //end header
@@ -293,15 +300,15 @@ myApp.controller('NewController', function (UserService) {
             pdf.setFontSize(12);            
             pdf.text(10, 70, 'Name of Missing Person: ' + vm.NameIn);
             
-            pdf.text(10, 80, 'Date of Dissapearance: ' + vm.formatDateofDisappearanceIn);
-            pdf.text(90, 80, 'Date Reported To Police: ' + vm.formatDateReportedMissingtoPoliceIn); 
+            pdf.text(10, 80, 'Date of Disappearance: ' + vm.formatDateofDisappearanceIn);//vm.formatDateofDisappearanceIn
+            pdf.text(90, 80, 'Date Reported To Police: ' + vm.formatDateReportedMissingtoPoliceIn);//+ vm.formatDateReportedMissingtoPoliceIn
             
-            pdf.text(10, 90, 'Date Last Seen: ' + vm.formatDateLastSeenIn);
-            pdf.text(90, 90, 'Time Last Seen: ' + vm.formatTimeLastSeenIn); 
+            pdf.text(10, 90, 'Date Last Seen: ' + vm.formatDateLastSeenIn); //+ vm.formatDateLastSeenIn
+            pdf.text(90, 90, 'Time Last Seen: ' + vm.formatTimeLastSeenIn); //+ vm.formatTimeLastSeenIn
 
             pdf.text(10, 100, 'Family Involved In Search: ' + vm.FamilyMembersInvolvedInSearchIn); 
   
-            pdf.text(10, 110, 'Location Last Seen/Cross St:  ' + vm.LocationLastSeenCrossStIn);
+            pdf.text(10, 110, 'Location Last Seen/Cross St.:  ' + vm.LocationLastSeenCrossStIn);
             
             pdf.text(10, 120, 'State Missing From: ' + vm.StateMissingFromIn); 
             pdf.text(100, 120, 'City Missing From: ' + vm.CityMissingFromIn); 
@@ -314,14 +321,13 @@ myApp.controller('NewController', function (UserService) {
             pdf.text(90, 140, 'Ht: ' + vm.HeightIn); 
             pdf.text(130, 140, 'Wt: ' + vm.WeightIn);
 
-            // pdf.text(10, 150, 'Other: ' + vm.OtherIn);
             
             //Distinguishing Characteristics 
             pdf.setFontType('bold');
             pdf.setFontSize(14);    
             pdf.line(10, 150, 206, 150);
             
-            pdf.text(10,160, 'Distinguishing Characteristics') //add ' to persons shara
+            pdf.text(10,160, 'Distinguishing Characteristics') 
             pdf.setFontType('normal');
             pdf.setFontSize(12);
             pdf.text(10, 170, 'Hair Color: ' + vm.HairColorIn); 
@@ -330,14 +336,13 @@ myApp.controller('NewController', function (UserService) {
             pdf.text(10, 180, 'Race/Ethniciy: ' + vm.RaceEthnicityIn);
             pdf.text(80, 180, 'Facial Hair: ' + vm.FacialHairIn);
             pdf.text(130, 180, 'Eye Brow Features: ' + vm.EyeBrowFeatures);
-            pdf.text(10, 190, 'Glasses/Contacts?: ' + vm.GlassesOrContactsIn);
+            pdf.text(10, 190, 'Glasses/Contacts: ' + vm.GlassesOrContactsIn);
           
             pdf.text(10, 200, 'Tattoos or Piercings: ' + vm.commentTattoosIn);
             pdf.text(10, 210, 'Dental Characteristics: ' + vm.DentalCharacteristicsIn);
             pdf.text(10, 220, 'Scars or Birthmarks: ' + vm.ScarsOrBirthmarksIn);
             pdf.line(10, 230, 206, 230); 
            
-            // pdf.text(10, 240, setOtherInfoIn)
             pdf.text(10,240, 'Additional Information: ');
             var formatOtherInfoIn =  vm.OtherInfoIn;
             var setOtherInfoIn = pdf.splitTextToSize(formatOtherInfoIn, 200);
@@ -355,6 +360,7 @@ myApp.controller('NewController', function (UserService) {
             pdf.setFontType('bold');            
             pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);  
             pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);
+            //+ vm.formatDateofIntaketoMCMIn
             pdf.line(10, 48, 206, 48);
             // end of page 2 header
             //page 2 input 
@@ -368,9 +374,9 @@ myApp.controller('NewController', function (UserService) {
             pdf.text(10, 70, 'Law Enforcement Agency: ' + vm.LawEnforcementAgencyonCaseIn);
             pdf.text(110, 70, 'Case Number: ' + vm.CaseNumberIn);            
             pdf.text(10, 80, 'Officer/Detective: ' + vm.OfficeDetectiveIn);
-            pdf.text(10,90, 'LE Phone Number: ' + vm.LEPhoneNumberIn);   
+            pdf.text(10,90, 'Phone Number: ' + vm.LEPhoneNumberIn);   
             pdf.text(10,100, 'Street Address: ' + vm.StreetAddressIn);
-            pdf.text(10,110, 'Jurisdictional Denial?: ' + vm.JurisdictionalDenialIn);
+            pdf.text(10,110, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn);
             pdf.text(10, 120, 'Other: ' + vm.OtherLEIn);            
             
             pdf.line(10, 128, 206, 128);
@@ -384,7 +390,7 @@ myApp.controller('NewController', function (UserService) {
             pdf.text(10,150, 'Case Type When Opened:  ' + vm.CaseTypeWhenOpenedIn);
             pdf.text(10,160, 'Case Type When Closed:   ' + vm.CaseTypeWhenClosedIn);
             pdf.text(10,170, 'Case Status: ' + vm.CaseStatusIn);
-            pdf.text(100,170, 'Date Case Closed: ' + vm.formatDateCaseClosedIn);  //add date function           
+            pdf.text(100,170, 'Date Case Closed: ' );+ vm.formatDateCaseClosedIn
             pdf.text(10,180, 'Case Disposition: ' + vm.CaseStatusIn);
             pdf.text(100,180, 'Referral Type:     ' + vm.ReferralTypeIn);
             pdf.line(10, 188, 206, 188);
@@ -395,8 +401,8 @@ myApp.controller('NewController', function (UserService) {
             pdf.text(10, 200, 'Specific Questions to Occurrence');
             pdf.setFontType('normal');  
             pdf.setFontSize(12);
-            pdf.text(10,210, 'Was the person with anyone?: ' + vm.commentWithOthersIn);
-            pdf.text(10,220, 'High Risk Activity? ' + vm.commentHighRiskIn);
+            pdf.text(10,210, 'Was the Person with Anyone: ' + vm.commentWithOthersIn);
+            pdf.text(10,220, 'High Risk Activity: ' + vm.commentHighRiskIn);
             pdf.text(10,230, 'Disturbing Situation: ' + vm.DisturbingSituationIn);
             pdf.text(10,240, 'Additional Comment: ' + vm.commentSpecificQuestions);
             
@@ -410,7 +416,7 @@ myApp.controller('NewController', function (UserService) {
           pdf.setFontSize(12);
           pdf.setFontType('bold');            
           pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);  
-          pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);
+          pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);//+ vm.formatDateofIntaketoMCMIn
           pdf.line(10, 48, 206, 48);
           // end of page 3 header
          
@@ -422,51 +428,77 @@ myApp.controller('NewController', function (UserService) {
           pdf.setFontType('normal');  
           pdf.setFontSize(12);                        
           pdf.text(10, 70, 'Jacket/Coat: ' + vm.JacketCoatIn );
-          pdf.text(110, 70, 'Shirt/Blouse: ' + vm.ShirtBlouseIn);            
+          pdf.text(100, 70, 'Shirt/Blouse: ' + vm.ShirtBlouseIn);            
           pdf.text(10, 80, 'Pants/Skirt: ' + vm.PantsSkirtIn);            
-          pdf.text(110, 80, 'Jewelry: ' + vm.JewelryIn);
-          pdf.text(110,90, 'BackPack/Purse: ' + vm.BackpackPurseIn);   
-          pdf.text(110,100, 'Hat/Other Accessories: ' + vm.HatOtherIn);
-          pdf.text(10,110, 'Other: ' + vm.addOtherIn);
-          pdf.line(10, 128, 206, 128);
+          pdf.text(100, 80, 'Jewelry: ' + vm.JewelryIn);
+          pdf.text(100,90, 'Back Pack/Purse: ' + vm.BackpackPurseIn);   
+          pdf.text(10,90, 'Hat/Other: ' + vm.HatOtherIn);
+          pdf.text(10,100, 'Other: ' + vm.addOtherIn);
+          pdf.line(10, 108, 206, 108);
 
           // //Vehicle Information
           pdf.setFontType('bold');
           pdf.setFontSize(14);   
-          pdf.text(10, 140, 'Vehicle Information ');
+          pdf.text(10, 120, 'Vehicle Information ');
           pdf.setFontType('normal');  
           pdf.setFontSize(12);
-          pdf.text(10,150, 'Year: ' + vm.VehicleYearIn);
-          pdf.text(50,150, 'Make: ' + vm.VehicleMakeIn);
-          pdf.text(90,150, 'Model: ' + vm.VehicleModelIn);
-          pdf.text(130,150, 'License #: ' + vm.VehicleLicenseIn);  
-          pdf.text(10,160, 'Color: ');  //add vm for color
-          pdf.text(50,160, 'Photo Available? ' + vm.PhotoAvailableIn);
-          pdf.line(10, 168, 206, 168);
+          pdf.text(10,130, 'Year: ' + vm.VehicleYearIn);
+          pdf.text(50,130, 'Make: ' + vm.VehicleMakeIn);
+          pdf.text(90,130, 'Model: ' + vm.VehicleModelIn);
+          pdf.text(130,130, 'Color: ' + vm.vehicleColorIn);  
+          pdf.text(10,140, 'License #: ' + vm.VehicleLicenseIn);            
+          pdf.text(50,140, 'Photo Available: ' + vm.PhotoAvailableIn);
+          pdf.line(10, 148, 206, 148);
           
           //History
           pdf.setFontType('bold');
           pdf.setFontSize(14);  
-          pdf.text(10, 180, 'Specific Questions to Occurrence');
+          pdf.text(10, 160, 'History');
           pdf.setFontType('normal');  
           pdf.setFontSize(12);
-          pdf.text(10,190, 'Has this person left before? ' );
-          // pdf.text(10,190, vm.WithOthersIn + vmcommentWithOthersIn);
-          pdf.text(10,200, 'Where were they found? ' + vm.HighRiskActivityIn);
-          pdf.text(80,200, 'Known Companions: ' + vm.commentHighRiskIn);
-          pdf.text(10,210, 'Disablity? ' + vm.DisturbingSituationIn);
-          pdf.text(80,210, 'Comment: ' + vm.commentDisturbingIn);
-          pdf.text(10,220, 'Mental Illness? ' + vm.DisturbingSituationIn);
-          pdf.text(80,220, 'Comment: ' + vm.commentDisturbingIn);
-          pdf.text(10,230, 'Life threatening conditions? ' + vm.DisturbingSituationIn);
-          pdf.text(80,230, 'Comment: ' + vm.commentDisturbingIn);    
-          pdf.text(10,240, 'Medications: ' + vm.DisturbingSituationIn);
-          pdf.text(10,250, 'Has this person ever been a victim of abuse? ' + vm.DisturbingSituationIn);
-          pdf.text(80,250, 'Comment ' + vm.DisturbingSituationIn);
-          
+          pdf.text(10,170, 'Has this person left before:   ' + vm.LeftBeforeIn);
+          pdf.text(10,180, 'Where were they found:   ' + vm.commentPreviouslyFoundIn);
+          pdf.text(10,190, 'Known Companions:   ' + vm.commentKnownCompanionsIn);
+          pdf.text(10,200, 'Disablity/Mental Problems:   ' + vm.DisabilityMentalIn);
+          pdf.text(10,210, 'Life threatening conditions:   ' + vm.LifeThreateningIn);
+          pdf.text(10,220, 'Medications:   ' + vm.MedicationsIn);
+          pdf.text(10,230, 'Victim of Abuse:   ' + vm.commentAbuseIn);
+          pdf.text(10,240, 'Additional History: ');
+          var formatOtherHistoryIn =  vm.OtherHistoryIn;
+          var setOtherHistoryIn = pdf.splitTextToSize(formatOtherHistoryIn, 200);
+          pdf.text(10,250, setOtherHistoryIn);
+
+
+          //page 4
+          pdf.addPage();
+          //page 4 header
+          pdf.addImage(imgData, 'JPEG', 5, 10, 60,30);   
+          pdf.setFontType('bold');  
+          pdf.setFontSize(18);         
+          pdf.text(70, 25, 'Missing Persons Intake Form');
+          pdf.setFontSize(12);
+          pdf.setFontType('bold');            
+          pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);  
+          pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);//+ vm.formatDateofIntaketoMCMIn
+          pdf.line(10, 48, 206, 48);
+         //end page 4 header
+         
+         // page 4 input
 
           //Vulnerabilities
-          
+          // var specialElementHandlers = {
+          //       '#editor': function (element, renderer) {
+          //           return true;
+          //       }
+          //   };
+          //   $('#pdfview').click(function () {
+          //       doc.fromHTML($('#pdfdiv').html(), 15, 15, {
+          //           'width': 100,
+          //           'elementHandlers': specialElementHandlers
+          //       });
+          //     })
+              
+
           //Person Requesting Assistance In Juvenile Case Under The Age Of 18 Years
 
 
