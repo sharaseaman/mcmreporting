@@ -254,7 +254,7 @@ myApp.service('UserService', function ($http, $location) {
     console.log('service obj', userCustomFilters)
     //pending BE user filtered report query
     $http({
-      method:"GET",
+      method:"POST",
       url: "/charts/custom",
       data: userCustomFilters
     }).then(function (res){
