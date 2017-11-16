@@ -378,10 +378,10 @@ myApp.controller('NewController', function (UserService) {
           pdf.text(10, 70, 'Jacket/Coat: ' + vm.JacketCoatIn );
           pdf.text(110, 70, 'Shirt/Blouse: ' + vm.ShirtBlouseIn);            
           pdf.text(10, 80, 'Pants/Skirt: ' + vm.PantsSkirtIn);            
-          pdf.text(10, 90, 'Jewelry: ' + vm.JewelryIn);
-          pdf.text(10,100, 'BackPack/Purse: ' + vm.BackpackPurseIn);   
-          pdf.text(10,110, 'Hat/Other Accessories: ' + vm.HatOtherIn);
-          pdf.text(10,120, 'Other: ' + vm.addOtherIn);
+          pdf.text(110, 80, 'Jewelry: ' + vm.JewelryIn);
+          pdf.text(110,90, 'BackPack/Purse: ' + vm.BackpackPurseIn);   
+          pdf.text(110,100, 'Hat/Other Accessories: ' + vm.HatOtherIn);
+          pdf.text(10,110, 'Other: ' + vm.addOtherIn);
           pdf.line(10, 128, 206, 128);
 
           // //Vehicle Information
