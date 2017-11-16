@@ -14,27 +14,15 @@ myApp.controller('NewController', function (UserService) {
   { name: "Runaway (history)", value: false }, { name: "Sexual Abuse (history)", value: false }, 
   { name: "Sexual exploitation (history)", value: false }, { name: "Sexual Minority", value: false }]
 
-// vm.changeVul = function (inputVuln) {
-//   console.log("inputVuln", inputVuln);
-//   inputVuln.value = !inputVuln.value;
-//   console.log("inputVuln.name", inputVuln.value);
+vm.changeVul = function (inputVuln) {
+  console.log("inputVuln", inputVuln);
+  inputVuln.value = !inputVuln.value;
+  console.log("inputVuln.name", inputVuln.value);
 // }.then(function (inputVuln) {
 //  var newIntake = inputVuln.filter(function(inputVuln) {
 //   return newIntake.value == true;
 //   console.log('newIntake', newIntake);
-//  })
-// });
-
-// dataService.getEvents().then(function (response) {
-//   console.log(response.data);
-//   // console.log("res.Obj", resObj);
-//   vm.resObj = response.data;
-//   // return vm.resObj;
-
-//   vm.resObj.sort(function (a, b) {
-//     return parseFloat(a.date) - parseFloat(b.date);
-//   });
-//   console.log('vm.resObj', vm.resObj);
+ }
 // });
 
   vm.itemChange = function () {
@@ -87,16 +75,17 @@ myApp.controller('NewController', function (UserService) {
       disposition: vm.CaseDispositionIn,
       close_date: vm.DateCaseClosedIn,
       referral_type: vm.ReferralTypeIn,
-      case_vulnerabilities:  vm.case_vulnerabilities,
-      race_ethnicity: vm.RaceEthnicityIn,
-      case_lawenforcement_denial: vm.JurisdictionalDenialIn
-    };
+      case_vulnerabilities:[],
+      // race_ethnicity: vm.RaceEthnicityIn,
+      // case_lawenforcement_denial: vm.JurisdictionalDenialIn
+    }
 
    
     if (newIntake.mcm_number == null || newIntake.intake_date == null || newIntake.age == null || newIntake.gender == null
     || newIntake.last_seen == null || newIntake.reported_missing == null || newIntake.people_served == null|| newIntake.city == null
   || newIntake.county == null|| newIntake.state == null || newIntake.school == null || newIntake.start_case_type == null|| newIntake.end_case_type == null
-|| newIntake.disposition == null || newIntake.close_date == null || newIntake.referral_type == null) {
+|| newIntake.disposition == null || newIntake.close_date == null || newIntake.referral_type == null) 
+{
       swal({  
         title: 'Please complete all required fields.',
         icon: "warning",        
@@ -112,17 +101,20 @@ myApp.controller('NewController', function (UserService) {
         width: 600,
         padding: 100,
         background: '#fff url(assets/page.JPG)'
-      // }).then(function (newIntake) {
-      //   // for(i=0; i < newIntake.length; i++){}
-      // var newIntake = newIntake.filter(function(newIntake) {
-      //   return newIntake.case_vulnerabilities.value == true;
-  
+      }).then(function () {
+        newIntake.case_vulnerabilities = vm.case_vulnerabilities.filter(function(vulnerability) {
+        return vulnerability.value == true;
+        });
       }).then(function (newIntake) {
         UserService.postInputData(newIntake);
         console.log('final newIntake', newIntake)
       });
  }
-  }
+}
+  
+
+
+
 
   //shara working on pdf below
   var pdf = new jsPDF();
