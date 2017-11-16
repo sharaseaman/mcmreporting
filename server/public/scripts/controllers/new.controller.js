@@ -3,8 +3,10 @@ myApp.controller('NewController', function (UserService) {
   var vm = this;
   var newIntake = [];
 
+  vm.case
+
   vm.case_vulnerabilities = [{ name: "ADD/ADHD", value: false }, { name: "ASD", value: false }, { name: "Alcohol use/abuse", value: false},
-  { name: "Anxiety", value: false }, { name: "Bipolar Disorder", value: false},
+  { name: "Anxiety", value: false }, { name: "BiPolarDisorder", value: false},
   { name: "Depression (Clinical)", value: false }, { name: "Depression (Situational)", value: false}, 
   { name: "Drug use/abuse", value: false }, { name: "Economic exploitation (history", value: false }, 
   { name: "Emotional abuse (history)", value: false }, { name: "Gang association", value: false }, 
@@ -14,16 +16,22 @@ myApp.controller('NewController', function (UserService) {
   { name: "Runaway (history)", value: false }, { name: "Sexual Abuse (history)", value: false }, 
   { name: "Sexual exploitation (history)", value: false }, { name: "Sexual Minority", value: false }]
 
-vm.changeVul = function (inputVuln) {
+  vm.race_ethnicity = [{ name: "African American", value: false }, { name: "Asian Pacific Islander", value: false }, { name: "Caucasian", value: false},
+  { name: "Latinx", value: false }, { name: "Native American", value: false}]
+
+
+  vm.changeVul = function (inputVuln) {
   console.log("inputVuln", inputVuln);
   inputVuln.value = !inputVuln.value;
   console.log("inputVuln.name", inputVuln.value);
-// }.then(function (inputVuln) {
-//  var newIntake = inputVuln.filter(function(inputVuln) {
-//   return newIntake.value == true;
-//   console.log('newIntake', newIntake);
  }
-// });
+
+
+ vm.changeRace = function (inputRace) {
+  console.log("inputVuln", inputRace);
+  inputRace.value = !inputRace.value;
+  console.log("inputVuln.name", inputRace.value);
+ }
 
   vm.itemChange = function () {
     console.log('inside itemchange');
@@ -76,8 +84,8 @@ vm.changeVul = function (inputVuln) {
       close_date: vm.DateCaseClosedIn,
       referral_type: vm.ReferralTypeIn,
       case_vulnerabilities:[],
-      // race_ethnicity: vm.RaceEthnicityIn,
-      // case_lawenforcement_denial: vm.JurisdictionalDenialIn
+      race_ethnicity: [],
+      case_lawenforcement_denial: []
     }
 
    
@@ -105,10 +113,16 @@ vm.changeVul = function (inputVuln) {
         newIntake.case_vulnerabilities = vm.case_vulnerabilities.filter(function(vulnerability) {
         return vulnerability.value == true;
         });
-      }).then(function (newIntake) {
+      }).then(function() {
+        newIntake.race_ethnicity = vm.race_ethnicity.filter(function(ethnicity) {
+          return ethnicity.value == true;
+
+      });
+      }).then(function () {
         UserService.postInputData(newIntake);
         console.log('final newIntake', newIntake)
       });
+      
  }
 }
   

@@ -47,6 +47,7 @@ myApp.service('UserService', function ($http, $location) {
   };
 
   self.postInputData = function (newIntake) {
+    console.log('in service', newIntake);
     return $http({
       method: 'POST',
       url: '/forms/newIntake',
