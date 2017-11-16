@@ -10,6 +10,7 @@ myApp.controller('CustomReportController', function (UserService) {
     UserService.getChartData()
     .then(function (){
       vm.caseType = UserService.startCaseLabel;
+      
       vm.states = UserService.stateOverallLabel;
       vm.mnCounties = UserService.countiesOverallLabel;
       vm.schoolDistricts = UserService.districtOverallLabel;
