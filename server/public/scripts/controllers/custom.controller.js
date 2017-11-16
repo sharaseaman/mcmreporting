@@ -2,13 +2,14 @@ myApp.controller('CustomReportController', function (UserService) {
   console.log('CustomReportController created');
   var vm = this;
   vm.userService = UserService;
-  vm.chartData = UserService.chartData;
-  vm.joinChartData = UserService.joinChartData;
+  vm.chartData = UserService.chartData;  
+  vm.customReportData = UserService.customReportData;
 
   vm.getMCMRecords = function () {
     UserService.getChartData()
     .then(function (){
       vm.caseType = UserService.startCaseLabel;
+      
       vm.states = UserService.stateOverallLabel;
       vm.mnCounties = UserService.countiesOverallLabel;
       vm.schoolDistricts = UserService.districtOverallLabel;
@@ -19,13 +20,25 @@ myApp.controller('CustomReportController', function (UserService) {
     })
   };
 
-  vm.getJoinMCMRecords = function () {
-    UserService.getJoinTableData()
-    .then(function () {
+  vm.getJoinCaseRaceEthnicity = function () {
+    UserService.getJoinCaseRaceEthnicity()
+    .then (function (){
+      vm.raceEthnicity = UserService.raceEthnicityOverallLabel;
+    })
+  }
+
+  vm.getJoinCaseLawEnforcementDenial = function () {
+    UserService.getJoinCaseLawEnforcementDenial()
+    .then (function (){
       vm.lawEnforcement = UserService.lawEnforcementOverallLabel;
       vm.agencyDenial = UserService.lawDenialOverallLabel;
+    })
+  }
+
+  vm.getJoinCaseVulnerabilities = function () {
+    UserService.getJoinCaseVulnerabilities()
+    .then (function (){
       vm.vulnerabilities = UserService.vulnerabilitiesOverallLabel;
-      vm.raceEthnicity = UserService.raceEthnicityOverallLabel;
     })
   }
 
@@ -45,8 +58,6 @@ myApp.controller('CustomReportController', function (UserService) {
       race_ethnicity : race,
       referral_type : source
     }
-
-    // console.log('userCustomFilters',userCustomFilters);
 
     UserService.submitCustomFilters(userCustomFilters);
   }

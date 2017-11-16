@@ -29,20 +29,76 @@ router.get('/', function (req, res) {
   }
 });
 
-router.get('/join_tables_reports', function (req, res) {
+
+// Handles Ajax request for user information if user is authenticated
+router.get('/join_race_ethnicity', function (req, res) {
   // check if logged in
   if (req.isAuthenticated()) {
     pool.connect(function (conErr, client, done) {
       if (conErr) {
         res.sendStatus(500);
       } else {
-        client.query('SELECT * FROM case_data FULL JOIN case_vulnerabilities ON case_data.id = case_vulnerabilities.case_data_id FULL JOIN vulnerabilities ON case_vulnerabilities.vulnerabilities_id = vulnerabilities.id FULL JOIN case_lawenforcement_denial ON case_data.id = case_lawenforcement_denial.case_data_id FULL JOIN law_enforcement ON case_lawenforcement_denial.law_enforcement_id = law_enforcement.id FULL JOIN case_race_ethnicity ON case_data.id = case_race_ethnicity.case_data_id FULL JOIN race_ethnicity ON case_race_ethnicity.race_ethnicity_id = race_ethnicity.id', function (queryErr, resultObj) {
+        client.query('SELECT * FROM case_data JOIN case_race_ethnicity ON case_data.id = case_race_ethnicity.case_data_id JOIN race_ethnicity ON case_race_ethnicity.race_ethnicity_id = race_ethnicity.id', function (queryErr, resultObj) {
           done();
           if (queryErr) {
             res.sendStatus(500);
           } else {
             res.send(resultObj.rows);
           }
+        });
+      }
+    })
+  } else {
+    // failure best handled on the server. do redirect here.
+    console.log('not logged in');
+    // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
+    res.send(false);
+  }
+});
+
+// Handles Ajax request for user information if user is authenticated
+router.get('/join_case_lawenforcement_denial', function (req, res) {
+  // check if logged in
+  if (req.isAuthenticated()) {
+    pool.connect(function (conErr, client, done) {
+      if (conErr) {
+        res.sendStatus(500);
+      } else {
+        client.query('SELECT * FROM case_data JOIN case_lawenforcement_denial ON case_data.id = case_lawenforcement_denial.case_data_id JOIN law_enforcement ON law_enforcement.id = case_lawenforcement_denial.law_enforcement_id', function (queryErr, resultObj) {
+          done();
+          if (queryErr) {
+            res.sendStatus(500);
+          } else {
+            res.send(resultObj.rows);
+          }
+        });
+      }
+    })
+  } else {
+    // failure best handled on the server. do redirect here.
+    console.log('not logged in');
+    // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
+    res.send(false);
+  }
+});
+
+// Handles Ajax request for user information if user is authenticated
+router.get('/join_vulnerability', function (req, res) {
+  // check if logged in
+  if (req.isAuthenticated()) {
+    pool.connect(function (conErr, client, done) {
+      if (conErr) {
+        res.sendStatus(500);
+      } else {
+        client.query('SELECT * FROM case_data JOIN case_vulnerabilities ON case_data.id = case_vulnerabilities.case_data_id JOIN vulnerabilities ON case_vulnerabilities.vulnerabilities_id = vulnerabilities.id', function (queryErr, resultObj) {
+          done();
+          if (queryErr) {
+            res.sendStatus(500);
+          } else {
+            res.send(resultObj.rows);
+            console.log ('result', resultObj.rows)
+          }
+
         });
       }
     })
@@ -105,12 +161,12 @@ router.post('/custom', function (req, res) {
           valueArray.push(custom.state)
         }
         if (custom.county_name !== undefined) {
-          var county_name$ = '(SELECT id FROM counties WHERE county = $'
+          var county_name$ = '(SELECT id FROM counties WHERE county_name = $'
           tempArray.push(county_name$);
           valueArray.push(custom.county_name);
         }
         if (custom.school_name !== undefined) {
-          var school_name$ = '(SELECT id FROM schools WHERE school = $'
+          var school_name$ = '(SELECT id FROM schools WHERE school_name = $'
           tempArray.push(school_name$);
           valueArray.push(custom.school_name);
         }
@@ -130,13 +186,35 @@ router.post('/custom', function (req, res) {
           valueArray.push(custom.referral_type);
         } // end if list
 
+      
         tempArray.forEach(function (currentValue, index, array) {
           console.log('line 113, currentValue', currentValue)
-          if (currentValue === '(SELECT id FROM counties WHERE county = $' || '(SELECT id FROM schools WHERE school = $' || 'law_enforcement.id = (SELECT id FROM law_enforcement WHERE agency = $'||'race_ethnicity.id = (SELECT id FROM race_ethnicity WHERE race_ethnicity = $' || 'vulnerability.id = (SELECT id FROM vulnerabilities WHERE vulnerability = $') {
+          if (currentValue === '(SELECT id FROM counties WHERE county = $')  {
             count++
             queryArray.push(currentValue + count + ')')
-            console.log('this is the if statement')
-          } else {
+            console.log('this is the county if statement')
+          } 
+          if (currentValue === '(SELECT id FROM schools WHERE school_name = $')  {
+            count++
+            queryArray.push(currentValue + count + ')')
+            console.log('this is the school if statement')  
+          }
+          if (currentValue === 'law_enforcement.id = (SELECT id FROM law_enforcement WHERE agency = $')  {
+            count++
+            queryArray.push(currentValue + count + ')')
+            console.log('this is the agency if statement')
+          } 
+          if (currentValue === 'race_ethnicity.id = (SELECT id FROM race_ethnicity WHERE race_ethnicity = $')  {
+            count++
+            queryArray.push(currentValue + count + ')')
+            console.log('this is the race/ethnicity if statement')
+          } 
+          if (currentValue === 'vulnerability.id = (SELECT id FROM vulnerabilities WHERE vulnerability = $')  {
+            count++
+            queryArray.push(currentValue + count + ')')
+            console.log('this is the vulnerability if statement')
+          }
+          else {
             count++
             queryArray.push(currentValue + count)
             console.log('this is the else statement')
@@ -150,7 +228,7 @@ router.post('/custom', function (req, res) {
         
           client.query(sqlQuery, valueArray, function (queryErr, resultObj) {
             done();
-            console.log('resultObj', resultObj)
+            console.log('resultObj', resultObj.rows)
             if (queryErr) {
               res.sendStatus(500);
             } else {

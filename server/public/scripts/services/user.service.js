@@ -3,16 +3,14 @@ myApp.service('UserService', function ($http, $location) {
   var self = this;
 
   self.userObject = {};
-  self.chartData = {
-    data: []
-  };
-  self.joinChartData = {
-    data: []
-  };
+  self.chartData = {data: []};
+  self.joinLawEnforcementDenialChartData = {data: []};
+  self.joinVulnerabilityChartData = {data: []};
+  self.joinRaceChartData = {data: []};
   self.users = {};
-
   self.cities = {};
   self.selectedYear = '';
+  self.customReportData = {data: []}
 
 
   self.getCities = function () {
@@ -30,7 +28,6 @@ myApp.service('UserService', function ($http, $location) {
       url: '/forms/counties'
     })
   };
-
 
   self.getAgencies = function () {
     return $http({
@@ -65,13 +62,12 @@ myApp.service('UserService', function ($http, $location) {
 
 
 
-
   self.getChartData = function () {
     //on page load, GET all case_data from DB to the DOM
     return $http({
-        method: 'GET',
-        url: '/charts'
-      })
+      method: 'GET',
+      url: '/charts'
+    })
       .then(function (res) {
         //match case_data to service
         self.chartData.data = res.data;
@@ -122,62 +118,123 @@ myApp.service('UserService', function ($http, $location) {
       });
   };
 
-  self.getJoinTableData = function () {
-    //this function gets all data from the db from the join tables (case_vulnerabilities, case_lawenforcement_denial, case_race_ethnicity)
+ 
+
+  self.getJoinCaseLawEnforcementDenial = function(){
     return $http({
-        method: 'GET',
-        url: '/charts/join_tables_reports'
-      })
-        .then(function (res) {
-          self.joinChartData.data = res.data;
-          return self.joinChartData.data
-        })
-        .then(function (res) {
-          self.addYearToRecord = res.forEach(function (element) {
-            element.year = element.intake_date.slice(0, 4);
-          });
-
-          //Global Charts
-          var totalsByVulnerabilitiesOverall = self.formatDataToChart(res, 'vulnerability');
-            self.vulnerabilitiesOverallLabel = totalsByVulnerabilitiesOverall.xAxisValues;
-            self.filteredVulnerabilitiesOverall = totalsByVulnerabilitiesOverall.yAxisValues;
-            
-          var totalsByLawEnforcementOverall = self.formatDataToChart(res, 'agency');
-            self.lawEnforcementOverallLabel = totalsByLawEnforcementOverall.xAxisValues;
-            self.filteredLawEnforcementOverall = totalsByLawEnforcementOverall.yAxisValues;
-
-          var totalsByDenialOverall = self.formatDataToChart(res, 'jurisdictional_denial');
-            self.lawDenialOverallLabel = totalsByDenialOverall.xAxisValues;
-            console.log('self.lawEnforcementOverallLabel',self.lawEnforcementOverallLabel);
-          var something = self.getStackedChart(res,self.lawEnforcementOverallLabel,'jurisdictional_denial')
-            // self.stackedDenialTrue = totalsByDenialOverall
-            // self.stackedDenialFalse = totalsByDenialOverall
-            
-          var totalsByRaceEthnicityOverall = self.formatDataToChart(res, 'race_ethnicity');
-            self.raceEthnicityOverallLabel = totalsByRaceEthnicityOverall.xAxisValues;
-            self.filteredRaceEthnicityOverall = totalsByRaceEthnicityOverall.yAxisValues;
-
-        })
-  };
-
-  self.getStackedChart = function (data, xAxisDataPoint, yAxisDataPoint) {
-    console.log('data',data);
-    console.log('xAxisDataPoint', xAxisDataPoint);
-    console.log('yAxisDataPoint', yAxisDataPoint);
-
-    data.forEach(function(element, yAxisDataPoint){
-      console.log(data.element.yAxisDataPoint)
-    //   if (data.yAxisDataPoint === true){
-    //     console.log('true')
-    //   } else {
-    //     console.log('false')
-    //   }
+      method: 'GET',
+      url: '/charts/join_case_lawenforcement_denial'
     })
+      .then(function (res) {
+        self.joinLawEnforcementDenialChartData.data = res.data;
+        return self.joinLawEnforcementDenialChartData.data
 
+      })
+      .then(function (res) {
+        self.addYearToRecord = res.forEach(function (element) {
+          element.year = element.intake_date.slice(0, 4);
+        });
+
+        //Global Charts
+        var totalsByLawEnforcementOverall = self.formatDataToChart(res, 'agency');
+        self.lawEnforcementOverallLabel = totalsByLawEnforcementOverall.xAxisValues;
+        self.filteredLawEnforcementOverall = totalsByLawEnforcementOverall.yAxisValues;
+
+        var totalsByDenialOverall = self.formatDataToChart(res, 'jurisdictional_denial');
+        self.lawDenialOverallLabel = totalsByDenialOverall.xAxisValues;
+      
+        var agencyByDenial = self.getStackedChart(res, self.lawEnforcementOverallLabel, 'agency', 'jurisdictional_denial')
+      })    
   };
 
-  self.getDataOfYear = function(data, year) {
-    return data.filter(function(entry) {
+  self.getJoinCaseVulnerabilities = function(){
+    return $http({
+      method: 'GET',
+      url: '/charts/join_vulnerability'
+    })
+      .then(function (res) {
+        self.joinVulnerabilityChartData.data = res.data;
+        return self.joinVulnerabilityChartData.data
+
+      })
+      .then(function (res) {
+        self.addYearToRecord = res.forEach(function (element) {
+          element.year = element.intake_date.slice(0, 4);
+        });
+       //Global Charts
+       var totalsByVulnerabilitiesOverall = self.formatDataToChart(res, 'vulnerability');
+       self.vulnerabilitiesOverallLabel = totalsByVulnerabilitiesOverall.xAxisValues;
+       self.filteredVulnerabilitiesOverall = totalsByVulnerabilitiesOverall.yAxisValues;
+
+      //  var ageByVulnerability = self.getStackedChart(res, self.ageOverallLabel, 'age', 'vulnerability')
+      })    
+  };
+
+  self.getJoinCaseRaceEthnicity = function(){
+    return $http({
+      method: 'GET',
+      url: '/charts/join_race_ethnicity'
+    })
+      .then(function (res) {
+        self.joinRaceChartData.data = res.data;
+        return self.joinRaceChartData.data
+
+      })
+      .then(function (res) {
+        self.addYearToRecord = res.forEach(function (element) {
+          element.year = element.intake_date.slice(0, 4);
+        });
+       //Global Charts
+       var totalsByRaceEthnicityOverall = self.formatDataToChart(res, 'race_ethnicity');
+       self.raceEthnicityOverallLabel = totalsByRaceEthnicityOverall.xAxisValues;
+       self.filteredRaceEthnicityOverall = totalsByRaceEthnicityOverall.yAxisValues;
+      })    
+  };
+
+  self.getStackedChart = function (data, xAxisLabels, xAxisFilter, yAxisFilter) {
+    // console.log('data', data)
+    // console.log('xAxisLabels', xAxisLabels);
+    // console.log('xAxisFilter', xAxisFilter);
+    // console.log('yAxisFilter', yAxisFilter);
+
+    var stackedYObj = data.reduce(function (prev, curr) {
+      const groupLabel = curr[yAxisFilter];
+
+      if (!prev[groupLabel]) {
+        prev[groupLabel] = [];
+      }
+
+      prev[groupLabel].push(curr);
+
+      return prev
+    }, {});
+
+    // console.log('stackedYObj', stackedYObj)
+
+    var stackedAxisKeys = Object.keys(stackedYObj);
+    // console.log('stackedAxisKeys', stackedAxisKeys)
+
+    stackedAxisKeys.forEach(function(stackedAxisKey) {
+      self[`${yAxisFilter}_${stackedAxisKey}`] = xAxisLabels.map(function(currXAxisLabel) {
+        return data.filter(function(element) {
+          // console.log('element[yAxisFilter]', element[yAxisFilter].toString())
+          return element[xAxisFilter] === currXAxisLabel
+          && element[yAxisFilter].toString() === stackedAxisKey;
+        }).length;
+      });
+    });
+    
+  
+    // console.log('vulnerability_ASD',self.vulnerability_ASD)
+    // console.log('vulnerability_Anxiety',self.vulnerability_Anxiety)
+
+    // console.log('jurusdictional_denial_true',self.jurisdictional_denial_true)
+    // console.log('jurusdictional_denial_false',self.jurisdictional_denial_false)
+  
+}
+
+  self.getDataOfYear = function (data, year) {
+    return data.filter(function (entry) {
       return entry.year === year;
     });
   };
@@ -234,31 +291,33 @@ myApp.service('UserService', function ($http, $location) {
     self.userFilteredAge = totalsByUserAge.yAxisValues;
 
     //Deep Dive into Year Charts on Join Charts
-    var dataForJoinUserYear = self.getDataOfYear(self.joinChartData.data, self.selectedYear);
-
-    var totalsByUserVulnerability = self.formatDataToChart(dataForJoinUserYear, 'vulnerability');
-    self.userVulnerabilityLabels = totalsByUserVulnerability.xAxisValues;    
-    self.userFilteredVulnerability = totalsByUserVulnerability.yAxisValues;
-
-    var totalsByUserLaw = self.formatDataToChart(dataForJoinUserYear, 'agency');
-    self.userLawLabels = totalsByUserLaw.xAxisValues;    
+    var dataForJoinUserYearLawEnforcement = self.getDataOfYear(self.joinLawEnforcementDenialChartData.data, self.selectedYear);
+    var totalsByUserLaw = self.formatDataToChart(dataForJoinUserYearLawEnforcement, 'agency');
+    self.userLawLabels = totalsByUserLaw.xAxisValues;
     self.userFilteredLaw = totalsByUserLaw.yAxisValues;
 
-    var totalsByUserRace = self.formatDataToChart(dataForJoinUserYear, 'race_ethnicity');
-    self.userRaceLabels = totalsByUserRace.xAxisValues;    
+    var dataForJoinUserYearVulnerability = self.getDataOfYear(self.joinVulnerabilityChartData.data, self.selectedYear);
+    var totalsByUserVulnerability = self.formatDataToChart(dataForJoinUserYearVulnerability, 'vulnerability');
+    self.userVulnerabilityLabels = totalsByUserVulnerability.xAxisValues;
+    self.userFilteredVulnerability = totalsByUserVulnerability.yAxisValues;
+
+    var dataForJoinUserYearRace = self.getDataOfYear(self.joinRaceChartData.data, self.selectedYear);
+    var totalsByUserRace = self.formatDataToChart(dataForJoinUserYearRace, 'race_ethnicity');
+    self.userRaceLabels = totalsByUserRace.xAxisValues;
     self.userFilteredRace = totalsByUserRace.yAxisValues;
 
   };
 
-  self.submitCustomFilters = function (userCustomFilters){
+  self.submitCustomFilters = function (userCustomFilters) {
     console.log('service obj', userCustomFilters)
     //pending BE user filtered report query
     $http({
       method:"POST",
       url: "/charts/custom",
       data: userCustomFilters
-    }).then(function (res){
-      console.log('back with custom filtered data', res);
+    }).then(function (res) {
+      console.log('response', res)
+      self.customReport.data = res.data
     })
   };
 
@@ -295,8 +354,7 @@ myApp.service('UserService', function ($http, $location) {
     }).then(function (response) {
       console.log('Response', response);
     })
-  }
-
+  };
 
   self.logout = function () {
     console.log('UserService -- logout');
@@ -329,7 +387,7 @@ myApp.service('UserService', function ($http, $location) {
     }).then(function (response) {
       console.log('Response', response);
     })
-  }
+  };
 
   // updates the admin priviledges 
   self.updatePriviledges = function (user) {
@@ -340,7 +398,7 @@ myApp.service('UserService', function ($http, $location) {
     }).then(function (response) {
       console.log('Response', response.data);
     })
-  }
+  };
 
   // deletes the user from the db
   self.deleteUser = function (user) {
@@ -353,17 +411,6 @@ myApp.service('UserService', function ($http, $location) {
     }).then(function (response) {
       console.log('Delete Response', response.data);
     })
-  }
-
-
-
-
-
-
-
-
-
-
-
+  };
 
 });
