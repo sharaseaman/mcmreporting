@@ -42,7 +42,9 @@ router.get('/join_tables_reports', function (req, res) {
             res.sendStatus(500);
           } else {
             res.send(resultObj.rows);
+            console.log ('result', resultObj.rows)
           }
+
         });
       }
     })
