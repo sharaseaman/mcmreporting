@@ -53,6 +53,16 @@ myApp.service('UserService', function ($http, $location) {
   };
 
 
+// self.postVulnerabilities = function (vulnerabilities) {
+//   return $http({
+//     method: 'POST',
+//     url: '/forms/newVulnerabilities',
+//     data: vulnerabilities
+//   })
+// };
+
+
+
   self.getChartData = function () {
     //on page load, GET all case_data from DB to the DOM
     return $http({
@@ -303,7 +313,7 @@ myApp.service('UserService', function ($http, $location) {
     console.log('service obj', userCustomFilters)
     //pending BE user filtered report query
     $http({
-      method: "POST",
+      method:"POST",
       url: "/charts/custom",
       data: userCustomFilters
     }).then(function (res) {
