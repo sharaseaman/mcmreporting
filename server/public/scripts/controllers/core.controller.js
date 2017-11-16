@@ -1,17 +1,25 @@
 myApp.controller('CoreController', function (UserService, $scope) {
   var vm = this;
   vm.userService = UserService;
-  vm.chartData = UserService.chartData;
-  vm.joinChartData = UserService.joinChartData;
+  vm.chartData = UserService.chartData;  
+  vm.joinLawEnforcementDenialChartData = UserService.joinLawEnforcementDenialChartData;
+  vm.joinjoinVulnerabilityChartData = UserService.joinVulnerabilityChartData;
+  vm.joinRaceChartData = UserService.joinRaceChartData.data
   vm.selectedYear;
 
   Chart.defaults.scale.ticks.beginAtZero = true;
+  Chart.defaults.scale.ticks.autoSkip = false;
+  Chart.defaults.global.title.fontFamily = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
+  Chart.defaults.global.defaultFontColor = '#666';
+  Chart.defaults.global.defaultFontSize = 16;
 
+  
   vm.getSelectedYear = function () {
 
     if (vm.selectedYear !== undefined) {
       selectedYear = vm.selectedYear;
       UserService.updateChartYear(selectedYear);
+
       //User Selected Year Charts 
       vm.userCaseTypeLabels = UserService.userCaseTypeLabels;
       vm.userFilteredCases = UserService.userFilteredCases;
@@ -38,15 +46,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userCaseTypeLabels,
           datasets: [{
             label: 'Case Type',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredCases,
             borderWidth: 1
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "Number of Cases by Case Type (" + vm.selectedYear + ")",
+            padding: 20,
+            fontSize: 18
+          },
           scales: {
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Case Type'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -63,15 +88,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userCountyLabels,
           datasets: [{
             label: 'MN County',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredCounty,
             borderWidth: 1
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "Number of Cases by MN County (" + vm.selectedYear + ")",
+            padding: 20,
+            fontSize: 18
+          },
           scales: {
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'MN County'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -88,15 +130,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userSchoolLabels,
           datasets: [{
             label: 'School Districts',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredSchool,
             borderWidth: 1
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "Number of Cases by School District (" + vm.selectedYear + ")",
+            padding: 20,
+            fontSize: 18
+          },
           scales: {
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'MN School District'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -113,15 +172,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userPeopleServedLabels,
           datasets: [{
             label: 'People Served',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredPeopleServed,
             borderWidth: 1
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "Number of Cases by People Served (" + vm.selectedYear + ")",
+            padding: 20,
+            fontSize: 18
+          },
           scales: {
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'People Served'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -138,15 +214,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userVulnerabilityLabels,
           datasets: [{
             label: 'Vulnerability',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredVulnerability,
             borderWidth: 1
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "Number of Cases by Vulnerabilities (" + vm.selectedYear + ")",
+            padding: 20,
+            fontSize: 18
+          },
           scales: {
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Vulnerability'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -163,15 +256,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userAgeLabels,
           datasets: [{
             label: 'Age',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredAge,
             borderWidth: 1
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "Number of Cases by Age (" + vm.selectedYear + ")",
+            padding: 20,
+            fontSize: 18
+          },
           scales: {
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Age'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -188,15 +298,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userLawLabels,
           datasets: [{
             label: 'Law Enforcement',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredLaw,
             borderWidth: 1
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "Number of Cases by Law Enforcement Agencies (" + vm.selectedYear + ")",
+            padding: 20,
+            fontSize: 18
+          },
           scales: {
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Law Enforcement Agency'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -213,15 +340,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userRaceLabels,
           datasets: [{
             label: 'Race/ Ethnicity',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
+            backgroundColor: 'rgba(20, 125, 145, 0.4)',
+            borderColor: 'rgba(20, 125, 145, 0.4)',
             data: vm.userFilteredRace,
             borderWidth: 1
           }]
         },
         options: {
+          title: {
+            display: true,
+            position: "top",
+            text: "Number of Cases by Race/ Ethnicity (" + vm.selectedYear + ")",
+            padding: 20,
+            fontSize: 18
+          },
           scales: {
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Race/Ethnicity'
+              }
+            }],
             yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Cases'
+              },
               ticks: {
                 beginAtZero: true,
                 callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -266,15 +410,33 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.mainChartYears,
             datasets: [{
               label: 'Number of Cases per year',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredYears,
               borderWidth: 1
             }]
           },
           options: {
+
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases per year",
+              padding: 20,
+              fontSize: 18
+            },
             scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Year'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -291,15 +453,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.startCaseLabel,
             datasets: [{
               label: 'Overall Start Case Type',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredStartCase,
               borderWidth: 1
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by Start Case Type",
+              padding: 20,
+              fontSize: 18
+            },
             scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Case Type'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -316,15 +495,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.stateOverallLabel,
             datasets: [{
               label: 'Cases by State',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredStateOverall,
               borderWidth: 1
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by State",
+              padding: 20,
+              fontSize: 18
+            },
             scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'State'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -341,15 +537,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.countiesOverallLabel,
             datasets: [{
               label: 'Cases by Counties',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredCountiesOverall,
               borderWidth: 1
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by MN County",
+              padding: 20,
+              fontSize: 18
+            },
             scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'MN County'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -366,15 +579,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.districtOverallLabel,
             datasets: [{
               label: 'Cases by MN School District',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredDistrictsOverall,
               borderWidth: 1
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by MN School District",
+              padding: 20,
+              fontSize: 18
+            },
             scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'MN School District'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -391,15 +621,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.peopleServedOverallLabel,
             datasets: [{
               label: 'Number of Cases by People Served',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredPeopleServedOverall,
               borderWidth: 1
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by People Served",
+              padding: 20,
+              fontSize: 18
+            },
             scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'People Served'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -416,15 +663,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.ageOverallLabel,
             datasets: [{
               label: 'Number of Cases by Age',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredAgeOverall,
               borderWidth: 1
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by Age",
+              padding: 20,
+              fontSize: 18
+            },
             scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Age'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -441,15 +705,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.genderOverallLabel,
             datasets: [{
               label: 'Number of Cases by Gender',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredGenderOverall,
               borderWidth: 1
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by Gender",
+              padding: 20,
+              fontSize: 18
+            },
             scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Gender'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -466,15 +747,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.referralLabel,
             datasets: [{
               label: 'Referrals by Source',
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 0.2)',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
               data: vm.filteredReferral,
               borderWidth: 1
             }]
           },
           options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by Referral Source",
+              padding: 20,
+              fontSize: 18
+            },
             scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Referral Source'
+                }
+              }],
               yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
                 ticks: {
                   beginAtZero: true,
                   callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -483,17 +781,119 @@ myApp.controller('CoreController', function (UserService, $scope) {
             }
           }
         });
+
       });
 
-    vm.getJoinTableData = function () {
-      UserService.getJoinTableData()
+    vm.getJoinCaseLawEnforcementDenial = function () {
+      UserService.getJoinCaseLawEnforcementDenial()
+      .then(function () {
+        vm.lawEnforcementOverallLabel = UserService.lawEnforcementOverallLabel;
+        vm.filteredLawEnforcementOverall = UserService.filteredLawEnforcementOverall;
+        vm.jurisdictional_denial_true = UserService.jurisdictional_denial_true;
+        vm.jurisdictional_denial_false = UserService.jurisdictional_denial_false;
+       
+        var ctc = document.getElementById("lawEnforcementOverallChart");
+        var myChart = new Chart(ctc, {
+          type: 'bar',
+          data: {
+            labels: vm.lawEnforcementOverallLabel,
+            datasets: [{
+              label: 'Number of Cases by Law Enforcement Agency',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
+              data: vm.filteredLawEnforcementOverall,
+              borderWidth: 1
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by Law Enforcement Agency",
+              padding: 20,
+              fontSize: 18
+            },
+            scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Law Enforcement Agency'
+                }
+              }],
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
+                ticks: {
+                  beginAtZero: true,
+                  callback: function (value) { if (value % 1 === 0) { return value; } }
+                }
+              }]
+            }
+          }
+        });
+
+        var ctc = document.getElementById("lawEnforcementStackedOverall");
+        var myChart = new Chart(ctc, {
+          type: 'bar',
+          data: {
+            labels: vm.lawEnforcementOverallLabel,
+            datasets: [{
+              label: 'Jurisdictional Denial True',
+              backgroundColor: 'rgba( 255, 165, 0, 0.6)',
+              borderColor: 'rgba( 255, 165, 0, 0.6)',
+              data: vm.jurisdictional_denial_true,
+              borderWidth: 1
+            },
+            {
+              label: 'Jurisdictional Denial False',
+              backgroundColor: 'rgba(20, 125, 145, 0.4)',
+              borderColor: 'rgba(20, 125, 145, 0.4)',
+              data: vm.jurisdictional_denial_false,
+              borderWidth: 1
+            }
+          ]
+          },
+          options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Number of Cases by Jurisdictional Denial in each Law Enforcement Agency",
+              padding: 20,
+              fontSize: 18
+            },
+            scales: {
+              xAxes: [{
+                stacked: true,
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Law Enforcement Agency'
+                }
+              }],
+              yAxes: [{
+                stacked: true,
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
+                ticks: {
+                  beginAtZero: true,
+                  callback: function (value) { if (value % 1 === 0) { return value; } }
+                }
+              }]
+            }
+          }
+        });
+
+      })
+    }
+
+    vm.getJoinCaseVulnerabilities = function () {
+      UserService.getJoinCaseVulnerabilities()
         .then(function () {
           vm.vulnerabilitiesOverallLabel = UserService.vulnerabilitiesOverallLabel;
           vm.filteredVulnerabilitiesOverall = UserService.filteredVulnerabilitiesOverall;
-          vm.lawEnforcementOverallLabel = UserService.lawEnforcementOverallLabel;
-          vm.filteredLawEnforcementOverall = UserService.filteredLawEnforcementOverall;
-          vm.raceEthnicityOverallLabel = UserService.raceEthnicityOverallLabel;
-          vm.filteredRaceEthnicityOverall = UserService.filteredRaceEthnicityOverall;
 
           var ctc = document.getElementById("vulnerabilitiesOverallChart");
           var myChart = new Chart(ctc, {
@@ -502,65 +902,32 @@ myApp.controller('CoreController', function (UserService, $scope) {
               labels: vm.vulnerabilitiesOverallLabel,
               datasets: [{
                 label: 'Overall Vulnerabilities',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 0.2)',
+                backgroundColor: 'rgba(20, 125, 145, 0.4)',
+                borderColor: 'rgba(20, 125, 145, 0.4)',
                 data: vm.filteredVulnerabilitiesOverall,
                 borderWidth: 1
               }]
             },
             options: {
+              title: {
+                display: true,
+                position: "top",
+                text: "Number of Cases by Vulnerability",
+                padding: 20,
+                fontSize: 18
+              },
               scales: {
-                yAxes: [{
-                  ticks: {
-                    beginAtZero: true,
-                    callback: function (value) { if (value % 1 === 0) { return value; } }
+                xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Vulnerability'
                   }
-                }]
-              }
-            }
-          });
-
-          var ctc = document.getElementById("lawEnforcementOverallChart");
-          var myChart = new Chart(ctc, {
-            type: 'bar',
-            data: {
-              labels: vm.lawEnforcementOverallLabel,
-              datasets: [{
-                label: 'Overall Law Enforcement Agencies worked with',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 0.2)',
-                data: vm.filteredLawEnforcementOverall,
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
+                }],
                 yAxes: [{
-                  ticks: {
-                    beginAtZero: true,
-                    callback: function (value) { if (value % 1 === 0) { return value; } }
-                  }
-                }]
-              }
-            }
-          });
-
-          var ctc = document.getElementById("raceEthnicityOverallChart");
-          var myChart = new Chart(ctc, {
-            type: 'bar',
-            data: {
-              labels: vm.raceEthnicityOverallLabel,
-              datasets: [{
-                label: 'Number of Cases by Race/Ethnicity',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 0.2)',
-                data: vm.filteredRaceEthnicityOverall,
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Number of Cases'
+                  },
                   ticks: {
                     beginAtZero: true,
                     callback: function (value) { if (value % 1 === 0) { return value; } }
@@ -571,9 +938,76 @@ myApp.controller('CoreController', function (UserService, $scope) {
           });
 
         });
+    };
+
+      vm.getJoinCaseRaceEthnicity = function () {
+        UserService.getJoinCaseRaceEthnicity()
+          .then(function () {
+            
+            vm.raceEthnicityOverallLabel = UserService.raceEthnicityOverallLabel;
+            vm.filteredRaceEthnicityOverall = UserService.filteredRaceEthnicityOverall;
+
+           
+            var ctc = document.getElementById("raceEthnicityOverallChart");
+            var myChart = new Chart(ctc, {
+              type: 'bar',
+              data: {
+                labels: vm.raceEthnicityOverallLabel,
+                datasets: [{
+                  label: 'Number of Cases by Race/Ethnicity',
+                  backgroundColor: 'rgba(20, 125, 145, 0.4)',
+                  borderColor: 'rgba(20, 125, 145, 0.4)',
+                  data: vm.filteredRaceEthnicityOverall,
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                title: {
+                  display: true,
+                  position: "top",
+                  text: "Number of Cases by Race/ Ethnicity",
+                  padding: 20,
+                  fontSize: 18
+                },
+                scales: {
+                  xAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Race/ Ethnicity'
+                    }
+                  }],
+                  yAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Number of Cases'
+                    },
+                    ticks: {
+                      beginAtZero: true,
+                      callback: function (value) { if (value % 1 === 0) { return value; } }
+                    }
+                  }]
+                }
+              }
+            });
+
+          });
 
 
+      }
+    
+  };
+
+  vm.saveChart = function (id, shouldSaveWithYear) {
+    var yearString = '';
+    var ctx = document.getElementById(id);
+
+    if (shouldSaveWithYear) {
+      yearString = vm.selectedYear;
     }
 
-  }
+    ctx.toBlob(function (blob) {
+      saveAs(blob, id + yearString)
+    });
+  };
+
 })
