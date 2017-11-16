@@ -100,18 +100,14 @@
                 </md-input-container>
         </div>
 
-        <table>
-            <h1>Report</h1>
+        <table >
             <thead>
-                <th>test header</th>
+                <th ng-repeat="rowHeader in cr.customReportData.data">{{rowHeader}}</th>
             </thead>
 
             <tbody>
-                <tr>
-                    <td>test data</td>
-                </tr>
-                <tr>
-                    <td>test data</td>
+                <tr ng-repeat="row in cr.customReportData.data">
+                    <td>{{row}}</td>
                 </tr>
             </tbody>
         </table>

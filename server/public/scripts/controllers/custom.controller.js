@@ -3,6 +3,7 @@ myApp.controller('CustomReportController', function (UserService) {
   var vm = this;
   vm.userService = UserService;
   vm.chartData = UserService.chartData;  
+  vm.customReportData = UserService.customReportData;
 
   vm.getMCMRecords = function () {
     UserService.getChartData()
@@ -39,16 +40,6 @@ myApp.controller('CustomReportController', function (UserService) {
       vm.vulnerabilities = UserService.vulnerabilitiesOverallLabel;
     })
   }
-
-  // vm.getJoinMCMRecords = function () {
-  //   UserService.getJoinTableData()
-  //   .then(function () {
-  //     vm.lawEnforcement = UserService.lawEnforcementOverallLabel;
-  //     vm.agencyDenial = UserService.lawDenialOverallLabel;
-  //     vm.vulnerabilities = UserService.vulnerabilitiesOverallLabel;
-  //     vm.raceEthnicity = UserService.raceEthnicityOverallLabel;
-  //   })
-  // }
 
   vm.submitCustomFilters = function (caseType,state,county,district,agency,denial,vulnerability,age,gender,race,source){
     // console.log('hello',caseType,state,county,district,agency,denial,vulnerability,age,gender,race,source);

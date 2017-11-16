@@ -10,6 +10,7 @@ myApp.service('UserService', function ($http, $location) {
   self.users = {};
   self.cities = {};
   self.selectedYear = '';
+  self.customReportData = {data: []}
 
 
   self.getCities = function () {
@@ -215,8 +216,8 @@ myApp.service('UserService', function ($http, $location) {
     });
     
   
-    console.log('vulnerability_ASD',self.vulnerability_ASD)
-    console.log('vulnerability_Anxiety',self.vulnerability_Anxiety)
+    // console.log('vulnerability_ASD',self.vulnerability_ASD)
+    // console.log('vulnerability_Anxiety',self.vulnerability_Anxiety)
 
     // console.log('jurusdictional_denial_true',self.jurisdictional_denial_true)
     // console.log('jurusdictional_denial_false',self.jurisdictional_denial_false)
@@ -306,7 +307,7 @@ myApp.service('UserService', function ($http, $location) {
       url: "/charts/custom",
       data: userCustomFilters
     }).then(function (res) {
-      console.log('back with custom filtered data', res);
+      self.customReport.data = res.data
     })
   };
 
