@@ -115,7 +115,7 @@ myApp.controller('NewController', function (UserService) {
   { name: "Emotional abuse (history)", value: false }, { name: "Gang association", value: false }, 
   { name: "ODD", value: false }, { name: "Labor Exploitation (history)", value: false }, 
   { name: "Luring/grooming by adult", value: false }, { name: "Luring/grooming by child", value: false }, 
-  { name: "Missing from care", value: false }, { name: "Physical Abuse (history)", value: false },
+  { name: "Missing From Care", value: false }, { name: "Physical Abuse (history)", value: false },
   { name: "Runaway (history)", value: false }, { name: "Sexual Abuse (history)", value: false }, 
   { name: "Sexual exploitation (history)", value: false }, { name: "Sexual Minority", value: false }]
 

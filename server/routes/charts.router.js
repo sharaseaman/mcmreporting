@@ -239,17 +239,9 @@ router.post('/custom', function (req, res) {
       } //end pool else
     }) //end pool.connect
   } else {
-<<<<<<< HEAD
-    res.send(resultObj.rows);
-  } //if/else
-  }) //client query
-  }) //end tempArray.forEach
-}; //end create query
-=======
     console.log('not logged in');
     res.send(false);//end if pool
   } //end get custom charts - pairs w 59
->>>>>>> master
 })
 
 module.exports = router;
