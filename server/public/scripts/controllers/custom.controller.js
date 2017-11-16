@@ -2,8 +2,7 @@ myApp.controller('CustomReportController', function (UserService) {
   console.log('CustomReportController created');
   var vm = this;
   vm.userService = UserService;
-  vm.chartData = UserService.chartData;
-  vm.joinChartData = UserService.joinChartData;
+  vm.chartData = UserService.chartData;  
 
   vm.getMCMRecords = function () {
     UserService.getChartData()
@@ -19,15 +18,37 @@ myApp.controller('CustomReportController', function (UserService) {
     })
   };
 
-  vm.getJoinMCMRecords = function () {
-    UserService.getJoinTableData()
-    .then(function () {
-      vm.lawEnforcement = UserService.lawEnforcementOverallLabel;
-      vm.agencyDenial = UserService.lawDenialOverallLabel;
-      vm.vulnerabilities = UserService.vulnerabilitiesOverallLabel;
+  vm.getJoinCaseRaceEthnicity = function () {
+    UserService.getJoinCaseRaceEthnicity()
+    .then (function (){
       vm.raceEthnicity = UserService.raceEthnicityOverallLabel;
     })
   }
+
+  vm.getJoinCaseLawEnforcementDenial = function () {
+    UserService.getJoinCaseLawEnforcementDenial()
+    .then (function (){
+      vm.lawEnforcement = UserService.lawEnforcementOverallLabel;
+      vm.agencyDenial = UserService.lawDenialOverallLabel;
+    })
+  }
+
+  vm.getJoinCaseVulnerabilities = function () {
+    UserService.getJoinCaseVulnerabilities()
+    .then (function (){
+      vm.vulnerabilities = UserService.vulnerabilitiesOverallLabel;
+    })
+  }
+
+  // vm.getJoinMCMRecords = function () {
+  //   UserService.getJoinTableData()
+  //   .then(function () {
+  //     vm.lawEnforcement = UserService.lawEnforcementOverallLabel;
+  //     vm.agencyDenial = UserService.lawDenialOverallLabel;
+  //     vm.vulnerabilities = UserService.vulnerabilitiesOverallLabel;
+  //     vm.raceEthnicity = UserService.raceEthnicityOverallLabel;
+  //   })
+  // }
 
   vm.submitCustomFilters = function (caseType,state,county,district,agency,denial,vulnerability,age,gender,race,source){
     // console.log('hello',caseType,state,county,district,agency,denial,vulnerability,age,gender,race,source);

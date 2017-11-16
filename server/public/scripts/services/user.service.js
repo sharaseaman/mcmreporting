@@ -4,12 +4,10 @@ myApp.service('UserService', function ($http, $location) {
 
   self.userObject = {};
   self.chartData = {data: []};
-
-  self.users = {};
   self.joinLawEnforcementDenialChartData = {data: []};
   self.joinVulnerabilityChartData = {data: []};
   self.joinRaceChartData = {data: []};
-
+  self.users = {};
   self.cities = {};
   self.selectedYear = '';
 
@@ -157,6 +155,8 @@ myApp.service('UserService', function ($http, $location) {
        var totalsByVulnerabilitiesOverall = self.formatDataToChart(res, 'vulnerability');
        self.vulnerabilitiesOverallLabel = totalsByVulnerabilitiesOverall.xAxisValues;
        self.filteredVulnerabilitiesOverall = totalsByVulnerabilitiesOverall.yAxisValues;
+
+      //  var ageByVulnerability = self.getStackedChart(res, self.ageOverallLabel, 'age', 'vulnerability')
       })    
   };
 
@@ -182,10 +182,10 @@ myApp.service('UserService', function ($http, $location) {
   };
 
   self.getStackedChart = function (data, xAxisLabels, xAxisFilter, yAxisFilter) {
-    console.log('data', data);
-    console.log('xAxisLabels', xAxisLabels);
-    console.log('xAxisFilter', xAxisFilter);
-    console.log('yAxisFilter', yAxisFilter);
+    // console.log('data', data)
+    // console.log('xAxisLabels', xAxisLabels);
+    // console.log('xAxisFilter', xAxisFilter);
+    // console.log('yAxisFilter', yAxisFilter);
 
     var stackedYObj = data.reduce(function (prev, curr) {
       const groupLabel = curr[yAxisFilter];
@@ -199,20 +199,27 @@ myApp.service('UserService', function ($http, $location) {
       return prev
     }, {});
 
+    // console.log('stackedYObj', stackedYObj)
+
     var stackedAxisKeys = Object.keys(stackedYObj);
-    console.log('stackedAxisKeys', stackedAxisKeys)
+    // console.log('stackedAxisKeys', stackedAxisKeys)
 
     stackedAxisKeys.forEach(function(stackedAxisKey) {
       self[`${yAxisFilter}_${stackedAxisKey}`] = xAxisLabels.map(function(currXAxisLabel) {
         return data.filter(function(element) {
+          // console.log('element[yAxisFilter]', element[yAxisFilter].toString())
           return element[xAxisFilter] === currXAxisLabel
           && element[yAxisFilter].toString() === stackedAxisKey;
         }).length;
       });
     });
+    
+  
+    console.log('vulnerability_ASD',self.vulnerability_ASD)
+    console.log('vulnerability_Anxiety',self.vulnerability_Anxiety)
 
-    console.log('jurusdictional_denial_true',self.jurisdictional_denial_true)
-    console.log('jurusdictional_denial_false',self.jurisdictional_denial_false)
+    // console.log('jurusdictional_denial_true',self.jurisdictional_denial_true)
+    // console.log('jurusdictional_denial_false',self.jurisdictional_denial_false)
   
 }
 
@@ -275,7 +282,6 @@ myApp.service('UserService', function ($http, $location) {
 
     //Deep Dive into Year Charts on Join Charts
     var dataForJoinUserYearLawEnforcement = self.getDataOfYear(self.joinLawEnforcementDenialChartData.data, self.selectedYear);
-    console.log('self.joinLawEnforcementDenialChartData.data', self.joinLawEnforcementDenialChartData.data)
     var totalsByUserLaw = self.formatDataToChart(dataForJoinUserYearLawEnforcement, 'agency');
     self.userLawLabels = totalsByUserLaw.xAxisValues;
     self.userFilteredLaw = totalsByUserLaw.yAxisValues;

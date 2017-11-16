@@ -1,10 +1,7 @@
 myApp.controller('CoreController', function (UserService, $scope) {
   var vm = this;
   vm.userService = UserService;
-  vm.chartData = UserService.chartData;
-
-  
-  
+  vm.chartData = UserService.chartData;  
   vm.joinLawEnforcementDenialChartData = UserService.joinLawEnforcementDenialChartData;
   vm.joinjoinVulnerabilityChartData = UserService.joinVulnerabilityChartData;
   vm.joinRaceChartData = UserService.joinRaceChartData.data
@@ -844,8 +841,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.lawEnforcementOverallLabel,
             datasets: [{
               label: 'Jurisdictional Denial True',
-              backgroundColor: 'rgba( 255, 153, 0, 0.4)',
-              borderColor: 'rgba( 255, 153, 0, 0.4)',
+              backgroundColor: 'rgba( 255, 165, 0, 0.6)',
+              borderColor: 'rgba( 255, 165, 0, 0.6)',
               data: vm.jurisdictional_denial_true,
               borderWidth: 1
             },
