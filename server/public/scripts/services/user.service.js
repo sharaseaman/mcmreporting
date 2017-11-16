@@ -3,13 +3,12 @@ myApp.service('UserService', function ($http, $location) {
   var self = this;
 
   self.userObject = {};
-  self.chartData = {
-    data: []
-  };
-  self.joinChartData = {
-    data: []
-  };
+  self.chartData = {data: []};
+
   self.users = {};
+  self.joinLawEnforcementDenialChartData = {data: []};
+  self.joinVulnerabilityChartData = {data: []};
+  self.joinRaceChartData = {data: []};
 
   self.cities = {};
   self.selectedYear = '';
@@ -111,16 +110,16 @@ myApp.service('UserService', function ($http, $location) {
       });
   };
 
-  self.getJoinTableData = function () {
-    //this function gets all data from the db from the join tables (case_vulnerabilities, case_lawenforcement_denial, case_race_ethnicity)
+ 
+
+  self.getJoinCaseLawEnforcementDenial = function(){
     return $http({
       method: 'GET',
-      url: '/charts/join_tables_reports'
+      url: '/charts/join_case_lawenforcement_denial'
     })
       .then(function (res) {
-        console.log('res', res.data);
-        self.joinChartData.data = res.data;
-        return self.joinChartData.data
+        self.joinLawEnforcementDenialChartData.data = res.data;
+        return self.joinLawEnforcementDenialChartData.data
 
       })
       .then(function (res) {
@@ -129,37 +128,64 @@ myApp.service('UserService', function ($http, $location) {
         });
 
         //Global Charts
-        var totalsByVulnerabilitiesOverall = self.formatDataToChart(res, 'vulnerability');
-        self.vulnerabilitiesOverallLabel = totalsByVulnerabilitiesOverall.xAxisValues;
-        self.filteredVulnerabilitiesOverall = totalsByVulnerabilitiesOverall.yAxisValues;
-
         var totalsByLawEnforcementOverall = self.formatDataToChart(res, 'agency');
         self.lawEnforcementOverallLabel = totalsByLawEnforcementOverall.xAxisValues;
         self.filteredLawEnforcementOverall = totalsByLawEnforcementOverall.yAxisValues;
 
         var totalsByDenialOverall = self.formatDataToChart(res, 'jurisdictional_denial');
         self.lawDenialOverallLabel = totalsByDenialOverall.xAxisValues;
-        console.log('self.lawEnforcementOverallLabel', self.lawEnforcementOverallLabel);
-        var something = self.getStackedChart(res, self.lawEnforcementOverallLabel, 'agency', 'jurisdictional_denial')
-        // self.stackedDenialTrue = totalsByDenialOverall
-        // self.stackedDenialFalse = totalsByDenialOverall
+      
+        var agencyByDenial = self.getStackedChart(res, self.lawEnforcementOverallLabel, 'agency', 'jurisdictional_denial')
+      })    
+  };
 
-        var totalsByRaceEthnicityOverall = self.formatDataToChart(res, 'race_ethnicity');
-        self.raceEthnicityOverallLabel = totalsByRaceEthnicityOverall.xAxisValues;
-        self.filteredRaceEthnicityOverall = totalsByRaceEthnicityOverall.yAxisValues;
+  self.getJoinCaseVulnerabilities = function(){
+    return $http({
+      method: 'GET',
+      url: '/charts/join_vulnerability'
+    })
+      .then(function (res) {
+        self.joinVulnerabilityChartData.data = res.data;
+        return self.joinVulnerabilityChartData.data
 
       })
+      .then(function (res) {
+        self.addYearToRecord = res.forEach(function (element) {
+          element.year = element.intake_date.slice(0, 4);
+        });
+       //Global Charts
+       var totalsByVulnerabilitiesOverall = self.formatDataToChart(res, 'vulnerability');
+       self.vulnerabilitiesOverallLabel = totalsByVulnerabilitiesOverall.xAxisValues;
+       self.filteredVulnerabilitiesOverall = totalsByVulnerabilitiesOverall.yAxisValues;
+      })    
+  };
+
+  self.getJoinCaseRaceEthnicity = function(){
+    return $http({
+      method: 'GET',
+      url: '/charts/join_race_ethnicity'
+    })
+      .then(function (res) {
+        self.joinRaceChartData.data = res.data;
+        return self.joinRaceChartData.data
+
+      })
+      .then(function (res) {
+        self.addYearToRecord = res.forEach(function (element) {
+          element.year = element.intake_date.slice(0, 4);
+        });
+       //Global Charts
+       var totalsByRaceEthnicityOverall = self.formatDataToChart(res, 'race_ethnicity');
+       self.raceEthnicityOverallLabel = totalsByRaceEthnicityOverall.xAxisValues;
+       self.filteredRaceEthnicityOverall = totalsByRaceEthnicityOverall.yAxisValues;
+      })    
   };
 
   self.getStackedChart = function (data, xAxisLabels, xAxisFilter, yAxisFilter) {
-    console.log('data', data); //array of 37 objects
-    console.log('xAxisLabels', xAxisLabels); //array with all x axis label: cop C, cop A ...
-    console.log('yAxisFilter', yAxisFilter); //jurisdictional Denial
-    
-    // there are 3 agencies (cop A, cop B, cop C)
-    // cop A has total of 7 cases, of which 2 are false, 5 are true
-    // jurisdictional_denial_false = [2, 4, 8]
-    // jurisdictional_denial_true = [5, 6, 10]
+    console.log('data', data);
+    console.log('xAxisLabels', xAxisLabels);
+    console.log('xAxisFilter', xAxisFilter);
+    console.log('yAxisFilter', yAxisFilter);
 
     var stackedYObj = data.reduce(function (prev, curr) {
       const groupLabel = curr[yAxisFilter];
@@ -173,10 +199,8 @@ myApp.service('UserService', function ($http, $location) {
       return prev
     }, {});
 
-    console.log('stackedYObj', stackedYObj); //{true: [21 objects], false:[14 objects]}
-
     var stackedAxisKeys = Object.keys(stackedYObj);
-    console.log('stackedAxisKeys', stackedAxisKeys); //["true", 'false']
+    console.log('stackedAxisKeys', stackedAxisKeys)
 
     stackedAxisKeys.forEach(function(stackedAxisKey) {
       self[`${yAxisFilter}_${stackedAxisKey}`] = xAxisLabels.map(function(currXAxisLabel) {
@@ -186,28 +210,10 @@ myApp.service('UserService', function ($http, $location) {
         }).length;
       });
     });
-    console.log('self.jurisdictional_denial_true', self.jurisdictional_denial_true)
-    console.log('self.jurisdictional_denial_false', self.jurisdictional_denial_false)
 
-    // var stackedAxisValues = Object.values(stackedYObj);
-    // console.log('stackedAxisValues', stackedAxisValues) //[Array(21), Array(14)]
-
-    // var newKeys = stackedYObj[].forEach(function(element){
-    //   console.log('element',element)
-      
-    //   var newFill = element.reduce(function (prev, curr) {
-    //     xAxisLabel.forEach(function(param){
-          
-    //       console.log('param', param);
-    //       // console.log('curr', curr);
-    //       // console.log('curr[yAxisFilter]', curr[yAxisFilter])
-    //      console.log('curr.agency',curr.agency)
-         
-    //     })
-    // })
-    
-    
-  // });
+    console.log('jurusdictional_denial_true',self.jurisdictional_denial_true)
+    console.log('jurusdictional_denial_false',self.jurisdictional_denial_false)
+  
 }
 
   self.getDataOfYear = function (data, year) {
@@ -268,17 +274,19 @@ myApp.service('UserService', function ($http, $location) {
     self.userFilteredAge = totalsByUserAge.yAxisValues;
 
     //Deep Dive into Year Charts on Join Charts
-    var dataForJoinUserYear = self.getDataOfYear(self.joinChartData.data, self.selectedYear);
-
-    var totalsByUserVulnerability = self.formatDataToChart(dataForJoinUserYear, 'vulnerability');
-    self.userVulnerabilityLabels = totalsByUserVulnerability.xAxisValues;
-    self.userFilteredVulnerability = totalsByUserVulnerability.yAxisValues;
-
-    var totalsByUserLaw = self.formatDataToChart(dataForJoinUserYear, 'agency');
+    var dataForJoinUserYearLawEnforcement = self.getDataOfYear(self.joinLawEnforcementDenialChartData.data, self.selectedYear);
+    console.log('self.joinLawEnforcementDenialChartData.data', self.joinLawEnforcementDenialChartData.data)
+    var totalsByUserLaw = self.formatDataToChart(dataForJoinUserYearLawEnforcement, 'agency');
     self.userLawLabels = totalsByUserLaw.xAxisValues;
     self.userFilteredLaw = totalsByUserLaw.yAxisValues;
 
-    var totalsByUserRace = self.formatDataToChart(dataForJoinUserYear, 'race_ethnicity');
+    var dataForJoinUserYearVulnerability = self.getDataOfYear(self.joinVulnerabilityChartData.data, self.selectedYear);
+    var totalsByUserVulnerability = self.formatDataToChart(dataForJoinUserYearVulnerability, 'vulnerability');
+    self.userVulnerabilityLabels = totalsByUserVulnerability.xAxisValues;
+    self.userFilteredVulnerability = totalsByUserVulnerability.yAxisValues;
+
+    var dataForJoinUserYearRace = self.getDataOfYear(self.joinRaceChartData.data, self.selectedYear);
+    var totalsByUserRace = self.formatDataToChart(dataForJoinUserYearRace, 'race_ethnicity');
     self.userRaceLabels = totalsByUserRace.xAxisValues;
     self.userFilteredRace = totalsByUserRace.yAxisValues;
 
