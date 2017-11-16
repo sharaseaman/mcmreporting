@@ -9,6 +9,11 @@ body, html {
     width: 100%;
 }
 
+.header{
+  font-size: 20px;
+  float: left;
+}
+
 td, th {
     border: 1px solid #dddddd;
     text-align: left;
@@ -112,6 +117,7 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
 
   .md-form {
     padding: 20px;
+    background-color: white;
   }
   .btn-success {
     margin: 10px;
