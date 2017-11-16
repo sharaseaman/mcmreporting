@@ -4,6 +4,7 @@ myApp.controller('CustomReportController', function (UserService) {
   vm.userService = UserService;
   vm.chartData = UserService.chartData;  
   vm.customReportData = UserService.customReportData;
+  vm.userCustomFilters = {}
 
   vm.getMCMRecords = function () {
     UserService.getChartData()
@@ -44,7 +45,7 @@ myApp.controller('CustomReportController', function (UserService) {
   vm.submitCustomFilters = function (caseType,state,county,district,agency,denial,vulnerability,age,gender,race,source){
     // console.log('hello',caseType,state,county,district,agency,denial,vulnerability,age,gender,race,source);
 
-    var userCustomFilters = {
+    vm.userCustomFilters = {
       start_case_type : caseType,
       state : state,
       county_name : county,
@@ -58,7 +59,12 @@ myApp.controller('CustomReportController', function (UserService) {
       referral_type : source
     }
 
-    UserService.submitCustomFilters(userCustomFilters);
+    // if ( Object.values(vm.userCustomFilters) !== undefined ) {
+      
+    //   vm.grabCustomFilterValues = Object.values(vm.userCustomFilters);
+    // } ;
+
+    UserService.submitCustomFilters(vm.userCustomFilters);
   }
 
 });

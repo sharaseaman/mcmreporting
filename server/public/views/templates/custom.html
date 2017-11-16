@@ -100,7 +100,8 @@
                 </md-input-container>
         </div>
 
-        <table >
+        <p ng-show="cr.userCustomFilters">Selected Filter Parameters: {{cr.grabCustomFilterKeys}} : {{cr.grabCustomFilterValues}}</p>
+        <table>
             <thead>
                 <th ng-repeat="rowHeader in cr.customReportData.data">{{rowHeader}}</th>
             </thead>

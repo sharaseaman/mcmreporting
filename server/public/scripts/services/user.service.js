@@ -119,8 +119,6 @@ myApp.service('UserService', function ($http, $location) {
       });
   };
 
- 
-
   self.getJoinCaseLawEnforcementDenial = function(){
     return $http({
       method: 'GET',
@@ -232,7 +230,7 @@ myApp.service('UserService', function ($http, $location) {
     // console.log('jurusdictional_denial_true',self.jurisdictional_denial_true)
     // console.log('jurusdictional_denial_false',self.jurisdictional_denial_false)
   
-}
+  };
 
   self.getDataOfYear = function (data, year) {
     return data.filter(function (entry) {
