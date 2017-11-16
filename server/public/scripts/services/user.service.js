@@ -130,6 +130,7 @@ myApp.service('UserService', function ($http, $location) {
       })
         .then(function (res) {
           self.joinChartData.data = res.data;
+          console.log('self.joinChartData.data', self.joinChartData.data)
           return self.joinChartData.data
         })
         .then(function (res) {
@@ -140,6 +141,7 @@ myApp.service('UserService', function ($http, $location) {
           //Global Charts
           var totalsByVulnerabilitiesOverall = self.formatDataToChart(res, 'vulnerability');
             self.vulnerabilitiesOverallLabel = totalsByVulnerabilitiesOverall.xAxisValues;
+            console.log('self.vulnerabilitiesOverallLabel',self.vulnerabilitiesOverallLabel)
             self.filteredVulnerabilitiesOverall = totalsByVulnerabilitiesOverall.yAxisValues;
             
           var totalsByLawEnforcementOverall = self.formatDataToChart(res, 'agency');
