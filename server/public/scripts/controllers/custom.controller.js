@@ -46,8 +46,6 @@ myApp.controller('CustomReportController', function (UserService) {
       referral_type : source
     }
 
-    // console.log('userCustomFilters',userCustomFilters);
-
     UserService.submitCustomFilters(userCustomFilters);
   }
 

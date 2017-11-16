@@ -791,8 +791,6 @@ myApp.controller('CoreController', function (UserService, $scope) {
           vm.filteredLawEnforcementOverall = UserService.filteredLawEnforcementOverall;
           vm.raceEthnicityOverallLabel = UserService.raceEthnicityOverallLabel;
           vm.filteredRaceEthnicityOverall = UserService.filteredRaceEthnicityOverall;
-          vm.stackedDenialTrue = UserService.stackedDenialTrue
-          vm.stackedDenialFalse = UserService.stackedDenialFalse
 
           var ctc = document.getElementById("vulnerabilitiesOverallChart");
           var myChart = new Chart(ctc, {
@@ -879,6 +877,10 @@ myApp.controller('CoreController', function (UserService, $scope) {
           });
 
           var ctc = document.getElementById("lawEnforcementStackedOverall");
+
+          vm.jurisdictional_denial_true = UserService.jurisdictional_denial_true
+          vm.jurisdictional_denial_false = UserService.jurisdictional_denial_false
+
           var myChart = new Chart(ctc, {
             type: 'bar',
             data: {
@@ -887,16 +889,16 @@ myApp.controller('CoreController', function (UserService, $scope) {
                 label: 'Jurisdictional Denial by Law Enforcement Agency',
                 backgroundColor: 'rgba(255, 102, 0, 0.4)',
                 borderColor: 'rgba(255, 102, 0, 0.4)',
-                data: vm.stackedDenialTrue,
+                data: vm.jurisdictional_denial_true,
                 borderWidth: 1
               },
-              // {
-              //   label: 'Jurisdictional Denial by Law Enforcement Agency',
-              //   backgroundColor: 'rgba(20, 125, 145, 0.4)',
-              //   borderColor: 'rgba(20, 125, 145, 0.4)',
-              //   data: vm.stackedDenialFalse,
-              //   borderWidth: 1
-              // }
+              {
+                label: 'Jurisdictional Denial by Law Enforcement Agency',
+                backgroundColor: 'rgba(20, 125, 145, 0.4)',
+                borderColor: 'rgba(20, 125, 145, 0.4)',
+                data: vm.jurisdictional_denial_false,
+                borderWidth: 1
+              }
             ]},
             options: {
               title: {
