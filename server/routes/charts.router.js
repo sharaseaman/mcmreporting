@@ -138,7 +138,7 @@ var createQuery = function() {
   }) //client query
   }) //end tempArray.forEach
 }; //end create query
-
+})
 
 module.exports = router;
 

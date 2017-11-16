@@ -2,8 +2,40 @@ myApp.controller('NewController', function (UserService) {
   console.log('NewController as nwc created');
   var vm = this;
   var newIntake = [];
-  var vulnerabilities = [];
 
+  vm.case_vulnerabilities = [{ name: "ADD/ADHD", value: false }, { name: "ASD", value: false }, { name: "Alcohol use/abuse", value: false},
+  { name: "Anxiety", value: false }, { name: "Bipolar Disorder", value: false},
+  { name: "Depression (Clinical)", value: false }, { name: "Depression (Situational)", value: false}, 
+  { name: "Drug use/abuse", value: false }, { name: "Economic exploitation (history", value: false }, 
+  { name: "Emotional abuse (history)", value: false }, { name: "Gang association", value: false }, 
+  { name: "ODD", value: false }, { name: "Labor Exploitation (history)", value: false }, 
+  { name: "Luring/grooming by adult", value: false }, { name: "Luring/grooming by child", value: false }, 
+  { name: "Missing from care", value: false }, { name: "Physical Abuse (history)", value: false },
+  { name: "Runaway (history)", value: false }, { name: "Sexual Abuse (history)", value: false }, 
+  { name: "Sexual exploitation (history)", value: false }, { name: "Sexual Minority", value: false }]
+
+// vm.changeVul = function (inputVuln) {
+//   console.log("inputVuln", inputVuln);
+//   inputVuln.value = !inputVuln.value;
+//   console.log("inputVuln.name", inputVuln.value);
+// }.then(function (inputVuln) {
+//  var newIntake = inputVuln.filter(function(inputVuln) {
+//   return newIntake.value == true;
+//   console.log('newIntake', newIntake);
+//  })
+// });
+
+// dataService.getEvents().then(function (response) {
+//   console.log(response.data);
+//   // console.log("res.Obj", resObj);
+//   vm.resObj = response.data;
+//   // return vm.resObj;
+
+//   vm.resObj.sort(function (a, b) {
+//     return parseFloat(a.date) - parseFloat(b.date);
+//   });
+//   console.log('vm.resObj', vm.resObj);
+// });
 
   vm.itemChange = function () {
     console.log('inside itemchange');
@@ -38,13 +70,6 @@ myApp.controller('NewController', function (UserService) {
   vm.click = function () {
     console.log('in click');
 
-
-    // var vulnerabilities = {
-    
-    //   case_data_id =   vm.newIntake.id,
-    //   vulnerabilities_id
-    // };
-
     var newIntake = {
       mcm_number: vm.caseIn,
       intake_date: vm.DateofIntaketoMCMIn,
@@ -61,9 +86,13 @@ myApp.controller('NewController', function (UserService) {
       end_case_type: vm.CaseTypeWhenClosedIn,
       disposition: vm.CaseDispositionIn,
       close_date: vm.DateCaseClosedIn,
-      referral_type: vm.ReferralTypeIn
+      referral_type: vm.ReferralTypeIn,
+      case_vulnerabilities:  vm.case_vulnerabilities,
+      race_ethnicity: vm.RaceEthnicityIn,
+      case_lawenforcement_denial: vm.JurisdictionalDenialIn
     };
 
+   
     if (newIntake.mcm_number == null || newIntake.intake_date == null || newIntake.age == null || newIntake.gender == null
     || newIntake.last_seen == null || newIntake.reported_missing == null || newIntake.people_served == null|| newIntake.city == null
   || newIntake.county == null|| newIntake.state == null || newIntake.school == null || newIntake.start_case_type == null|| newIntake.end_case_type == null
@@ -83,16 +112,17 @@ myApp.controller('NewController', function (UserService) {
         width: 600,
         padding: 100,
         background: '#fff url(assets/page.JPG)'
-      }).then(function () {
-        UserService.postInputData(newIntake);
+      // }).then(function (newIntake) {
+      //   // for(i=0; i < newIntake.length; i++){}
+      // var newIntake = newIntake.filter(function(newIntake) {
+      //   return newIntake.case_vulnerabilities.value == true;
+  
       }).then(function (newIntake) {
-      //   console.log(newIntake.id)
-      //   UserService.postVulnerabilities(vulnerabilities);
-      })
-    };
-  };
-
-  //insert id into vulnerabilities object
+        UserService.postInputData(newIntake);
+        console.log('final newIntake', newIntake)
+      });
+ }
+  }
 
   //shara working on pdf below
   var pdf = new jsPDF();

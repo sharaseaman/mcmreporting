@@ -27,6 +27,12 @@ body, html {
     margin: 20px;
     
   }
+
+  .md-button{
+    background-color: rgba(193, 193, 193, 0.96);
+    color: rgba(44, 65, 164, 0.96);
+    transition: 0.3s;
+  }
   
   .instructions {
     background-color:#147d91;
@@ -158,6 +164,7 @@ md-input-container.md-input-focused:not(.md-input-has-value) md-select .md-selec
   
 }
 
+
 .layout-margin {
   padding: 20px;
 }
@@ -171,6 +178,3 @@ md-input-container.md-input-focused:not(.md-input-has-value) md-select .md-selec
   }
 
   
-  md-checkbox.md-focused .md-container:before {
-    background-color: transparent !important;
-}
