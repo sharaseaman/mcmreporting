@@ -128,7 +128,7 @@
             </div>
           </md-content>
         </md-tab>
-        <md-tab label="Stacked Charts">
+        <md-tab label="Preventative Insights">
           <md-content class="md-padding">
             <div flex-xs flex-gt-xs="100" layout="column">
                 <md-card>
@@ -143,12 +143,33 @@
                           </md-button>
                     </md-card-actions>
                   </md-card>
+                  <md-card>
+                      <canvas id="vulnerabilityStackedOverall" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                      </canvas>
+                      <md-card-actions layout="row" layout-align="start center">
+                          <md-card-icon-actions>
+                              <span class="chartNotes">Note: Cases can have more than one listed vulnerability.</span>
+                          </md-card-icon-actions>
+                          <md-button ng-click="cc.saveChart('vulnerabilityStackedOverall')" class="md-icon-button md-accent" aria-label="Download chart">
+                              <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
+                            </md-button>
+                      </md-card-actions>
+                    </md-card>
+                    <md-card>
+                        <canvas id="startCaseByDistrictStacked" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
+                        </canvas>
+                        <md-card-actions layout="row" layout-align="end center">
+                            <md-button ng-click="cc.saveChart('startCaseByDistrictStacked')" class="md-icon-button md-accent" aria-label="Download chart">
+                                <md-icon ng_bind="'file_download'" style="color:rgba(20, 125, 145, 0.8)"></md-icon>
+                              </md-button>
+                        </md-card-actions>
+                      </md-card>
+                </div>
           </md-content>
         </md-tab>
         <md-tab label="Annual Dashboard">
-          <div>
-            <h1 class="md-title">Select a Year to explore:</h1>
-            <div layout="row">
+            <h1 class="md-title" style="padding-left:15px">Select a Year to explore:</h1>
+            <div layout="row" style="padding-left:15px">
               <md-input-container>
                 <label>Year:</label>
                 <md-select ng-model="cc.selectedYear" ng-change="cc.getSelectedYear()">
@@ -158,9 +179,9 @@
                 </md-select>
               </md-input-container>
             </div>
-          </div>
-          <md-content class="md-padding" ng-show=cc.selectedYear>
-            <div flex-xs flex-gt-xs="100" layout="column">
+        
+          <md-content class="md-padding" ng-show=cc.selectedYear flex-xs flex-gt-xs="100" layout="column">
+            <!-- <div flex-xs flex-gt-xs="100" layout="column"> -->
               <md-card>
                 <canvas id="userCaseTypeChart" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series">
                 </canvas>
