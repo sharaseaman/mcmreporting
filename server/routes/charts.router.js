@@ -96,7 +96,7 @@ router.get('/join_vulnerability', function (req, res) {
             res.sendStatus(500);
           } else {
             res.send(resultObj.rows);
-            console.log ('result', resultObj.rows)
+            // console.log ('result', resultObj.rows)
           }
 
         });
@@ -228,7 +228,7 @@ router.post('/custom', function (req, res) {
         
           client.query(sqlQuery, valueArray, function (queryErr, resultObj) {
             done();
-            console.log('resultObj', resultObj.rows)
+            // console.log('resultObj', resultObj)
             if (queryErr) {
               res.sendStatus(500);
             } else {
