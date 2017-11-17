@@ -110,7 +110,27 @@ myApp.controller('NewController', function (UserService) {
     vm.PRACellPhoneIn = '';
     vm.PRAEmailIn = '';
     vm.OtherHistoryIn = '';
-
+    vm.ADDIn = '';
+    vm.AutismIn = '';
+    vm.AlcoholIn = '';
+    vm.AnxietyIn = '';
+    vm.BiPolarIn = '';
+    vm.DepressionClinicalIn = '';
+    vm.DepressionSituationalIn = '';
+    vm.DrugUseIn = '';
+    vm.EconomicIn = '';
+    vm.EmotionalAbuseIn = '';
+    vm.GangIn = '';
+    vm.ODDIn = '';
+    vm.LaborIn = '';
+    vm.LuringAdultIn = '';
+    vm.LuringChildIn = '';
+    vm.MissingFromCareIn = '';
+    vm.PhysicalAbuseIn = '';
+    vm.RunawayIn = '';
+    vm.SexualAbuseIn = '';
+    vm.SexualExploitationIn = '';
+    vm.SexualMinorityIn = '';
 
   vm.itemChange = function () {
     console.log('inside itemchange');
@@ -440,20 +460,78 @@ myApp.controller('NewController', function (UserService) {
          // page 4 input
 
           //Vulnerabilities
-          // var specialElementHandlers = {
-          //       '#editor': function (element, renderer) {
-          //           return true;
-          //       }
-          //   };
-          //   $('#pdfview').click(function () {
-          //       doc.fromHTML($('#pdfdiv').html(), 15, 15, {
-          //           'width': 100,
-          //           'elementHandlers': specialElementHandlers
-          //       });
-          //     })
-              
+          pdf.setFontType('bold');
+          pdf.setFontSize(14);                        
+          pdf.text(10, 60, 'Vulnerability History') 
+          pdf.setFontType('normal');  
+          pdf.setFontSize(12); 
+          pdf.text(10, 70, 'ADD/ADHD:')
+          pdf.text(66, 70, '' + vm.ADDIn);
+          
+          pdf.text(10, 78, 'ASD:');   
+          pdf.text(66, 78, '' + vm.AutismIn);   
+          
+          pdf.text(10, 86, 'Anxiety: '); 
+          pdf.text(66, 86, '' + vm.AnxietyIn);   
+          
+          pdf.text(10, 94, 'ODD:');
+          pdf.text(66, 94, '' + vm.ODDIn);   
+          
+          pdf.text(10, 102, 'Bi-Polar Disorder: ');
+          pdf.text(66, 102, '' + vm.BiPolarIn);
+          
+          pdf.text(10, 110, 'Runaway: ');
+          pdf.text(66, 110, '' + vm.RunawayIn);
+          
 
-          //Person Requesting Assistance In Juvenile Case Under The Age Of 18 Years
+          pdf.text(10, 118, 'Missing From Care: ');
+          pdf.text(66, 118, '' + vm.MissingFromCareIn);
+          
+          pdf.text(10, 126, 'Gang Association: ');  
+          pdf.text(66, 126, '' + vm.GangIn);  
+          
+          pdf.text(10, 134, 'Alcohol Use/Abuse:  ');
+          pdf.text(66, 134, '' +vm.AlcoholIn);
+          
+          pdf.text(10, 142, 'Drug Use/Abuse: ');
+          pdf.text(66, 142, '' + vm.DrugUseIn);
+          
+          pdf.text(10, 150, 'Economic exploitation: ');
+          pdf.text(66, 150, '' +vm.EconomicIn);
+          
+          pdf.text(100, 70, 'Emotional Abuse: ' );
+          pdf.text(166, 70, '' + vm.EmotionalAbuseIn);
+
+          pdf.text(100, 78, 'Physical Abuse: ' );
+          pdf.text(166, 78, '' + vm.PhysicalAbuseIn);
+
+          pdf.text(100, 86, 'Depression(clinical): ' );
+          pdf.text(166, 86, '' +vm.DepressionClinicalIn);
+          
+          pdf.text(100, 94, 'Depression(situational): ');
+          pdf.text(166, 94, '' +vm.DepressionSituationalIn);
+          
+          pdf.text(100, 102, 'Labor Exploitation: ');
+          pdf.text(166, 102, '' +vm.LaborIn);
+          
+          pdf.text(100, 110, 'Luring/grooming by adult: ');
+          pdf.text(166, 110, '' +vm.LuringAdultIn);
+          
+          pdf.text(100, 118, 'Luring/grooming by child: ');
+          pdf.text(166, 118, '' +vm.LuringChildIn);
+          
+          pdf.text(100, 126, 'Sexual Abuse: ');
+          pdf.text(166, 126, '' + vm.SexualAbuseIn);
+          
+          pdf.text(100, 134, 'Sexual Exploitation: ');
+          pdf.text(166, 134, '' + vm.SexualExploitationIn);
+          
+          pdf.text(100, 142, 'Sexual Minority (LGBTQ, etc.): ');
+          pdf.text(166, 142, '' + vm.SexualMinorityIn);
+          
+          pdf.line(10, 158, 206, 158);
+          
+          // Person Requesting Assistance In Juvenile Case Under The Age Of 18 Years
 
 
           //name / signture / date / referred by
