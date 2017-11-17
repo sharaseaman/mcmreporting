@@ -187,24 +187,24 @@ myApp.controller('NewController', function (UserService) {
     }
   ]
 
-  vm.race_ethnicity = [{
-      name: "African American",
-      value: false
-    }, {
-      name: "Asian Pacific Islander",
-      value: false
-    }, {
-      name: "Caucasian",
-      value: false
-    },
-    {
-      name: "Latinx",
-      value: false
-    }, {
-      name: "Native American",
-      value: false
-    }
-  ]
+  // vm.race_ethnicity = [{
+  //     name: "African American",
+  //     value: false
+  //   }, {
+  //     name: "Asian Pacific Islander",
+  //     value: false
+  //   }, {
+  //     name: "Caucasian",
+  //     value: false
+  //   },
+  //   {
+  //     name: "Latinx",
+  //     value: false
+  //   }, {
+  //     name: "Native American",
+  //     value: false
+  //   }
+  // ]
 
 
   vm.changeVul = function (inputVuln) {
@@ -240,7 +240,9 @@ myApp.controller('NewController', function (UserService) {
   });
 
   UserService.getAgencies().then(function (response) {
+    console.log('lawEnforcement', response.data )
     return vm.agencies = response.data;
+    
   });
 
   UserService.getSchools().then(function (response) {
@@ -261,25 +263,25 @@ myApp.controller('NewController', function (UserService) {
       last_seen: vm.DateLastSeenIn,
       reported_missing: vm.DateReportedMissingtoPoliceIn,
       people_served: vm.FamilyMembersInvolvedInSearchIn,
-      city: vm.CityMissingFromIn,
-      county: vm.CountyMissingFromIn,
+      city_name: vm.CityMissingFromIn,
+      county_name: vm.CountyMissingFromIn,
       state: vm.StateMissingFromIn,
-      school: vm.SchoolDistrictWhereChildWasEnrolledIn,
+      school_name: vm.SchoolDistrictWhereChildWasEnrolledIn,
       start_case_type: vm.CaseTypeWhenOpenedIn,
       end_case_type: vm.CaseTypeWhenClosedIn,
       disposition: vm.CaseDispositionIn,
       close_date: vm.DateCaseClosedIn,
       referral_type: vm.ReferralTypeIn,
       case_vulnerabilities: [],
-      race_ethnicity: [],
-      case_lawenforcement_denial: []
+      // race_ethnicity: [],
+      // case_lawenforcement_denial: []
     }
 
 
     if (newIntake.mcm_number == null || newIntake.intake_date == null || newIntake.age == null ||
       newIntake.gender == null || newIntake.last_seen == null || newIntake.reported_missing == null ||
-      newIntake.people_served == null || newIntake.city == null ||
-      newIntake.county == null || newIntake.state == null || newIntake.school == null ||
+      newIntake.people_served == null || newIntake.city_name == null ||
+      newIntake.county_name == null || newIntake.state == null || newIntake.school_name == null ||
       newIntake.start_case_type == null || newIntake.end_case_type == null ||
       newIntake.disposition == null || newIntake.close_date == null || newIntake.referral_type == null) {
       swal({
@@ -301,38 +303,39 @@ myApp.controller('NewController', function (UserService) {
         newIntake.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
           return vulnerability.value == true;
         });
-      }).then(function () {
-        newIntake.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
-          return ethnicity.value == true;
+      // }).then(function () {
+      //   newIntake.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
+      //     return ethnicity.value == true;
 
-        });
-      }).then(function () {
-        vm.jurisdictions = [{
-            name: vm.LawEnforcementAgencyonCaseIn1,
-            denial: vm.JurisdictionalDenialIn1
-          },
-          {
-            name: vm.LawEnforcementAgencyonCaseIn2,
-            denial: vm.JurisdictionalDenialIn2
-          },
-          {
-            name: vm.LawEnforcementAgencyonCaseIn3,
-            denial: vm.JurisdictionalDenialIn3
-          },
-          {
-            name: vm.LawEnforcementAgencyonCaseIn4,
-            denial: vm.JurisdictionalDenialIn4
-          },
-          {
-            name: vm.LawEnforcementAgencyonCaseIn5,
-            denial: vm.JurisdictionalDenialIn5
-          }
-        ]
-        newIntake.case_lawenforcement_denial = vm.jurisdictions.filter(function (jurisdiction) {
-          return jurisdiction.name !== undefined;
+      //   });
+      // }).then(function () {
+      //   vm.jurisdictions = [{
+      //       name: vm.LawEnforcementAgencyonCaseIn1,
+      //       denial: vm.JurisdictionalDenialIn1
+      //     },
+      //     {
+      //       name: vm.LawEnforcementAgencyonCaseIn2,
+      //       denial: vm.JurisdictionalDenialIn2
+      //     },
+      //     {
+      //       name: vm.LawEnforcementAgencyonCaseIn3,
+      //       denial: vm.JurisdictionalDenialIn3
+      //     },
+      //     {
+      //       name: vm.LawEnforcementAgencyonCaseIn4,
+      //       denial: vm.JurisdictionalDenialIn4
+      //     },
+      //     {
+      //       name: vm.LawEnforcementAgencyonCaseIn5,
+      //       denial: vm.JurisdictionalDenialIn5
+      //     }
+      //   ]
+      //   newIntake.case_lawenforcement_denial = vm.jurisdictions.filter(function (jurisdiction) {
+      //     return jurisdiction.name !== undefined;
 
-        })
-      }).then(function () {
+      //   })
+      })
+      .then(function () {
         UserService.postInputData(newIntake);
         console.log('final newIntake', newIntake)
       });

@@ -122,7 +122,7 @@
         <label>City Missing From</label>
         <md-select ng-model="nwc.CityMissingFromIn" style="width:200px;" ng-change="nwc.itemChange()" required>
           <md-option value="" disabled md-selected>City Missing From</md-option>
-          <md-option ng-repeat="cityObj in nwc.cities" ng-value="cityObj.city"> {{cityObj.city}}</md-option>
+          <md-option ng-repeat="cityObj in nwc.cities" ng-value="cityObj.city_name"> {{cityObj.city_name}}</md-option>
         </md-select>
       </md-input-container>
 
@@ -130,7 +130,7 @@
         <label>County Missing From</label>
         <md-select ng-model="nwc.CountyMissingFromIn" style="width:200px;" ng-change="nwc.itemChange()" required>
           <md-option value="" disabled md-selected>County Missing From</md-option>
-          <md-option ng-repeat="countyObj in nwc.counties" ng-value="countyObj.county"> {{countyObj.county}}</md-option>
+          <md-option ng-repeat="countyObj in nwc.counties" ng-value="countyObj.county_name"> {{countyObj.county_name}}</md-option>
         </md-select>
       </md-input-container>
 
@@ -138,7 +138,7 @@
         <label>School District Where Child Was Enrolled </label>
         <md-select ng-model="nwc.SchoolDistrictWhereChildWasEnrolledIn" style="width:325px;" ng-change="nwc.itemChange()" required>
           <md-option value="" disabled md-selected>School District Where Child Was Enrolled</md-option>
-          <md-option ng-repeat="schoolObj in nwc.schools" ng-value="schoolObj.school"> {{schoolObj.school}}</md-option>
+          <md-option ng-repeat="schoolObj in nwc.schools" ng-value="schoolObj.school_name"> {{schoolObj.school_name}}</md-option>
         </md-select>
       </md-input-container>
 
