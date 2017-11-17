@@ -5,7 +5,7 @@
             <h1 class="md-title">Select Report Filters:</h1>
             <div layout-align="start center">
                 <md-input-container>
-                    <label>Case Type</label>
+                    <label>Start Case Type</label>
                     <md-select ng-model="caseType">
                         <md-optgroup label="Select a Case Type">
                             <md-option ng-repeat="caseType in cr.caseType" value="{{caseType}}">{{caseType}}</md-option>
@@ -100,16 +100,53 @@
                 </md-input-container>
         </div>
 
-        <p ng-show="cr.userCustomFilters">Selected Filter Parameters: {{cr.grabCustomFilterKeys}} : {{cr.grabCustomFilterValues}}</p>
+        <div ng-show="cr.userCustomFilters" style="overflow-x:auto;"> 
+        <p>Selected Filter Parameters: {{cr.userCustomFilters}}</p>
         <table>
             <thead>
-                <th ng-repeat="rowHeader in cr.customReportData.data">{{rowHeader}}</th>
+                <th>MCM Case #</th>
+                <!-- <th>MCM Intake Date</th> -->
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Last Seen</th>
+                <th>Reported Missing</th>
+                <!-- <th>People Served</th> -->
+                <!-- <th>City</th> -->
+                <th>County</th>
+                <!-- <th>State</th> -->
+                <th>School</th>
+                <!-- <th>Law Enforcement Agency</th> -->
+                <!-- <th>Jurisdictional Denial</th> -->
+                
+                <th>Start Case Type</th>
+                <th>End Case Type</th>
+                <th>Case Disposition</th>
+                <th>Close Date</th>
+                <th>Referral Type</th>
             </thead>
 
             <tbody>
-                <tr ng-repeat="row in cr.customReportData.data">
-                    <td>{{row}}</td>
+                <tr ng-repeat="row in cr.customReport.data">
+                    <td>{{row.mcm_number}}</td>
+                    <!-- <td>{{row.intake_date | date: shortdate}}</td> -->
+                    <td>{{row.age}}</td>
+                    <td>{{row.gender}}</td>
+                    <td>{{row.last_seen | date: shortdate}}</td>
+                    <td>{{row.reported_missing | date: shortdate}}</td>
+                    <!-- <td>{{row.people_served}}</td> -->
+                    <!-- <td>{{row.city_name}}</td> -->
+                    <td>{{row.county_name}}</td>
+                    <!-- <td>{{row.state}}</td> -->
+                    <td>{{row.school}}</td>
+                    <!-- <td>{{row.agency}}</td>
+                    <td>{{row.jurisdictional_denial}}</td> -->
+                    <td>{{row.start_case_type}}</td>
+                    <td>{{row.end_case_type}}</td>
+                    <td>{{row.disposition}}</td>
+                    <td>{{row.close_date | date: shortdate}}</td>
+                    <td>{{row.referral_type}}</td>
                 </tr>
             </tbody>
         </table>
+    </div>
 </div>

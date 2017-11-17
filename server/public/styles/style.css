@@ -2,30 +2,41 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: "PT Sans", Arial, Helvetica, sans-serif;
-  };
+};
 
-  table {
+table {
     border-collapse: collapse;
     width: 100%;
 }
 
-td, th {
-    border: 1px solid #dddddd;
+th{
+  background-color: #147d91;
+  color: white;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  padding: 10px;
+  font-size: 20px;
+}
+
+td {
+    border-bottom: 1px solid #ddd;
     text-align: left;
     padding: 8px;
 }
 
-tr:nth-child(even) {
+/* tr:nth-child(even) {
     background-color: #dddddd;
-}
+} */
 
-  .myApp md-content {
+tr:hover {background-color: #f5f5f5;}
+
+.myApp md-content {
     background-color: transparent !important; 
-  }
+}
 
 .chartNotes {
     color: #666 !important;
-  }
+}
 
   .teal {
     background-color: #147d91 !important;
