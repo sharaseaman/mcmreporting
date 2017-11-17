@@ -136,7 +136,7 @@
 
       <md-input-container>
         <label>School District Where Child Was Enrolled </label>
-        <md-select ng-model="nwc.SchoolDistrictWhereChildWasEnrolledIn" style="width:325px;" ng-change="nwc.itemChange()" required>
+        <md-select id="schoolDistrict" ng-model="nwc.SchoolDistrictWhereChildWasEnrolledIn" style="width:325px;" ng-change="nwc.itemChange()" required>
           <md-option value="" disabled md-selected>School District Where Child Was Enrolled</md-option>
           <md-option ng-repeat="schoolObj in nwc.schools" ng-value="schoolObj.school"> {{schoolObj.school}}</md-option>
         </md-select>
