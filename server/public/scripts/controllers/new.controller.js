@@ -132,6 +132,115 @@ myApp.controller('NewController', function (UserService) {
   vm.SexualExploitationIn = '';
   vm.SexualMinorityIn = '';
 
+
+  vm.case_vulnerabilities = [{
+      name: "ADD/ADHD",
+      value: false
+    }, {
+      name: "ASD",
+      value: false
+    }, {
+      name: "Alcohol use/abuse",
+      value: false
+    },
+    {
+      name: "Anxiety",
+      value: false
+    }, {
+      name: "BiPolarDisorder",
+      value: false
+    },
+    {
+      name: "Depression (Clinical)",
+      value: false
+    }, {
+      name: "Depression (Situational)",
+      value: false
+    },
+    {
+      name: "Drug use/abuse",
+      value: false
+    }, {
+      name: "Economic exploitation (history",
+      value: false
+    },
+    {
+      name: "Emotional abuse (history)",
+      value: false
+    }, {
+      name: "Gang association",
+      value: false
+    },
+    {
+      name: "ODD",
+      value: false
+    }, {
+      name: "Labor Exploitation (history)",
+      value: false
+    },
+    {
+      name: "Luring/grooming by adult",
+      value: false
+    }, {
+      name: "Luring/grooming by child",
+      value: false
+    },
+    {
+      name: "Missing From Care",
+      value: false
+    }, {
+      name: "Physical Abuse (history)",
+      value: false
+    },
+    {
+      name: "Runaway (history)",
+      value: false
+    }, {
+      name: "Sexual Abuse (history)",
+      value: false
+    },
+    {
+      name: "Sexual exploitation (history)",
+      value: false
+    }, {
+      name: "Sexual Minority",
+      value: false
+    }
+  ]
+
+  vm.race_ethnicity = [{
+      name: "African American",
+      value: false
+    }, {
+      name: "Asian Pacific Islander",
+      value: false
+    }, {
+      name: "Caucasian",
+      value: false
+    },
+    {
+      name: "Latinx",
+      value: false
+    }, {
+      name: "Native American",
+      value: false
+    }
+  ]
+
+
+  vm.changeVul = function (inputVuln) {
+    console.log("inputVuln", inputVuln);
+    inputVuln.value = !inputVuln.value;
+    console.log("inputVuln.name", inputVuln.value);
+  }
+
+
+  vm.changeRace = function (inputRace) {
+    console.log("inputVuln", inputRace);
+    inputRace.value = !inputRace.value;
+    console.log("inputVuln.name", inputRace.value);
+  }
+
   vm.itemChange = function () {
     console.log('inside itemchange');
     console.log(vm.SchoolDistrictWhereChildWasEnrolledIn);
@@ -165,13 +274,6 @@ myApp.controller('NewController', function (UserService) {
   vm.click = function () {
     console.log('in click');
 
-
-    // var vulnerabilities = {
-
-    //   case_data_id =   vm.newIntake.id,
-    //   vulnerabilities_id
-    // };
-
     var newIntake = {
       mcm_number: vm.caseIn,
       intake_date: vm.DateofIntaketoMCMIn,
@@ -188,13 +290,21 @@ myApp.controller('NewController', function (UserService) {
       end_case_type: vm.CaseTypeWhenClosedIn,
       disposition: vm.CaseDispositionIn,
       close_date: vm.DateCaseClosedIn,
-      referral_type: vm.ReferralTypeIn
+      referral_type: vm.ReferralTypeIn,
+      referral_type: vm.ReferralTypeIn,
+      case_vulnerabilities: [],
+      race_ethnicity: [],
+      case_lawenforcement_denial: []
     };
 
-    if (newIntake.mcm_number == null || newIntake.intake_date == null || newIntake.age == null || newIntake.gender == null
-      || newIntake.last_seen == null || newIntake.reported_missing == null || newIntake.people_served == null || newIntake.city == null
-      || newIntake.county == null || newIntake.state == null || newIntake.school == null || newIntake.start_case_type == null || newIntake.end_case_type == null
-      || newIntake.disposition == null || newIntake.close_date == null || newIntake.referral_type == null) {
+
+
+    if (newIntake.mcm_number == null || newIntake.intake_date == null || newIntake.age == null ||
+      newIntake.gender == null || newIntake.last_seen == null || newIntake.reported_missing == null ||
+      newIntake.people_served == null || newIntake.city == null ||
+      newIntake.county == null || newIntake.state == null || newIntake.school == null ||
+      newIntake.start_case_type == null || newIntake.end_case_type == null ||
+      newIntake.disposition == null || newIntake.close_date == null || newIntake.referral_type == null) {
       swal({
         title: 'Please complete all required fields.',
         icon: "warning",
@@ -211,15 +321,51 @@ myApp.controller('NewController', function (UserService) {
         padding: 100,
         background: '#fff url(assets/page.JPG)'
       }).then(function () {
-        UserService.postInputData(newIntake);
-      }).then(function (newIntake) {
-        //   console.log(newIntake.id)
-        //   UserService.postVulnerabilities(vulnerabilities);
-      })
-    };
-  };
+        newIntake.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
+          return vulnerability.value == true;
+        });
+      }).then(function () {
+        newIntake.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
+          return ethnicity.value == true;
 
-  //insert id into vulnerabilities object
+        });
+      }).then(function () {
+        vm.jurisdictions = [{
+            name: vm.LawEnforcementAgencyonCaseIn1,
+            denial: vm.JurisdictionalDenialIn1
+          },
+          {
+            name: vm.LawEnforcementAgencyonCaseIn2,
+            denial: vm.JurisdictionalDenialIn2
+          },
+          {
+            name: vm.LawEnforcementAgencyonCaseIn3,
+            denial: vm.JurisdictionalDenialIn3
+          },
+          {
+            name: vm.LawEnforcementAgencyonCaseIn4,
+            denial: vm.JurisdictionalDenialIn4
+          },
+          {
+            name: vm.LawEnforcementAgencyonCaseIn5,
+            denial: vm.JurisdictionalDenialIn5
+          }
+        ]
+        newIntake.case_lawenforcement_denial = vm.jurisdictions.filter(function (jurisdiction) {
+          return jurisdiction.name !== undefined;
+
+        })
+      }).then(function () {
+        UserService.postInputData(newIntake);
+
+        console.log('final newIntake', newIntake)
+      });
+
+    }
+  }
+
+
+
 
   //shara working on pdf below
   var pdf = new jsPDF();

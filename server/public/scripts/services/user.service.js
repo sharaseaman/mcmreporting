@@ -10,7 +10,7 @@ myApp.service('UserService', function ($http, $location) {
   self.users = {};
   self.cities = {};
   self.selectedYear = '';
-  self.customReportData = {data: []}
+  self.customReport = {data: []}
 
 
   self.getCities = function () {
@@ -44,6 +44,7 @@ myApp.service('UserService', function ($http, $location) {
   };
 
   self.postInputData = function (newIntake) {
+    console.log('in service', newIntake);
     return $http({
       method: 'POST',
       url: '/forms/newIntake',
@@ -115,10 +116,11 @@ myApp.service('UserService', function ($http, $location) {
         var totalsByReferralOverall = self.formatDataToChart(res, 'referral_type');
         self.referralLabel = totalsByReferralOverall.xAxisValues;
         self.filteredReferral = totalsByReferralOverall.yAxisValues;
+
+        var startCaseByDistrict = self.getStackedChart(res, self.districtOverallLabel, 'school_name', 'start_case_type')
+
       });
   };
-
- 
 
   self.getJoinCaseLawEnforcementDenial = function(){
     return $http({
@@ -166,7 +168,7 @@ myApp.service('UserService', function ($http, $location) {
        self.vulnerabilitiesOverallLabel = totalsByVulnerabilitiesOverall.xAxisValues;
        self.filteredVulnerabilitiesOverall = totalsByVulnerabilitiesOverall.yAxisValues;
 
-      //  var ageByVulnerability = self.getStackedChart(res, self.ageOverallLabel, 'age', 'vulnerability')
+       var ageByVulnerability = self.getStackedChart(res, self.ageOverallLabel, 'age', 'vulnerability')
       })    
   };
 
@@ -192,11 +194,6 @@ myApp.service('UserService', function ($http, $location) {
   };
 
   self.getStackedChart = function (data, xAxisLabels, xAxisFilter, yAxisFilter) {
-    // console.log('data', data)
-    // console.log('xAxisLabels', xAxisLabels);
-    // console.log('xAxisFilter', xAxisFilter);
-    // console.log('yAxisFilter', yAxisFilter);
-
     var stackedYObj = data.reduce(function (prev, curr) {
       const groupLabel = curr[yAxisFilter];
 
@@ -209,29 +206,19 @@ myApp.service('UserService', function ($http, $location) {
       return prev
     }, {});
 
-    // console.log('stackedYObj', stackedYObj)
-
     var stackedAxisKeys = Object.keys(stackedYObj);
-    // console.log('stackedAxisKeys', stackedAxisKeys)
 
     stackedAxisKeys.forEach(function(stackedAxisKey) {
-      self[`${yAxisFilter}_${stackedAxisKey}`] = xAxisLabels.map(function(currXAxisLabel) {
+      self[
+        `${yAxisFilter}_${stackedAxisKey}`.replace(/[^a-zA-Z0-9]/g,'_')
+      ] = xAxisLabels.map(function(currXAxisLabel) {
         return data.filter(function(element) {
-          // console.log('element[yAxisFilter]', element[yAxisFilter].toString())
-          return element[xAxisFilter] === currXAxisLabel
+          return element[xAxisFilter].toString() === currXAxisLabel
           && element[yAxisFilter].toString() === stackedAxisKey;
         }).length;
       });
-    });
-    
-  
-    // console.log('vulnerability_ASD',self.vulnerability_ASD)
-    // console.log('vulnerability_Anxiety',self.vulnerability_Anxiety)
-
-    // console.log('jurusdictional_denial_true',self.jurisdictional_denial_true)
-    // console.log('jurusdictional_denial_false',self.jurisdictional_denial_false)
-  
-}
+    });  
+  };
 
   self.getDataOfYear = function (data, year) {
     return data.filter(function (entry) {
@@ -309,15 +296,12 @@ myApp.service('UserService', function ($http, $location) {
   };
 
   self.submitCustomFilters = function (userCustomFilters) {
-    console.log('service obj', userCustomFilters)
-    //pending BE user filtered report query
     $http({
       method:"POST",
       url: "/charts/custom",
       data: userCustomFilters
     }).then(function (res) {
-      console.log('response', res)
-      self.customReport.data = res.data
+      self.customReport.data = res.data;
     })
   };
 

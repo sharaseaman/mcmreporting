@@ -2,30 +2,46 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: "PT Sans", Arial, Helvetica, sans-serif;
-  };
+};
 
-  table {
+table {
     border-collapse: collapse;
     width: 100%;
 }
 
-td, th {
-    border: 1px solid #dddddd;
+th{
+  background-color: #147d91;
+  color: white;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.header{
+  font-size: 20px;
+  float: left;
+}
+
+td {
+    border-bottom: 1px solid #ddd;
     text-align: left;
     padding: 8px;
 }
 
-tr:nth-child(even) {
+/* tr:nth-child(even) {
     background-color: #dddddd;
-}
+} */
 
-  .myApp md-content {
+tr:hover {background-color: #f5f5f5;}
+
+.myApp md-content {
     background-color: transparent !important; 
-  }
+}
 
 .chartNotes {
     color: #666 !important;
-  }
+}
 
   .teal {
     background-color: #147d91 !important;
@@ -60,6 +76,12 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
     padding: 40px;
     margin: 20px;
     
+  }
+
+  .md-button{
+    background-color: rgba(193, 193, 193, 0.96);
+    color: rgba(44, 65, 164, 0.96);
+    transition: 0.3s;
   }
   
   .instructions {
@@ -106,6 +128,7 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
 
   .md-form {
     padding: 20px;
+    background-color: white;
   }
   .btn-success {
     margin: 10px;
@@ -192,6 +215,7 @@ md-input-container.md-input-focused:not(.md-input-has-value) md-select .md-selec
   
 }
 
+
 .layout-margin {
   padding: 20px;
 }
@@ -205,6 +229,3 @@ md-input-container.md-input-focused:not(.md-input-has-value) md-select .md-selec
   }
 
   
-  md-checkbox.md-focused .md-container:before {
-    background-color: transparent !important;
-}

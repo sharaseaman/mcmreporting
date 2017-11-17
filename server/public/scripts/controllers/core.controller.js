@@ -1,7 +1,7 @@
 myApp.controller('CoreController', function (UserService, $scope) {
   var vm = this;
   vm.userService = UserService;
-  vm.chartData = UserService.chartData;  
+  vm.chartData = UserService.chartData;
   vm.joinLawEnforcementDenialChartData = UserService.joinLawEnforcementDenialChartData;
   vm.joinjoinVulnerabilityChartData = UserService.joinVulnerabilityChartData;
   vm.joinRaceChartData = UserService.joinRaceChartData.data
@@ -13,7 +13,7 @@ myApp.controller('CoreController', function (UserService, $scope) {
   Chart.defaults.global.defaultFontColor = '#666';
   Chart.defaults.global.defaultFontSize = 16;
 
-  
+
   vm.getSelectedYear = function () {
 
     if (vm.selectedYear !== undefined) {
@@ -402,6 +402,12 @@ myApp.controller('CoreController', function (UserService, $scope) {
         vm.filteredAgeOverall = UserService.filteredAgeOverall;
         vm.genderOverallLabel = UserService.genderOverallLabel;
         vm.filteredGenderOverall = UserService.filteredGenderOverall;
+        vm.start_case_type_Runaway = UserService.start_case_type_Runaway;
+        vm.start_case_type_Abduction_by_Family_Member = UserService.start_case_type_Abduction_by_Family_Member;
+        vm.start_case_type_Abduction_by_Acquaintance = UserService.start_case_type_Abduction_by_Acquaintance
+        vm.start_case_type_Stranger_Abduction = UserService.start_case_type_Stranger_Abduction
+
+
 
         var ctx = document.getElementById("mainBarChart");
         var myChart = new Chart(ctx, {
@@ -782,111 +788,177 @@ myApp.controller('CoreController', function (UserService, $scope) {
           }
         });
 
+        var ctc = document.getElementById("startCaseByDistrictStacked");
+        var myChart = new Chart(ctc, {
+          type: 'bar',
+          data: {
+            labels: vm.districtOverallLabel,
+            datasets: [{
+              label: 'Runaway',
+              backgroundColor: 'rgba(0,0,255,1)',
+              borderColor: 'rgba(0,0,255,1)',
+              data: vm.start_case_type_Runaway,
+              borderWidth: 1
+            },
+            {
+              label: 'Abduction by Family Member',
+              backgroundColor: 'rgba(255,0,255,1)',
+              borderColor: 'rgba(255,0,255,1)',
+              data: vm.start_case_type_Abduction_by_Family_Member,
+              borderWidth: 1
+            },
+            {
+              label: 'Abduction by Acquaintance',
+              backgroundColor: 'rgba(0,255,255,1)',
+              borderColor: 'rgba(0,255,255,1)',
+              data: vm.start_case_type_Abduction_by_Acquaintance,
+              borderWidth: 1
+            },
+            {
+              label: 'Stranger Abduction',
+              backgroundColor: 'rgba(255,255,0,1)',
+              borderColor: 'rgba(255,255,0,1)',
+              data: vm.start_case_type_Stranger_Abduction,
+              borderWidth: 1
+            }
+            ]
+          },
+          options: {
+            title: {
+              display: true,
+              position: "top",
+              text: "Start Case Type in each School District (Global)",
+              padding: 20,
+              fontSize: 18
+            },
+            scales: {
+              xAxes: [{
+                stacked: true,
+                scaleLabel: {
+                  display: true,
+                  labelString: 'School District'
+                }
+              }],
+              yAxes: [{
+                stacked: true,
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Cases'
+                },
+                ticks: {
+                  beginAtZero: true,
+                  callback: function (value) { if (value % 1 === 0) { return value; } }
+                }
+              }]
+            }
+          }
+        });
+  
       });
 
     vm.getJoinCaseLawEnforcementDenial = function () {
       UserService.getJoinCaseLawEnforcementDenial()
-      .then(function () {
-        vm.lawEnforcementOverallLabel = UserService.lawEnforcementOverallLabel;
-        vm.filteredLawEnforcementOverall = UserService.filteredLawEnforcementOverall;
-        vm.jurisdictional_denial_true = UserService.jurisdictional_denial_true;
-        vm.jurisdictional_denial_false = UserService.jurisdictional_denial_false;
-       
-        var ctc = document.getElementById("lawEnforcementOverallChart");
-        var myChart = new Chart(ctc, {
-          type: 'bar',
-          data: {
-            labels: vm.lawEnforcementOverallLabel,
-            datasets: [{
-              label: 'Number of Cases by Law Enforcement Agency',
-              backgroundColor: 'rgba(20, 125, 145, 0.4)',
-              borderColor: 'rgba(20, 125, 145, 0.4)',
-              data: vm.filteredLawEnforcementOverall,
-              borderWidth: 1
-            }]
-          },
-          options: {
-            title: {
-              display: true,
-              position: "top",
-              text: "Number of Cases by Law Enforcement Agency",
-              padding: 20,
-              fontSize: 18
-            },
-            scales: {
-              xAxes: [{
-                scaleLabel: {
-                  display: true,
-                  labelString: 'Law Enforcement Agency'
-                }
-              }],
-              yAxes: [{
-                scaleLabel: {
-                  display: true,
-                  labelString: 'Number of Cases'
-                },
-                ticks: {
-                  beginAtZero: true,
-                  callback: function (value) { if (value % 1 === 0) { return value; } }
-                }
-              }]
-            }
-          }
-        });
+        .then(function () {
+          vm.lawEnforcementOverallLabel = UserService.lawEnforcementOverallLabel;
+          vm.filteredLawEnforcementOverall = UserService.filteredLawEnforcementOverall;
+          vm.jurisdictional_denial_true = UserService.jurisdictional_denial_true;
+          vm.jurisdictional_denial_false = UserService.jurisdictional_denial_false;
 
-        var ctc = document.getElementById("lawEnforcementStackedOverall");
-        var myChart = new Chart(ctc, {
-          type: 'bar',
-          data: {
-            labels: vm.lawEnforcementOverallLabel,
-            datasets: [{
-              label: 'Jurisdictional Denial True',
-              backgroundColor: 'rgba( 255, 165, 0, 0.6)',
-              borderColor: 'rgba( 255, 165, 0, 0.6)',
-              data: vm.jurisdictional_denial_true,
-              borderWidth: 1
-            },
-            {
-              label: 'Jurisdictional Denial False',
-              backgroundColor: 'rgba(20, 125, 145, 0.4)',
-              borderColor: 'rgba(20, 125, 145, 0.4)',
-              data: vm.jurisdictional_denial_false,
-              borderWidth: 1
-            }
-          ]
-          },
-          options: {
-            title: {
-              display: true,
-              position: "top",
-              text: "Number of Cases by Jurisdictional Denial in each Law Enforcement Agency",
-              padding: 20,
-              fontSize: 18
-            },
-            scales: {
-              xAxes: [{
-                stacked: true,
-                scaleLabel: {
-                  display: true,
-                  labelString: 'Law Enforcement Agency'
-                }
-              }],
-              yAxes: [{
-                stacked: true,
-                scaleLabel: {
-                  display: true,
-                  labelString: 'Number of Cases'
-                },
-                ticks: {
-                  beginAtZero: true,
-                  callback: function (value) { if (value % 1 === 0) { return value; } }
-                }
+          var ctc = document.getElementById("lawEnforcementOverallChart");
+          var myChart = new Chart(ctc, {
+            type: 'bar',
+            data: {
+              labels: vm.lawEnforcementOverallLabel,
+              datasets: [{
+                label: 'Number of Cases by Law Enforcement Agency',
+                backgroundColor: 'rgba(20, 125, 145, 0.4)',
+                borderColor: 'rgba(20, 125, 145, 0.4)',
+                data: vm.filteredLawEnforcementOverall,
+                borderWidth: 1
               }]
+            },
+            options: {
+              title: {
+                display: true,
+                position: "top",
+                text: "Number of Cases by Law Enforcement Agency",
+                padding: 20,
+                fontSize: 18
+              },
+              scales: {
+                xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Law Enforcement Agency'
+                  }
+                }],
+                yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Number of Cases'
+                  },
+                  ticks: {
+                    beginAtZero: true,
+                    callback: function (value) { if (value % 1 === 0) { return value; } }
+                  }
+                }]
+              }
             }
-          }
-        });
+          });
 
-      })
+          var ctc = document.getElementById("lawEnforcementStackedOverall");
+          var myChart = new Chart(ctc, {
+            type: 'bar',
+            data: {
+              labels: vm.lawEnforcementOverallLabel,
+              datasets: [{
+                label: 'Jurisdictional Denial True',
+                backgroundColor: 'rgba( 255, 165, 0, 0.6)',
+                borderColor: 'rgba( 255, 165, 0, 0.6)',
+                data: vm.jurisdictional_denial_true,
+                borderWidth: 1
+              },
+              {
+                label: 'Jurisdictional Denial False',
+                backgroundColor: 'rgba(20, 125, 145, 0.4)',
+                borderColor: 'rgba(20, 125, 145, 0.4)',
+                data: vm.jurisdictional_denial_false,
+                borderWidth: 1
+              }
+              ]
+            },
+            options: {
+              title: {
+                display: true,
+                position: "top",
+                text: "Jurisdictional Denial in each Law Enforcement Agency (Global)",
+                padding: 20,
+                fontSize: 18
+              },
+              scales: {
+                xAxes: [{
+                  stacked: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Law Enforcement Agency'
+                  }
+                }],
+                yAxes: [{
+                  stacked: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Number of Cases'
+                  },
+                  ticks: {
+                    beginAtZero: true,
+                    callback: function (value) { if (value % 1 === 0) { return value; } }
+                  }
+                }]
+              }
+            }
+          });
+
+        })
     }
 
     vm.getJoinCaseVulnerabilities = function () {
@@ -894,6 +966,28 @@ myApp.controller('CoreController', function (UserService, $scope) {
         .then(function () {
           vm.vulnerabilitiesOverallLabel = UserService.vulnerabilitiesOverallLabel;
           vm.filteredVulnerabilitiesOverall = UserService.filteredVulnerabilitiesOverall;
+          vm.vulnerability_ADD_ADHD = UserService.vulnerability_ADD_ADHD;
+          vm.vulnerability_ASD = UserService.vulnerability_ASD;
+          vm.vulnerability_Alcohol_use_abuse = UserService.vulnerability_Alcohol_use_abuse;
+          vm.vulnerability_Anxiety = UserService.vulnerability_Anxiety;
+          vm.vulnerability_Luring_grooming_by_adult = UserService.vulnerability_Luring_grooming_by_adult;
+          vm.vulnerability_Luring_grooming_by_child = UserService.vulnerability_Luring_grooming_by_child;
+          vm.vulnerability_Depression__Situational_ = UserService.vulnerability_Depression__Situational_;
+          vm.vulnerability_Missing_from_care = UserService.vulnerability_Missing_from_care;
+          vm.vulnerability_Drug_use_abuse = UserService.vulnerability_Drug_use_abuse;
+          vm.vulnerability_Economic_exploitation__history = UserService.vulnerability_Economic_exploitation__history;
+          vm.vulnerability_Physical_Abuse__history_ = UserService.vulnerability_Physical_Abuse__history_;
+          vm.vulnerability_Emotional_abuse__history_ = UserService.vulnerability_Emotional_abuse__history_;
+          vm.vulnerability_Runaway__history_ = UserService.vulnerability_Runaway__history_;
+          vm.vulnerability_ODD = UserService.vulnerability_ODD;
+          vm.vulnerability_Labor_Exploitation__history_ = UserService.vulnerability_Labor_Exploitation__history_;
+          vm.vulnerability_Depression__Clinical_ = UserService.vulnerability_Depression__Clinical_;
+          vm.vulnerability_Bipolar_Disorder = UserService.vulnerability_Bipolar_Disorder;
+          vm.vulnerability_Gang_association = UserService.vulnerability_Gang_association;
+          vm.vulnerability_Sexual_Abuse__history_ = UserService.vulnerability_Sexual_Abuse__history_;
+          vm.vulnerability_Sexual_exploitation__history_ = UserService.vulnerability_Sexual_exploitation__history_;
+          vm.vulnerability_Sexual_Minority = UserService.vulnerability_Sexual_Minority;
+
 
           var ctc = document.getElementById("vulnerabilitiesOverallChart");
           var myChart = new Chart(ctc, {
@@ -937,64 +1031,241 @@ myApp.controller('CoreController', function (UserService, $scope) {
             }
           });
 
+          var ctc = document.getElementById("vulnerabilityStackedOverall");
+          var myChart = new Chart(ctc, {
+            type: 'bar',
+            data: {
+              labels: vm.ageOverallLabel,
+              datasets: [{
+                label: 'ADD/ADHD',
+                backgroundColor: 'rgba(192,192,192,1)',
+                borderColor: 'rgba(192,192,192,1)',
+                data: vm.vulnerability_ADD_ADHD,
+                borderWidth: 1
+              },
+              {
+                label: 'ASD',
+                backgroundColor: 'rgba(255,0,255,1)',
+                borderColor: 'rgba(255,0,255,1)',
+                data: vm.vulnerability_ASD,
+                borderWidth: 1
+              },
+              {
+                label: 'Alcohol Use Abuse',
+                backgroundColor: 'rgba(0,255,255,1)',
+                borderColor: 'rgba(0,255,255,1)',
+                data: vm.vulnerability_Alcohol_use_abuse,
+                borderWidth: 1
+              },
+              {
+                label: 'Anxiety',
+                backgroundColor: 'rgba(255,255,0,1)',
+                borderColor: 'rgba(255,255,0,1)',
+                data: vm.vulnerability_Anxiety,
+                borderWidth: 1
+              },
+              {
+                label: 'Luring/ grooming by adult',
+                backgroundColor: 'rgba(0,0,255,1)',
+                borderColor: 'rgba(0,0,255,1)',
+                data: vm.vulnerability_Luring_grooming_by_adult,
+                borderWidth: 1
+              },
+              {
+                label: 'Luring/grooming by child',
+                backgroundColor: 'rgba(0,255,0,1)',
+                borderColor: 'rgba(0,255,0,1)',
+                data: vm.vulnerability_Luring_grooming_by_child,
+                borderWidth: 1
+              },
+              {
+                label: 'Depression (Situational)',
+                backgroundColor: 'rgba(255,0,0,1)',
+                borderColor: 'rgba(255,0,0,1)',
+                data: vm.vulnerability_Depression__Situational_,
+                borderWidth: 1
+              },
+              {
+                label: 'Missing from care',
+                backgroundColor: 'rgba(230, 230, 250, 0.8)',
+                borderColor: 'rgba(230, 230, 250, 0.8)',
+                data: vm.vulnerability_Missing_from_care,
+                borderWidth: 1
+              },
+              {
+                label: 'Drug use abuse',
+                backgroundColor: 'rgba(047, 079, 079, 1)',
+                borderColor: 'rgba(047, 079, 079, 1)',
+                data: vm.vulnerability_Drug_use_abuse,
+                borderWidth: 1
+              },
+              {
+                label: 'Economic exploitation (history)',
+                backgroundColor: 'rgba(112,128,144, 1)',
+                borderColor: 'rgba(112,128,144,1)',
+                data: vm.vulnerability_Economic_exploitation__history,
+                borderWidth: 1
+              },
+              {
+                label: 'Physical Abuse (history)',
+                backgroundColor: 'rgba(000,206,209,1)',
+                borderColor: 'rgba(000,206,209,1)',
+                data: vm.vulnerability_Physical_Abuse__history_,
+                borderWidth: 1
+              },
+              {
+                label: 'Runaway (history)',
+                backgroundColor: 'rgba(205,092,092,1)',
+                borderColor: 'rgba(205,092,092,1)',
+                data: vm.vulnerability_Runaway__history_,
+                borderWidth: 1
+              },
+              {
+                label: 'ODD',
+                backgroundColor: 'rgba(205,133,063,1)',
+                borderColor: 'rgba(205,133,063,1)',
+                data: vm.vulnerability_ODD,
+                borderWidth: 1
+              },
+              {
+                label: 'Labor Exploitation (history)',
+                backgroundColor: 'rgba(178,034,034,1)',
+                borderColor: 'rgba(178,034,034,1)',
+                data: vm.vulnerability_Labor_Exploitation__history_,
+                borderWidth: 1
+              },
+              {
+                label: 'Depression (Clinical)',
+                backgroundColor: 'rgba(255,105,180,1)',
+                borderColor: 'rgba(255,105,180,1)',
+                data: vm.vulnerability_Depression__Clinical_,
+                borderWidth: 1
+              },
+              {
+                label: 'Bipolar Disorder',
+                backgroundColor: 'rgba(238,130,238,1)',
+                borderColor: 'rgba(238,130,238,1)',
+                data: vm.vulnerability_Bipolar_Disorder,
+                borderWidth: 1
+              },
+              {
+                label: 'Gang Association',
+                backgroundColor: 'rgba(139,121,094,1)',
+                borderColor: 'rgba(139,121,094,1)',
+                data: vm.vulnerability_Gang_association,
+                borderWidth: 1
+              },
+              {
+                label: 'Sexual Abuse (history)',
+                backgroundColor: 'rgba(255,228,225,1)',
+                borderColor: 'rgba(255,228,225,1)',
+                data: vm.vulnerability_Sexual_Abuse__history_,
+                borderWidth: 1
+              },
+              {
+                label: 'Sexual Exploitation (history)',
+                backgroundColor: 'rgba(030,144,255,1)',
+                borderColor: 'rgba(030,144,255,1)',
+                data: vm.vulnerability_Sexual_exploitation__history_,
+                borderWidth: 1
+              },
+              {
+                label: 'Sexual Minority',
+                backgroundColor: 'rgba(255,	165,	079, 1)',
+                borderColor: 'rgba(255,	165,	079, 1)',
+                data: vm.vulnerability_Sexual_Minority,
+                borderWidth: 1
+              }
+              ]
+            },
+            options: {
+              title: {
+                display: true,
+                position: "top",
+                text: "Vulnerabilities in each Age (Global)",
+                padding: 20,
+                fontSize: 18
+              },
+              scales: {
+                xAxes: [{
+                  stacked: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Age'
+                  }
+                }],
+                yAxes: [{
+                  stacked: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Number of Cases'
+                  },
+                  ticks: {
+                    beginAtZero: true,
+                    callback: function (value) { if (value % 1 === 0) { return value; } }
+                  }
+                }]
+              }
+            }
+          });
+
         });
     };
 
-      vm.getJoinCaseRaceEthnicity = function () {
-        UserService.getJoinCaseRaceEthnicity()
-          .then(function () {
-            
-            vm.raceEthnicityOverallLabel = UserService.raceEthnicityOverallLabel;
-            vm.filteredRaceEthnicityOverall = UserService.filteredRaceEthnicityOverall;
+    vm.getJoinCaseRaceEthnicity = function () {
+      UserService.getJoinCaseRaceEthnicity()
+        .then(function () {
 
-           
-            var ctc = document.getElementById("raceEthnicityOverallChart");
-            var myChart = new Chart(ctc, {
-              type: 'bar',
-              data: {
-                labels: vm.raceEthnicityOverallLabel,
-                datasets: [{
-                  label: 'Number of Cases by Race/Ethnicity',
-                  backgroundColor: 'rgba(20, 125, 145, 0.4)',
-                  borderColor: 'rgba(20, 125, 145, 0.4)',
-                  data: vm.filteredRaceEthnicityOverall,
-                  borderWidth: 1
-                }]
+          vm.raceEthnicityOverallLabel = UserService.raceEthnicityOverallLabel;
+          vm.filteredRaceEthnicityOverall = UserService.filteredRaceEthnicityOverall;
+
+
+          var ctc = document.getElementById("raceEthnicityOverallChart");
+          var myChart = new Chart(ctc, {
+            type: 'bar',
+            data: {
+              labels: vm.raceEthnicityOverallLabel,
+              datasets: [{
+                label: 'Number of Cases by Race/Ethnicity',
+                backgroundColor: 'rgba(20, 125, 145, 0.4)',
+                borderColor: 'rgba(20, 125, 145, 0.4)',
+                data: vm.filteredRaceEthnicityOverall,
+                borderWidth: 1
+              }]
+            },
+            options: {
+              title: {
+                display: true,
+                position: "top",
+                text: "Number of Cases by Race/ Ethnicity",
+                padding: 20,
+                fontSize: 18
               },
-              options: {
-                title: {
-                  display: true,
-                  position: "top",
-                  text: "Number of Cases by Race/ Ethnicity",
-                  padding: 20,
-                  fontSize: 18
-                },
-                scales: {
-                  xAxes: [{
-                    scaleLabel: {
-                      display: true,
-                      labelString: 'Race/ Ethnicity'
-                    }
-                  }],
-                  yAxes: [{
-                    scaleLabel: {
-                      display: true,
-                      labelString: 'Number of Cases'
-                    },
-                    ticks: {
-                      beginAtZero: true,
-                      callback: function (value) { if (value % 1 === 0) { return value; } }
-                    }
-                  }]
-                }
+              scales: {
+                xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Race/ Ethnicity'
+                  }
+                }],
+                yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Number of Cases'
+                  },
+                  ticks: {
+                    beginAtZero: true,
+                    callback: function (value) { if (value % 1 === 0) { return value; } }
+                  }
+                }]
               }
-            });
-
+            }
           });
 
+        });
 
-      }
-    
+
+    }
   };
 
   vm.saveChart = function (id, shouldSaveWithYear) {
