@@ -16,6 +16,7 @@ th{
   text-align: left;
   padding: 10px;
   font-size: 20px;
+  font-family: "PT Sans", Arial, Helvetica, sans-serif;
 }
 
 .header{
@@ -27,13 +28,28 @@ td {
     border-bottom: 1px solid #ddd;
     text-align: left;
     padding: 8px;
+    font-family: "PT Sans", Arial, Helvetica, sans-serif;
 }
 
-/* tr:nth-child(even) {
-    background-color: #dddddd;
-} */
+tr:hover {
+  background-color: #f5f5f5;
+}
 
-tr:hover {background-color: #f5f5f5;}
+.lead{
+  font-family: "PT Sans", Arial, Helvetica, sans-serif;
+}
+
+#manage{
+  font-family: "PT Sans", Arial, Helvetica, sans-serif;
+}
+
+md-checkbox.md-checked .md-icon {
+  background-color: #147d91;
+ }
+
+.md-title {
+  font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
+}
 
 .myApp md-content {
     background-color: transparent !important; 
@@ -45,50 +61,60 @@ tr:hover {background-color: #f5f5f5;}
 
   .teal {
     background-color: #147d91 !important;
-    color: white !important
+    color: white !important;
+    font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
   }
   
   md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
     color: #147d91 !important;
     background-color: #147d91 !important;
+    font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
+}
+md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {
+  font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
 }
 
 md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active
 {
   color: #147d91 !important;
+  font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
 }
 
   .myApp md-content md-tabs {
       background: #f6f6f6;
       border: 1px solid #e1e1e1; 
+      font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
   }
   
   .myApp md-content md-tabs md-tabs-wrapper {
         background: white; 
+        font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
   }
 
   .tabsdemoDynmyApp md-content h1:first-child {
       margin-top: 0; 
+      font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
   }
   
-
   .md-form {
     padding: 40px;
     margin: 20px;
-    
+    font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
   }
 
   .md-button{
     background-color: rgba(193, 193, 193, 0.96);
     color: rgba(44, 65, 164, 0.96);
     transition: 0.3s;
+    font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
   }
   
   .instructions {
     background-color:#147d91;
     color: orange;
-    font-family: "PT Sans", Arial, Helvetica, sans-serif;
     padding: 15px;
+    text-align: center;
+    font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
   }
   
   #entryForm {
@@ -152,7 +178,8 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
 .navbar {
     background-color: lightgoldenrodyellow;
     width: 100%;
-    border-radius: 0px;
+    font-size: 18px;
+    font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
   }
   
   ul {
@@ -212,9 +239,16 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
 md-input-container.md-input-focused:not(.md-input-has-value) md-select .md-select-value.md-select-placeholder {
   color: #147d91; 
   border-bottom-color: #147d91 ;
-  
+  font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
 }
 
+md-select-value.md-select-placeholder {
+  font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
+}
+
+md-select-menu {
+  font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
+}
 
 .layout-margin {
   padding: 20px;
