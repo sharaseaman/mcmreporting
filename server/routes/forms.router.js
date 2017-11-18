@@ -171,74 +171,93 @@ router.get('/caseToEdit: id', function (req, res) {
 
 
 //Requests for new intake forms.
-router.post('/newIntake', function (req, res) {
+router.post('/newIntake', function (req, res) {      //  --1
   var newIntake = req.body;
-  console.log('113', newIntake.case_vulnerabilities)
   console.log('In Post for new intake', newIntake);
   // check if logged in
-  if (req.isAuthenticated()) {
-    pool.connect(function (conErr, client, done) {
+  if (req.isAuthenticated()) { // --2
+    pool.connect(function (conErr, client, done) { // --3 
       if (conErr) {
         res.sendStatus(500);
       } 
-      else { //first query for id
-        var sqlQuery = 'INSERT INTO case_data (mcm_number, intake_date, age, gender, last_seen, reported_missing, people_served, city, county, state, school, start_case_type, end_case_type, disposition, close_date, referral_type) VALUES ($1, $2, $3, $4, $5, $6, $7, (SELECT id FROM cities WHERE city_name = $8), (SELECT id FROM counties WHERE county_name = $9), $10, (SELECT id FROM schools WHERE school_name = $11), $12, $13, $14, $15, $16) RETURNING id;' 
-        var valueArray = [newIntake.mcm_number, newIntake.intake_date, newIntake.age, newIntake.gender, newIntake.last_seen, newIntake.reported_missing, newIntake.people_served, newIntake.city, newIntake.county, newIntake.state, newIntake.school, newIntake.start_case_type, newIntake.end_case_type, newIntake.disposition, newIntake.close_date, newIntake.referral_type]
-        client.query(sqlQuery, valueArray, function (queryErr, resultObj) {
+      else { //--4     - main query -
+        var caseDataQuery = 'INSERT INTO case_data (mcm_number, intake_date, age, gender, last_seen, reported_missing, people_served, city, county, state, school, start_case_type, end_case_type, disposition, close_date, referral_type) VALUES ($1, $2, $3, $4, $5, $6, $7, (SELECT id FROM cities WHERE city_name = $8), (SELECT id FROM counties WHERE county_name = $9), $10, (SELECT id FROM schools WHERE school_name = $11), $12, $13, $14, $15, $16) RETURNING id;' 
+        var caseDataValueArray = [newIntake.mcm_number, newIntake.intake_date, newIntake.age, newIntake.gender, newIntake.last_seen, newIntake.reported_missing, newIntake.people_served, newIntake.city_name, newIntake.county_name, newIntake.state, newIntake.school_name, newIntake.start_case_type, newIntake.end_case_type, newIntake.disposition, newIntake.close_date, newIntake.referral_type]
+        console.log('caseDataQuery, caseDataValue', caseDataQuery, caseDataValueArray)
+        client.query(caseDataQuery, caseDataValueArray, function (queryErr, resultObj) {  // --5
           done(); 
-          console.log('126', newIntake.case_vulnerabilities, newIntake.case_vulnerabilities[0], newIntake.case_vulnerabilities[0].name)
           if (queryErr) { // for id
-            console.log(queryErr)
+            console.log('caseData query Error', queryErr)
             res.sendStatus(500); 
-          } else { // received id start 2nd query for vulnerabilities
-            console.log('131', newIntake.case_vulnerabilities.name)  
-            console.log('result', resultObj.rows[0].id) 
+          } else { // - vulnerabilities query
               //variables for vulnerabilities
+              console.log('id', resultObj.rows[0].id)             
+              var tempVArray = []
+              var vulnerabilityArray = []
+              var vulnerabilityCount = 1
               
-              var tempArray = []
-              var valueArray2 = []
-              var count = 1
-              
-              
-              var createQuery = function() {
-                console.log('create query running', newIntake.case_vulnerabilities[0].name)
+              var createVulnQuery = function() {
                 for (let i = 0; i < newIntake.case_vulnerabilities.length; i++) {
-                console.log('for loop running w/ i', i);
-                  tempArray.push('('+resultObj.rows[0].id+ ', (Select id FROM vulnerabilities WHERE vulnerability = $'+count++ + '))');
-                  valueArray2.push(newIntake.case_vulnerabilities[i].name);
-                 }  
-                console.log('valueArray2', valueArray2)
-                console.log('values$', values$)
-                } //end function
+                  tempVArray.push('('+resultObj.rows[0].id+ ', (Select id FROM vulnerabilities WHERE vulnerability = $'+vulnerabilityCount++ + '))');
+                  vulnerabilityArray.push(newIntake.case_vulnerabilities[i].name);
+                  }  //end for loop
+                } //end creqte Query function
               
-                createQuery(); //2nd query for vulnerabilites
-                console.log('tempArray', tempArray)
-                var values$ = tempArray.join(', ')
-                var insert = 'INSERT INTO case_vulnerabilities(case_data_id, vulnerabilities_id) VALUES ' 
-                var sqlQuery2 = insert + values$
-                console.log('Query, valueArray', sqlQuery2, valueArray2)
+                createVulnQuery(); //2nd query for vulnerabilites
+                console.log('tempArray', tempVArray)
+                var vulnerabilities$ = tempVArray.join(', ')
+                var vulnerabilityInsert = 'INSERT INTO case_vulnerabilities(case_data_id, vulnerabilities_id) VALUES ' 
+                var vulnerabilityQuery = vulnerabilityInsert + vulnerabilities$
+                console.log('Query, valueArray', vulnerabilityQuery, vulnerabilityArray)
               
-                client.query(sqlQuery2, valueArray2, function (queryErr, resultObj) {
+                client.query(vulnerabilityQuery, vulnerabilityArray, function (queryErr, resultVulnerability) { // --7
               done();
                 if (queryErr) { //if 2nd query fails
-                  console.log(queryErr)
+                  console.log('Vulnerability query Error', queryErr)
                 res.sendStatus(500);
-                } else {  //start 3rd query for race/ethnicity
+                } else { // race_ethnicity query  //--8
+                  console.log('219 newIntake.race_ethnicity', newIntake.race_ethnicity.name)  
+                    //variables for race_enthinicity                 
+                    var tempRaceArray = []
+                    var raceValueArray = []
+                    var raceCount = 1                   
+                    var createRaceQuery = function() {
+                      console.log('createRaceQuery running', newIntake.race_ethnicity[0].name)
+                      for (let j = 0; j < newIntake.race_ethnicity.length; j++) {
+                      console.log('for loop running w/ j', j);
+                      tempRaceArray.push('('+resultObj.rows[0].id+ ', (Select id FROM race_ethnicity WHERE race_ethnicity = $'+raceCount++ + '))');
+                      raceValueArray.push(newIntake.race_ethnicity[j].name);
+                       }  
+                      console.log('raceValueArray', raceValueArray)
+                      } //end function
+                    
+                      createRaceQuery(); //2nd query for vulnerabilites
+                      console.log('tempArray', tempRaceArray)
+                      var raceValue$ = tempRaceArray.join(', ')
+                      var raceInsert = 'INSERT INTO case_race_ethnicity (case_data_id, race_ethnicity_id) VALUES ' 
+                      var raceQuery = raceInsert + raceValue$
+                      console.log('reSqlQuery, valueArray', raceQuery, raceValueArray)
+                    
+                      client.query(raceQuery, raceValueArray, function (queryErr, raceResult) { // --9
+                    done();
+                      if (queryErr) { //if 2nd query fails
+                        console.log(queryErr)
+                      res.sendStatus(500);
+                      } else {  // --10
                 res.sendStatus(202);
-                } //run after last query- send 202
-              }) //2nd query if/else done
-            }//end of 2nd query/else
-      }) //end of first query/else
-     }
-    }) // pool connection
-  } else { //end authentication if
-    // failure best handled on the server. do redirect here.
+                } // --10
+              }) // --9
+              } // --8
+            }) // --7
+          } // --6
+        }) // --5  
+      } // --4
+    }) // --3
+  } else { // --2
     console.log('not logged in');
-    // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
     res.send(false);
-  }
-//end authentication else
-}); //end /newIntake
+  } //end authentication else  
+}); //end /newIntake  --1
 
 
 router.put('/editIntake', function (req, res) {

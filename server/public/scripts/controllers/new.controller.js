@@ -5,7 +5,7 @@ myApp.controller('NewController', function (UserService) {
   vm.caseIn = '';
   vm.DateofIntaketoMCMIn = '';
   vm.NameIn = '';
-  // vm.DateofDisappearanceIn = '';
+  vm.DateofDisappearanceIn = '';
   vm.DateReportedMissingtoPoliceIn = '';
   vm.DateLastSeenIn = '';
   vm.TimeLastSeenIn = '';
@@ -147,7 +147,7 @@ myApp.controller('NewController', function (UserService) {
       name: "Anxiety",
       value: false
     }, {
-      name: "BiPolarDisorder",
+      name: "Bipolar Disorder",
       value: false
     },
     {
@@ -161,7 +161,7 @@ myApp.controller('NewController', function (UserService) {
       name: "Drug use/abuse",
       value: false
     }, {
-      name: "Economic exploitation (history",
+      name: "Economic exploitation (history)",
       value: false
     },
     {
@@ -208,24 +208,24 @@ myApp.controller('NewController', function (UserService) {
     }
   ]
 
-  // vm.race_ethnicity = [{
-  //     name: "African American",
-  //     value: false
-  //   }, {
-  //     name: "Asian Pacific Islander",
-  //     value: false
-  //   }, {
-  //     name: "Caucasian",
-  //     value: false
-  //   },
-  //   {
-  //     name: "Latinx",
-  //     value: false
-  //   }, {
-  //     name: "Native American",
-  //     value: false
-  //   }
-  // ]
+  vm.race_ethnicity = [{
+      name: "African American",
+      value: false
+    }, {
+      name: "Asian Pacific Islander",
+      value: false
+    }, {
+      name: "Caucasian",
+      value: false
+    },
+    {
+      name: "Latinx",
+      value: false
+    }, {
+      name: "Native American",
+      value: false
+    }
+  ]
 
 
   vm.changeVul = function (inputVuln) {
@@ -295,7 +295,7 @@ myApp.controller('NewController', function (UserService) {
       referral_type: vm.ReferralTypeIn,
       referral_type: vm.ReferralTypeIn,
       case_vulnerabilities: [],
-      // race_ethnicity: [],
+      race_ethnicity: [],
       // case_lawenforcement_denial: []
     }
 
@@ -325,11 +325,11 @@ myApp.controller('NewController', function (UserService) {
         newIntake.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
           return vulnerability.value == true;
         });
-      // }).then(function () {
-      //   newIntake.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
-      //     return ethnicity.value == true;
+      }).then(function () {
+        newIntake.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
+          return ethnicity.value == true;
 
-      //   });
+        });
       // }).then(function () {
       //   vm.jurisdictions = [{
       //       name: vm.LawEnforcementAgencyonCaseIn1,
