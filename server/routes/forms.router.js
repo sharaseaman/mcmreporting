@@ -201,18 +201,18 @@ router.post('/newIntake', function (req, res) {
               
               
               var createQuery = function() {
-                console.log('createquery running', newIntake.case_vulnerabilities[0].name)
+                console.log('create query running', newIntake.case_vulnerabilities[0].name)
                 for (let i = 0; i < newIntake.case_vulnerabilities.length; i++) {
                 console.log('for loop running w/ i', i);
-                  tempArray.push('('+resultObj.rows[0].id+ ', (Select id FROM vulnerabilities WHERE vulnerabilities = $'+count++ + '))');
+                  tempArray.push('('+resultObj.rows[0].id+ ', (Select id FROM vulnerabilities WHERE vulnerability = $'+count++ + '))');
                   valueArray2.push(newIntake.case_vulnerabilities[i].name);
                  }  
-                console.log('tempArray', tempArray)
                 console.log('valueArray2', valueArray2)
                 console.log('values$', values$)
                 } //end function
               
                 createQuery(); //2nd query for vulnerabilites
+                console.log('tempArray', tempArray)
                 var values$ = tempArray.join(', ')
                 var insert = 'INSERT INTO case_vulnerabilities(case_data_id, vulnerabilities_id) VALUES ' 
                 var sqlQuery2 = insert + values$
