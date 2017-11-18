@@ -39,11 +39,15 @@ tr:hover {
   font-family: "PT Sans", Arial, Helvetica, sans-serif;
 }
 
+#manage{
+  font-family: "PT Sans", Arial, Helvetica, sans-serif;
+}
+
 md-checkbox.md-checked .md-icon {
   background-color: #147d91;
  }
 
-.md-title{
+.md-title {
   font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
 }
 
