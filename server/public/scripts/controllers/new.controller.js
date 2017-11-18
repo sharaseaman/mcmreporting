@@ -296,7 +296,7 @@ myApp.controller('NewController', function (UserService) {
       referral_type: vm.ReferralTypeIn,
       case_vulnerabilities: [],
       race_ethnicity: [],
-      // case_lawenforcement_denial: []
+      case_lawenforcement_denial: []
     }
 
 
@@ -330,32 +330,32 @@ myApp.controller('NewController', function (UserService) {
           return ethnicity.value == true;
 
         });
-      // }).then(function () {
-      //   vm.jurisdictions = [{
-      //       name: vm.LawEnforcementAgencyonCaseIn1,
-      //       denial: vm.JurisdictionalDenialIn1
-      //     },
-      //     {
-      //       name: vm.LawEnforcementAgencyonCaseIn2,
-      //       denial: vm.JurisdictionalDenialIn2
-      //     },
-      //     {
-      //       name: vm.LawEnforcementAgencyonCaseIn3,
-      //       denial: vm.JurisdictionalDenialIn3
-      //     },
-      //     {
-      //       name: vm.LawEnforcementAgencyonCaseIn4,
-      //       denial: vm.JurisdictionalDenialIn4
-      //     },
-      //     {
-      //       name: vm.LawEnforcementAgencyonCaseIn5,
-      //       denial: vm.JurisdictionalDenialIn5
-      //     }
-      //   ]
-      //   newIntake.case_lawenforcement_denial = vm.jurisdictions.filter(function (jurisdiction) {
-      //     return jurisdiction.name !== undefined;
+      }).then(function () {
+        vm.jurisdictions = [{
+            name: vm.LawEnforcementAgencyonCaseIn1,
+            denial: vm.JurisdictionalDenialIn1
+          },
+          {
+            name: vm.LawEnforcementAgencyonCaseIn2,
+            denial: vm.JurisdictionalDenialIn2
+          },
+          {
+            name: vm.LawEnforcementAgencyonCaseIn3,
+            denial: vm.JurisdictionalDenialIn3
+          },
+          {
+            name: vm.LawEnforcementAgencyonCaseIn4,
+            denial: vm.JurisdictionalDenialIn4
+          },
+          {
+            name: vm.LawEnforcementAgencyonCaseIn5,
+            denial: vm.JurisdictionalDenialIn5
+          }
+        ]
+        newIntake.case_lawenforcement_denial = vm.jurisdictions.filter(function (jurisdiction) {
+          return jurisdiction.name !== undefined;
 
-      //   })
+        })
       })
       .then(function () {
         UserService.postInputData(newIntake);

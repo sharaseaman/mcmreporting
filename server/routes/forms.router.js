@@ -189,7 +189,7 @@ router.post('/newIntake', function (req, res) {      //  --1
           if (queryErr) { // for id
             console.log('caseData query Error', queryErr)
             res.sendStatus(500); 
-          } else { // - vulnerabilities query
+          } else { // - vulnerabilities query  --6
               //variables for vulnerabilities
               console.log('id', resultObj.rows[0].id)             
               var tempVArray = []
@@ -201,9 +201,9 @@ router.post('/newIntake', function (req, res) {      //  --1
                   tempVArray.push('('+resultObj.rows[0].id+ ', (Select id FROM vulnerabilities WHERE vulnerability = $'+vulnerabilityCount++ + '))');
                   vulnerabilityArray.push(newIntake.case_vulnerabilities[i].name);
                   }  //end for loop
-                } //end creqte Query function
+                } //end create Query function
               
-                createVulnQuery(); //2nd query for vulnerabilites
+                createVulnQuery(); 
                 console.log('tempArray', tempVArray)
                 var vulnerabilities$ = tempVArray.join(', ')
                 var vulnerabilityInsert = 'INSERT INTO case_vulnerabilities(case_data_id, vulnerabilities_id) VALUES ' 
@@ -212,10 +212,10 @@ router.post('/newIntake', function (req, res) {      //  --1
               
                 client.query(vulnerabilityQuery, vulnerabilityArray, function (queryErr, resultVulnerability) { // --7
               done();
-                if (queryErr) { //if 2nd query fails
+                if (queryErr) {
                   console.log('Vulnerability query Error', queryErr)
                 res.sendStatus(500);
-                } else { // race_ethnicity query  //--8
+                } else { // start race_ethnicity query  //--8
                   console.log('219 newIntake.race_ethnicity', newIntake.race_ethnicity.name)  
                     //variables for race_enthinicity                 
                     var tempRaceArray = []
@@ -231,7 +231,7 @@ router.post('/newIntake', function (req, res) {      //  --1
                       console.log('raceValueArray', raceValueArray)
                       } //end function
                     
-                      createRaceQuery(); //2nd query for vulnerabilites
+                      createRaceQuery();
                       console.log('tempArray', tempRaceArray)
                       var raceValue$ = tempRaceArray.join(', ')
                       var raceInsert = 'INSERT INTO case_race_ethnicity (case_data_id, race_ethnicity_id) VALUES ' 
@@ -240,12 +240,40 @@ router.post('/newIntake', function (req, res) {      //  --1
                     
                       client.query(raceQuery, raceValueArray, function (queryErr, raceResult) { // --9
                     done();
-                      if (queryErr) { //if 2nd query fails
+                      if (queryErr) {
                         console.log(queryErr)
-                      res.sendStatus(500);
-                      } else {  // --10
-                res.sendStatus(202);
-                } // --10
+                        res.sendStatus(500);
+                      } else {  // -- 10
+                        //start agency Query
+                        var tempAgencyArray = []
+                        var agencyArray = []
+                        var agencyCount = 1
+                        
+                        var createAgencyQuery = function() {
+                          for (let l = 0; l < newIntake.case_lawenforcement_denial.length; l++) {
+                            tempAgencyArray.push('('+resultObj.rows[0].id+ ', (Select id FROM law_enforcement WHERE agency = $'+agencyCount++ + '), $' +agencyCount++ +')')
+                            agencyArray.push(newIntake.case_lawenforcement_denial[l].name, newIntake.case_lawenforcement_denial[l].denial);
+                            }  //end for loop
+                          } //end creqte Query function
+                        
+                          createAgencyQuery(); //2nd query for vulnerabilites
+                          console.log('tempAgencyArray', tempAgencyArray)
+                          var agencies$ = tempAgencyArray.join(', ')
+                          var agencyInsert = 'INSERT INTO case_lawenforcement_denial (case_data_id, law_enforcement_id, jurisdictional_denial) VALUES ' 
+                          var agencyQuery = agencyInsert + agencies$
+                          console.log('Query, agencyQuery', agencyQuery, agencyArray)
+                        
+                          client.query(agencyQuery, agencyArray, function (queryErr, resultAgency) { // --11
+                        done();
+                          if (queryErr) { //if 2nd query fails
+                            console.log('Agency query Error', queryErr)
+                          res.sendStatus(500);
+                          } else {  // --12
+                                res.sendStatus(202);
+                                } // --12
+                              
+                        }) // -- 11
+                      } // --10                       
               }) // --9
               } // --8
             }) // --7
