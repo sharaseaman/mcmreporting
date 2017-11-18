@@ -9,7 +9,9 @@ myApp.controller('CoreController', function (UserService, $scope) {
 
   Chart.defaults.scale.ticks.beginAtZero = true;
   Chart.defaults.scale.ticks.autoSkip = false;
-  Chart.defaults.global.title.fontFamily = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
+  Chart.defaults.global.title.fontFamily = "'PT Sans', Arial, Helvetica, sans-serif";
+  Chart.defaults.scale.scaleLabel.fontFamily = "'PT Sans', Arial, Helvetica, sans-serif";
+  Chart.defaults.scale.ticks.fontFamily = "'PT Sans', Arial, Helvetica, sans-serif";
   Chart.defaults.global.defaultFontColor = '#666';
   Chart.defaults.global.defaultFontSize = 16;
 
@@ -41,13 +43,13 @@ myApp.controller('CoreController', function (UserService, $scope) {
 
       var ctc = document.getElementById("userCaseTypeChart");
       var myChart = new Chart(ctc, {
-        type: 'bar',
+        type: 'pie',
         data: {
           labels: vm.userCaseTypeLabels,
           datasets: [{
             label: 'Case Type',
-            backgroundColor: 'rgba(20, 125, 145, 0.4)',
-            borderColor: 'rgba(20, 125, 145, 0.4)',
+            backgroundColor: ['rgba(255, 150, 150, 0.4)', 'rgba(0,255,255,0.4)','rgba(255,0,255,0.4)', 'rgba(255,255,0,0.4)'],
+            borderColor: ['rgba(255, 150, 150, 0.4)', 'rgba(0,255,255,0.4)','rgba(255,0,255,0.4)', 'rgba(255,255,0,0.4)'],
             data: vm.userFilteredCases,
             borderWidth: 1
           }]
@@ -59,24 +61,6 @@ myApp.controller('CoreController', function (UserService, $scope) {
             text: "Number of Cases by Case Type (" + vm.selectedYear + ")",
             padding: 20,
             fontSize: 18
-          },
-          scales: {
-            xAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'Case Type'
-              }
-            }],
-            yAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'Number of Cases'
-              },
-              ticks: {
-                beginAtZero: true,
-                callback: function (value) { if (value % 1 === 0) { return value; } }
-              }
-            }]
           }
         }
       });
@@ -404,9 +388,9 @@ myApp.controller('CoreController', function (UserService, $scope) {
         vm.filteredGenderOverall = UserService.filteredGenderOverall;
         vm.start_case_type_Runaway = UserService.start_case_type_Runaway;
         vm.start_case_type_Abduction_by_Family_Member = UserService.start_case_type_Abduction_by_Family_Member;
-        vm.start_case_type_Abduction_by_Acquaintance = UserService.start_case_type_Abduction_by_Acquaintance
-        vm.start_case_type_Stranger_Abduction = UserService.start_case_type_Stranger_Abduction
-
+        vm.start_case_type_Abduction_by_Acquaintance = UserService.start_case_type_Abduction_by_Acquaintance;
+        vm.start_case_type_Stranger_Abduction = UserService.start_case_type_Stranger_Abduction;
+        vm.start_case_type_Lost__Injured__Otherwise_Missing = UserService.start_case_type_Lost__Injured__Otherwise_Missing;
 
 
         var ctx = document.getElementById("mainBarChart");
@@ -790,36 +774,43 @@ myApp.controller('CoreController', function (UserService, $scope) {
 
         var ctc = document.getElementById("startCaseByDistrictStacked");
         var myChart = new Chart(ctc, {
-          type: 'bar',
+          type: 'line',
           data: {
             labels: vm.districtOverallLabel,
             datasets: [{
               label: 'Runaway',
-              backgroundColor: 'rgba(0,0,255,1)',
               borderColor: 'rgba(0,0,255,1)',
               data: vm.start_case_type_Runaway,
-              borderWidth: 1
+              borderWidth: 1,
+              fill:false,
             },
             {
               label: 'Abduction by Family Member',
-              backgroundColor: 'rgba(255,0,255,1)',
               borderColor: 'rgba(255,0,255,1)',
               data: vm.start_case_type_Abduction_by_Family_Member,
-              borderWidth: 1
+              borderWidth: 1,
+              fill:false,
             },
             {
               label: 'Abduction by Acquaintance',
-              backgroundColor: 'rgba(0,255,255,1)',
               borderColor: 'rgba(0,255,255,1)',
               data: vm.start_case_type_Abduction_by_Acquaintance,
-              borderWidth: 1
+              borderWidth: 1,
+              fill:false,
             },
             {
               label: 'Stranger Abduction',
-              backgroundColor: 'rgba(255,255,0,1)',
-              borderColor: 'rgba(255,255,0,1)',
+              borderColor: 'rgba(255,285,0,1)',
               data: vm.start_case_type_Stranger_Abduction,
-              borderWidth: 1
+              borderWidth: 1,
+              fill:false,
+            },
+            {
+              label: 'LIM (Lost, Injured, Otherwise Missing)',
+              borderColor: 'rgba(255,285,0,1)',
+              data: vm.start_case_type_Lost__Injured__Otherwise_Missing,
+              borderWidth: 1,
+              fill:false,
             }
             ]
           },
@@ -833,14 +824,12 @@ myApp.controller('CoreController', function (UserService, $scope) {
             },
             scales: {
               xAxes: [{
-                stacked: true,
                 scaleLabel: {
                   display: true,
                   labelString: 'School District'
                 }
               }],
               yAxes: [{
-                stacked: true,
                 scaleLabel: {
                   display: true,
                   labelString: 'Number of Cases'
@@ -912,14 +901,14 @@ myApp.controller('CoreController', function (UserService, $scope) {
             data: {
               labels: vm.lawEnforcementOverallLabel,
               datasets: [{
-                label: 'Jurisdictional Denial True',
+                label: 'Jurisdictional Denial- Yes',
                 backgroundColor: 'rgba( 255, 165, 0, 0.6)',
                 borderColor: 'rgba( 255, 165, 0, 0.6)',
                 data: vm.jurisdictional_denial_true,
                 borderWidth: 1
               },
               {
-                label: 'Jurisdictional Denial False',
+                label: 'Jurisdictional Denial- No',
                 backgroundColor: 'rgba(20, 125, 145, 0.4)',
                 borderColor: 'rgba(20, 125, 145, 0.4)',
                 data: vm.jurisdictional_denial_false,
@@ -1033,7 +1022,7 @@ myApp.controller('CoreController', function (UserService, $scope) {
 
           var ctc = document.getElementById("vulnerabilityStackedOverall");
           var myChart = new Chart(ctc, {
-            type: 'bar',
+            type: 'line',
             data: {
               labels: vm.ageOverallLabel,
               datasets: [{
@@ -1041,140 +1030,160 @@ myApp.controller('CoreController', function (UserService, $scope) {
                 backgroundColor: 'rgba(192,192,192,1)',
                 borderColor: 'rgba(192,192,192,1)',
                 data: vm.vulnerability_ADD_ADHD,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'ASD',
                 backgroundColor: 'rgba(255,0,255,1)',
                 borderColor: 'rgba(255,0,255,1)',
                 data: vm.vulnerability_ASD,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Alcohol Use Abuse',
                 backgroundColor: 'rgba(0,255,255,1)',
                 borderColor: 'rgba(0,255,255,1)',
                 data: vm.vulnerability_Alcohol_use_abuse,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Anxiety',
                 backgroundColor: 'rgba(255,255,0,1)',
                 borderColor: 'rgba(255,255,0,1)',
                 data: vm.vulnerability_Anxiety,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Luring/ grooming by adult',
                 backgroundColor: 'rgba(0,0,255,1)',
                 borderColor: 'rgba(0,0,255,1)',
                 data: vm.vulnerability_Luring_grooming_by_adult,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Luring/grooming by child',
                 backgroundColor: 'rgba(0,255,0,1)',
                 borderColor: 'rgba(0,255,0,1)',
                 data: vm.vulnerability_Luring_grooming_by_child,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Depression (Situational)',
                 backgroundColor: 'rgba(255,0,0,1)',
                 borderColor: 'rgba(255,0,0,1)',
                 data: vm.vulnerability_Depression__Situational_,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Missing from care',
                 backgroundColor: 'rgba(230, 230, 250, 0.8)',
                 borderColor: 'rgba(230, 230, 250, 0.8)',
                 data: vm.vulnerability_Missing_from_care,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Drug use abuse',
                 backgroundColor: 'rgba(047, 079, 079, 1)',
                 borderColor: 'rgba(047, 079, 079, 1)',
                 data: vm.vulnerability_Drug_use_abuse,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Economic exploitation (history)',
                 backgroundColor: 'rgba(112,128,144, 1)',
                 borderColor: 'rgba(112,128,144,1)',
                 data: vm.vulnerability_Economic_exploitation__history,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Physical Abuse (history)',
                 backgroundColor: 'rgba(000,206,209,1)',
                 borderColor: 'rgba(000,206,209,1)',
                 data: vm.vulnerability_Physical_Abuse__history_,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Runaway (history)',
                 backgroundColor: 'rgba(205,092,092,1)',
                 borderColor: 'rgba(205,092,092,1)',
                 data: vm.vulnerability_Runaway__history_,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'ODD',
                 backgroundColor: 'rgba(205,133,063,1)',
                 borderColor: 'rgba(205,133,063,1)',
                 data: vm.vulnerability_ODD,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Labor Exploitation (history)',
                 backgroundColor: 'rgba(178,034,034,1)',
                 borderColor: 'rgba(178,034,034,1)',
                 data: vm.vulnerability_Labor_Exploitation__history_,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Depression (Clinical)',
                 backgroundColor: 'rgba(255,105,180,1)',
                 borderColor: 'rgba(255,105,180,1)',
                 data: vm.vulnerability_Depression__Clinical_,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Bipolar Disorder',
                 backgroundColor: 'rgba(238,130,238,1)',
                 borderColor: 'rgba(238,130,238,1)',
                 data: vm.vulnerability_Bipolar_Disorder,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Gang Association',
                 backgroundColor: 'rgba(139,121,094,1)',
                 borderColor: 'rgba(139,121,094,1)',
                 data: vm.vulnerability_Gang_association,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Sexual Abuse (history)',
                 backgroundColor: 'rgba(255,228,225,1)',
                 borderColor: 'rgba(255,228,225,1)',
                 data: vm.vulnerability_Sexual_Abuse__history_,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Sexual Exploitation (history)',
                 backgroundColor: 'rgba(030,144,255,1)',
                 borderColor: 'rgba(030,144,255,1)',
                 data: vm.vulnerability_Sexual_exploitation__history_,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               },
               {
                 label: 'Sexual Minority',
                 backgroundColor: 'rgba(255,	165,	079, 1)',
                 borderColor: 'rgba(255,	165,	079, 1)',
                 data: vm.vulnerability_Sexual_Minority,
-                borderWidth: 1
+                borderWidth: 1,
+                fill:false,
               }
               ]
             },
@@ -1188,14 +1197,12 @@ myApp.controller('CoreController', function (UserService, $scope) {
               },
               scales: {
                 xAxes: [{
-                  stacked: true,
                   scaleLabel: {
                     display: true,
                     labelString: 'Age'
                   }
                 }],
                 yAxes: [{
-                  stacked: true,
                   scaleLabel: {
                     display: true,
                     labelString: 'Number of Cases'
