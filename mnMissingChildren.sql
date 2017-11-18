@@ -3,7 +3,7 @@ CREATE TABLE "users" (
     "id" serial primary key,
     "username" varchar(80),
     "password" varchar (240),
-    "admin" boolean
+    "admin" boolean default FALSE
 );
 
 --research data table --
@@ -11,7 +11,7 @@ CREATE TABLE "case_data" (
 "id" serial primary key,
 "mcm_number" varchar (20), 
 "intake_date" TIMESTAMP DEFAULT NOW(),
-"age" integer,
+"age" varchar(2),
 "gender" text, 
 "last_seen" date,
 "reported_missing" date,
@@ -24,7 +24,8 @@ CREATE TABLE "case_data" (
 "end_case_type" text,
 "disposition" text,
 "close_date" date,
-"referral_type" text
+"referral_type" text,
+"case_status" varchar(80)
 );
 
 --field reference tables--
