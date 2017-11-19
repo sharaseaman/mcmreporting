@@ -169,18 +169,22 @@ router.post('/newVulnerabilities', function (req, res) {
   }
 }); //end input vulnerabilities Post
 
-router.get('/caseToEdit: id', function (req, res) {
-  var mcmCase = {id: req.params.id};
+router.get('/caseToEdit/:id', function (req, res) {
+  // var mcmCase = {id: req.params.id};
+  var mcmCase = req.params.id;
   console.log('In get for caseToEdit', mcmCase);
   // check if logged in
   if (req.isAuthenticated()) {
     pool.connect(function (conErr, client, done) {
       if (conErr) {
+        console.log('Connection error');
         res.sendStatus(500);
       } else {
-        client.query('SELECT * FROM case_data FULL JOIN case_vulnerabilities ON case_data.id = case_vulnerabilities.case_data_id FULL JOIN vulnerabilities ON case_vulnerabilities.vulnerabilities_id = vulnerabilities.id FULL JOIN case_lawenforcement_denial ON case_data.id = case_lawenforcement_denial.case_data_id FULL JOIN law_enforcement ON case_lawenforcement_denial.law_enforcement_id = law_enforcement.id FULL JOIN case_race_ethnicity ON case_data.id = case_race_ethnicity.case_data_id FULL JOIN race_ethnicity ON case_race_ethnicity.race_ethnicity_id = race_ethnicity.id WHERE case_data.mcm_number = mcmCase', function (queryErr, resultObj) {
+        var valueArray = [mcmCase]
+        client.query('SELECT * FROM case_data FULL JOIN case_vulnerabilities ON case_data.id = case_vulnerabilities.case_data_id FULL JOIN vulnerabilities ON case_vulnerabilities.vulnerabilities_id = vulnerabilities.id FULL JOIN case_lawenforcement_denial ON case_data.id = case_lawenforcement_denial.case_data_id FULL JOIN law_enforcement ON case_lawenforcement_denial.law_enforcement_id = law_enforcement.id FULL JOIN case_race_ethnicity ON case_data.id = case_race_ethnicity.case_data_id FULL JOIN race_ethnicity ON case_race_ethnicity.race_ethnicity_id = race_ethnicity.id WHERE case_data.mcm_number = $1', valueArray, function (queryErr, resultObj) {
           done();
           if (queryErr) {
+            console.log('SQL error');
             res.sendStatus(500);
           } else {
             res.send(resultObj.rows);

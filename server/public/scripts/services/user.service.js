@@ -11,6 +11,7 @@ myApp.service('UserService', function ($http, $location) {
   self.cities = {};
   self.selectedYear = '';
   self.customReportData = {data: []}
+  self.caseBeingEdited = {};
 
 
   self.getCities = function () {
@@ -354,6 +355,7 @@ myApp.service('UserService', function ($http, $location) {
       url: '/forms/caseToEdit/' + mcmNum
     }).then(function (response) {
       console.log('Response', response);
+      self.caseBeingEdited = response;
     })
   };
 
