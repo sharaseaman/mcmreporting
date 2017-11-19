@@ -472,7 +472,6 @@ myApp.controller('NewController', function (UserService) {
     pdf.text(10, 210, 'Tattoos or Piercings: ' + vm.commentTattoosIn);
     pdf.text(10, 220, 'Dental Characteristics: ' + vm.DentalCharacteristicsIn);
     pdf.text(10, 230, 'Scars or Birthmarks: ' + vm.ScarsOrBirthmarksIn);
-    pdf.line(10, 235, 206, 235);
 
     pdf.text(10, 240, 'Additional Information: ');
     var formatOtherInfoIn = vm.OtherInfoIn;
@@ -696,22 +695,40 @@ myApp.controller('NewController', function (UserService) {
     pdf.text(140, 184, 'Phone #: ' + vm.LEPhoneNumberIn5);
     pdf.text(140, 190, 'Notes:');
 
+    pdf.addPage();
+    pdf.addImage(imgData, 'JPEG', 5, 10, 60, 30);
+    pdf.setFontType('bold');
+    pdf.setFontSize(18);
+    pdf.text(70, 25, 'Missing Persons Intake Form');
+    pdf.setFontSize(12);
+    pdf.setFontType('bold');
+    pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);
+    pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);//+ vm.formatDateofIntaketoMCMIn
+    pdf.line(10, 48, 206, 48);
+    
+    pdf.setFontType('bold');
+    pdf.setFontSize(14);
+    pdf.text(10,55, 'Additional Documents Attached:');
 
-    // pdf.setFontType('bold');
-    // pdf.setFontSize(14);
-    // pdf.text(10,200, 'Person Requesting Assistance');
-    // pdf.setFontType('normal');
-    // pdf.setFontSize(12);
-    // pdf.text(10,210, 'Name:');
-    // pdf.text(40,210, 'Address:');
-    // pdf.text(40,210, 'City:');
-    // pdf.text(40,210, 'State:');
-    // pdf.text(40,210, 'Zip Code:');
-    // pdf.text(40,210, 'Home Phone:');
-    // pdf.text(40,210, 'Cell Phone:');
-    // pdf.text(40,210, 'Email:');
-    // pdf.text(40,210, 'Signature:');
-    // pdf.text(40,210, 'Date:');
+
+    pdf.text(10,220, 'Person Requesting Assistance');
+    pdf.line(10, 222, 206, 222);
+    
+    pdf.setFontType('normal');
+    pdf.setFontSize(12);
+    pdf.text(10,230, 'Name: ' + vm.PRANameIn);
+    pdf.text(10,236, 'Address: ' + vm.PRAStreetAddressIn);
+    pdf.text(10,242, 'City: ' + vm.PRACityIn);
+    pdf.text(80,242, 'State: ' +vm.PRAStateIn);
+    pdf.text(140,242, 'Zip Code: ' + vm.PRAZIPCodeIn);
+    pdf.text(10,248, 'Home Phone: ' + vm.PRAHomePhoneIn);
+    pdf.text(80,248, 'Cell Phone: ' + vm.PRACellPhoneIn);
+    pdf.text(140,248, 'Email: ' + vm.PRAEmailIn);
+    pdf.text(10,258, 'Signature:');
+    pdf.line(30, 259, 100, 259);
+    
+    pdf.text(140,258, 'Date:');
+    pdf.line(150, 259, 206, 259);
     
     
     
