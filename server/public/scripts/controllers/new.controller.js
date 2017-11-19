@@ -5,7 +5,7 @@ myApp.controller('NewController', function (UserService) {
   vm.caseIn = '';
   vm.DateofIntaketoMCMIn = '';
   vm.NameIn = '';
-  // vm.DateofDisappearanceIn = '';
+  vm.DateofDisappearanceIn = '';
   vm.DateReportedMissingtoPoliceIn = '';
   vm.DateLastSeenIn = '';
   vm.TimeLastSeenIn = '';
@@ -31,7 +31,7 @@ myApp.controller('NewController', function (UserService) {
   vm.EyeBrowFeatures = '';
   vm.GlassesOrContactsIn = '';
   vm.TattoosOrPiercingsIn = '';
-  vm.commentTattoosIn = ''; //ng model
+  vm.commentTattoosIn = '';  //ng model
   vm.DentalCharacteristicsIn = '';
   vm.ScarsOrBirthmarksIn = '';
   vm.commentScarorBirthmarksIn = ''; //need ng model
@@ -110,6 +110,32 @@ myApp.controller('NewController', function (UserService) {
   vm.PRACellPhoneIn = '';
   vm.PRAEmailIn = '';
   vm.OtherHistoryIn = '';
+  vm.ADDIn = '';
+  vm.AutismIn = '';
+  vm.AlcoholIn = '';
+  vm.AnxietyIn = '';
+  vm.BiPolarIn = '';
+  vm.DepressionClinicalIn = '';
+  vm.DepressionSituationalIn = '';
+  vm.DrugUseIn = '';
+  vm.EconomicIn = '';
+  vm.EmotionalAbuseIn = '';
+  vm.GangIn = '';
+  vm.ODDIn = '';
+  vm.LaborIn = '';
+  vm.LuringAdultIn = '';
+  vm.LuringChildIn = '';
+  vm.MissingFromCareIn = '';
+  vm.PhysicalAbuseIn = '';
+  vm.RunawayIn = '';
+  vm.SexualAbuseIn = '';
+  vm.SexualExploitationIn = '';
+  vm.SexualMinorityIn = '';
+  vm.AfricanAmericanIn = '';
+  vm.AsianPacificIslanderIn = '';
+  vm.NativeAmericanIn = '';
+  vm.CaucasianIn = '';
+  vm.LatinxIn = '';
 
 
   vm.case_vulnerabilities = [{
@@ -126,7 +152,7 @@ myApp.controller('NewController', function (UserService) {
       name: "Anxiety",
       value: false
     }, {
-      name: "BiPolarDisorder",
+      name: "Bipolar Disorder",
       value: false
     },
     {
@@ -140,7 +166,7 @@ myApp.controller('NewController', function (UserService) {
       name: "Drug use/abuse",
       value: false
     }, {
-      name: "Economic exploitation (history",
+      name: "Economic exploitation (history)",
       value: false
     },
     {
@@ -240,7 +266,9 @@ myApp.controller('NewController', function (UserService) {
   });
 
   UserService.getAgencies().then(function (response) {
+    console.log('lawEnforcement', response.data )
     return vm.agencies = response.data;
+    
   });
 
   UserService.getSchools().then(function (response) {
@@ -261,14 +289,15 @@ myApp.controller('NewController', function (UserService) {
       last_seen: vm.DateLastSeenIn,
       reported_missing: vm.DateReportedMissingtoPoliceIn,
       people_served: vm.FamilyMembersInvolvedInSearchIn,
-      city: vm.CityMissingFromIn,
-      county: vm.CountyMissingFromIn,
+      city_name: vm.CityMissingFromIn,
+      county_name: vm.CountyMissingFromIn,
       state: vm.StateMissingFromIn,
-      school: vm.SchoolDistrictWhereChildWasEnrolledIn,
+      school_name: vm.SchoolDistrictWhereChildWasEnrolledIn,
       start_case_type: vm.CaseTypeWhenOpenedIn,
       end_case_type: vm.CaseTypeWhenClosedIn,
       disposition: vm.CaseDispositionIn,
       close_date: vm.DateCaseClosedIn,
+      referral_type: vm.ReferralTypeIn,
       referral_type: vm.ReferralTypeIn,
       case_vulnerabilities: [],
       race_ethnicity: [],
@@ -278,8 +307,8 @@ myApp.controller('NewController', function (UserService) {
 
     if (newIntake.mcm_number == null || newIntake.intake_date == null || newIntake.age == null ||
       newIntake.gender == null || newIntake.last_seen == null || newIntake.reported_missing == null ||
-      newIntake.people_served == null || newIntake.city == null ||
-      newIntake.county == null || newIntake.state == null || newIntake.school == null ||
+      newIntake.people_served == null || newIntake.city_name == null ||
+      newIntake.county_name == null || newIntake.state == null || newIntake.school_name == null ||
       newIntake.start_case_type == null || newIntake.end_case_type == null ||
       newIntake.disposition == null || newIntake.close_date == null || newIntake.referral_type == null) {
       swal({
@@ -332,14 +361,15 @@ myApp.controller('NewController', function (UserService) {
           return jurisdiction.name !== undefined;
 
         })
-      }).then(function () {
+      })
+      .then(function () {
         UserService.postInputData(newIntake);
+
         console.log('final newIntake', newIntake)
       });
 
     }
   }
-
 
 
 
@@ -364,11 +394,7 @@ myApp.controller('NewController', function (UserService) {
 
     vm.formatDateCaseClosedIn = (vm.DateCaseClosedIn.getMonth() + 1) + '/' + vm.DateCaseClosedIn.getDate() + '/' + vm.DateCaseClosedIn.getFullYear();
 
-    vm.formatTimeLastSeenIn = vm.TimeLastSeenIn.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true
-    });
+    vm.formatTimeLastSeenIn = vm.TimeLastSeenIn.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 
 
 
@@ -401,8 +427,8 @@ myApp.controller('NewController', function (UserService) {
     pdf.setFontSize(12);
     pdf.text(10, 70, 'Name of Missing Person: ' + vm.NameIn);
 
-    pdf.text(10, 80, 'Date of Disappearance: ' + vm.formatDateofDisappearanceIn); //vm.formatDateofDisappearanceIn
-    pdf.text(90, 80, 'Date Reported To Police: ' + vm.formatDateReportedMissingtoPoliceIn); //+ vm.formatDateReportedMissingtoPoliceIn
+    pdf.text(10, 80, 'Date of Disappearance: ' + vm.formatDateofDisappearanceIn);//vm.formatDateofDisappearanceIn
+    pdf.text(90, 80, 'Date Reported To Police: ' + vm.formatDateReportedMissingtoPoliceIn);//+ vm.formatDateReportedMissingtoPoliceIn
 
     pdf.text(10, 90, 'Date Last Seen: ' + vm.formatDateLastSeenIn); //+ vm.formatDateLastSeenIn
     pdf.text(90, 90, 'Time Last Seen: ' + vm.formatTimeLastSeenIn); //+ vm.formatTimeLastSeenIn
@@ -434,20 +460,25 @@ myApp.controller('NewController', function (UserService) {
     pdf.text(10, 170, 'Hair Color: ' + vm.HairColorIn);
     pdf.text(80, 170, 'Hair Style: ' + vm.HairStyleIn);
     pdf.text(130, 170, 'Eye Color: ' + vm.EyeColorIn);
-    pdf.text(10, 180, 'Race/Ethniciy: ' + vm.RaceEthnicityIn);
-    pdf.text(80, 180, 'Facial Hair: ' + vm.FacialHairIn);
-    pdf.text(130, 180, 'Eye Brow Features: ' + vm.EyeBrowFeatures);
-    pdf.text(10, 190, 'Glasses/Contacts: ' + vm.GlassesOrContactsIn);
+    pdf.text(10, 180, 'Glasses/Contacts: ' + vm.GlassesOrContactsIn);
+    pdf.text(80, 180, 'Facial Hair: ' + vm.FacialHairIn);    
+    pdf.text(130, 180, 'Eye Brow Features: ' + vm.EyeBrowFeaturesIn);
 
-    pdf.text(10, 200, 'Tattoos or Piercings: ' + vm.commentTattoosIn);
-    pdf.text(10, 210, 'Dental Characteristics: ' + vm.DentalCharacteristicsIn);
-    pdf.text(10, 220, 'Scars or Birthmarks: ' + vm.ScarsOrBirthmarksIn);
-    pdf.line(10, 230, 206, 230);
+    pdf.text(10, 190, 'Race/Ethnicity: ');    
+    pdf.text(50, 190, 'African American: ' + vm.AfricanAmericanIn);
+    pdf.text(50, 200, 'Asian Pacific Islander: ' + vm.AsianPacificIslanderIn);
+    pdf.text(120, 200, 'Native American: ' + vm.NativeAmericanIn);
+       pdf.text(120, 190, 'Caucasion: ' + vm.CaucasianIn);
+       pdf.text(160, 190, 'Latinx: ' + vm.LatinxIn);
+  
+    pdf.text(10, 210, 'Tattoos or Piercings: ' + vm.commentTattoosIn);
+    pdf.text(10, 220, 'Dental Characteristics: ' + vm.DentalCharacteristicsIn);
+    pdf.text(10, 230, 'Scars or Birthmarks: ' + vm.ScarsOrBirthmarksIn);
 
     pdf.text(10, 240, 'Additional Information: ');
     var formatOtherInfoIn = vm.OtherInfoIn;
     var setOtherInfoIn = pdf.splitTextToSize(formatOtherInfoIn, 200);
-    pdf.text(10, 250, setOtherInfoIn);
+    pdf.text(10, 245, setOtherInfoIn);
 
 
     //page 2
@@ -461,39 +492,72 @@ myApp.controller('NewController', function (UserService) {
     pdf.setFontType('bold');
     pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);
     pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);
-    //+ vm.formatDateofIntaketoMCMIn
     pdf.line(10, 48, 206, 48);
     // end of page 2 header
     //page 2 input 
-    //Reporting Law enforcement info
 
+    //Vulnerabilities
     pdf.setFontType('bold');
     pdf.setFontSize(14);
-    pdf.text(10, 60, 'Reporting Law Enforcement')
+    pdf.text(10, 55, 'Vulnerability History')
     pdf.setFontType('normal');
     pdf.setFontSize(12);
-    pdf.text(10, 70, 'Law Enforcement Agency: ' + vm.LawEnforcementAgencyonCaseIn);
-    pdf.text(110, 70, 'Case Number: ' + vm.CaseNumberIn);
-    pdf.text(10, 80, 'Officer/Detective: ' + vm.OfficeDetectiveIn);
-    pdf.text(10, 90, 'Phone Number: ' + vm.LEPhoneNumberIn);
-    pdf.text(10, 100, 'Street Address: ' + vm.StreetAddressIn);
-    pdf.text(10, 110, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn);
-    pdf.text(10, 120, 'Other: ' + vm.OtherLEIn);
+    pdf.text(10, 65, 'ADD/ADHD:')
+    pdf.text(66, 65, '' + vm.ADDIn);
+    pdf.text(10, 72, 'ASD:');
+    pdf.text(66, 72, '' + vm.AutismIn);
+    pdf.text(10, 79, 'Anxiety: ');
+    pdf.text(66, 79, '' + vm.AnxietyIn);
+    pdf.text(10, 86, 'ODD:');
+    pdf.text(66, 86, '' + vm.ODDIn);
+    pdf.text(10, 93, 'Bi-Polar Disorder: ');
+    pdf.text(66, 93, '' + vm.BiPolarIn);
+    pdf.text(10, 100, 'Runaway: ');
+    pdf.text(66, 100, '' + vm.RunawayIn);
+    pdf.text(10, 107, 'Missing From Care: ');
+    pdf.text(66, 107, '' + vm.MissingFromCareIn);
+    pdf.text(10, 114, 'Gang Association: ');
+    pdf.text(66, 114, '' + vm.GangIn);
+    pdf.text(10, 121, 'Alcohol Use/Abuse:  ');
+    pdf.text(66, 121, '' + vm.AlcoholIn);
+    pdf.text(10, 128, 'Drug Use/Abuse: ');
+    pdf.text(66, 128, '' + vm.DrugUseIn);
+    pdf.text(10, 135, 'Economic exploitation: ');
+    pdf.text(66, 135, '' + vm.EconomicIn);
+    pdf.text(100, 65, 'Emotional Abuse: ');
+    pdf.text(166, 65, '' + vm.EmotionalAbuseIn);
+    pdf.text(100, 72, 'Physical Abuse: ');
+    pdf.text(166, 72, '' + vm.PhysicalAbuseIn);
+    pdf.text(100, 79, 'Depression(clinical): ');
+    pdf.text(166, 79, '' + vm.DepressionClinicalIn);
+    pdf.text(100, 86, 'Depression(situational): ');
+    pdf.text(166, 86, '' + vm.DepressionSituationalIn);
+    pdf.text(100, 93, 'Labor Exploitation: ');
+    pdf.text(166, 93, '' + vm.LaborIn);
+    pdf.text(100, 100, 'Luring/grooming by adult: ');
+    pdf.text(166, 100, '' + vm.LuringAdultIn);
+    pdf.text(100, 107, 'Luring/grooming by child: ');
+    pdf.text(166, 107, '' + vm.LuringChildIn);
+    pdf.text(100, 114, 'Sexual Abuse: ');
+    pdf.text(166, 114, '' + vm.SexualAbuseIn);
+    pdf.text(100, 121, 'Sexual Exploitation: ');
+    pdf.text(166, 121, '' + vm.SexualExploitationIn);
+    pdf.text(100, 128, 'Sexual Minority (LGBTQ, etc.): ');
+    pdf.text(166, 128, '' + vm.SexualMinorityIn);
 
-    pdf.line(10, 128, 206, 128);
+    pdf.line(10, 140, 206, 140);
 
     //case info
     pdf.setFontType('bold');
     pdf.setFontSize(14);
-    pdf.text(10, 140, 'Case Information ');
+    pdf.text(10, 150, 'Case Information '); 
     pdf.setFontType('normal');
-    pdf.setFontSize(12);
-    pdf.text(10, 150, 'Case Type When Opened:  ' + vm.CaseTypeWhenOpenedIn);
-    pdf.text(10, 160, 'Case Type When Closed:   ' + vm.CaseTypeWhenClosedIn);
-    pdf.text(10, 170, 'Case Status: ' + vm.CaseStatusIn);
-    pdf.text(100, 170, 'Date Case Closed: '); + vm.formatDateCaseClosedIn
-    pdf.text(10, 180, 'Case Disposition: ' + vm.CaseStatusIn);
-    pdf.text(100, 180, 'Referral Type:     ' + vm.ReferralTypeIn);
+    pdf.setFontSize(12); pdf.text(100, 150, 'Case Status: ' + vm.CaseStatusIn);
+    pdf.text(10, 160, 'Case Type When Opened:  ' + vm.CaseTypeWhenOpenedIn);
+    pdf.text(10, 170, 'Case Type When Closed:   ' + vm.CaseTypeWhenClosedIn);
+    pdf.text(100, 170, 'Date Case Closed: '+ vm.formatDateCaseClosedIn);
+    pdf.text(10, 180, 'Referral Type: ' + vm.ReferralTypeIn);
+    
     pdf.line(10, 188, 206, 188);
 
     // Specific Questions to Occurrence
@@ -505,8 +569,11 @@ myApp.controller('NewController', function (UserService) {
     pdf.text(10, 210, 'Was the Person with Anyone: ' + vm.commentWithOthersIn);
     pdf.text(10, 220, 'High Risk Activity: ' + vm.commentHighRiskIn);
     pdf.text(10, 230, 'Disturbing Situation: ' + vm.DisturbingSituationIn);
-    pdf.text(10, 240, 'Additional Comment: ' + vm.commentSpecificQuestions);
-
+    var formatcommentSpecificQuestions = vm.commentSpecificQuestions;
+    var setcommentSpecificQuestions = pdf.splitTextToSize(formatcommentSpecificQuestions, 200);
+    pdf.text(10, 240, 'Additional Comments: ' );
+    pdf.text(10, 246, setcommentSpecificQuestions);
+    
     //page 3
     pdf.addPage();
     //page 3 header
@@ -517,7 +584,7 @@ myApp.controller('NewController', function (UserService) {
     pdf.setFontSize(12);
     pdf.setFontType('bold');
     pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);
-    pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn); //+ vm.formatDateofIntaketoMCMIn
+    pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);//+ vm.formatDateofIntaketoMCMIn
     pdf.line(10, 48, 206, 48);
     // end of page 3 header
 
@@ -580,28 +647,93 @@ myApp.controller('NewController', function (UserService) {
     pdf.setFontSize(12);
     pdf.setFontType('bold');
     pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);
-    pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn); //+ vm.formatDateofIntaketoMCMIn
+    pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);//+ vm.formatDateofIntaketoMCMIn
     pdf.line(10, 48, 206, 48);
     //end page 4 header
 
     // page 4 input
+   pdf.setFontType('bold');
+    pdf.setFontSize(14);
+    pdf.text(10, 60, 'Reporting Law Enforcement')
+    pdf.setFontType('normal');
+    pdf.setFontSize(12);
+    pdf.text(10, 70, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn1);
+    pdf.text(80, 70, 'Case Number: ' + vm.CaseNumberIn1);
+    pdf.text(130, 70, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn1);    
+    pdf.text(10, 76, 'Street Address: ' + vm.StreetAddressIn1);
+    pdf.text(80, 76, 'Officer/Detective: ' + vm.OfficeDetectiveIn1);
+    pdf.text(140, 76, 'Phone #: ' + vm.LEPhoneNumberIn1);
+    pdf.text(10, 82, 'Notes');
 
-    //Vulnerabilities
-    // var specialElementHandlers = {
-    //       '#editor': function (element, renderer) {
-    //           return true;
-    //       }
-    //   };
-    //   $('#pdfview').click(function () {
-    //       doc.fromHTML($('#pdfdiv').html(), 15, 15, {
-    //           'width': 100,
-    //           'elementHandlers': specialElementHandlers
-    //       });
-    //     })
+    pdf.text(10, 97, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn2);
+    pdf.text(80, 97, 'Case Number: ' + vm.CaseNumberIn2);
+    pdf.text(130, 97, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn2);    
+    pdf.text(10,103, 'Street Address: ' + vm.StreetAddressIn2);
+    pdf.text(80, 103, 'Officer/Detective: ' + vm.OfficeDetectiveIn2);
+    pdf.text(140, 103, 'Phone #: ' + vm.LEPhoneNumberIn2);
+    pdf.text(10, 109, 'Notes');
+
+    pdf.text(10, 124, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn3);
+    pdf.text(80, 124, 'Case Number: ' + vm.CaseNumberIn3);
+    pdf.text(130, 124, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn3);    
+    pdf.text(10, 130, 'Street Address: ' + vm.StreetAddressIn3);
+    pdf.text(80, 130, 'Officer/Detective: ' + vm.OfficeDetectiveIn3);
+    pdf.text(140, 130, 'Phone #: ' + vm.LEPhoneNumberIn3);
+    pdf.text(10, 136, 'Notes');
+
+    pdf.text(10, 151, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn4);
+    pdf.text(80, 151, 'Case Number: ' + vm.CaseNumberIn4);
+    pdf.text(130, 151, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn4);    
+    pdf.text(10, 157, 'Street Address: ' + vm.StreetAddressIn4);
+    pdf.text(80, 157, 'Officer/Detective: ' + vm.OfficeDetectiveIn4);
+    pdf.text(140, 157, 'Phone #: ' + vm.LEPhoneNumberIn4);
+    pdf.text(10, 163, 'Notes:');
+
+    pdf.text(10, 178, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn5);
+    pdf.text(80, 178, 'Case Number: ' + vm.CaseNumberIn5);
+    pdf.text(130, 178, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn5);    
+    pdf.text(10, 184, 'Street Address: ' + vm.StreetAddressIn5);
+    pdf.text(80, 184, 'Officer/Detective: ' + vm.OfficeDetectiveIn5);
+    pdf.text(140, 184, 'Phone #: ' + vm.LEPhoneNumberIn5);
+    pdf.text(140, 190, 'Notes:');
+
+    pdf.addPage();
+    pdf.addImage(imgData, 'JPEG', 5, 10, 60, 30);
+    pdf.setFontType('bold');
+    pdf.setFontSize(18);
+    pdf.text(70, 25, 'Missing Persons Intake Form');
+    pdf.setFontSize(12);
+    pdf.setFontType('bold');
+    pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);
+    pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);//+ vm.formatDateofIntaketoMCMIn
+    pdf.line(10, 48, 206, 48);
+    
+    pdf.setFontType('bold');
+    pdf.setFontSize(14);
+    pdf.text(10,55, 'Additional Documents Attached:');
 
 
-    //Person Requesting Assistance In Juvenile Case Under The Age Of 18 Years
-
+    pdf.text(10,220, 'Person Requesting Assistance');
+    pdf.line(10, 222, 206, 222);
+    
+    pdf.setFontType('normal');
+    pdf.setFontSize(12);
+    pdf.text(10,230, 'Name: ' + vm.PRANameIn);
+    pdf.text(10,236, 'Address: ' + vm.PRAStreetAddressIn);
+    pdf.text(10,242, 'City: ' + vm.PRACityIn);
+    pdf.text(80,242, 'State: ' +vm.PRAStateIn);
+    pdf.text(140,242, 'Zip Code: ' + vm.PRAZIPCodeIn);
+    pdf.text(10,248, 'Home Phone: ' + vm.PRAHomePhoneIn);
+    pdf.text(80,248, 'Cell Phone: ' + vm.PRACellPhoneIn);
+    pdf.text(140,248, 'Email: ' + vm.PRAEmailIn);
+    pdf.text(10,258, 'Signature:');
+    pdf.line(30, 259, 100, 259);
+    
+    pdf.text(140,258, 'Date:');
+    pdf.line(150, 259, 206, 259);
+    
+    
+    
 
     //name / signture / date / referred by
 

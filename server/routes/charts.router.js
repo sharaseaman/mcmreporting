@@ -96,7 +96,7 @@ router.get('/join_vulnerability', function (req, res) {
             res.sendStatus(500);
           } else {
             res.send(resultObj.rows);
-            console.log ('result', resultObj.rows)
+            // console.log ('result', resultObj.rows)
           }
 
         });
@@ -113,7 +113,7 @@ router.get('/join_vulnerability', function (req, res) {
 //post for custom tables
 router.post('/custom', function (req, res) {
   var custom = req.body
-  console.log('In Get for custom info', custom, custom.state);
+  console.log('In Get for custom info', custom);
   // check if logged in
   if (req.isAuthenticated()) {
     pool.connect(function (conErr, client, done) {
@@ -127,99 +127,114 @@ router.post('/custom', function (req, res) {
         var selectStatement = ''
         if (custom.agency || custom.jurisdictional_denial || custom.race_ethnicity || custom.vulnerability !== undefined) {
           var selectStatement = 'SELECT * FROM case_data FULL JOIN case_vulnerabilities ON case_data.id = case_vulnerabilities.case_data_id FULL JOIN vulnerabilities ON case_vulnerabilities.vulnerabilities_id = vulnerabilities.id FULL JOIN case_lawenforcement_denial ON case_data.id = case_lawenforcement_denial.case_data_id FULL JOIN law_enforcement ON case_lawenforcement_denial.law_enforcement_id = law_enforcement.id FULL JOIN case_race_ethnicity ON case_data.id = case_race_ethnicity.case_data_id FULL JOIN race_ethnicity ON case_race_ethnicity.race_ethnicity_id = race_ethnicity.id WHERE '
+          console.log('Line 130', selectStatement)
         } else {
           var selectStatement = 'SELECT * FROM case_data WHERE '
+          console.log('Line 133', selectStatement)
         }
         if (custom.agency !== undefined) {
           var agency$ = 'law_enforcement.id = (SELECT id FROM law_enforcement WHERE agency = $'
           tempArray.push(agency$)
           valueArray.push(custom.agency)
+          console.log('Line 139', tempArray, valueArray)
         }
         if (custom.jurisdictional_denial !== undefined) {
           var jurisdictional_denial$ = 'case_lawenforcement_denial.jurisdictional_denial = $'
           tempArray.push(jurisdictional_denial$)
           valueArray.push(custom.jurisdictional_denial)
+          console.log('Line 145', tempArray, valueArray)
         }
         if (custom.race_ethnicity !== undefined) {
           var race_ethnicity$ = 'race_ethnicity.id = (SELECT id FROM race_ethnicity WHERE race_ethnicity = $'
           tempArray.push(race_ethnicity$)
           valueArray.push(custom.race_ethnicity)
+          console.log('Line 151', tempArray, valueArray)
         }
         if (custom.vulnerability!== undefined) {
           var vulnerability$ = 'vulnerability.id = (SELECT id FROM vulnerabilities WHERE vulnerability = $'
           tempArray.push(vulnerability$)
           valueArray.push(custom.vulnerability)
+          console.log('Line 157', tempArray, valueArray)
         }
         if (custom.start_case_type !== undefined) {
           var start_case_type$ = 'start_case_type = $'
           tempArray.push(start_case_type$);
           valueArray.push(custom.start_case_type);
+          console.log('Line 163', tempArray, valueArray)
         }
         if (custom.state !== undefined) {
           var state$ = 'state = $'
           tempArray.push(state$)
           valueArray.push(custom.state)
+          console.log('Line 169', tempArray, valueArray)
         }
         if (custom.county_name !== undefined) {
-          var county_name$ = '(SELECT id FROM counties WHERE county_name = $'
+          var county_name$ = 'county = (SELECT id FROM counties WHERE county_name = $'
           tempArray.push(county_name$);
           valueArray.push(custom.county_name);
+          console.log('Line 175', tempArray, valueArray)
         }
         if (custom.school_name !== undefined) {
-          var school_name$ = '(SELECT id FROM schools WHERE school_name = $'
+          var school_name$ = 'school = (SELECT id FROM schools WHERE school_name = $'
           tempArray.push(school_name$);
           valueArray.push(custom.school_name);
+          console.log('Line 181', tempArray, valueArray)
         }
         if (custom.age !== undefined) {
           var age$ = ' age = $'
           tempArray.push(age$);
           valueArray.push(custom.age);
+          console.log('Line 187', tempArray, valueArray)
         }
         if (custom.gender !== undefined) {
           var gender$ = ' gender = $'
           tempArray.push(gender$);
           valueArray.push(custom.gender);
+          console.log('Line 193', tempArray, valueArray)
         }
         if (custom.referral_type !== undefined) {
           var referral_type$ = ' referral_type = $'
           tempArray.push(referral_type$);
           valueArray.push(custom.referral_type);
+          console.log('Line 199', tempArray, valueArray)
         } // end if list
 
       
         tempArray.forEach(function (currentValue, index, array) {
-          console.log('line 113, currentValue', currentValue)
-          if (currentValue === '(SELECT id FROM counties WHERE county = $')  {
+          console.log('line 204, currentValue', currentValue)
+          if (currentValue === 'county = (SELECT id FROM counties WHERE county_name = $')  {
             count++
             queryArray.push(currentValue + count + ')')
-            console.log('this is the county if statement')
+            console.log('line 208', queryArray)
           } 
-          if (currentValue === '(SELECT id FROM schools WHERE school_name = $')  {
+          if (currentValue === 'school = (SELECT id FROM schools WHERE school_name = $')  {
             count++
             queryArray.push(currentValue + count + ')')
-            console.log('this is the school if statement')  
+            console.log('line 213', queryArray) 
           }
           if (currentValue === 'law_enforcement.id = (SELECT id FROM law_enforcement WHERE agency = $')  {
             count++
             queryArray.push(currentValue + count + ')')
-            console.log('this is the agency if statement')
+            console.log('line 218', queryArray)
           } 
           if (currentValue === 'race_ethnicity.id = (SELECT id FROM race_ethnicity WHERE race_ethnicity = $')  {
             count++
             queryArray.push(currentValue + count + ')')
-            console.log('this is the race/ethnicity if statement')
+            console.log('line 223', queryArray)
           } 
           if (currentValue === 'vulnerability.id = (SELECT id FROM vulnerabilities WHERE vulnerability = $')  {
             count++
             queryArray.push(currentValue + count + ')')
-            console.log('this is the vulnerability if statement')
+            console.log('line 228', queryArray)
           }
-          else {
-            count++
-            queryArray.push(currentValue + count)
-            console.log('this is the else statement')
-          } //end else 
+          // else {
+          //   count++
+          //   queryArray.push(currentValue + count)
+          //   console.log('line 233', queryArray)
+          // } //end else 
         }) //end tempArray.forEach
+
+        
           var query = queryArray.join(' AND ');
           console.log('query', query);
           var sqlQuery = selectStatement + query        
@@ -228,7 +243,7 @@ router.post('/custom', function (req, res) {
         
           client.query(sqlQuery, valueArray, function (queryErr, resultObj) {
             done();
-            console.log('resultObj', resultObj.rows)
+            // console.log('resultObj', resultObj)
             if (queryErr) {
               res.sendStatus(500);
             } else {
