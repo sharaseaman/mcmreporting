@@ -5,7 +5,7 @@ myApp.controller('NewController', function (UserService) {
   vm.caseIn = '';
   vm.DateofIntaketoMCMIn = '';
   vm.NameIn = '';
-  // vm.DateofDisappearanceIn = '';
+  vm.DateofDisappearanceIn = '';
   vm.DateReportedMissingtoPoliceIn = '';
   vm.DateLastSeenIn = '';
   vm.TimeLastSeenIn = '';
@@ -152,7 +152,7 @@ myApp.controller('NewController', function (UserService) {
       name: "Anxiety",
       value: false
     }, {
-      name: "BiPolarDisorder",
+      name: "Bipolar Disorder",
       value: false
     },
     {
@@ -166,7 +166,7 @@ myApp.controller('NewController', function (UserService) {
       name: "Drug use/abuse",
       value: false
     }, {
-      name: "Economic exploitation (history",
+      name: "Economic exploitation (history)",
       value: false
     },
     {
@@ -266,7 +266,9 @@ myApp.controller('NewController', function (UserService) {
   });
 
   UserService.getAgencies().then(function (response) {
+    console.log('lawEnforcement', response.data )
     return vm.agencies = response.data;
+    
   });
 
   UserService.getSchools().then(function (response) {
@@ -287,10 +289,10 @@ myApp.controller('NewController', function (UserService) {
       last_seen: vm.DateLastSeenIn,
       reported_missing: vm.DateReportedMissingtoPoliceIn,
       people_served: vm.FamilyMembersInvolvedInSearchIn,
-      city: vm.CityMissingFromIn,
-      county: vm.CountyMissingFromIn,
+      city_name: vm.CityMissingFromIn,
+      county_name: vm.CountyMissingFromIn,
       state: vm.StateMissingFromIn,
-      school: vm.SchoolDistrictWhereChildWasEnrolledIn,
+      school_name: vm.SchoolDistrictWhereChildWasEnrolledIn,
       start_case_type: vm.CaseTypeWhenOpenedIn,
       end_case_type: vm.CaseTypeWhenClosedIn,
       disposition: vm.CaseDispositionIn,
@@ -300,14 +302,13 @@ myApp.controller('NewController', function (UserService) {
       case_vulnerabilities: [],
       race_ethnicity: [],
       case_lawenforcement_denial: []
-    };
-
+    }
 
 
     if (newIntake.mcm_number == null || newIntake.intake_date == null || newIntake.age == null ||
       newIntake.gender == null || newIntake.last_seen == null || newIntake.reported_missing == null ||
-      newIntake.people_served == null || newIntake.city == null ||
-      newIntake.county == null || newIntake.state == null || newIntake.school == null ||
+      newIntake.people_served == null || newIntake.city_name == null ||
+      newIntake.county_name == null || newIntake.state == null || newIntake.school_name == null ||
       newIntake.start_case_type == null || newIntake.end_case_type == null ||
       newIntake.disposition == null || newIntake.close_date == null || newIntake.referral_type == null) {
       swal({
@@ -360,7 +361,8 @@ myApp.controller('NewController', function (UserService) {
           return jurisdiction.name !== undefined;
 
         })
-      }).then(function () {
+      })
+      .then(function () {
         UserService.postInputData(newIntake);
 
         console.log('final newIntake', newIntake)
