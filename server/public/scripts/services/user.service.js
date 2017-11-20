@@ -10,7 +10,9 @@ myApp.service('UserService', function ($http, $location) {
   self.users = {};
   self.cities = {};
   self.selectedYear = '';
-  self.customReport = {data: []}
+  self.customReportData = {data: []}
+  self.caseBeingEdited = {};
+
 
 
   self.getCities = function () {
@@ -337,6 +339,7 @@ self.postVulnerabilities = function (vulnerabilities) {
       url: '/forms/caseToEdit/' + mcmNum
     }).then(function (response) {
       console.log('Response', response);
+      self.caseBeingEdited = response;
     })
   };
 
@@ -366,7 +369,7 @@ self.postVulnerabilities = function (vulnerabilities) {
     console.log('In updateForm');
     $http({
       method: 'PUT',
-      url: '/editIntake',
+      url: '/forms/editIntake',
       data: editedForm
     }).then(function (response) {
       console.log('Response', response);
