@@ -141,6 +141,40 @@ router.post('/newVulnerabilities', function (req, res) {
   }
 }); //end input vulnerabilities Post
 
+router.get('/caseToEdit/:id', function (req, res) {
+  // var mcmCase = {id: req.params.id};
+  var mcmCase = req.params.id;
+  console.log('In get for caseToEdit', mcmCase);
+  // check if logged in
+  if (req.isAuthenticated()) {
+    pool.connect(function (conErr, client, done) {
+      if (conErr) {
+        console.log('Connection error');
+        res.sendStatus(500);
+      } else {
+        var valueArray = [mcmCase]
+
+        client.query('SELECT * FROM case_data FULL JOIN case_vulnerabilities ON case_data.id = case_vulnerabilities.case_data_id FULL JOIN vulnerabilities ON case_vulnerabilities.vulnerabilities_id = vulnerabilities.id FULL JOIN case_lawenforcement_denial ON case_data.id = case_lawenforcement_denial.case_data_id FULL JOIN law_enforcement ON case_lawenforcement_denial.law_enforcement_id = law_enforcement.id FULL JOIN case_race_ethnicity ON case_data.id = case_race_ethnicity.case_data_id FULL JOIN race_ethnicity ON case_race_ethnicity.race_ethnicity_id = race_ethnicity.id WHERE case_data.mcm_number = $1', valueArray, function (queryErr, resultObj) {
+
+          done();
+          if (queryErr) {
+            console.log('SQL error');
+            res.sendStatus(500);
+          } else {
+            res.send(resultObj.rows);
+          }
+        });
+      }
+    })
+  } else {
+    // failure best handled on the server. do redirect here.
+    console.log('not logged in');
+    // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
+    res.send(false);
+  } //end else
+}); //end editForm get call
+
+
 
 //new Intake Form
 router.post('/newIntake', function (req, res) {      //  --1
@@ -261,9 +295,9 @@ router.post('/newIntake', function (req, res) {      //  --1
 
 
 //locate case to Edit
-router.get('/caseToEdit:mcmNum', function (req, res) {
-  // var mcmCase = {id: req.params.id};
-  console.log('In get for caseToEdit', req, mcmCase);
+// router.get('/caseToEdit:mcmNum', function (req, res) {
+//   // var mcmCase = {id: req.params.id};
+//   console.log('In get for caseToEdit', req, mcmCase);
   // check if logged in
   // if (req.isAuthenticated()) {
   //   pool.connect(function (conErr, client, done) {
@@ -287,7 +321,7 @@ router.get('/caseToEdit:mcmNum', function (req, res) {
   //   // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
   //   res.send(false);
   // } //end else
-}); //end editForm get call
+// }); //end editForm get call
 
 //edit fields
 router.put('/editIntake', function (req, res) {
@@ -297,6 +331,7 @@ router.put('/editIntake', function (req, res) {
   if (req.isAuthenticated()) { // --2
     pool.connect(function (conErr, client, done) { // --3 
       if (conErr) {
+        console.log('Pool.connect error', conErr);
         res.sendStatus(500);
       } 
       else { //--4     - main query -

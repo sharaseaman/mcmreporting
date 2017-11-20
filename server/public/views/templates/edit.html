@@ -9,8 +9,8 @@
 
 
 <form role="form" class='form-vertical'></form>
-<!-- <div class="md-form form-group" ng-submit="ec.updateData()" ng-if="ec.showEditForm"> -->
-<div class="md-form form-group" ng-submit="ec.updateData()">
+<div class="md-form form-group" ng-submit="ec.updateData()" ng-if="ec.showEditForm">
+<!-- <div class="md-form form-group" ng-submit="ec.updateData()"> -->
 
   <div layout='row' layout-fill layout-margin>
     <md-input-container>
@@ -18,22 +18,33 @@
     </md-input-container>
     <md-input-container>
       <label>Gender</label>
-      <md-select name="Gender" id="gender" ng-model="ec.gender">
+      <md-select name="Gender" id="gender" ng-model="ec.gender" selected="ec.gender">
         <md-option value="Male">Male</md-option>
         <md-option value="Female">Female</md-option>
         <md-option value="Non-binary">Non-binary</md-option>
       </md-select>
     </md-input-container>
-    <md-input-container>
-      <label>Race/Ethnicity</label>
-      <md-select name="RaceEthnicity" ng-model="nwc.RaceEthnicityIn" ng-change="nwc.itemChange()" id="yes">
-        <md-option value="AfricanAmerican">African American</md-option>
-        <md-option value="AsianPacificIslander">Asian Pacific Islander</md-option>
-        <md-option value="Caucasian">Caucasian</md-option>
-        <md-option value="Latinx">Latinx</md-option>
-        <md-option value="NativeAmerican">Native American</md-option>
-      </md-select>
-    </md-input-container>
+    
+    <md-checkbox ng-model="ec.AfricanAmericanIn" ng-click="ec.changeRace(ec.race_ethnicity[0])" aria-label="African American">
+      African American
+    </md-checkbox>
+    
+    <md-checkbox ng-model="ec.AsianPacificIslanderIn" ng-click="ec.changeRace(ec.race_ethnicity[1])" aria-label="Asian Pacific Islander">
+      Asian Pacific Islander
+    </md-checkbox>
+    
+    <md-checkbox ng-model="ec.CaucasianIn" ng-click="ec.changeRace(ec.race_ethnicity[2])" aria-label="Caucasian">
+      Caucasian
+    </md-checkbox>
+    
+    <md-checkbox ng-model="ec.LatinxIn" ng-click="ec.changeRace(ec.race_ethnicity[3])" aria-label="Latinx">
+      Latinx
+    </md-checkbox>
+    
+    <md-checkbox ng-model="ec.NativeAmericanIn" ng-click="ec.changeRace(ec.race_ethnicity[4])" aria-label="Native American">
+      Native American
+    </md-checkbox>
+
   </div>
 
   <h3>Vulnerabilities</h3>
@@ -137,69 +148,7 @@
 
   </div>
 
-  <!-- <div class="form-check">
-    <div class="col-sm-4" id="vulnerabilities">
-      <div class="form-group">
-        <h3>Vulnerabilities</h3>
-        <input type="checkbox" ng-model="ec.ADDIn" name="ADD/ADHD" value="ADD/ADHD" input type="checkbox" /> ADD/ADHD
-        <br>
-        <input type="checkbox" ng-model="ec.AutisimIn" name="ASD (Autism Spectrum Disorder)" value="ASD (Autism Spectrum Disorder)"
-          input type="checkbox" /> ASD (Autism Spectrum Disorder)
-        <br>
-        <input type="checkbox" ng-model="ec.AlcoholIn" name="Alcohol use/abuse" value="Alcohol use/abuse" input type="checkbox" /> Alcohol use/abuse
-        <br>
-        <input type="checkbox" ng-model="ec.AnxietyIn" name="Anxiety" input type="checkbox" /> Anxiety
-        <br>
-        <input type="checkbox" ng-model="ec.BiPolarIn" name="BiPolar Disorder" value="BiPolar Disorder" input type="checkbox" /> Bi-Polar Disorder
-        <br>
-        <input type="checkbox" ng-model="ec.DepressionClinicalIn" name="Depression (clinical)" value="Depression (clinical)" input
-          type="checkbox" /> Depression (clinical)
-        <br>
-        <input type="checkbox" ng-model="ec.DespressionSituationalIn" name="Depression (situational)" value="Depression (situational)"
-          input type="checkbox" /> Depression (situational)
-        <br>
-        <input type="checkbox" ng-model="ec.DrugUseIn" name="Drug use/abuse" value="Drug use/abuse" input type="checkbox" /> Drug use/abuse
-        <br>
-        <input type="checkbox" ng-model="ec.EconomicIn" name="Economic exploitation (history)" value="Economic exploitation (history)"
-          input type="checkbox" /> Economic exploitation (history)
-        <br>
-        <input type="checkbox" ng-model="ec.EmotionalAbuseIn" name="Emotional Abuse (history)" value="Emotional Abuse (history)"
-          input type="checkbox" /> Emotional Abuse (history)
-        <br>
-        <input type="checkbox" ng-model="ec.GangIn" name="Gang Association" value="Gang Association" input type="checkbox" /> Gang Association
-        <br>
-        <input type="checkbox" ng-model="ec.ODDIn" name="ODD (Oppositional Defiant Disorder)" value="ODD (Oppositional Defiant Disorder)"
-          input type="checkbox" /> ODD (Oppositional Defiant Disorder)
-        <br>
-        <input type="checkbox" ng-model="ec.LaborIn" name="Labor Exploitation (history)" value="Labor Exploitation (history)" input
-          type="checkbox" /> Labor Exploitation (history)
-        <br>
-        <input type="checkbox" ng-model="ec.LuringAdultIn" name="Luring/grooming by adult" value="Luring/grooming by adult" input
-          type="checkbox" /> Luring/grooming by adult
-        <br>
-        <input type="checkbox" ng-model="ec.LuringChildIn" name="Luring/grooming by child" value="Luring/grooming by child" input
-          type="checkbox" /> Luring/grooming by child
-        <br>
-        <input type="checkbox" ng-model="ec.MissingFromCareIn" name="Missing From Care" value="Missing From Care" input type="checkbox"
-        /> Missing From Care
-        <br>
-        <input type="checkbox" ng-model="ec.PhysicalAbuseIn" name="Physical Abuse (history)" value="Physical Abuse (history)" input
-          type="checkbox" /> Physical Abuse (history)
-        <br>
-        <input type="checkbox" ng-model="ec.RunawayIn" name="Runaway (history)" value="Runaway (history)" input type="checkbox" /> Runaway (history)
-        <br>
-        <input type="checkbox" ng-model="ec.SexualAbuseIn" name="Sexual Abuse (history)" value="Sexual Abuse (history)" input type="checkbox"
-        /> Sexual Abuse (history)
-        <br>
-        <input type="checkbox" ng-model="ec.SexualExploitationIn" name="Sexual Exploitation (history)" value="Sexual Exploitation (history)"
-          input type="checkbox" /> Sexual Exploitation (history)
-        <br>
-        <input type="checkbox" ng-model="ec.SexualMinorityIn" name="Sexual Minority (LGBTQ, etc.)" value="Sexual Minority (LGBTQ, etc.)"
-          input type="checkbox" /> Sexual Minority (LGBTQ, etc.)
-        <br>
-      </div>
-    </div>
-  </div> -->
+  
 
   <div layout='row' layout-fill layout-margin>
     <md-input-container>
@@ -211,17 +160,17 @@
 
     <md-input-container flex>
       <label>City Missing From</label>
-      <md-select ng-model="ec.CityMissingFromIn" ng-change="ec.itemChange()" required>
+      <md-select ng-model="ec.CityMissingFormIn" ng-change="ec.itemChange()" required>
         <md-option value="" disabled md-selected>City Missing From</md-option>
-        <md-option ng-repeat="cityObj in ec.cities" ng-value="cityObj.city"> {{cityObj.city}}</md-option>
+        <md-option ng-repeat="cityObj in ec.cities" ng-value="cityObj.city"> {{cityObj.city_name}}</md-option>
       </md-select>
     </md-input-container>
 
     <md-input-container style="margin-right: 10px;width: 20%;">
       <label>County Missing From</label>
-      <md-select ng-model="ec.CountyMissingFromIn" ng-change="ec.itemChange()" required>
+      <md-select ng-model="ec.CountyMissingFormIn" ng-change="ec.itemChange()" required>
         <md-option value="" disabled md-selected>County Missing From</md-option>
-        <md-option ng-repeat="countyObj in ec.counties" ng-value="countyObj.county"> {{countyObj.county}}</md-option>
+        <md-option ng-repeat="countyObj in ec.counties" ng-value="countyObj.county"> {{countyObj.county_name}}</md-option>
       </md-select>
     </md-input-container>
 
@@ -350,6 +299,6 @@
     </md-input-container>
   </div>
 
-  <md-button type="submit" class="teal">Submit</md-button>
+  <md-button type="submit" class="teal" ng-click="ec.updateData()">Submit</md-button>
 </div>
 </form>
