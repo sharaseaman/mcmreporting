@@ -148,6 +148,11 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
     width:45%;
     height: 100px;    
   }
+
+  #manage {
+    padding: 20px;
+    margin: 20px;
+  }
   
 .navbar {
     background-color: lightgoldenrodyellow;

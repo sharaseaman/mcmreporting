@@ -18,10 +18,7 @@
                     <tr ng-repeat="user in mc.users">   
                         <td>{{user.username}}</td>
                         <td><input type="checkbox" autocomplete="off" ng-click="mc.editPriviledge(user)" ng-checked="user.admin"></td>
-                        <td><button type="button" ng-click="mc.deleteUser(user)"></button></td>
-
-                        
-                        
+                        <td><md-button type="button" ng-click="mc.deleteUser(user)">Delete</md-button></td>                                    
                     </tr>
                 </tbody>
             </table>
