@@ -44,8 +44,7 @@ myApp.controller('CustomReportController', function (UserService) {
   }
 
   vm.submitCustomFilters = function (caseType, state, county, district, agency, denial, vulnerability, age, gender, race, source) {
-    // console.log('hello',caseType,state,county,district,agency,denial,vulnerability,age,gender,race,source);
-
+  
     vm.userCustomFilters = {
       start_case_type: caseType,
       state: state,
