@@ -14,11 +14,11 @@
 
   <div layout='row' layout-fill layout-margin>
     <md-input-container>
-      <input name="Age" placeholder="Age" id="yes" ng-model="ec.age" ng-value=""></input>
+      <input name="Age" placeholder="Age" id="yes" ng-model="ec.age" ng-value="ec.caseBeingEdited.data[0].age"></input>
     </md-input-container>
     <md-input-container>
       <label>Gender</label>
-      <md-select name="Gender" id="gender" ng-model="ec.gender">
+      <md-select name="Gender" id="gender" ng-model="ec.gender" ng-value="ec.caseBeingEdited.data[0].gender">
         <md-option value="Male">Male</md-option>
         <md-option value="Female">Female</md-option>
         <md-option value="Non-binary">Non-binary</md-option>
@@ -162,7 +162,7 @@
       <label>City Missing From</label>
       <md-select ng-model="ec.CityMissingFromIn" ng-change="ec.itemChange()" required>
         <md-option value="" disabled md-selected>City Missing From</md-option>
-        <md-option ng-repeat="cityObj in ec.cities" ng-value="cityObj.city"> {{cityObj.city}}</md-option>
+        <md-option ng-repeat="cityObj in ec.cities" ng-value="cityObj.city"> {{cityObj.city_name}}</md-option>
       </md-select>
     </md-input-container>
 
@@ -170,7 +170,7 @@
       <label>County Missing From</label>
       <md-select ng-model="ec.CountyMissingFromIn" ng-change="ec.itemChange()" required>
         <md-option value="" disabled md-selected>County Missing From</md-option>
-        <md-option ng-repeat="countyObj in ec.counties" ng-value="countyObj.county"> {{countyObj.county}}</md-option>
+        <md-option ng-repeat="countyObj in ec.counties" ng-value="countyObj.county"> {{countyObj.county_name}}</md-option>
       </md-select>
     </md-input-container>
 
@@ -299,6 +299,6 @@
     </md-input-container>
   </div>
 
-  <md-button type="submit" class="teal">Submit</md-button>
+  <md-button type="submit" class="teal" ng-click="ec.updateData()">Submit</md-button>
 </div>
 </form>

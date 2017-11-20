@@ -181,6 +181,8 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
     font-size: 18px;
     font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
   }
+
+  
   
   ul {
     list-style-type: none;
@@ -210,6 +212,7 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
     text-decoration: underline;
     color: orange;
   }
+
   .md-form {
     margin: 20px;
     padding: 25px;

@@ -369,7 +369,7 @@ self.postVulnerabilities = function (vulnerabilities) {
     console.log('In updateForm');
     $http({
       method: 'PUT',
-      url: '/editIntake',
+      url: '/forms/editIntake',
       data: editedForm
     }).then(function (response) {
       console.log('Response', response);

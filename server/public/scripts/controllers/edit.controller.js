@@ -99,15 +99,32 @@ myApp.controller('EditController', function(UserService) {
     }
     ]
 
+    UserService.getCities().then(function (response) {
+      console.log('cities', response.data);
+      return vm.cities = response.data;
+    });
+
+    UserService.getCounties().then(function (response) {
+      return vm.counties = response.data;
+    });
+
+    UserService.getAgencies().then(function (response) {
+      console.log('lawEnforcement', response.data)
+      return vm.agencies = response.data;
+
+    });
+
+
     vm.getData = function (mcmNum) {
       console.log('In getData');
       console.log('MCM Number', mcmNum);
       if (mcmNum != undefined) {
         UserService.getExistingForm(mcmNum).then(function () {
-          vm.showEditForm = true;
         }).then(function () {
           vm.caseBeingEdited = UserService.caseBeingEdited;
           console.log('vm.caseBeingEdited', vm.caseBeingEdited);
+        }).then(function () {
+          vm.showEditForm = true;
         })
 
       } else {
@@ -119,6 +136,7 @@ myApp.controller('EditController', function(UserService) {
     vm.updateData = function () {
       console.log('In updateData');
       vm.editedForm = {
+        mcm_number: vm.caseIn,
         age: vm.age,
         gender: vm.gender,
         last_seen: vm.DateLastSeenIn,
@@ -144,11 +162,11 @@ myApp.controller('EditController', function(UserService) {
         padding: 100,
         background: '#fff url(assets/page.JPG)'
       }).then(function () {
-        editedForm.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
+        vm.editedForm.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
           return vulnerability.value == true;
         });
       }).then(function () {
-        editedForm.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
+        vm.editedForm.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
           return ethnicity.value == true;
 
         });

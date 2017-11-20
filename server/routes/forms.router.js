@@ -150,8 +150,10 @@ router.get('/caseToEdit/:id', function (req, res) {
         console.log('Connection error');
         res.sendStatus(500);
       } else {
+        var valueArray = [mcmCase]
 
-        client.query('SELECT * FROM case_data FULL JOIN case_vulnerabilities ON case_data.id = case_vulnerabilities.case_data_id FULL JOIN vulnerabilities ON case_vulnerabilities.vulnerabilities_id = vulnerabilities.id FULL JOIN case_lawenforcement_denial ON case_data.id = case_lawenforcement_denial.case_data_id FULL JOIN law_enforcement ON case_lawenforcement_denial.law_enforcement_id = law_enforcement.id FULL JOIN case_race_ethnicity ON case_data.id = case_race_ethnicity.case_data_id FULL JOIN race_ethnicity ON case_race_ethnicity.race_ethnicity_id = race_ethnicity.id WHERE case_data.mcm_number = $1', mcmCase, function (queryErr, resultObj) {
+        client.query('SELECT * FROM case_data FULL JOIN case_vulnerabilities ON case_data.id = case_vulnerabilities.case_data_id FULL JOIN vulnerabilities ON case_vulnerabilities.vulnerabilities_id = vulnerabilities.id FULL JOIN case_lawenforcement_denial ON case_data.id = case_lawenforcement_denial.case_data_id FULL JOIN law_enforcement ON case_lawenforcement_denial.law_enforcement_id = law_enforcement.id FULL JOIN case_race_ethnicity ON case_data.id = case_race_ethnicity.case_data_id FULL JOIN race_ethnicity ON case_race_ethnicity.race_ethnicity_id = race_ethnicity.id WHERE case_data.mcm_number = $1', valueArray, function (queryErr, resultObj) {
+
           done();
           if (queryErr) {
             console.log('SQL error');
@@ -298,13 +300,16 @@ router.put('/editIntake', function (req, res) {
   if (req.isAuthenticated()) {
     pool.connect(function (conErr, client, done) {
       if (conErr) {
+        console.log('Pool.connect error', conErr);
         res.sendStatus(500);
       } else {
-        var sqlQuery = 'UPDATE case_data SET age=$1, gender=$2, last_seen = $3, reported_missing = $4, people_served = $5, (SELECT id FROM cities WHERE city = $6), (SELECT id FROM counties WHERE county = $7), state = $8, (SELECT id FROM schools WHERE school= $9), start_case_type = $10, end_case_type = $11, disposition = $12, close_date=$13 referral_type=$14 WHERE mcm_number = $15'
+        console.log("In first else");
+        var sqlQuery = 'UPDATE case_data SET age = $1, gender = $2, last_seen = $3, reported_missing = $4, people_served = $5, (SELECT id FROM cities WHERE city = $6), (SELECT id FROM counties WHERE county = $7), state = $8, (SELECT id FROM schools WHERE school= $9), start_case_type = $10, end_case_type = $11, disposition = $12, close_date = $13 referral_type = $14 WHERE mcm_number = $15'
         var valueArray = [edit.age, edit.gender, edit.last_seen, edit.reported_missing, edit.people_served, edit.city, edit.county, edit.state, edit.school, edit.start_case_type, edit.end_case_type, edit.disposition, edit.close_date, edit.referral_type, edit.mcm_number]
         client.query(sqlQuery, valueArray, function (queryErr, resultObj) {
           done();
           if (queryErr) {
+            console.log('Query error');
             res.sendStatus(500);
           } else {
             res.send(resultObj.rows);
