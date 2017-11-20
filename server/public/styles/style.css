@@ -10,7 +10,7 @@ table {
 }
 
 th{
-  background-color: #147d91;
+  background-color: rgb(0, 93, 110);
   color: white;
   border-bottom: 1px solid #ddd;
   text-align: left;
@@ -44,7 +44,7 @@ tr:hover {
 }
 
 md-checkbox.md-checked .md-icon {
-  background-color: #147d91;
+  background-color: rgb(0, 93, 110);
  }
 
 .md-title {
@@ -60,14 +60,14 @@ md-checkbox.md-checked .md-icon {
 }
 
   .teal {
-    background-color: #147d91 !important;
+    background-color: rgb(0, 93, 110) !important;
     color: white !important;
     font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
   }
   
   md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
-    color: #147d91 !important;
-    background-color: #147d91 !important;
+    color: rgb(0, 93, 110) !important;
+    background-color: rgb(0, 93, 110) !important;
     font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
 }
 md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {
@@ -76,7 +76,7 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
 
 md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active
 {
-  color: #147d91 !important;
+  color: rgb(0, 93, 110) !important;
   font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
 }
 
@@ -110,8 +110,8 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
   }
   
   .instructions {
-    background-color:#147d91;
-    color: orange;
+    background-color:rgb(0, 93, 110);
+    color: rgb(234, 161, 33);
     padding: 15px;
     text-align: center;
     font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
@@ -174,9 +174,14 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
     width:45%;
     height: 100px;    
   }
+
+  #manage {
+    padding: 20px;
+    margin: 40px;
+  }
   
 .navbar {
-    background-color: lightgoldenrodyellow;
+    background-color: rgb(94,201,207);
     width: 100%;
     font-size: 18px;
     font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
@@ -190,6 +195,10 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
     padding: 0;
     overflow: hidden;
   }
+
+ .fa-trash{
+   font-size: 30px;
+ }
   
   li {
     float: left;
@@ -210,7 +219,7 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
   /* Change the link color to #111 (black) on hover */
   li a:hover {
     text-decoration: underline;
-    color: orange;
+    color: rgb(234, 161, 33);
   }
 
   .md-form {
@@ -232,16 +241,16 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
   }
 
   md-input-container:not(.md-input-invalid).md-input-focused .md-input {
-    border-color: #147d91;
+    border-color: rgb(0, 93, 110);
 }
   md-input-container:not(.md-input-invalid).md-input-focused label {
-    color: #147d91;
+    color: rgb(0, 93, 110);
 }
 
 
 md-input-container.md-input-focused:not(.md-input-has-value) md-select .md-select-value.md-select-placeholder {
-  color: #147d91; 
-  border-bottom-color: #147d91 ;
+  color: rgb(0, 93, 110); 
+  border-bottom-color: rgb(0, 93, 110) ;
   font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
 }
 

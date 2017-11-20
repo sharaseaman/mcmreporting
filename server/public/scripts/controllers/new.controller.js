@@ -297,7 +297,7 @@ myApp.controller('NewController', function (UserService) {
       end_case_type: vm.CaseTypeWhenClosedIn,
       disposition: vm.CaseDispositionIn,
       close_date: vm.DateCaseClosedIn,
-      referral_type: vm.ReferralTypeIn,
+      case_status: vm.CaseStatusIn,
       referral_type: vm.ReferralTypeIn,
       case_vulnerabilities: [],
       race_ethnicity: [],
@@ -308,6 +308,7 @@ myApp.controller('NewController', function (UserService) {
     if (newIntake.mcm_number == null || newIntake.intake_date == null || newIntake.age == null ||
       newIntake.gender == null || newIntake.last_seen == null || newIntake.reported_missing == null ||
       newIntake.people_served == null || newIntake.city_name == null ||
+      newIntake.case_status == null ||
       newIntake.county_name == null || newIntake.state == null || newIntake.school_name == null ||
       newIntake.start_case_type == null || newIntake.end_case_type == null ||
       newIntake.disposition == null || newIntake.close_date == null || newIntake.referral_type == null) {
