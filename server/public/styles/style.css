@@ -274,4 +274,9 @@ md-select-menu {
   font-size: 13px;
   }
 
-  
+img {
+  display: block;
+  margin: auto;
+  padding: 40px;
+  width: 500px;
+}

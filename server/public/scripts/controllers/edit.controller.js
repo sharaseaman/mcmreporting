@@ -121,7 +121,9 @@ myApp.controller('EditController', function(UserService) {
       if (mcmNum != undefined) {
         UserService.getExistingForm(mcmNum).then(function () {
         }).then(function () {
-          vm.caseBeingEdited = UserService.caseBeingEdited;
+          vm.age = UserService.caseBeingEdited.data[0].age;
+          vm.gender = UserService.caseBeingEdited.data[0].age;
+          // vm.caseBeingEdited = UserService.caseBeingEdited;
           console.log('vm.caseBeingEdited', vm.caseBeingEdited);
         }).then(function () {
           vm.showEditForm = true;
