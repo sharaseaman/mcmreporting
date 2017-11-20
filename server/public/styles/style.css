@@ -177,7 +177,7 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
 
   #manage {
     padding: 20px;
-    margin: 20px;
+    margin: 60px;
   }
   
 .navbar {
@@ -193,6 +193,10 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
     padding: 0;
     overflow: hidden;
   }
+
+ .fa-trash{
+   font-size: 30px;
+ }
   
   li {
     float: left;
