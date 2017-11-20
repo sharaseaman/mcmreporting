@@ -292,6 +292,7 @@
       <input id="familyMembers" ng-model="ec.familyMembers" type="text" placeholder="Number of Family Members Involved in Search">
     </md-input-container>
 
+    <md-input-container>      
     <md-select name="Starting Case Type" placeholder="Starting Case Type" id="yes" ng-model="ec.startingCaseType" required>
       <md-option value="" disabled selected>Case Type</md-option>
       <md-option value="Runaway">Runaway</md-option>
@@ -300,11 +301,14 @@
       <md-option value="Stranger Abduction">Stranger Abduction</md-option>
       <md-option value="LIM">LIM</md-option>
     </md-select>
+  </md-input-container>
+      
 
     <md-input-container>
       <input id="DateClosed" ng-model="ec.DateClosed" style="width:150px;" type="date" placeholder="Date Closed">
     </md-input-container>
 
+    <md-input-container>      
     <md-select name="Ending Case Type" placeholder="Ending Case Type" id="yes" ng-model="ec.endingCaseType">
       <md-option value="" disabled selected>Case Type</md-option>
       <md-option value="null"></md-option>
@@ -314,6 +318,8 @@
       <md-option value="Stranger Abduction">Stranger Abduction</md-option>
       <md-option value="LIM">LIM</md-option>
     </md-select>
+  </md-input-container>
+      
   </div>
 
   <div layout='row' layout-fill layout-margin>
@@ -324,16 +330,19 @@
       <input type="text" name="" id="schoolDisctrict" placeholder="School District Number" ng-model="ec.schoolDisctrict">
     </md-input-container>
 
+    <md-input-container>      
     <md-select name="Disposition" placeholder="Disposition" id="disposition" ng-model="ec.disposition">
       <md-option value="" disabled selected>Outcome</md-option>
       <md-option value="Missing Found Safe">Missing Found Safe</md-option>
       <md-option value="Missing Found Injured">Missing Found Injured</md-option>
       <md-option value="Missing Found Deceased">Missing Found Deceased</md-option>
     </md-select>
+  </md-input-container>
+      
 
 
 
-
+  <md-input-container>    
     <md-select name="Referral Type" placeholder="Referral Type" id="yes" ng-model="ec.referralType">
       <md-option value="" disabled selected>Referral Type</md-option>
       <md-option value="Word of Mouth">Word of Mouth</md-option>
@@ -342,6 +351,8 @@
       <md-option value="Referral by Law Enforcement">Referral by Law Enforcement</md-option>
       <md-option value="Referral by County Worker">Referral by County Worker</md-option>
     </md-select>
+  </md-input-container>
+      
   </div>
 
   <div layout="row" layout-fill layout-margin>
