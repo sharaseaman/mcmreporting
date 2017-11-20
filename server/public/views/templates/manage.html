@@ -6,22 +6,20 @@
             <a href="#register">Register</a>
 
         <h2>Current Users</h2>    
-        <table>
+        <table class="spaceUnder">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th width="30%">Name</th>
+                        <th width="30%">Admin?</th>
+                        <th width="30%">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="user in mc.users">   
                         <td>{{user.username}}</td>
-                        <td><input type="checkbox" autocomplete="off" ng-click="mc.editPriviledge(user)" ng-checked="user.admin"></td>
-                        <td><button type="button" ng-click="mc.deleteUser(user)"></button></td>
-
-                        
-                        
+                        <td><md-checkbox type="checkbox" autocomplete="off" ng-click="mc.editPriviledge(user)" ng-checked="user.admin"></md-checkbox></td>
+                        <td><md-button type="button" ng-click="mc.deleteUser(user)"><i class="fa fa-trash"></i>
+                        </md-button></td>                                    
                     </tr>
                 </tbody>
             </table>
