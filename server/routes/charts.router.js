@@ -227,11 +227,11 @@ router.post('/custom', function (req, res) {
             queryArray.push(currentValue + count + ')')
             console.log('line 228', queryArray)
           }
-          // else {
-          //   count++
-          //   queryArray.push(currentValue + count)
-          //   console.log('line 233', queryArray)
-          // } //end else 
+          else {
+            count++
+            queryArray.push(currentValue + count)
+            console.log('line 233', queryArray)
+          } //end else 
         }) //end tempArray.forEach
 
         

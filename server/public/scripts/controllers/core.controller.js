@@ -72,8 +72,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userCountyLabels,
           datasets: [{
             label: 'MN County',
-            backgroundColor: 'rgba(20, 125, 145, 0.4)',
-            borderColor: 'rgba(20, 125, 145, 0.4)',
+            backgroundColor: 'rgba(0,93,110,0.6)',
+            borderColor: 'rgba(0,93,110,0.6)',
             data: vm.userFilteredCounty,
             borderWidth: 1
           }]
@@ -114,8 +114,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userSchoolLabels,
           datasets: [{
             label: 'School Districts',
-            backgroundColor: 'rgba(20, 125, 145, 0.4)',
-            borderColor: 'rgba(20, 125, 145, 0.4)',
+            backgroundColor: 'rgba(0,93,110,0.6)',
+            borderColor: 'rgba(0,93,110,0.6)',
             data: vm.userFilteredSchool,
             borderWidth: 1
           }]
@@ -156,8 +156,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userPeopleServedLabels,
           datasets: [{
             label: 'People Served',
-            backgroundColor: 'rgba(20, 125, 145, 0.4)',
-            borderColor: 'rgba(20, 125, 145, 0.4)',
+            backgroundColor: 'rgba(0,93,110,0.6)',
+            borderColor: 'rgba(0,93,110,0.6)',
             data: vm.userFilteredPeopleServed,
             borderWidth: 1
           }]
@@ -198,8 +198,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userVulnerabilityLabels,
           datasets: [{
             label: 'Vulnerability',
-            backgroundColor: 'rgba(20, 125, 145, 0.4)',
-            borderColor: 'rgba(20, 125, 145, 0.4)',
+            backgroundColor: 'rgba(0,93,110,0.6)',
+            borderColor: 'rgba(0,93,110,0.6)',
             data: vm.userFilteredVulnerability,
             borderWidth: 1
           }]
@@ -240,8 +240,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userAgeLabels,
           datasets: [{
             label: 'Age',
-            backgroundColor: 'rgba(20, 125, 145, 0.4)',
-            borderColor: 'rgba(20, 125, 145, 0.4)',
+            backgroundColor: 'rgba(0,93,110,0.6)',
+            borderColor: 'rgba(0,93,110,0.6)',
             data: vm.userFilteredAge,
             borderWidth: 1
           }]
@@ -282,8 +282,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userLawLabels,
           datasets: [{
             label: 'Law Enforcement',
-            backgroundColor: 'rgba(20, 125, 145, 0.4)',
-            borderColor: 'rgba(20, 125, 145, 0.4)',
+            backgroundColor: 'rgba(0,93,110,0.6)',
+            borderColor: 'rgba(0,93,110,0.6)',
             data: vm.userFilteredLaw,
             borderWidth: 1
           }]
@@ -324,8 +324,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
           labels: vm.userRaceLabels,
           datasets: [{
             label: 'Race/ Ethnicity',
-            backgroundColor: 'rgba(20, 125, 145, 0.4)',
-            borderColor: 'rgba(20, 125, 145, 0.4)',
+            backgroundColor: 'rgba(0,93,110,0.6)',
+            borderColor: 'rgba(0,93,110,0.6)',
             data: vm.userFilteredRace,
             borderWidth: 1
           }]
@@ -400,8 +400,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.mainChartYears,
             datasets: [{
               label: 'Number of Cases per year',
-              backgroundColor: 'rgba(20, 125, 145, 0.4)',
-              borderColor: 'rgba(20, 125, 145, 0.4)',
+              backgroundColor: 'rgba(0,93,110,0.6)',
+              borderColor: 'rgba(0,93,110,0.6)',
               data: vm.filteredYears,
               borderWidth: 1
             }]
@@ -443,8 +443,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.startCaseLabel,
             datasets: [{
               label: 'Overall Start Case Type',
-              backgroundColor: 'rgba(20, 125, 145, 0.4)',
-              borderColor: 'rgba(20, 125, 145, 0.4)',
+              backgroundColor: 'rgba(0,93,110,0.6)',
+              borderColor: 'rgba(0,93,110,0.6)',
               data: vm.filteredStartCase,
               borderWidth: 1
             }]
@@ -485,8 +485,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.stateOverallLabel,
             datasets: [{
               label: 'Cases by State',
-              backgroundColor: 'rgba(20, 125, 145, 0.4)',
-              borderColor: 'rgba(20, 125, 145, 0.4)',
+              backgroundColor: 'rgba(0,93,110,0.6)',
+              borderColor: 'rgba(0,93,110,0.6)',
               data: vm.filteredStateOverall,
               borderWidth: 1
             }]
@@ -527,8 +527,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.countiesOverallLabel,
             datasets: [{
               label: 'Cases by Counties',
-              backgroundColor: 'rgba(20, 125, 145, 0.4)',
-              borderColor: 'rgba(20, 125, 145, 0.4)',
+              backgroundColor: 'rgba(0,93,110,0.6)',
+              borderColor: 'rgba(0,93,110,0.6)',
               data: vm.filteredCountiesOverall,
               borderWidth: 1
             }]
@@ -569,8 +569,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.districtOverallLabel,
             datasets: [{
               label: 'Cases by MN School District',
-              backgroundColor: 'rgba(20, 125, 145, 0.4)',
-              borderColor: 'rgba(20, 125, 145, 0.4)',
+              backgroundColor: 'rgba(0,93,110,0.6)',
+              borderColor: 'rgba(0,93,110,0.6)',
               data: vm.filteredDistrictsOverall,
               borderWidth: 1
             }]
@@ -611,8 +611,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.peopleServedOverallLabel,
             datasets: [{
               label: 'Number of Cases by People Served',
-              backgroundColor: 'rgba(20, 125, 145, 0.4)',
-              borderColor: 'rgba(20, 125, 145, 0.4)',
+              backgroundColor: 'rgba(0,93,110,0.6)',
+              borderColor: 'rgba(0,93,110,0.6)',
               data: vm.filteredPeopleServedOverall,
               borderWidth: 1
             }]
@@ -653,8 +653,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.ageOverallLabel,
             datasets: [{
               label: 'Number of Cases by Age',
-              backgroundColor: 'rgba(20, 125, 145, 0.4)',
-              borderColor: 'rgba(20, 125, 145, 0.4)',
+              backgroundColor: 'rgba(0,93,110,0.6)',
+              borderColor: 'rgba(0,93,110,0.6)',
               data: vm.filteredAgeOverall,
               borderWidth: 1
             }]
@@ -695,8 +695,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.genderOverallLabel,
             datasets: [{
               label: 'Number of Cases by Gender',
-              backgroundColor: 'rgba(20, 125, 145, 0.4)',
-              borderColor: 'rgba(20, 125, 145, 0.4)',
+              backgroundColor: 'rgba(0,93,110,0.6)',
+              borderColor: 'rgba(0,93,110,0.6)',
               data: vm.filteredGenderOverall,
               borderWidth: 1
             }]
@@ -737,8 +737,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
             labels: vm.referralLabel,
             datasets: [{
               label: 'Referrals by Source',
-              backgroundColor: 'rgba(20, 125, 145, 0.4)',
-              borderColor: 'rgba(20, 125, 145, 0.4)',
+              backgroundColor: 'rgba(0,93,110,0.6)',
+              borderColor: 'rgba(0,93,110,0.6)',
               data: vm.filteredReferral,
               borderWidth: 1
             }]
@@ -860,8 +860,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
               labels: vm.lawEnforcementOverallLabel,
               datasets: [{
                 label: 'Number of Cases by Law Enforcement Agency',
-                backgroundColor: 'rgba(20, 125, 145, 0.4)',
-                borderColor: 'rgba(20, 125, 145, 0.4)',
+                backgroundColor: 'rgba(0,93,110,0.6)',
+                borderColor: 'rgba(0,93,110,0.6)',
                 data: vm.filteredLawEnforcementOverall,
                 borderWidth: 1
               }]
@@ -902,15 +902,15 @@ myApp.controller('CoreController', function (UserService, $scope) {
               labels: vm.lawEnforcementOverallLabel,
               datasets: [{
                 label: 'Jurisdictional Denial- Yes',
-                backgroundColor: 'rgba( 255, 165, 0, 0.6)',
-                borderColor: 'rgba( 255, 165, 0, 0.6)',
+                backgroundColor: 'rgba(234,161,33, 0.6)',
+                borderColor: 'rgba(234,161,33, 0.6)',
                 data: vm.jurisdictional_denial_true,
                 borderWidth: 1
               },
               {
                 label: 'Jurisdictional Denial- No',
-                backgroundColor: 'rgba(20, 125, 145, 0.4)',
-                borderColor: 'rgba(20, 125, 145, 0.4)',
+                backgroundColor: 'rgba(0,93,110,0.6)',
+                borderColor: 'rgba(0,93,110,0.6)',
                 data: vm.jurisdictional_denial_false,
                 borderWidth: 1
               }
@@ -985,8 +985,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
               labels: vm.vulnerabilitiesOverallLabel,
               datasets: [{
                 label: 'Overall Vulnerabilities',
-                backgroundColor: 'rgba(20, 125, 145, 0.4)',
-                borderColor: 'rgba(20, 125, 145, 0.4)',
+                backgroundColor: 'rgba(0,93,110,0.6)',
+                borderColor: 'rgba(0,93,110,0.6)',
                 data: vm.filteredVulnerabilitiesOverall,
                 borderWidth: 1
               }]
@@ -1234,8 +1234,8 @@ myApp.controller('CoreController', function (UserService, $scope) {
               labels: vm.raceEthnicityOverallLabel,
               datasets: [{
                 label: 'Number of Cases by Race/Ethnicity',
-                backgroundColor: 'rgba(20, 125, 145, 0.4)',
-                borderColor: 'rgba(20, 125, 145, 0.4)',
+                backgroundColor: 'rgba(0,93,110,0.6)',
+                borderColor: 'rgba(0,93,110,0.6)',
                 data: vm.filteredRaceEthnicityOverall,
                 borderWidth: 1
               }]
