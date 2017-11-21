@@ -186,6 +186,8 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
     font-size: 18px;
     font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
   }
+
+  
   
   ul {
     list-style-type: none;
@@ -220,6 +222,7 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
     color: rgb(234, 161, 33);
     
   }
+
   .md-form {
     margin: 20px;
     padding: 25px;
@@ -279,4 +282,9 @@ md-select-menu {
   font-size: 13px;
   }
 
-  
+img {
+  display: block;
+  margin: auto;
+  padding: 40px;
+  width: 500px;
+}
