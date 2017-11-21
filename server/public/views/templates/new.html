@@ -3,7 +3,7 @@
 </div>
 <form name="intakeForm" role="form" class='form-vertical' novalidate>
   <div class="md-form" ng-init="UserService.getCounties(); UserService.getCities(); UserService.getAgencies(); UserService.getSchools();">
-<div class="header"> Missing Persons Intake Form </div>
+<h3> Missing Person's Intake Form </h3>
     <div layout='row' layout-fill layout-margin>
 
       <md-input-container>
@@ -149,13 +149,14 @@
     <div layout='row' layout-fill layout-margin>
 
       <md-input-container>
-        <input id="Age" ng-model="nwc.AgeIn" type="number" placeholder="Age" required>
+        <input id="Age" ng-model="nwc.AgeIn" type="text" placeholder="Age" ng-maxlength="2" required>
       </md-input-container>
 
 
       <md-input-container>
         <label>Gender</label>
         <md-select ng-model="nwc.GenderIn" ng-change="nwc.itemChange()" required>
+          <md-option value="" disabled md-selected>Gender</md-option>
           <md-option value="Male">Male</md-option>
           <md-option value="Female">Female</md-option>
           <md-option value="Non-Binary">Non-Binary</md-option>
@@ -207,6 +208,7 @@
               <label>Glasses or Contacts?</label>
               <md-select name="GlassesOrContacts" ng-model="nwc.GlassesOrContactsIn" style="width:250px;" ng-change="nwc.itemChange()"
                 placeholder="Glasses or Contacts?" id="yes">
+                <md-option value="" disabled md-selected>Glasses or Contacts?</md-option>
                 <md-option value="No">No</md-option>
                 <md-option value="Glasses">Glasses</md-option>
                 <md-option value="Contacts">Contacts</md-option>
@@ -485,13 +487,12 @@
     <div layout='row' layout-fill layout-margin>
 
       <md-input-container flex>
-
         <label>Case Type When Opened</label>
         <md-select name="CaseTypeWhenOpened" ng-model="nwc.CaseTypeWhenOpenedIn" ng-change="nwc.itemChange()" style="width:225px;"
           placeholder="Case Type When Opened" id="yes" required>
 
           <md-option value="" disabled md-selected>Case Type When Opened</md-option>
-          <md-option value="Runaway Opened">Runaway
+          <md-option value="Runaway">Runaway
           </md-option>
           <md-option value="Abduction by Family Member">Abduction by Family Member
           </md-option>
@@ -499,7 +500,7 @@
           </md-option>
           <md-option value="Abduction by Stranger">Stranger Abduction
           </md-option>
-          <md-option value="LIM">LIM (Lost, Injured, Otherwise Missing)
+          <md-option value="LIM">Lost, Injured, Otherwise Missing
           </md-option>
         </md-select>
       </md-input-container>
@@ -514,17 +515,17 @@
 
           <md-option value="" disabled md-selected>Case Type When Closed</md-option>
           </md-option>
-          <md-option value="Not Applicable Case Type Closed">Not Applicable
+          <md-option value="Not Applicable">Not Applicable
           </md-option>
-          <md-option value="Runaway Closed">Runaway
+          <md-option value="Runaway">Runaway
           </md-option>
           <md-option value="Abduction by Family Member">Abduction by Family Member
           </md-option>
-          <md-option value="Abduction by Acquaintance Closed">Abduction by Acquaintance
+          <md-option value="Abduction by Acquaintance">Abduction by Acquaintance
           </md-option>
-          <md-option value="Abduction by Stranger Closed">Stranger Abduction
+          <md-option value="Abduction by Stranger">Stranger Abduction
           </md-option>
-          <md-option value="LIM">LIM (Lost, Injured, Otherwise Missing)
+          <md-option value="LIM">Lost, Injured, Otherwise Missing
           </md-option>
         </md-select>
       </md-input-container>
@@ -539,9 +540,9 @@
           </md-option>
           <md-option value="Closed">Closed
           </md-option>
-          <md-option value="Suspended Out of Contact">Suspended - out of contact
+          <md-option value="Suspended Out of Contact">Suspended - Out of Contact
           </md-option>
-          <md-option value="Suspended False Information">Suspended - false information
+          <md-option value="Suspended False Information">Suspended - False Information
           </md-option>
         </md-select>
       </md-input-container>
@@ -560,15 +561,15 @@
         <md-select name="CaseDisposition" ng-model="nwc.CaseDispositionIn" ng-change="nwc.itemChange()" placeholder="Case Disposition"
           id="yes" required>
           <md-option value="" disabled md-selected>Case Disposition</md-option>
-          <md-option value="Not Applicable Case Disposition">Not Applicable
+          <md-option value="Not Applicable">Not Applicable
           </md-option>
-          <md-option value="Child Found Safe">Child found safe
+          <md-option value="Child Found Safe">Child Found Safe
           </md-option>
-          <md-option value="Child Found Harmed/injured/neglected">Child found harmed/injured/neglected
+          <md-option value="Child Found Harmed/Injured/Neglected">Child Found Harmed/Injured/Neglected
           </md-option>
-          <md-option value="Child Found Deceased">Child found deceased
+          <md-option value="Child Found Deceased">Child Found Deceased
           </md-option>
-          <md-option value="Child Placed in Care">Child placed in Care
+          <md-option value="Child Placed in Care">Child Placed in Care
           </md-option>
         </md-select>
       </md-input-container>
@@ -698,7 +699,7 @@
       <md-input-container>
         <label for="PhotoAvailable"> Is there a photo available?</label>
         <md-select name="PhotoAvailable" ng-model="nwc.PhotoAvailableIn" ng-change="nwc.itemChange()" placeholder="" id="yes">
-          <md-option value="" disabled md-selected></md-option>
+          <md-option value="" disabled md-selected>Vehicle Photo available?</md-option>
           <md-option value="Yes">Yes</md-option>
           <md-option value="No">No</md-option>
         </md-select>
