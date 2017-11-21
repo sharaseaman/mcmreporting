@@ -126,10 +126,10 @@ myApp.controller('EditController', function(UserService) {
           vm.DateLastSeenIn = '02/10/2016';
           vm.DateReportedMissingtoPoliceIn = '06/23/17';
           vm.familyMembers = 1;
-          vm.OfficeDetectiveIn1 = 'Johnson';
+          vm.OfficeDetectiveIn1 = 'Joe Black';
           vm.LEPhoneNumberIn1 = '(651)-555-5555';
           vm.StreetAddressIn1 = '123 Main Street';
-          vm.OfficeDetectiveIn2 = 'Smith';
+          vm.OfficeDetectiveIn2 = 'John Boy';
           vm.LEPhoneNumberIn2 = '(612)-555-5555';
           vm.StreetAddressIn2 = '221 B Baker Street';
           vm.schoolDisctrict = 123;
