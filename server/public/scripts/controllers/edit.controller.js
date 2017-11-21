@@ -123,7 +123,7 @@ myApp.controller('EditController', function(UserService) {
         }).then(function () {
           vm.age = UserService.caseBeingEdited.data[0].age;
           vm.gender = UserService.caseBeingEdited.data[0].age;
-          // vm.caseBeingEdited = UserService.caseBeingEdited;
+          vm.caseBeingEdited = UserService.caseBeingEdited;
           console.log('vm.caseBeingEdited', vm.caseBeingEdited);
         }).then(function () {
           vm.showEditForm = true;

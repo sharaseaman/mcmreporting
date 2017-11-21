@@ -303,7 +303,8 @@ self.postVulnerabilities = function (vulnerabilities) {
       url: "/charts/custom",
       data: userCustomFilters
     }).then(function (res) {
-      self.customReport.data = res.data;
+      self.customReportData.data = res.data;
+
     })
   };
 

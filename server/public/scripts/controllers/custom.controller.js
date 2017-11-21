@@ -3,7 +3,7 @@ myApp.controller('CustomReportController', function (UserService) {
   var vm = this;
   vm.userService = UserService;
   vm.chartData = UserService.chartData;
-  vm.customReport = UserService.customReport;
+  vm.customReportData = UserService.customReportData;
   vm.userCustomFilters;
 
   vm.getMCMRecords = function () {

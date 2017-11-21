@@ -36,7 +36,7 @@
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
-                <md-input-container>
+                <!-- <md-input-container>
                     <label>Law Enforcement Agency</label>
                     <md-select ng-model="agency">
                         <md-optgroup label="Select a Law Enforcement Agency">
@@ -59,7 +59,7 @@
                             <md-option ng-repeat="vulnerability in cr.vulnerabilities" value="{{vulnerability}}">{{vulnerability}}</md-option>
                         </md-optgroup>
                     </md-select>
-                </md-input-container>
+                </md-input-container> -->
                 <md-input-container>
                     <label>Age</label>
                     <md-select ng-model="age">
@@ -101,7 +101,7 @@
         </div>
 
         <div ng-show="cr.userCustomFilters" style="overflow-x:auto;"> 
-        <p>Selected Filter Parameters: {{cr.userCustomFilters}}</p>
+        <!-- <p>Selected Filter Parameters: {{cr.userCustomFilters}}</p> -->
         <table>
             <thead>
                 <th>MCM Case #</th>
@@ -126,7 +126,7 @@
             </thead>
 
             <tbody>
-                <tr ng-repeat="row in cr.customReport.data">
+                <tr ng-repeat="row in cr.customReportData.data">
                     <td>{{row.mcm_number}}</td>
                     <!-- <td>{{row.intake_date | date: shortdate}}</td> -->
                     <td>{{row.age}}</td>
