@@ -288,3 +288,8 @@ img {
   padding: 40px;
   width: 500px;
 }
+
+.registerLabel {
+  display: inline-block;
+  width: 120px;
+}

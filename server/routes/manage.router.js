@@ -45,6 +45,13 @@ router.get('/', function(req, res) {
                 
                 client.query(pQuery, valueArray, function (queryError, resultObj) {
                     done();
+                    if (queryError) {
+                      console.log('Error', queryError);
+                      res.sendStatus(500);
+                    } else {
+                      res.send(resultObj);
+                      console.log('result:', resultObj);
+                    }
                 })
             }
         });
@@ -69,6 +76,13 @@ router.post('/', function (req, res) {
              var valueArray = [userNamedelete];
               client.query(pQuery, valueArray, function (queryError, resultObj) {
                   done();
+                  if (queryError) {
+                    console.log('Error', queryError);
+                    res.sendStatus(500);
+                  } else {
+                    res.send(resultObj);
+                    console.log('result:', resultObj);
+                  }
               })
           }
       });
