@@ -379,6 +379,7 @@ self.postVulnerabilities = function (vulnerabilities) {
 
   // updates the admin priviledges 
   self.updatePriviledges = function (user) {
+    console.log('User to be edited', user);
     return $http({
       method: 'PUT',
       url: '/manage',
