@@ -303,7 +303,8 @@ self.postVulnerabilities = function (vulnerabilities) {
       url: "/charts/custom",
       data: userCustomFilters
     }).then(function (res) {
-      self.customReport.data = res.data;
+      self.customReportData.data = res.data;
+
     })
   };
 
@@ -378,6 +379,7 @@ self.postVulnerabilities = function (vulnerabilities) {
 
   // updates the admin priviledges 
   self.updatePriviledges = function (user) {
+    console.log('User to be edited', user);
     return $http({
       method: 'PUT',
       url: '/manage',
