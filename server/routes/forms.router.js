@@ -272,7 +272,7 @@ router.get('/caseToEdit/:id', function (req, res) {
       } else {
         var valueArray = [mcmCase]
         console.log('valueArray')
-        client.query('SELECT * FROM case_data INNER JOIN case_lawenforcement_denial ON case_lawenforcement_denial.case_data_id = case_data.id Inner JOIN law_enforcement ON case_lawenforcement_denial.law_enforcement_id = law_enforcement.id Inner join case_race_ethnicity ON case_race_ethnicity.case_data_id = case_data.id Inner Join race_ethnicity On case_race_ethnicity.race_ethnicity_id =race_ethnicity.id Inner Join case_vulnerabilities On case_vulnerabilities.case_data_id =case_data.id Inner Join vulnerabilities On case_vulnerabilities.vulnerabilities_id = vulnerabilities.id Where case_data.id = $1', valueArray, function (queryErr, resultObj) {
+        client.query('SELECT * FROM case_data INNER JOIN case_lawenforcement_denial ON case_lawenforcement_denial.case_data_id = case_data.id Inner JOIN law_enforcement ON case_lawenforcement_denial.law_enforcement_id = law_enforcement.id Inner join case_race_ethnicity ON case_race_ethnicity.case_data_id = case_data.id Inner Join race_ethnicity On case_race_ethnicity.race_ethnicity_id =race_ethnicity.id Inner Join case_vulnerabilities On case_vulnerabilities.case_data_id =case_data.id Inner Join vulnerabilities On case_vulnerabilities.vulnerabilities_id = vulnerabilities.id Where mcm_number = $1', valueArray, function (queryErr, resultObj) {
           done();
           if (queryErr) {
             console.log('done 500')
