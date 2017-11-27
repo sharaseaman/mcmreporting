@@ -124,13 +124,16 @@ myApp.controller('EditController', function(UserService) {
           vm.caseBeingEdited = UserService.caseBeingEdited;
           vm.age = UserService.caseBeingEdited.data[0].age;
           vm.vulnArray = [];
+          vm.raceArray = [];
+          // vm.DateLastSeenIn = UserService.caseBeingEdited.data[0].last_seen;
           for (var i = 0; i < vm.caseBeingEdited.data.length; i++) {
             vm.vulnArray.push(vm.caseBeingEdited.data[i].vulnerabilities_id);
           }
           console.log("vulnArray", vm.vulnArray);  
-          // if(1 in vm.vulnArray) {
-          //   vm.case_vulnerabilities[0].value = true;
-          // } 
+          for (var i = 0; i < vm.caseBeingEdited.data.length; i++) {
+              vm.raceArray.push(vm.caseBeingEdited.data[i].race_ethnicity_id);
+          }
+          console.log("raceArray", vm.raceArray); 
 
           for (var j = 0; j < vm.vulnArray.length; j++) {
             if (vm.vulnArray[j] == 1) {
@@ -177,10 +180,24 @@ myApp.controller('EditController', function(UserService) {
               vm.case_vulnerabilities[20].value = true;
             }       
           }
+
+          for (var j = 0; j < vm.raceArray.length; j++) { 
+            if (vm.raceArray[j] == 1 && vm.race_ethnicity[0].value !== true) {
+              vm.race_ethnicity[0].value = true;
+            } else if (vm.raceArray[j] == 2 && vm.race_ethnicity[1].value !== true) {
+              vm.race_ethnicity[1].value = true;
+            } else if (vm.raceArray[j] == 3 && vm.race_ethnicity[2].value !== true) {
+              vm.race_ethnicity[2].value = true;
+            } else if (vm.raceArray[j] == 4 && vm.race_ethnicity[3].value !== true) {
+              vm.race_ethnicity[3].value = true;
+            } else if (vm.raceArray[j] == 5 && vm.race_ethnicity[4].value !== true) {
+              vm.race_ethnicity[4].value = true;
+            }
+          }
           
           console.log('Add value', vm.case_vulnerabilities[0].value);
           
-          // vm.DateLastSeenIn = '02/10/2016';
+          // vm.DateLastSeenIn = 02/10/2016;
           // vm.DateReportedMissingtoPoliceIn = '06/23/17';
           // vm.familyMembers = 1;
           // vm.OfficeDetectiveIn1 = 'Joe Black';

@@ -25,23 +25,23 @@
       </md-select>
     </md-input-container>
     
-    <md-checkbox ng-model="ec.AfricanAmericanIn" ng-click="ec.changeRace(ec.race_ethnicity[0])" aria-label="African American" ng-checked="true">
+    <md-checkbox ng-model="ec.AfricanAmericanIn" ng-click="ec.changeRace(ec.race_ethnicity[0])" aria-label="African American" ng-checked="ec.race_ethnicity[0].value">
       African American
     </md-checkbox>
     
-    <md-checkbox ng-model="ec.AsianPacificIslanderIn" ng-click="ec.changeRace(ec.race_ethnicity[1])" aria-label="Asian Pacific Islander">
+    <md-checkbox ng-model="ec.AsianPacificIslanderIn" ng-click="ec.changeRace(ec.race_ethnicity[1])" aria-label="Asian Pacific Islander" ng-checked="ec.race_ethnicity[1].value">
       Asian Pacific Islander
     </md-checkbox>
     
-    <md-checkbox ng-model="ec.CaucasianIn" ng-click="ec.changeRace(ec.race_ethnicity[2])" aria-label="Caucasian">
+    <md-checkbox ng-model="ec.CaucasianIn" ng-click="ec.changeRace(ec.race_ethnicity[2])" aria-label="Caucasian" ng-checked="ec.race_ethnicity[2].value">
       Caucasian
     </md-checkbox>
     
-    <md-checkbox ng-model="ec.LatinxIn" ng-click="ec.changeRace(ec.race_ethnicity[3])" aria-label="Latinx">
+    <md-checkbox ng-model="ec.LatinxIn" ng-click="ec.changeRace(ec.race_ethnicity[3])" aria-label="Latinx" ng-checked="ec.race_ethnicity[3].value">
       Latinx
     </md-checkbox>
     
-    <md-checkbox ng-model="ec.NativeAmericanIn" ng-click="ec.changeRace(ec.race_ethnicity[4])" aria-label="Native American">
+    <md-checkbox ng-model="ec.NativeAmericanIn" ng-click="ec.changeRace(ec.race_ethnicity[4])" aria-label="Native American" ng-checked="ec.race_ethnicity[4].value">
       Native American
     </md-checkbox>
 
@@ -153,7 +153,7 @@
   <div layout='row' layout-fill layout-margin>
     <md-input-container>
       <!-- <input id="DateLastSeen" ng-model="ec.DateLastSeenIn" type="date" style="width:150px;" placeholder="Date Last Seen"> -->
-      <input id="DateLastSeen" ng-model="ec.DateLastSeenIn" type="text" style="width:150px;" placeholder="Date Last Seen">
+      <input id="DateLastSeen" ng-model="ec.DateLastSeenIn" type="date" style="width:150px;" placeholder="Date Last Seen">
     </md-input-container>
     <md-input-container>
       <!-- <input id="DateReportedMissingtoPolice" ng-model="ec.DateReportedMissingtoPoliceIn" style="width:250px;" type="date" placeholder="Date Reported Missing to Police"> -->
