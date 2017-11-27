@@ -14,18 +14,18 @@
 
   <div layout='row' layout-fill layout-margin>
     <md-input-container>
-      <input name="Age" placeholder="Age" id="yes" ng-model="ec.age"></input>
+      <input name="Age" placeholder="Age" ng-model="ec.age"></input>
     </md-input-container>
     <md-input-container>
       <label>Gender</label>
       <md-select name="Gender" id="gender" ng-model="ec.gender" selected="ec.gender">
-        <md-option value="Male" selected>Male</md-option>
+        <md-option value="Male">Male</md-option>
         <md-option value="Female">Female</md-option>
         <md-option value="Non-binary">Non-binary</md-option>
       </md-select>
     </md-input-container>
     
-    <md-checkbox ng-model="ec.AfricanAmericanIn" ng-click="ec.changeRace(ec.race_ethnicity[0])" aria-label="African American" ng-checked="true">
+    <md-checkbox ng-model="ec.AfricanAmericanIn" ng-click="ec.changeRace(ec.race_ethnicity[0])" aria-label="African American">
       African American
     </md-checkbox>
     
@@ -165,7 +165,7 @@
       <md-select ng-model="ec.CityMissingFormIn" ng-change="ec.itemChange()" required>
         <md-option value="" disabled md-selected>City Missing From</md-option>
         <!-- <md-option ng-repeat="cityObj in ec.cities" ng-value="cityObj.city"> {{cityObj.city_name}}</md-option> -->
-        <md-option  ng-value="West Saint Paul" selected>West Saint Paul</md-option>
+        <!-- <md-option  ng-value="West Saint Paul" selected>West Saint Paul</md-option> -->
       </md-select>
     </md-input-container>
 
@@ -281,36 +281,20 @@
       <label>Law Enforcement Agency On Case</label>
       <md-select ng-model="ec.LawEnforcementAgencyonCaseIn1" ng-change="ec.itemChange()" style="width:280px;">
         <md-option value="" disabled md-selected>Law Enforcement Agency</md-option>
-        <md-option ng-value="West Saint Paul Police Dept" selected>West Saint Paul Police Dept</md-option>
+        <!-- <md-option ng-value="West Saint Paul Police Dept" selected>West Saint Paul Police Dept</md-option> -->
       </md-select>
     </md-input-container>
   
   
-    <md-input-container>
-      <input id="CaseNumber" ng-model="ec.CaseNumberIn1" type="number" placeholder="Case Number">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="Office/Detective" ng-model="ec.OfficeDetectiveIn1" type="text" placeholder="Officer/Detective">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="LEPhoneNumber" ng-model="ec.LEPhoneNumberIn1" type="text" placeholder="LE Phone Number">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="StreetAddress" ng-model="ec.StreetAddressIn1" type="text" placeholder="Street Address">
-    </md-input-container>
-  
-  
-    <md-input-container flex>
+
+    <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
-      <md-select ng-model="ec.JurisdictionalDenialIn1" ng-change="ec.itemChange()" placeholder="Jurisdictional denial" id="yes">
+      <md-select ng-model="nwc.JurisdictionalDenialIn1" ng-change="ec.itemChange()" placeholder="Jurisdictional denial">
         <md-option value="" disabled md-selected>Jurisdictional denial?</md-option>
-        <md-option value="Yes" selected>Yes</md-option>
+        <md-option value="Yes">Yes</md-option>
         <md-option value="No">No </md-option>
       </md-select>
-    </md-input-container flex>
+    </md-input-container>
   </div>
 
   <div layout='row' layout-fill layout-margin>
@@ -319,36 +303,18 @@
       <label>Law Enforcement Agency On Case</label>
       <md-select ng-model="ec.LawEnforcementAgencyonCaseIn2" ng-change="ec.itemChange()" style="width:280px;">
         <md-option value="" disabled md-selected>Law Enforcement Agency</md-option>
-        <md-option ng-value="Brooklyn Center Police Dept" selected>Brooklyn Center Police Dept</md-option>
+        <!-- <md-option ng-value="Brooklyn Center Police Dept" selected>Brooklyn Center Police Dept</md-option> -->
       </md-select>
     </md-input-container>
   
-  
-    <md-input-container>
-      <input id="CaseNumber" ng-model="ec.CaseNumberIn2" type="number" placeholder="Case Number">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="Office/Detective" ng-model="ec.OfficeDetectiveIn2" type="text" placeholder="Officer/Detective">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="LEPhoneNumber" ng-model="ec.LEPhoneNumberIn2" type="number" placeholder="LE Phone Number">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="StreetAddress" ng-model="ec.StreetAddressIn2" type="text" placeholder="Street Address">
-    </md-input-container>
-  
-  
-    <md-input-container flex>
+    <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
-      <md-select ng-model="ec.JurisdictionalDenialIn2" ng-change="ec.itemChange()" placeholder="Jurisdictional denial" id="yes">
+      <md-select ng-model="ec.JurisdictionalDenialIn2" ng-change="ec.itemChange()" placeholder="Jurisdictional denial">
         <md-option value="" disabled md-selected>Jurisdictional denial?</md-option>
-        <md-option value="Yes" selected>Yes</md-option>
+        <md-option value="Yes">Yes</md-option>
         <md-option value="No">No </md-option>
       </md-select>
-    </md-input-container flex>
+    </md-input-container>
   </div>
 
   <div layout='row' layout-fill layout-margin>
@@ -362,31 +328,15 @@
     </md-input-container>
   
   
-    <md-input-container>
-      <input id="CaseNumber" ng-model="ec.CaseNumberIn3" type="number" placeholder="Case Number">
-    </md-input-container>
   
-    <md-input-container>
-      <input id="Office/Detective" ng-model="ec.OfficeDetectiveIn3" type="text" placeholder="Officer/Detective">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="LEPhoneNumber" ng-model="ec.LEPhoneNumberIn3" type="number" placeholder="LE Phone Number">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="StreetAddress" ng-model="ec.StreetAddressIn3" type="text" placeholder="Street Address">
-    </md-input-container>
-  
-  
-    <md-input-container flex>
+    <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
       <md-select ng-model="ec.JurisdictionalDenialIn3" ng-change="nwc.itemChange()" placeholder="Jurisdictional denial" id="yes">
         <md-option value="" disabled md-selected>Jurisdictional denial?</md-option>
         <md-option value="Yes">Yes</md-option>
         <md-option value="No">No </md-option>
       </md-select>
-    </md-input-container flex>
+    </md-input-container>
   </div>
 
   <div layout='row' layout-fill layout-margin>
@@ -400,7 +350,7 @@
     </md-input-container>
   
   
-    <md-input-container>
+    <!-- <md-input-container>
       <input id="CaseNumber" ng-model="ec.CaseNumberIn4" type="number" placeholder="Case Number">
     </md-input-container>
   
@@ -416,15 +366,15 @@
       <input id="StreetAddress" ng-model="ec.StreetAddressIn4" type="text" placeholder="Street Address">
     </md-input-container>
   
-  
-    <md-input-container flex>
+   -->
+    <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
       <md-select ng-model="ec.JurisdictionalDenialIn4" ng-change="ec.itemChange()" placeholder="Jurisdictional denial" id="yes">
         <md-option value="" disabled md-selected>Jurisdictional denial?</md-option>
         <md-option value="Yes">Yes</md-option>
         <md-option value="No">No </md-option>
       </md-select>
-    </md-input-container flex>
+    </md-input-container style="width:280px;">
   </div>
 
   <div layout='row' layout-fill layout-margin>
@@ -438,7 +388,7 @@
     </md-input-container>
   
   
-    <md-input-container>
+    <!-- <md-input-container>
       <input id="CaseNumber" ng-model="ec.CaseNumberIn5" type="number" placeholder="Case Number">
     </md-input-container>
   
@@ -453,16 +403,16 @@
     <md-input-container>
       <input id="StreetAddress" ng-model="ec.StreetAddressIn5" type="text" placeholder="Street Address">
     </md-input-container>
+   -->
   
-  
-    <md-input-container flex>
+    <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
       <md-select ng-model="ec.JurisdictionalDenialIn5" ng-change="ec.itemChange()" placeholder="Jurisdictional denial" id="yes">
         <md-option value="" disabled md-selected>Jurisdictional denial?</md-option>
         <md-option value="Yes">Yes</md-option>
         <md-option value="No">No </md-option>
       </md-select>
-    </md-input-container flex>
+    </md-input-container style="width:280px;">
   </div>
 
   <div layout='row' layout-fill layout-margin>
@@ -496,10 +446,10 @@
   </div>
 
   <div layout="row" layout-fill layout-margin>
-    <md-input-container>
+    <!-- <md-input-container>
       <input type="text" name="Additional Notes" id="notes" placeholder="Additional Notes">
     </md-input-container>
-  </div>
+  </div> -->
 
   <md-button type="submit" class="teal" ng-click="ec.updateData()">Submit</md-button>
 </div>
