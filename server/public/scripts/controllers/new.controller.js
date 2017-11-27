@@ -31,7 +31,7 @@ myApp.controller('NewController', function (UserService) {
   vm.EyeBrowFeatures = '';
   vm.GlassesOrContactsIn = '';
   vm.TattoosOrPiercingsIn = '';
-  vm.commentTattoosIn = '';  //ng model
+  vm.commentTattoosIn = ''; //ng model
   vm.DentalCharacteristicsIn = '';
   vm.ScarsOrBirthmarksIn = '';
   vm.commentScarorBirthmarksIn = ''; //need ng model
@@ -306,13 +306,23 @@ myApp.controller('NewController', function (UserService) {
     }
 
 
-    if (newIntake.mcm_number == null || newIntake.intake_date == null || newIntake.age == null ||
-      newIntake.gender == null || newIntake.last_seen == null || newIntake.reported_missing == null ||
-      newIntake.people_served == null || newIntake.city_name == null ||
-      newIntake.case_status == null ||
-      newIntake.county_name == null || newIntake.state == null || newIntake.school_name == null ||
-      newIntake.start_case_type == null || newIntake.end_case_type == null ||
-      newIntake.disposition == null || newIntake.referral_type == null) {
+    if (newIntake.mcm_number == '' ||
+      newIntake.intake_date == '' || 
+      newIntake.age == '' ||
+      newIntake.state == '' ||
+      newIntake.gender == '' || 
+      newIntake.last_seen == '' || 
+      newIntake.reported_missing == '' ||
+      newIntake.people_served == '' || 
+      newIntake.city_name == '' ||
+      newIntake.case_status == '' ||
+      newIntake.county_name == '' || 
+      newIntake.school_name == '' ||
+      newIntake.start_case_type == '' || 
+      newIntake.end_case_type == '' ||
+      newIntake.disposition == '' || 
+      newIntake.referral_type == '') {
+    
       swal({
         title: 'Please complete all required fields.',
         icon: "warning",
@@ -430,8 +440,8 @@ myApp.controller('NewController', function (UserService) {
     pdf.setFontSize(12);
     pdf.text(10, 70, 'Name of Missing Person: ' + vm.NameIn);
 
-    pdf.text(10, 80, 'Date of Disappearance: ' + vm.formatDateofDisappearanceIn);//vm.formatDateofDisappearanceIn
-    pdf.text(90, 80, 'Date Reported To Police: ' + vm.formatDateReportedMissingtoPoliceIn);//+ vm.formatDateReportedMissingtoPoliceIn
+    pdf.text(10, 80, 'Date of Disappearance: ' + vm.formatDateofDisappearanceIn); //vm.formatDateofDisappearanceIn
+    pdf.text(90, 80, 'Date Reported To Police: ' + vm.formatDateReportedMissingtoPoliceIn); //+ vm.formatDateReportedMissingtoPoliceIn
 
     pdf.text(10, 90, 'Date Last Seen: ' + vm.formatDateLastSeenIn); //+ vm.formatDateLastSeenIn
     pdf.text(90, 90, 'Time Last Seen: ' + vm.formatTimeLastSeenIn); //+ vm.formatTimeLastSeenIn
@@ -555,7 +565,8 @@ myApp.controller('NewController', function (UserService) {
     pdf.setFontSize(14);
     pdf.text(10, 150, 'Case Information ');
     pdf.setFontType('normal');
-    pdf.setFontSize(12); pdf.text(100, 150, 'Case Status: ' + vm.CaseStatusIn);
+    pdf.setFontSize(12);
+    pdf.text(100, 150, 'Case Status: ' + vm.CaseStatusIn);
     pdf.text(10, 160, 'Case Type When Opened:  ' + vm.CaseTypeWhenOpenedIn);
     pdf.text(10, 170, 'Case Type When Closed:   ' + vm.CaseTypeWhenClosedIn);
     pdf.text(100, 170, 'Date Case Closed: ' + vm.formatDateCaseClosedIn);
@@ -587,7 +598,7 @@ myApp.controller('NewController', function (UserService) {
     pdf.setFontSize(12);
     pdf.setFontType('bold');
     pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);
-    pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);//+ vm.formatDateofIntaketoMCMIn
+    pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn); //+ vm.formatDateofIntaketoMCMIn
     pdf.line(10, 48, 206, 48);
     // end of page 3 header
 
@@ -650,7 +661,7 @@ myApp.controller('NewController', function (UserService) {
     pdf.setFontSize(12);
     pdf.setFontType('bold');
     pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);
-    pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);//+ vm.formatDateofIntaketoMCMIn
+    pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn); //+ vm.formatDateofIntaketoMCMIn
     pdf.line(10, 48, 206, 48);
     //end page 4 header
 
@@ -708,7 +719,7 @@ myApp.controller('NewController', function (UserService) {
     pdf.setFontSize(12);
     pdf.setFontType('bold');
     pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);
-    pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);//+ vm.formatDateofIntaketoMCMIn
+    pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn); //+ vm.formatDateofIntaketoMCMIn
     pdf.line(10, 48, 206, 48);
 
     pdf.setFontType('bold');
