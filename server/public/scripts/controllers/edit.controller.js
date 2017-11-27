@@ -209,9 +209,35 @@ myApp.controller('EditController', function(UserService) {
           
           console.log('Add value', vm.case_vulnerabilities[0].value);
           
-          // vm.DateLastSeenIn = 02/10/2016;
-          // vm.DateReportedMissingtoPoliceIn = '06/23/17';
-          // vm.familyMembers = 1;
+          
+          var lastSeenYear = vm.caseBeingEdited.data[0].last_seen.slice(0,4);
+          var lastSeenMonth = vm.caseBeingEdited.data[0].last_seen.slice(5,7);
+          var lastSeenDay = vm.caseBeingEdited.data[0].last_seen.slice(8,10);
+          lastSeenDay = parseInt(lastSeenDay) + 1;
+          lastSeenDay = lastSeenDay.toString();
+          console.log('stuff', lastSeenYear, lastSeenMonth, lastSeenDay);
+          vm.DateLastSeenIn = new Date(lastSeenYear + '-' + lastSeenMonth + '-' + lastSeenDay);
+          console.log('vm.DateLastSeenIn', vm.DateLastSeenIn);
+
+          var reportedYear = vm.caseBeingEdited.data[0].reported_missing.slice(0,4);
+          var reportedMonth = vm.caseBeingEdited.data[0].reported_missing.slice(5, 7);
+          var reportedDay = vm.caseBeingEdited.data[0].reported_missing.slice(8, 10);
+          reportedDay = parseInt(reportedDay) + 1;
+          reportedDay = reportedDay.toString();
+          console.log('stuff', reportedYear, reportedMonth, reportedDay);
+          vm.DateReportedMissingtoPoliceIn = new Date(reportedYear + '-' + reportedMonth + '-' + reportedDay);
+          console.log('vm.DateLastSeenIn', vm.DateReportedMissingtoPoliceIn);
+
+          var closeYear = vm.caseBeingEdited.data[0].close_date.slice(0, 4);
+          var closeMonth = vm.caseBeingEdited.data[0].close_date.slice(5, 7);
+          var closeDay = vm.caseBeingEdited.data[0].close_date.slice(8, 10);
+          closeDay = parseInt(closeDay) + 1;
+          closeDay = closeDay.toString();
+          console.log('stuff', closeYear, closeMonth, closeDay);
+          vm.DateClosed = new Date(closeYear + '-' + closeMonth + '-' + closeDay);
+          console.log('vm.DateClosed', vm.DateClosed);
+
+          vm.familyMembers = vm.caseBeingEdited.data[0].people_served;
           // vm.OfficeDetectiveIn1 = 'Joe Black';
           // vm.LEPhoneNumberIn1 = '(651)-555-5555';
           // vm.StreetAddressIn1 = '123 Main Street';
