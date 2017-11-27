@@ -62,7 +62,7 @@
       <md-input-container>
         <label>State Missing From</label>
         <md-select name="StateMissingFrom" ng-model="nwc.StateMissingFromIn" ng-change="nwc.itemChange()" type="number" style="width:200px;"
-          placeholder="State Missing From" required="true">
+          placeholder="State Missing From" required="true" required>
           <md-option value="">State Missing From</md-option>
           <md-option value="AL">Alabama</md-option>
           <md-option value="AK">Alaska</md-option>
@@ -552,7 +552,7 @@
 
 
       <md-input-container flex>
-        <input id="DateCaseClosed" ng-model="nwc.DateCaseClosedIn" type="date" placeholder="Date Case Closed" required>
+        <input id="DateCaseClosed" ng-model="nwc.DateCaseClosedIn" type="date" placeholder="Date Case Closed">
       </md-input-container>
 
       <md-input-container flex>
