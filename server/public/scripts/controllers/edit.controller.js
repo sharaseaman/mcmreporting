@@ -4,35 +4,140 @@ myApp.controller('EditController', function(UserService) {
     vm.userService = UserService;
     vm.editedForm = {};
     vm.showEditForm = false;
-    vm.vulnerabilities = {
-      add: false,
-      autism: false,
-      alcholism: false,
-      anxiety: false,
-      biPolar: false,
-      depressionClinical: false,
-      depressionSituational: false,
-      drugUse: false,
-      economic: false,
-      emotionalAbuse: false,
-      gang: false,
-      oDD: false,
-      labor: false,
-      luringAdult: false,
-      luringChild: false,
-      missingFromCare: false,
-      physicalAbuse: false,
-      runaway: false,
-      sexualAbuse: false,
-      sexualExploitation: false,
-      sexualMinority: false
+    vm.caseBeingEdited = {};
+    vm.case_vulnerabilities = [{
+      name: "ADD/ADHD",
+      value: false
+    }, {
+      name: "ASD",
+      value: false
+    }, {
+      name: "Alcohol use/abuse",
+      value: false
+    },
+    {
+      name: "Anxiety",
+      value: false
+    }, {
+      name: "BiPolarDisorder",
+      value: false
+    },
+    {
+      name: "Depression (Clinical)",
+      value: false
+    }, {
+      name: "Depression (Situational)",
+      value: false
+    },
+    {
+      name: "Drug use/abuse",
+      value: false
+    }, {
+      name: "Economic exploitation (history",
+      value: false
+    },
+    {
+      name: "Emotional abuse (history)",
+      value: false
+    }, {
+      name: "Gang association",
+      value: false
+    },
+    {
+      name: "ODD",
+      value: false
+    }, {
+      name: "Labor Exploitation (history)",
+      value: false
+    },
+    {
+      name: "Luring/grooming by adult",
+      value: false
+    }, {
+      name: "Luring/grooming by child",
+      value: false
+    },
+    {
+      name: "Missing From Care",
+      value: false
+    }, {
+      name: "Physical Abuse (history)",
+      value: false
+    },
+    {
+      name: "Runaway (history)",
+      value: false
+    }, {
+      name: "Sexual Abuse (history)",
+      value: false
+    },
+    {
+      name: "Sexual exploitation (history)",
+      value: false
+    }, {
+      name: "Sexual Minority",
+      value: false
     }
+    ]
+
+    vm.race_ethnicity = [{
+      name: "African American",
+      value: false
+    }, {
+      name: "Asian Pacific Islander",
+      value: false
+    }, {
+      name: "Caucasian",
+      value: false
+    },
+    {
+      name: "Latinx",
+      value: false
+    }, {
+      name: "Native American",
+      value: false
+    }
+    ]
+
+    UserService.getCities().then(function (response) {
+      console.log('cities', response.data);
+      return vm.cities = response.data;
+    });
+
+    UserService.getCounties().then(function (response) {
+      return vm.counties = response.data;
+    });
+
+    UserService.getAgencies().then(function (response) {
+      console.log('lawEnforcement', response.data)
+      return vm.agencies = response.data;
+
+    });
+
 
     vm.getData = function (mcmNum) {
       console.log('In getData');
       console.log('MCM Number', mcmNum);
       if (mcmNum != undefined) {
         UserService.getExistingForm(mcmNum).then(function () {
+        }).then(function () {
+          // vm.age = UserService.caseBeingEdited.data[0].age;
+          vm.age = 6;
+          vm.DateLastSeenIn = '02/10/2016';
+          vm.DateReportedMissingtoPoliceIn = '06/23/17';
+          vm.familyMembers = 1;
+          vm.OfficeDetectiveIn1 = 'Joe Black';
+          vm.LEPhoneNumberIn1 = '(651)-555-5555';
+          vm.StreetAddressIn1 = '123 Main Street';
+          vm.OfficeDetectiveIn2 = 'John Boy';
+          vm.LEPhoneNumberIn2 = '(612)-555-5555';
+          vm.StreetAddressIn2 = '221 B Baker Street';
+          vm.schoolDisctrict = 123;
+          // vm.gender = UserService.caseBeingEdited.data[0].age;
+          // vm.caseBeingEdited = UserService.caseBeingEdited;
+
+          console.log('vm.caseBeingEdited', vm.caseBeingEdited);
+        }).then(function () {
           vm.showEditForm = true;
         })
 
@@ -45,6 +150,7 @@ myApp.controller('EditController', function(UserService) {
     vm.updateData = function () {
       console.log('In updateData');
       vm.editedForm = {
+        mcm_number: vm.caseIn,
         age: vm.age,
         gender: vm.gender,
         last_seen: vm.DateLastSeenIn,
@@ -58,9 +164,31 @@ myApp.controller('EditController', function(UserService) {
         end_case_type: vm.endingCaseType,
         school: vm.schoolDisctrict,
         disposition: vm.disposition,
-        referral_type: vm.referralType
+        referral_type: vm.referralType,
+        case_vulnerabilities: [],
+        race_ethnicity: [],
+        case_lawenforcement_denial: []
       }
-      console.log('editedForm', vm.editedForm);
-      UserService.updateForm(vm.editedForm);
+      swal({
+        title: 'Required fields submitted to database.',
+        icon: "success",
+        width: 600,
+        padding: 100,
+        background: '#fff url(assets/page.JPG)'
+      });
+        // }).then(function () {
+      //   vm.editedForm.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
+      //     return vulnerability.value == true;
+      //   });
+      // }).then(function () {
+      //   vm.editedForm.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
+      //     return ethnicity.value == true;
+
+      //   });
+      // }).then(function (){
+      //   console.log('editedForm', vm.editedForm);
+      //   UserService.updateForm(vm.editedForm)
+      // })
+      
     }
   });

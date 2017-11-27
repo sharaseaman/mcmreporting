@@ -186,6 +186,8 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
     font-size: 18px;
     font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
   }
+
+  
   
   ul {
     list-style-type: none;
@@ -218,7 +220,9 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
   li a:hover {
     text-decoration: underline;
     color: rgb(234, 161, 33);
+    
   }
+
   .md-form {
     margin: 20px;
     padding: 25px;
@@ -238,21 +242,28 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
   }
 
   md-input-container:not(.md-input-invalid).md-input-focused .md-input {
-    border-color: rgb(0, 93, 110);
+    border-bottom-color: rgb(0, 93, 110) !important;
+    color: rgb(0, 93, 110) !important; 
 }
   md-input-container:not(.md-input-invalid).md-input-focused label {
-    color: rgb(0, 93, 110);
+    border-bottom-color: rgb(0, 93, 110)!important;
+    color: rgb(0, 93, 110) !important; 
 }
 
 
-md-input-container.md-input-focused:not(.md-input-has-value) md-select .md-select-value.md-select-placeholder {
-  color: rgb(0, 93, 110); 
-  border-bottom-color: rgb(0, 93, 110) ;
+md-input-container.md-input-focused:not(.md-input-has-value) md-select .md-input-underline .md-select-value.md-select-placeholder {
+  color: rgb(0, 93, 110) !important; 
+  border-bottom-color: rgb(0, 93, 110) !important;
   font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
 }
 
 md-select-value.md-select-placeholder {
   font-family: "PT Sans", Arial, Helvetica, sans-serif !important;
+}
+
+md-select:not([disabled]):focus .md-select-value{
+  color: rgb(0, 93, 110) !important; 
+  border-bottom-color: rgb(0, 93, 110) !important;
 }
 
 md-select-menu {
@@ -271,4 +282,14 @@ md-select-menu {
   font-size: 13px;
   }
 
-  
+img {
+  display: block;
+  margin: auto;
+  padding: 40px;
+  width: 500px;
+}
+
+.registerLabel {
+  display: inline-block;
+  width: 120px;
+}

@@ -10,7 +10,9 @@ myApp.service('UserService', function ($http, $location) {
   self.users = {};
   self.cities = {};
   self.selectedYear = '';
-  self.customReport = {data: []}
+  self.customReportData = {data: []}
+  self.caseBeingEdited = {};
+
 
 
   self.getCities = function () {
@@ -301,7 +303,8 @@ self.postVulnerabilities = function (vulnerabilities) {
       url: "/charts/custom",
       data: userCustomFilters
     }).then(function (res) {
-      self.customReport.data = res.data;
+      self.customReportData.data = res.data;
+
     })
   };
 
@@ -337,6 +340,7 @@ self.postVulnerabilities = function (vulnerabilities) {
       url: '/forms/caseToEdit/' + mcmNum
     }).then(function (response) {
       console.log('Response', response);
+      self.caseBeingEdited = response;
     })
   };
 
@@ -366,7 +370,7 @@ self.postVulnerabilities = function (vulnerabilities) {
     console.log('In updateForm');
     $http({
       method: 'PUT',
-      url: '/editIntake',
+      url: '/forms/editIntake',
       data: editedForm
     }).then(function (response) {
       console.log('Response', response);
@@ -375,6 +379,7 @@ self.postVulnerabilities = function (vulnerabilities) {
 
   // updates the admin priviledges 
   self.updatePriviledges = function (user) {
+    console.log('User to be edited', user);
     return $http({
       method: 'PUT',
       url: '/manage',
