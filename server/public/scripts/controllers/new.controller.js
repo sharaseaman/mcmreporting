@@ -136,100 +136,101 @@ myApp.controller('NewController', function (UserService) {
   vm.NativeAmericanIn = '';
   vm.CaucasianIn = '';
   vm.LatinxIn = '';
+  // vm.formatDateCaseClosedIn = '';
 
 
   vm.case_vulnerabilities = [{
-      name: "ADD/ADHD",
-      value: false
-    }, {
-      name: "ASD",
-      value: false
-    }, {
-      name: "Alcohol use/abuse",
-      value: false
-    },
-    {
-      name: "Anxiety",
-      value: false
-    }, {
-      name: "Bipolar Disorder",
-      value: false
-    },
-    {
-      name: "Depression (Clinical)",
-      value: false
-    }, {
-      name: "Depression (Situational)",
-      value: false
-    },
-    {
-      name: "Drug use/abuse",
-      value: false
-    }, {
-      name: "Economic exploitation (history)",
-      value: false
-    },
-    {
-      name: "Emotional abuse (history)",
-      value: false
-    }, {
-      name: "Gang association",
-      value: false
-    },
-    {
-      name: "ODD",
-      value: false
-    }, {
-      name: "Labor Exploitation (history)",
-      value: false
-    },
-    {
-      name: "Luring/grooming by adult",
-      value: false
-    }, {
-      name: "Luring/grooming by child",
-      value: false
-    },
-    {
-      name: "Missing From Care",
-      value: false
-    }, {
-      name: "Physical Abuse (history)",
-      value: false
-    },
-    {
-      name: "Runaway (history)",
-      value: false
-    }, {
-      name: "Sexual Abuse (history)",
-      value: false
-    },
-    {
-      name: "Sexual exploitation (history)",
-      value: false
-    }, {
-      name: "Sexual Minority",
-      value: false
-    }
+    name: "ADD/ADHD",
+    value: false
+  }, {
+    name: "ASD",
+    value: false
+  }, {
+    name: "Alcohol use/abuse",
+    value: false
+  },
+  {
+    name: "Anxiety",
+    value: false
+  }, {
+    name: "Bipolar Disorder",
+    value: false
+  },
+  {
+    name: "Depression (Clinical)",
+    value: false
+  }, {
+    name: "Depression (Situational)",
+    value: false
+  },
+  {
+    name: "Drug use/abuse",
+    value: false
+  }, {
+    name: "Economic exploitation (history)",
+    value: false
+  },
+  {
+    name: "Emotional abuse (history)",
+    value: false
+  }, {
+    name: "Gang association",
+    value: false
+  },
+  {
+    name: "ODD",
+    value: false
+  }, {
+    name: "Labor Exploitation (history)",
+    value: false
+  },
+  {
+    name: "Luring/grooming by adult",
+    value: false
+  }, {
+    name: "Luring/grooming by child",
+    value: false
+  },
+  {
+    name: "Missing From Care",
+    value: false
+  }, {
+    name: "Physical Abuse (history)",
+    value: false
+  },
+  {
+    name: "Runaway (history)",
+    value: false
+  }, {
+    name: "Sexual Abuse (history)",
+    value: false
+  },
+  {
+    name: "Sexual exploitation (history)",
+    value: false
+  }, {
+    name: "Sexual Minority",
+    value: false
+  }
   ]
 
   vm.race_ethnicity = [{
-      name: "African American",
-      value: false
-    }, {
-      name: "Asian Pacific Islander",
-      value: false
-    }, {
-      name: "Caucasian",
-      value: false
-    },
-    {
-      name: "Latinx",
-      value: false
-    }, {
-      name: "Native American",
-      value: false
-    }
+    name: "African American",
+    value: false
+  }, {
+    name: "Asian Pacific Islander",
+    value: false
+  }, {
+    name: "Caucasian",
+    value: false
+  },
+  {
+    name: "Latinx",
+    value: false
+  }, {
+    name: "Native American",
+    value: false
+  }
   ]
 
 
@@ -266,9 +267,9 @@ myApp.controller('NewController', function (UserService) {
   });
 
   UserService.getAgencies().then(function (response) {
-    console.log('lawEnforcement', response.data )
+    console.log('lawEnforcement', response.data)
     return vm.agencies = response.data;
-    
+
   });
 
   UserService.getSchools().then(function (response) {
@@ -311,7 +312,7 @@ myApp.controller('NewController', function (UserService) {
       newIntake.case_status == null ||
       newIntake.county_name == null || newIntake.state == null || newIntake.school_name == null ||
       newIntake.start_case_type == null || newIntake.end_case_type == null ||
-      newIntake.disposition == null || newIntake.close_date == null || newIntake.referral_type == null) {
+      newIntake.disposition == null || newIntake.referral_type == null) {
       swal({
         title: 'Please complete all required fields.',
         icon: "warning",
@@ -338,42 +339,39 @@ myApp.controller('NewController', function (UserService) {
         });
       }).then(function () {
         vm.jurisdictions = [{
-            name: vm.LawEnforcementAgencyonCaseIn1,
-            denial: vm.JurisdictionalDenialIn1
-          },
-          {
-            name: vm.LawEnforcementAgencyonCaseIn2,
-            denial: vm.JurisdictionalDenialIn2
-          },
-          {
-            name: vm.LawEnforcementAgencyonCaseIn3,
-            denial: vm.JurisdictionalDenialIn3
-          },
-          {
-            name: vm.LawEnforcementAgencyonCaseIn4,
-            denial: vm.JurisdictionalDenialIn4
-          },
-          {
-            name: vm.LawEnforcementAgencyonCaseIn5,
-            denial: vm.JurisdictionalDenialIn5
-          }
+          name: vm.LawEnforcementAgencyonCaseIn1,
+          denial: vm.JurisdictionalDenialIn1
+        },
+        {
+          name: vm.LawEnforcementAgencyonCaseIn2,
+          denial: vm.JurisdictionalDenialIn2
+        },
+        {
+          name: vm.LawEnforcementAgencyonCaseIn3,
+          denial: vm.JurisdictionalDenialIn3
+        },
+        {
+          name: vm.LawEnforcementAgencyonCaseIn4,
+          denial: vm.JurisdictionalDenialIn4
+        },
+        {
+          name: vm.LawEnforcementAgencyonCaseIn5,
+          denial: vm.JurisdictionalDenialIn5
+        }
         ]
         newIntake.case_lawenforcement_denial = vm.jurisdictions.filter(function (jurisdiction) {
           return jurisdiction.name !== undefined;
 
         })
       })
-      .then(function () {
-        UserService.postInputData(newIntake);
+        .then(function () {
+          UserService.postInputData(newIntake);
 
-        console.log('final newIntake', newIntake)
-      });
+          console.log('final newIntake', newIntake)
+        });
 
     }
   }
-
-
-
 
   //shara working on pdf below
   var pdf = new jsPDF();
@@ -395,8 +393,7 @@ myApp.controller('NewController', function (UserService) {
 
     vm.formatDateCaseClosedIn = (vm.DateCaseClosedIn.getMonth() + 1) + '/' + vm.DateCaseClosedIn.getDate() + '/' + vm.DateCaseClosedIn.getFullYear();
 
-    vm.formatTimeLastSeenIn = vm.TimeLastSeenIn.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-
+    vm.formatTimeLastSeenIn = vm.TimeLastSeenIn.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });  
 
 
     //logo
@@ -462,16 +459,16 @@ myApp.controller('NewController', function (UserService) {
     pdf.text(80, 170, 'Hair Style: ' + vm.HairStyleIn);
     pdf.text(130, 170, 'Eye Color: ' + vm.EyeColorIn);
     pdf.text(10, 180, 'Glasses/Contacts: ' + vm.GlassesOrContactsIn);
-    pdf.text(80, 180, 'Facial Hair: ' + vm.FacialHairIn);    
+    pdf.text(80, 180, 'Facial Hair: ' + vm.FacialHairIn);
     pdf.text(130, 180, 'Eye Brow Features: ' + vm.EyeBrowFeaturesIn);
 
-    pdf.text(10, 190, 'Race/Ethnicity: ');    
+    pdf.text(10, 190, 'Race/Ethnicity: ');
     pdf.text(50, 190, 'African American: ' + vm.AfricanAmericanIn);
     pdf.text(50, 200, 'Asian Pacific Islander: ' + vm.AsianPacificIslanderIn);
     pdf.text(120, 200, 'Native American: ' + vm.NativeAmericanIn);
-       pdf.text(120, 190, 'Caucasion: ' + vm.CaucasianIn);
-       pdf.text(160, 190, 'Latinx: ' + vm.LatinxIn);
-  
+    pdf.text(120, 190, 'Caucasion: ' + vm.CaucasianIn);
+    pdf.text(160, 190, 'Latinx: ' + vm.LatinxIn);
+
     pdf.text(10, 210, 'Tattoos or Piercings: ' + vm.commentTattoosIn);
     pdf.text(10, 220, 'Dental Characteristics: ' + vm.DentalCharacteristicsIn);
     pdf.text(10, 230, 'Scars or Birthmarks: ' + vm.ScarsOrBirthmarksIn);
@@ -551,14 +548,14 @@ myApp.controller('NewController', function (UserService) {
     //case info
     pdf.setFontType('bold');
     pdf.setFontSize(14);
-    pdf.text(10, 150, 'Case Information '); 
+    pdf.text(10, 150, 'Case Information ');
     pdf.setFontType('normal');
     pdf.setFontSize(12); pdf.text(100, 150, 'Case Status: ' + vm.CaseStatusIn);
     pdf.text(10, 160, 'Case Type When Opened:  ' + vm.CaseTypeWhenOpenedIn);
     pdf.text(10, 170, 'Case Type When Closed:   ' + vm.CaseTypeWhenClosedIn);
-    pdf.text(100, 170, 'Date Case Closed: '+ vm.formatDateCaseClosedIn);
+    pdf.text(100, 170, 'Date Case Closed: ' + vm.formatDateCaseClosedIn);
     pdf.text(10, 180, 'Referral Type: ' + vm.ReferralTypeIn);
-    
+
     pdf.line(10, 188, 206, 188);
 
     // Specific Questions to Occurrence
@@ -572,9 +569,9 @@ myApp.controller('NewController', function (UserService) {
     pdf.text(10, 230, 'Disturbing Situation: ' + vm.DisturbingSituationIn);
     var formatcommentSpecificQuestions = vm.commentSpecificQuestions;
     var setcommentSpecificQuestions = pdf.splitTextToSize(formatcommentSpecificQuestions, 200);
-    pdf.text(10, 240, 'Additional Comments: ' );
+    pdf.text(10, 240, 'Additional Comments: ');
     pdf.text(10, 246, setcommentSpecificQuestions);
-    
+
     //page 3
     pdf.addPage();
     //page 3 header
@@ -653,14 +650,14 @@ myApp.controller('NewController', function (UserService) {
     //end page 4 header
 
     // page 4 input
-   pdf.setFontType('bold');
+    pdf.setFontType('bold');
     pdf.setFontSize(14);
     pdf.text(10, 60, 'Reporting Law Enforcement')
     pdf.setFontType('normal');
     pdf.setFontSize(12);
     pdf.text(10, 70, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn1);
     pdf.text(80, 70, 'Case Number: ' + vm.CaseNumberIn1);
-    pdf.text(130, 70, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn1);    
+    pdf.text(130, 70, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn1);
     pdf.text(10, 76, 'Street Address: ' + vm.StreetAddressIn1);
     pdf.text(80, 76, 'Officer/Detective: ' + vm.OfficeDetectiveIn1);
     pdf.text(140, 76, 'Phone #: ' + vm.LEPhoneNumberIn1);
@@ -668,15 +665,15 @@ myApp.controller('NewController', function (UserService) {
 
     pdf.text(10, 97, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn2);
     pdf.text(80, 97, 'Case Number: ' + vm.CaseNumberIn2);
-    pdf.text(130, 97, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn2);    
-    pdf.text(10,103, 'Street Address: ' + vm.StreetAddressIn2);
+    pdf.text(130, 97, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn2);
+    pdf.text(10, 103, 'Street Address: ' + vm.StreetAddressIn2);
     pdf.text(80, 103, 'Officer/Detective: ' + vm.OfficeDetectiveIn2);
     pdf.text(140, 103, 'Phone #: ' + vm.LEPhoneNumberIn2);
     pdf.text(10, 109, 'Notes');
 
     pdf.text(10, 124, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn3);
     pdf.text(80, 124, 'Case Number: ' + vm.CaseNumberIn3);
-    pdf.text(130, 124, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn3);    
+    pdf.text(130, 124, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn3);
     pdf.text(10, 130, 'Street Address: ' + vm.StreetAddressIn3);
     pdf.text(80, 130, 'Officer/Detective: ' + vm.OfficeDetectiveIn3);
     pdf.text(140, 130, 'Phone #: ' + vm.LEPhoneNumberIn3);
@@ -684,7 +681,7 @@ myApp.controller('NewController', function (UserService) {
 
     pdf.text(10, 151, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn4);
     pdf.text(80, 151, 'Case Number: ' + vm.CaseNumberIn4);
-    pdf.text(130, 151, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn4);    
+    pdf.text(130, 151, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn4);
     pdf.text(10, 157, 'Street Address: ' + vm.StreetAddressIn4);
     pdf.text(80, 157, 'Officer/Detective: ' + vm.OfficeDetectiveIn4);
     pdf.text(140, 157, 'Phone #: ' + vm.LEPhoneNumberIn4);
@@ -692,7 +689,7 @@ myApp.controller('NewController', function (UserService) {
 
     pdf.text(10, 178, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn5);
     pdf.text(80, 178, 'Case Number: ' + vm.CaseNumberIn5);
-    pdf.text(130, 178, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn5);    
+    pdf.text(130, 178, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn5);
     pdf.text(10, 184, 'Street Address: ' + vm.StreetAddressIn5);
     pdf.text(80, 184, 'Officer/Detective: ' + vm.OfficeDetectiveIn5);
     pdf.text(140, 184, 'Phone #: ' + vm.LEPhoneNumberIn5);
@@ -708,33 +705,33 @@ myApp.controller('NewController', function (UserService) {
     pdf.text(10, 45, 'MCM Case Number: ' + vm.caseIn);
     pdf.text(85, 45, 'Date of Intake to MCM: ' + vm.formatDateofIntaketoMCMIn);//+ vm.formatDateofIntaketoMCMIn
     pdf.line(10, 48, 206, 48);
-    
+
     pdf.setFontType('bold');
     pdf.setFontSize(14);
-    pdf.text(10,55, 'Additional Documents Attached:');
+    pdf.text(10, 55, 'Additional Documents Attached:');
 
 
-    pdf.text(10,220, 'Person Requesting Assistance');
+    pdf.text(10, 220, 'Person Requesting Assistance');
     pdf.line(10, 222, 206, 222);
-    
+
     pdf.setFontType('normal');
     pdf.setFontSize(12);
-    pdf.text(10,230, 'Name: ' + vm.PRANameIn);
-    pdf.text(10,236, 'Address: ' + vm.PRAStreetAddressIn);
-    pdf.text(10,242, 'City: ' + vm.PRACityIn);
-    pdf.text(80,242, 'State: ' +vm.PRAStateIn);
-    pdf.text(140,242, 'Zip Code: ' + vm.PRAZIPCodeIn);
-    pdf.text(10,248, 'Home Phone: ' + vm.PRAHomePhoneIn);
-    pdf.text(80,248, 'Cell Phone: ' + vm.PRACellPhoneIn);
-    pdf.text(140,248, 'Email: ' + vm.PRAEmailIn);
-    pdf.text(10,258, 'Signature:');
+    pdf.text(10, 230, 'Name: ' + vm.PRANameIn);
+    pdf.text(10, 236, 'Address: ' + vm.PRAStreetAddressIn);
+    pdf.text(10, 242, 'City: ' + vm.PRACityIn);
+    pdf.text(80, 242, 'State: ' + vm.PRAStateIn);
+    pdf.text(140, 242, 'Zip Code: ' + vm.PRAZIPCodeIn);
+    pdf.text(10, 248, 'Home Phone: ' + vm.PRAHomePhoneIn);
+    pdf.text(80, 248, 'Cell Phone: ' + vm.PRACellPhoneIn);
+    pdf.text(140, 248, 'Email: ' + vm.PRAEmailIn);
+    pdf.text(10, 258, 'Signature:');
     pdf.line(30, 259, 100, 259);
-    
-    pdf.text(140,258, 'Date:');
+
+    pdf.text(140, 258, 'Date:');
     pdf.line(150, 259, 206, 259);
-    
-    
-    
+
+
+
 
     //name / signture / date / referred by
 
