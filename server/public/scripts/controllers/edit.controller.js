@@ -99,6 +99,18 @@ myApp.controller('EditController', function(UserService) {
     }
     ]
 
+    vm.changeVul = function (inputVuln) {
+      console.log("inputVuln", inputVuln);
+      inputVuln.value = !inputVuln.value;
+      console.log("inputVuln.name", inputVuln.value);
+    }
+
+    vm.changeRace = function (inputRace) {
+      console.log("inputVuln", inputRace);
+      inputRace.value = !inputRace.value;
+      console.log("inputVuln.name", inputRace.value);
+    }
+
     UserService.getCities().then(function (response) {
       console.log('cities', response.data);
       return vm.cities = response.data;
@@ -251,9 +263,16 @@ myApp.controller('EditController', function(UserService) {
         background: '#fff url(assets/page.JPG)'
 
         }).then(function () {
-        vm.editedForm.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
-          return vulnerability.value == true;
-        });
+        // vm.editedForm.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
+        //   return vulnerability.value == true;
+        // });
+          for (var i = 0; i < vm.case_vulnerabilities.length; i++) {
+            if (vm.case_vulnerabilities[i].value == true) {
+              vm.editedForm.case_vulnerabilities.push(vm.case_vulnerabilities[i]);
+            }
+          
+        }
+        console.log('vulnerabilities', vm.editedForm.case_vulnerabilities);
       }).then(function () {
         vm.editedForm.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
           return ethnicity.value == true;
@@ -261,7 +280,7 @@ myApp.controller('EditController', function(UserService) {
         });
       }).then(function (){
         console.log('editedForm', vm.editedForm);
-        UserService.updateForm(vm.editedForm)
+        // UserService.updateForm(vm.editedForm)
       })
       
     }
