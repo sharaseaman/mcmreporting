@@ -62,7 +62,7 @@
       <md-input-container>
         <label>State Missing From</label>
         <md-select name="StateMissingFrom" ng-model="nwc.StateMissingFromIn" ng-change="nwc.itemChange()" type="number" style="width:200px;"
-          placeholder="State Missing From" required="true">
+          placeholder="State Missing From" required="true" required>
           <md-option value="">State Missing From</md-option>
           <md-option value="AL">Alabama</md-option>
           <md-option value="AK">Alaska</md-option>
@@ -155,10 +155,10 @@
 
       <md-input-container>
         <label>Gender</label>
-        <md-select ng-model="nwc.GenderIn" ng-change="nwc.itemChange()" required>
-          <md-option value="Male">Male</md-option>
-          <md-option value="Female">Female</md-option>
-          <md-option value="Non-Binary">Non-Binary</md-option>
+        <md-select ng-model="nwc.GenderIn" ng-change="nwc.itemChange()"  required>
+          <md-option value="Male" ng-selected="nwc.GenderIn=='Male'">Male</md-option>
+          <md-option value="Female" ng-selected="nwc.GenderIn=='Female'">Female</md-option>
+          <md-option value="Non-Binary" ng-selected="nwc.GenderIn=='Non-Binary'">Non-Binary</md-option>
         </md-select>
       </md-input-container>
 
@@ -551,7 +551,7 @@
 
 
       <md-input-container flex>
-        <input id="DateCaseClosed" ng-model="nwc.DateCaseClosedIn" type="date" placeholder="Date Case Closed" required>
+        <input id="DateCaseClosed" ng-model="nwc.DateCaseClosedIn" type="date" placeholder="Date Case Closed">
       </md-input-container>
 
       <md-input-container flex>
