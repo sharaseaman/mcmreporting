@@ -121,20 +121,77 @@ myApp.controller('EditController', function(UserService) {
       if (mcmNum != undefined) {
         UserService.getExistingForm(mcmNum).then(function () {
         }).then(function () {
-          // vm.age = UserService.caseBeingEdited.data[0].age;
-          vm.age = 6;
-          vm.DateLastSeenIn = '02/10/2016';
-          vm.DateReportedMissingtoPoliceIn = '06/23/17';
-          vm.familyMembers = 1;
-          vm.OfficeDetectiveIn1 = 'Joe Black';
-          vm.LEPhoneNumberIn1 = '(651)-555-5555';
-          vm.StreetAddressIn1 = '123 Main Street';
-          vm.OfficeDetectiveIn2 = 'John Boy';
-          vm.LEPhoneNumberIn2 = '(612)-555-5555';
-          vm.StreetAddressIn2 = '221 B Baker Street';
-          vm.schoolDisctrict = 123;
+          vm.caseBeingEdited = UserService.caseBeingEdited;
+          vm.age = UserService.caseBeingEdited.data[0].age;
+          vm.vulnArray = [];
+          for (var i = 0; i < vm.caseBeingEdited.data.length; i++) {
+            vm.vulnArray.push(vm.caseBeingEdited.data[i].vulnerabilities_id);
+          }
+          console.log("vulnArray", vm.vulnArray);  
+          // if(1 in vm.vulnArray) {
+          //   vm.case_vulnerabilities[0].value = true;
+          // } 
+
+          for (var j = 0; j < vm.vulnArray.length; j++) {
+            if (vm.vulnArray[j] == 1) {
+              vm.case_vulnerabilities[0].value = true;
+            } else if (vm.vulnArray[j] == 2) {
+              vm.case_vulnerabilities[1].value = true;
+            } else if (vm.vulnArray[j] == 3) {
+              vm.case_vulnerabilities[2].value = true;
+            } else if (vm.vulnArray[j] == 4) {
+              vm.case_vulnerabilities[3].value = true;
+            } else if (vm.vulnArray[j] == 5) {
+              vm.case_vulnerabilities[4].value = true;
+            } else if (vm.vulnArray[j] == 6) {
+              vm.case_vulnerabilities[5].value = true;
+            } else if (vm.vulnArray[j] == 7) {
+              vm.case_vulnerabilities[6].value = true;
+            } else if (vm.vulnArray[j] == 8) {
+              vm.case_vulnerabilities[7].value = true;
+            } else if (vm.vulnArray[j] == 9) {
+              vm.case_vulnerabilities[8].value = true;
+            } else if (vm.vulnArray[j] == 10) {
+              vm.case_vulnerabilities[9].value = true;
+            } else if (vm.vulnArray[j] == 11) {
+              vm.case_vulnerabilities[10].value = true;
+            } else if (vm.vulnArray[j] == 12) {
+              vm.case_vulnerabilities[11].value = true;
+            } else if (vm.vulnArray[j] == 13) {
+              vm.case_vulnerabilities[12].value = true;
+            } else if (vm.vulnArray[j] == 14) {
+              vm.case_vulnerabilities[13].value = true;
+            } else if (vm.vulnArray[j] == 15) {
+              vm.case_vulnerabilities[14].value = true;
+            } else if (vm.vulnArray[j] == 16) {
+              vm.case_vulnerabilities[15].value = true;
+            } else if (vm.vulnArray[j] == 17) {
+              vm.case_vulnerabilities[16].value = true;
+            } else if (vm.vulnArray[j] == 18) {
+              vm.case_vulnerabilities[17].value = true;
+            } else if (vm.vulnArra[j] == 19) {
+              vm.case_vulnerabilities[18].value = true;
+            } else if (vm.vulnArray[j] == 20) {
+              vm.case_vulnerabilities[19].value = true;
+            } else if (vm.vulnArray[j] == 21) {
+              vm.case_vulnerabilities[20].value = true;
+            }       
+          }
+          
+          console.log('Add value', vm.case_vulnerabilities[0].value);
+          
+          // vm.DateLastSeenIn = '02/10/2016';
+          // vm.DateReportedMissingtoPoliceIn = '06/23/17';
+          // vm.familyMembers = 1;
+          // vm.OfficeDetectiveIn1 = 'Joe Black';
+          // vm.LEPhoneNumberIn1 = '(651)-555-5555';
+          // vm.StreetAddressIn1 = '123 Main Street';
+          // vm.OfficeDetectiveIn2 = 'John Boy';
+          // vm.LEPhoneNumberIn2 = '(612)-555-5555';
+          // vm.StreetAddressIn2 = '221 B Baker Street';
+          // vm.schoolDisctrict = 123;
           // vm.gender = UserService.caseBeingEdited.data[0].age;
-          // vm.caseBeingEdited = UserService.caseBeingEdited;
+          
 
           console.log('vm.caseBeingEdited', vm.caseBeingEdited);
         }).then(function () {
@@ -175,20 +232,20 @@ myApp.controller('EditController', function(UserService) {
         width: 600,
         padding: 100,
         background: '#fff url(assets/page.JPG)'
-      });
-        // }).then(function () {
-      //   vm.editedForm.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
-      //     return vulnerability.value == true;
-      //   });
-      // }).then(function () {
-      //   vm.editedForm.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
-      //     return ethnicity.value == true;
 
-      //   });
-      // }).then(function (){
-      //   console.log('editedForm', vm.editedForm);
-      //   UserService.updateForm(vm.editedForm)
-      // })
+        }).then(function () {
+        vm.editedForm.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
+          return vulnerability.value == true;
+        });
+      }).then(function () {
+        vm.editedForm.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
+          return ethnicity.value == true;
+
+        });
+      }).then(function (){
+        console.log('editedForm', vm.editedForm);
+        UserService.updateForm(vm.editedForm)
+      })
       
     }
   });
