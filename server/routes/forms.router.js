@@ -304,8 +304,8 @@ router.put('/editIntake', function (req, res) { //1
         res.sendStatus(500);
       } 
       else { //   - main query -  4
-        var caseDataQuery = 'INSERT INTO case_data (mcm_number, age, gender, school, start_case_type, end_case_type, disposition, referral_type, case_status) VALUES ($1, $2, $3, (SELECT id FROM schools WHERE school_name = $4), $5, $6, $7, $9) RETURNING case_data.id;' 
-        var caseDataValueArray = [edit.mcm_number, edit.age, edit.gender, edit.school_name, edit.start_case_type, edit.end_case_type, edit.disposition, edit.referral_type, edit.case_status]
+        var caseDataQuery = 'UPDATE case_data SET age = $1, gender = $2, school = (SELECT id FROM schools WHERE school_name = $3), start_case_type = $4, end_case_type = $5, disposition = $6, referral_type = $7, case_status = $8 Where mcm_number = $9 RETURNING case_data.id;' 
+        var caseDataValueArray = [edit.age, edit.gender, edit.school_name, edit.start_case_type, edit.end_case_type, edit.disposition, edit.referral_type, edit.case_status, edit.mcm_number]
         console.log('caseDataQuery, caseDataValue', caseDataQuery, caseDataValueArray)
         client.query(caseDataQuery, caseDataValueArray, function (queryErr, resultObj) { 
           done(); 
@@ -372,34 +372,34 @@ router.put('/editIntake', function (req, res) { //1
                       } //end race query 
                     }) //end client query
             } // end race/ethnicity
-              if (edit.case_lawenforcement_denial !== []) { 
-                        //start agency Query
-                        var tempAgencyArray = []
-                        var agencyArray = []
-                        var agencyCount = 1
+              // if (edit.case_lawenforcement_denial !== []) { 
+              //           //start agency Query
+              //           var tempAgencyArray = []
+              //           var agencyArray = []
+              //           var agencyCount = 1
                         
-                        var createAgencyQuery = function() {
-                          for (let l = 0; l < edit.case_lawenforcement_denial.length; l++) {
-                            tempAgencyArray.push('('+resultObj.rows[0].id+ ', (Select id FROM law_enforcement WHERE agency = $'+agencyCount++ + '), $' +agencyCount++ +')')
-                            agencyArray.push(edit.case_lawenforcement_denial[l].name, edit.case_lawenforcement_denial[l].denial);
-                            }  //end for loop
-                          } //end creqte Query function
+              //           var createAgencyQuery = function() {
+              //             for (let l = 0; l < edit.case_lawenforcement_denial.length; l++) {
+              //               tempAgencyArray.push('('+resultObj.rows[0].id+ ', (Select id FROM law_enforcement WHERE agency = $'+agencyCount++ + '), $' +agencyCount++ +')')
+              //               agencyArray.push(edit.case_lawenforcement_denial[l].name, edit.case_lawenforcement_denial[l].denial);
+              //               }  //end for loop
+              //             } //end creqte Query function
                         
-                          createAgencyQuery(); //2nd query for vulnerabilites
-                          console.log('tempAgencyArray', tempAgencyArray)
-                          var agencies$ = tempAgencyArray.join(', ')
-                          var agencyInsert = 'INSERT INTO case_lawenforcement_denial (case_data_id, law_enforcement_id, jurisdictional_denial) VALUES ' 
-                          var agencyQuery = agencyInsert + agencies$
-                          console.log('Query, agencyQuery', agencyQuery, agencyArray)
+              //             createAgencyQuery(); //2nd query for vulnerabilites
+              //             console.log('tempAgencyArray', tempAgencyArray)
+              //             var agencies$ = tempAgencyArray.join(', ')
+              //             var agencyInsert = 'INSERT INTO case_lawenforcement_denial (case_data_id, law_enforcement_id, jurisdictional_denial) VALUES ' 
+              //             var agencyQuery = agencyInsert + agencies$
+              //             console.log('Query, agencyQuery', agencyQuery, agencyArray)
                         
-                          client.query(agencyQuery, agencyArray, function (queryErr, resultAgency) { // --11
-                        done();
-                          if (queryErr) { //if 2nd query fails
-                            console.log('Agency query Error', queryErr)
-                          res.sendStatus(500);
-                          }
-                        }) //end client query
-                      } //end law enforcement 
+              //             client.query(agencyQuery, agencyArray, function (queryErr, resultAgency) { // --11
+              //           done();
+              //             if (queryErr) { //if 2nd query fails
+              //               console.log('Agency query Error', queryErr)
+              //             res.sendStatus(500);
+              //             }
+              //           }) //end client query
+              //         } //end law enforcement 
       
                 
                 res.sendStatus(202);
