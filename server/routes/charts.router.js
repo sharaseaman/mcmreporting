@@ -200,29 +200,29 @@ router.post('/custom', function (req, res) {
         } // end if list
 
       
-        tempArray.forEach(function (currentValue, index, array) {
+        tempArray.forEach(function (currentValue, index) {
           console.log('line 204, currentValue', currentValue)
           if (currentValue === 'county = (SELECT id FROM counties WHERE county_name = $')  {
             count++
             queryArray.push(currentValue + count + ')')
             console.log('line 208', queryArray)
           } 
-          if (currentValue === 'school = (SELECT id FROM schools WHERE school_name = $')  {
+          else if (currentValue === 'school = (SELECT id FROM schools WHERE school_name = $')  {
             count++
             queryArray.push(currentValue + count + ')')
             console.log('line 213', queryArray) 
           }
-          if (currentValue === 'law_enforcement.id = (SELECT id FROM law_enforcement WHERE agency = $')  {
+          else if (currentValue === 'law_enforcement.id = (SELECT id FROM law_enforcement WHERE agency = $')  {
             count++
             queryArray.push(currentValue + count + ')')
             console.log('line 218', queryArray)
           } 
-          if (currentValue === 'race_ethnicity.id = (SELECT id FROM race_ethnicity WHERE race_ethnicity = $')  {
+          else if (currentValue === 'race_ethnicity.id = (SELECT id FROM race_ethnicity WHERE race_ethnicity = $')  {
             count++
             queryArray.push(currentValue + count + ')')
             console.log('line 223', queryArray)
           } 
-          if (currentValue === 'vulnerability.id = (SELECT id FROM vulnerabilities WHERE vulnerability = $')  {
+          else if (currentValue === 'vulnerability.id = (SELECT id FROM vulnerabilities WHERE vulnerability = $')  {
             count++
             queryArray.push(currentValue + count + ')')
             console.log('line 228', queryArray)
