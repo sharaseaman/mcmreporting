@@ -122,17 +122,17 @@ myApp.controller('EditController', function(UserService) {
         UserService.getExistingForm(mcmNum).then(function () {
         }).then(function () {
           // vm.age = UserService.caseBeingEdited.data[0].age;
-          vm.age = 6;
-          vm.DateLastSeenIn = '02/10/2016';
-          vm.DateReportedMissingtoPoliceIn = '06/23/17';
-          vm.familyMembers = 1;
-          vm.OfficeDetectiveIn1 = 'Joe Black';
-          vm.LEPhoneNumberIn1 = '(651)-555-5555';
-          vm.StreetAddressIn1 = '123 Main Street';
-          vm.OfficeDetectiveIn2 = 'John Boy';
-          vm.LEPhoneNumberIn2 = '(612)-555-5555';
-          vm.StreetAddressIn2 = '221 B Baker Street';
-          vm.schoolDisctrict = 123;
+          // vm.age = '';
+          // vm.DateLastSeenIn = '02/10/2016';
+          // vm.DateReportedMissingtoPoliceIn = '06/23/17';
+          // vm.familyMembers = 1;
+          // vm.OfficeDetectiveIn1 = 'Joe Black';
+          // vm.LEPhoneNumberIn1 = '(651)-555-5555';
+          // vm.StreetAddressIn1 = '123 Main Street';
+          // vm.OfficeDetectiveIn2 = 'John Boy';
+          // vm.LEPhoneNumberIn2 = '(612)-555-5555';
+          // vm.StreetAddressIn2 = '221 B Baker Street';
+          // vm.schoolDisctrict = 123;
           // vm.gender = UserService.caseBeingEdited.data[0].age;
           // vm.caseBeingEdited = UserService.caseBeingEdited;
 
@@ -175,20 +175,19 @@ myApp.controller('EditController', function(UserService) {
         width: 600,
         padding: 100,
         background: '#fff url(assets/page.JPG)'
-      });
-        // }).then(function () {
-      //   vm.editedForm.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
-      //     return vulnerability.value == true;
-      //   });
-      // }).then(function () {
-      //   vm.editedForm.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
-      //     return ethnicity.value == true;
+        }).then(function () {
+        vm.editedForm.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
+          return vulnerability.value == true;
+        });
+      }).then(function () {
+        vm.editedForm.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
+          return ethnicity.value == true;
 
-      //   });
-      // }).then(function (){
-      //   console.log('editedForm', vm.editedForm);
-      //   UserService.updateForm(vm.editedForm)
-      // })
+        });
+      }).then(function (){
+        console.log('editedForm', vm.editedForm);
+        UserService.updateForm(vm.editedForm)
+      })
       
     }
   });
