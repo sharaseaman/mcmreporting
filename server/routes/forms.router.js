@@ -306,20 +306,23 @@ router.put('/editIntake', function (req, res) { //1
       else { //   - main query -  4
         var caseDataQuery = 'UPDATE case_data SET age = $1, gender = $2, school = (SELECT id FROM schools WHERE school_name = $3), start_case_type = $4, end_case_type = $5, disposition = $6, referral_type = $7, case_status = $8, city = (SELECT id FROM cities WHERE city_name = $9), close_date = $10, county = (SELECT id FROM counties WHERE county_name = $11), people_served = $12, last_seen = $13, reported_missing = $14, state = $15 Where mcm_number = $16;' 
         var caseDataValueArray = [edit.age, edit.gender, edit.school_name, edit.start_case_type, edit.end_case_type, edit.disposition, edit.referral_type, edit.case_status, edit.city, edit.close_date, edit.county, edit.mcm_number, edit.people_served, edit.last_seen, edit.reported_missing, edit.state]
-        console.log('caseDataQuery, caseDataValue', caseDataQuery, caseDataValueArray)
-<<<<<<< HEAD
-        client.query(caseDataQuery, caseDataValueArray, function (queryErr, resultObj) {  // --5
-          done(); 
-=======
+        console.log('Update case_data Query', caseDataQuery)
         client.query(caseDataQuery, caseDataValueArray, function (queryErr, resultObj) { 
           done();
->>>>>>> customAndEditFix
           if (queryErr) { 
             console.log('caseData query Error', queryErr)
             res.sendStatus(500); 
-          } else { // - for join tables 5
-              if (edit.case_vulnerabilities !== undefined) {
-                console.log('in vulnerabilities', edit.case_vulnerabilities)        //vulnerabilities if
+          } else {
+            var deleteVulnerabilitiesQuery = 'DELETE From case_vulnerabilities WHERE case_data_id = (SELECT id FROM case_data WHERE mcm_number = $1)';
+            var deleteVulnerabilitiesArray = [edit.mcm_number]
+            client.query(deleteVulnerabilitiesQuery, deleteVulnerabilitiesArray, function (queryErr, resultObj) { 
+              done();
+              console.log('deleteVulnerabilities Query', deleteVulnerabilitiesQuery);
+              if (queryErr) { 
+                console.log('caseData query Error', queryErr)
+                res.sendStatus(500); 
+              } else { // - for join tables 5
+
                 var tempVArray = []
                 var vulnerabilityArray = [edit.mcm_number]
                 var vulnerabilityCount = 2
@@ -344,78 +347,109 @@ router.put('/editIntake', function (req, res) { //1
                   console.log('Vulnerability query Error', queryErr)
                     res.sendStatus(500);
                     } //end vulnerability error 
-                }) //end query
-            }  // end vulnerability if 
-            //   if (edit.race_ethnicity !== []) { // start race_ethnicity query  
-            //   console.log('219 edit.race_ethnicity', edit.race_ethnicity.name)  
-            //   //variables for race_enthinicity                 
-            //   var tempRaceArray = []
-            //   var raceValueArray = [edit.mcm_number]
-            //   var raceCount = 2                   
-            //   var createRaceQuery = function() {
-            //     console.log('createRaceQuery running', edit.race_ethnicity[0].name)
-            //     for (let j = 0; j < edit.race_ethnicity.length; j++) {
-            //     console.log('for loop running w/ j', j);
-            //     tempRaceArray.push('((Select id FROM case_data WHERE mcm_number = $1), (Select id FROM race_ethnicity WHERE race_ethnicity = $'+raceCount++ + '))');
-            //     raceValueArray.push(edit.race_ethnicity[j].name);
-            //     }  
-            //     console.log('raceValueArray', raceValueArray)
-            //   } //end function
-                    
-            //   createRaceQuery();
-            //   console.log('tempArray', tempRaceArray)
-            //   var raceValue$ = tempRaceArray.join(', ')
-            //   var raceInsert = 'INSERT INTO case_race_ethnicity (case_data_id, race_ethnicity_id) VALUES ' 
-            //   var raceQuery = raceInsert + raceValue$
-            //   console.log('reSqlQuery, valueArray', raceQuery, raceValueArray)
-                    
-            //   client.query(raceQuery, raceValueArray, function (queryErr, raceResult) {
-            //     done();
-            //       if (queryErr) {
-            //           console.log(queryErr)
-            //           res.sendStatus(500);
-            //           } //end race query 
-            //         }) //end client query
-            // } // end race/ethnicity
-              // if (edit.case_lawenforcement_denial !== []) { 
-              //           //start agency Query
-              //           var tempAgencyArray = []
-              //           var agencyArray = [edit.mcm_number]
-              //           var agencyCount = 2
-                        
-              //           var createAgencyQuery = function() {
-              //             for (let l = 0; l < edit.case_lawenforcement_denial.length; l++) {
-              //               tempAgencyArray.push('((Select id FROM case_data WHERE mcm_number = $1), (Select id FROM law_enforcement WHERE agency = $'+agencyCount++ + '), $' +agencyCount++ +')')
-              //               agencyArray.push(edit.case_lawenforcement_denial[l].name, edit.case_lawenforcement_denial[l].denial);
-              //               }  //end for loop
-              //             } //end creqte Query function
-                        
-              //             createAgencyQuery(); //2nd query for vulnerabilites
-              //             console.log('tempAgencyArray', tempAgencyArray)
-              //             var agencies$ = tempAgencyArray.join(', ')
-              //             var agencyInsert = 'INSERT INTO case_lawenforcement_denial (case_data_id, law_enforcement_id, jurisdictional_denial) VALUES ' 
-              //             var agencyQuery = agencyInsert + agencies$
-              //             console.log('Query, agencyQuery', agencyQuery, agencyArray)
-                        
-              //             client.query(agencyQuery, agencyArray, function (queryErr, resultAgency) { // --11
-              //           done();
-              //             if (queryErr) { //if 2nd query fails
-              //               console.log('Agency query Error', queryErr)
-              //             res.sendStatus(500);
-              //             }
-              //           }) //end client query
-              //         } //end law enforcement 
-      
-                
-                res.sendStatus(202);
-              }//if/else inside pool connect 
-        }) // --3 end main query
-      }
-    }) // 
-    }  else { //end authentication if
+                    else {
+                      var deleteRaceQuery = 'DELETE From case_race_ethnicity WHERE case_data_id = (SELECT id FROM case_data WHERE mcm_number = $1)';
+                      var deleteRaceArray = [edit.mcm_number]
+                      client.query(deleteRaceQuery, deleteRaceArray, function (queryErr, resultObj) { 
+                        done();
+                        console.log('deleteRaceQuery', deleteRaceQuery);
+                      if (queryErr) {
+                        console.log('Vulnerability query Error', queryErr)
+                          res.sendStatus(500);
+                          } //end vulnerability error 
+                          else {
+                            var deleteRaceQuery = 'DELETE From case_race_ethnicity WHERE case_data_id = (SELECT id FROM case_data WHERE mcm_number = $1)';
+                      var deleteRaceArray = [edit.mcm_number]
+                      client.query(deleteRaceQuery, deleteRaceArray, function (queryErr, resultObj) { 
+                        done();
+                        console.log('deleteRaceQuery', deleteRaceQuery);
+                      if (queryErr) {
+                        console.log('deleteRace query Error', queryErr)
+                          res.sendStatus(500);
+                          } else {//end delete race error 
+                            var tempRaceArray = []
+                            var raceValueArray = [edit.mcm_number]
+                            var raceCount = 2                   
+                            var createRaceQuery = function() {
+                              console.log('createRaceQuery running', edit.race_ethnicity[0].name)
+                              for (let j = 0; j < edit.race_ethnicity.length; j++) {
+                              console.log('for loop running w/ j', j);
+                              tempRaceArray.push('((Select id FROM case_data WHERE mcm_number = $1), (Select id FROM race_ethnicity WHERE race_ethnicity = $'+raceCount++ + '))');
+                              raceValueArray.push(edit.race_ethnicity[j].name);
+                              }  
+                              console.log('raceValueArray', raceValueArray)
+                            } //end function
+                                  
+                            createRaceQuery();
+                            console.log('tempArray', tempRaceArray)
+                            var raceValue$ = tempRaceArray.join(', ')
+                            var raceInsert = 'INSERT INTO case_race_ethnicity (case_data_id, race_ethnicity_id) VALUES ' 
+                            var raceQuery = raceInsert + raceValue$
+                            console.log('reSqlQuery, valueArray', raceQuery, raceValueArray)
+                                  
+                            client.query(raceQuery, raceValueArray, function (queryErr, raceResult) {
+                              done();
+
+                            if (queryErr) {
+                              console.log('race query Error', queryErr)
+                                res.sendStatus(500);
+                                } else {
+                                  var deleteAgencyQuery = 'DELETE From case_race_ethnicity WHERE case_data_id = (SELECT id FROM case_data WHERE mcm_number = $1)';
+                                  var deleteAgencyArray = [edit.mcm_number]
+                                  client.query(deleteAgencyQuery, deleteAgencyArray, function (queryErr, resultObj) { 
+                                    done();
+                                    console.log('deleteAgencyQuery', deleteAgencyQuery);
+                                  if (queryErr) {
+                                    console.log('deleteAgencyQuery Error', queryErr)
+                                      res.sendStatus(500);
+                                      } else {
+                                        var tempAgencyArray = []
+                                        var agencyArray = [edit.mcm_number]
+                                        var agencyCount = 2
+                                        
+                                        var createAgencyQuery = function() {
+                                          for (let l = 0; l < edit.case_lawenforcement_denial.length; l++) {
+                                            tempAgencyArray.push('((Select id FROM case_data WHERE mcm_number = $1), (Select id FROM law_enforcement WHERE agency = $'+agencyCount++ + '), $' +agencyCount++ +')')
+                                            agencyArray.push(edit.case_lawenforcement_denial[l].name, edit.case_lawenforcement_denial[l].denial);
+                                            }  //end for loop
+                                          } //end create Query function
+                                        
+                                          createAgencyQuery(); //2nd query for vulnerabilites
+                                          console.log('tempAgencyArray', tempAgencyArray)
+                                          var agencies$ = tempAgencyArray.join(', ')
+                                          var agencyInsert = 'INSERT INTO case_lawenforcement_denial (case_data_id, law_enforcement_id, jurisdictional_denial) VALUES ' 
+                                          var agencyQuery = agencyInsert + agencies$
+                                          console.log('Query, agencyQuery', agencyQuery, agencyArray)
+                                        
+                                          client.query(agencyQuery, agencyArray, function (queryErr, resultAgency) { // --11
+                                        done();
+                                          if (queryErr) { //if 2nd query fails
+                                            console.log('Agency query Error', queryErr)
+                                          res.sendStatus(500);
+                                          } else {
+                                              res.sendStatus(202);
+                                          } // end agency query error if/else
+                                        }) //end agency query
+                                      } //end else that begins agency query
+                                    }) //end delete agency quert
+                                  } //end else that begins agency delete
+                                }) //end race query
+                              } //end else that begins race query
+                            }) // end delete race query
+                          } //else that begins race delete
+                        }) //end vulnerability query
+                      } //end else that begins vuln query
+                    }) // end delete vuln query
+                  } //else that begins vuln delete
+                }) // end delete vuln query
+              } //else that begins vuln delete
+            }) // end delete vuln query
+          } //else that begins vuln delete
+        }) //pool connect
+   } else { //end authentication if
     console.log('not logged in');
-    res.send(false);
-  } //end authentication else  //2
+    res.send(false); 
+    } //end authentication else  //2
 }); //end /newIntake  --1
 
 module.exports = router;
