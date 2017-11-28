@@ -272,7 +272,7 @@ router.get('/caseToEdit/:id', function (req, res) {
       } else {
         var valueArray = [mcmCase]
         console.log('valueArray', valueArray)
-        client.query('SELECT * FROM case_data INNER JOIN case_lawenforcement_denial ON case_lawenforcement_denial.case_data_id = case_data.id Inner JOIN law_enforcement ON case_lawenforcement_denial.law_enforcement_id = law_enforcement.id Inner join case_race_ethnicity ON case_race_ethnicity.case_data_id = case_data.id Inner Join race_ethnicity On case_race_ethnicity.race_ethnicity_id =race_ethnicity.id Inner Join case_vulnerabilities On case_vulnerabilities.case_data_id =case_data.id Inner Join vulnerabilities On case_vulnerabilities.vulnerabilities_id = vulnerabilities.id Where mcm_number = $1', valueArray, function (queryErr, resultObj) {
+        client.query('SELECT * FROM case_data FULL JOIN case_lawenforcement_denial ON case_lawenforcement_denial.case_data_id = case_data.id FULL JOIN law_enforcement ON case_lawenforcement_denial.law_enforcement_id = law_enforcement.id FULL join case_race_ethnicity ON case_race_ethnicity.case_data_id = case_data.id FULL Join race_ethnicity On case_race_ethnicity.race_ethnicity_id =race_ethnicity.id FULL Join case_vulnerabilities On case_vulnerabilities.case_data_id =case_data.id FULL Join vulnerabilities On case_vulnerabilities.vulnerabilities_id = vulnerabilities.id Where mcm_number = $1', valueArray, function (queryErr, resultObj) {
           done();
           if (queryErr) {
             console.log('done 500')
@@ -393,46 +393,47 @@ router.put('/editIntake', function (req, res) { //1
                             if (queryErr) {
                               console.log('race query Error', queryErr)
                                 res.sendStatus(500);
-                                } else {
-                                  var deleteAgencyQuery = 'DELETE From case_race_ethnicity WHERE case_data_id = (SELECT id FROM case_data WHERE mcm_number = $1)';
-                                  var deleteAgencyArray = [edit.mcm_number]
-                                  client.query(deleteAgencyQuery, deleteAgencyArray, function (queryErr, resultObj) { 
-                                    done();
-                                    console.log('deleteAgencyQuery', deleteAgencyQuery);
-                                  if (queryErr) {
-                                    console.log('deleteAgencyQuery Error', queryErr)
-                                      res.sendStatus(500);
-                                      } else {
-                                        var tempAgencyArray = []
-                                        var agencyArray = [edit.mcm_number]
-                                        var agencyCount = 2
+                            }
+                              // } else {
+                            //       var deleteAgencyQuery = 'DELETE From case_race_ethnicity WHERE case_data_id = (SELECT id FROM case_data WHERE mcm_number = $1)';
+                            //       var deleteAgencyArray = [edit.mcm_number]
+                            //       client.query(deleteAgencyQuery, deleteAgencyArray, function (queryErr, resultObj) { 
+                            //         done();
+                            //         console.log('deleteAgencyQuery', deleteAgencyQuery);
+                            //       if (queryErr) {
+                            //         console.log('deleteAgencyQuery Error', queryErr)
+                            //           res.sendStatus(500);
+                                      // } else {
+                                      //   var tempAgencyArray = []
+                                      //   var agencyArray = [edit.mcm_number]
+                                      //   var agencyCount = 2
                                         
-                                        var createAgencyQuery = function() {
-                                          for (let l = 0; l < edit.case_lawenforcement_denial.length; l++) {
-                                            tempAgencyArray.push('((Select id FROM case_data WHERE mcm_number = $1), (Select id FROM law_enforcement WHERE agency = $'+agencyCount++ + '), $' +agencyCount++ +')')
-                                            agencyArray.push(edit.case_lawenforcement_denial[l].name, edit.case_lawenforcement_denial[l].denial);
-                                            }  //end for loop
-                                          } //end create Query function
+                                      //   var createAgencyQuery = function() {
+                                      //     for (let l = 0; l < edit.case_lawenforcement_denial.length; l++) {
+                                      //       tempAgencyArray.push('((Select id FROM case_data WHERE mcm_number = $1), (Select id FROM law_enforcement WHERE agency = $'+agencyCount++ + '), $' +agencyCount++ +')')
+                                      //       agencyArray.push(edit.case_lawenforcement_denial[l].name, edit.case_lawenforcement_denial[l].denial);
+                                      //       }  //end for loop
+                                      //     } //end create Query function
                                         
-                                          createAgencyQuery(); //2nd query for vulnerabilites
-                                          console.log('tempAgencyArray', tempAgencyArray)
-                                          var agencies$ = tempAgencyArray.join(', ')
-                                          var agencyInsert = 'INSERT INTO case_lawenforcement_denial (case_data_id, law_enforcement_id, jurisdictional_denial) VALUES ' 
-                                          var agencyQuery = agencyInsert + agencies$
-                                          console.log('Query, agencyQuery', agencyQuery, agencyArray)
+                                      //     createAgencyQuery(); //2nd query for vulnerabilites
+                                      //     console.log('tempAgencyArray', tempAgencyArray)
+                                      //     var agencies$ = tempAgencyArray.join(', ')
+                                      //     var agencyInsert = 'INSERT INTO case_lawenforcement_denial (case_data_id, law_enforcement_id, jurisdictional_denial) VALUES ' 
+                                      //     var agencyQuery = agencyInsert + agencies$
+                                      //     console.log('Query, agencyQuery', agencyQuery, agencyArray)
                                         
-                                          client.query(agencyQuery, agencyArray, function (queryErr, resultAgency) { // --11
-                                        done();
-                                          if (queryErr) { //if 2nd query fails
-                                            console.log('Agency query Error', queryErr)
-                                          res.sendStatus(500);
-                                          } else {
+                                      //     client.query(agencyQuery, agencyArray, function (queryErr, resultAgency) { // --11
+                                      //   done();
+                                      //     if (queryErr) { //if 2nd query fails
+                                      //       console.log('Agency query Error', queryErr)
+                                      //     res.sendStatus(500);
+                                          else {
                                               res.sendStatus(202);
                                           } // end agency query error if/else
-                                        }) //end agency query
-                                      } //end else that begins agency query
-                                    }) //end delete agency quert
-                                  } //end else that begins agency delete
+                                        // }) //end agency query
+                                      // } //end else that begins agency query
+                                  //   }) //end delete agency quert
+                                  // } //end else that begins agency delete
                                 }) //end race query
                               } //end else that begins race query
                             }) // end delete race query
