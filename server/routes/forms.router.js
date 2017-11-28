@@ -187,7 +187,7 @@ router.post('/newIntake', function (req, res) {      //  --1
                   console.log('Vulnerability query Error', queryErr)
                 res.sendStatus(500);
                 } else { // start race_ethnicity query  //--8
-                  console.log('219 newIntake.race_ethnicity', newIntake.race_ethnicity.name)  
+                  console.log('219 newIntake.race_ethnicity', newIntake.race_ethnicity)  
                     //variables for race_enthinicity                 
                     var tempRaceArray = []
                     var raceValueArray = []
