@@ -304,24 +304,24 @@ router.put('/editIntake', function (req, res) { //1
         res.sendStatus(500);
       } 
       else { //   - main query -  4
-        var caseDataQuery = 'UPDATE case_data SET age = $1, gender = $2, school = (SELECT id FROM schools WHERE school_name = $3), start_case_type = $4, end_case_type = $5, disposition = $6, referral_type = $7, case_status = $8 Where mcm_number = $9 RETURNING case_data.id;' 
-        var caseDataValueArray = [edit.age, edit.gender, edit.school_name, edit.start_case_type, edit.end_case_type, edit.disposition, edit.referral_type, edit.case_status, edit.mcm_number]
+        var caseDataQuery = 'UPDATE case_data SET age = $1, gender = $2, school = (SELECT id FROM schools WHERE school_name = $3), start_case_type = $4, end_case_type = $5, disposition = $6, referral_type = $7, case_status = $8, city = (SELECT id FROM cities WHERE city_name = $9), close_date = $10, county = (SELECT id FROM counties WHERE county_name = $11), people_served = $12, last_seen = $13, reported_missing = $14, state = $15 Where mcm_number = $16;' 
+        var caseDataValueArray = [edit.age, edit.gender, edit.school_name, edit.start_case_type, edit.end_case_type, edit.disposition, edit.referral_type, edit.case_status, edit.city, edit.close_date, edit.county, edit.mcm_number, edit.people_served, edit.last_seen, edit.reported_missing, edit.state]
         console.log('caseDataQuery, caseDataValue', caseDataQuery, caseDataValueArray)
         client.query(caseDataQuery, caseDataValueArray, function (queryErr, resultObj) { 
-          done(); 
+          done();
           if (queryErr) { 
             console.log('caseData query Error', queryErr)
             res.sendStatus(500); 
           } else { // - for join tables 5
-              if (edit.case_vulnerabilities !== []) {
+              if (edit.case_vulnerabilities !== undefined) {
                 console.log('in vulnerabilities', edit.case_vulnerabilities)        //vulnerabilities if
                 var tempVArray = []
-                var vulnerabilityArray = []
-                var vulnerabilityCount = 1
+                var vulnerabilityArray = [edit.mcm_number]
+                var vulnerabilityCount = 2
               
                 var createVulnQuery = function() {
                   for (let i = 0; i < edit.case_vulnerabilities.length; i++) {
-                  tempVArray.push('('+resultObj.rows[0].id+ ', (Select id FROM vulnerabilities WHERE vulnerability = $'+vulnerabilityCount++ + '))');
+                  tempVArray.push('((Select id FROM case_data WHERE mcm_number = $1), (Select id FROM vulnerabilities WHERE vulnerability = $'+vulnerabilityCount++ + '))');
                   vulnerabilityArray.push(edit.case_vulnerabilities[i].name);
                   }  //end for loop
                 } //end create Query function
@@ -341,46 +341,46 @@ router.put('/editIntake', function (req, res) { //1
                     } //end vulnerability error 
                 }) //end query
             }  // end vulnerability if 
-              if (edit.race_ethnicity !== []) { // start race_ethnicity query  
-              console.log('219 edit.race_ethnicity', edit.race_ethnicity.name)  
-              //variables for race_enthinicity                 
-              var tempRaceArray = []
-              var raceValueArray = []
-              var raceCount = 1                   
-              var createRaceQuery = function() {
-                console.log('createRaceQuery running', edit.race_ethnicity[0].name)
-                for (let j = 0; j < edit.race_ethnicity.length; j++) {
-                console.log('for loop running w/ j', j);
-                tempRaceArray.push('('+resultObj.rows[0].id+ ', (Select id FROM race_ethnicity WHERE race_ethnicity = $'+raceCount++ + '))');
-                raceValueArray.push(edit.race_ethnicity[j].name);
-                }  
-                console.log('raceValueArray', raceValueArray)
-              } //end function
+            //   if (edit.race_ethnicity !== []) { // start race_ethnicity query  
+            //   console.log('219 edit.race_ethnicity', edit.race_ethnicity.name)  
+            //   //variables for race_enthinicity                 
+            //   var tempRaceArray = []
+            //   var raceValueArray = [edit.mcm_number]
+            //   var raceCount = 2                   
+            //   var createRaceQuery = function() {
+            //     console.log('createRaceQuery running', edit.race_ethnicity[0].name)
+            //     for (let j = 0; j < edit.race_ethnicity.length; j++) {
+            //     console.log('for loop running w/ j', j);
+            //     tempRaceArray.push('((Select id FROM case_data WHERE mcm_number = $1), (Select id FROM race_ethnicity WHERE race_ethnicity = $'+raceCount++ + '))');
+            //     raceValueArray.push(edit.race_ethnicity[j].name);
+            //     }  
+            //     console.log('raceValueArray', raceValueArray)
+            //   } //end function
                     
-              createRaceQuery();
-              console.log('tempArray', tempRaceArray)
-              var raceValue$ = tempRaceArray.join(', ')
-              var raceInsert = 'INSERT INTO case_race_ethnicity (case_data_id, race_ethnicity_id) VALUES ' 
-              var raceQuery = raceInsert + raceValue$
-              console.log('reSqlQuery, valueArray', raceQuery, raceValueArray)
+            //   createRaceQuery();
+            //   console.log('tempArray', tempRaceArray)
+            //   var raceValue$ = tempRaceArray.join(', ')
+            //   var raceInsert = 'INSERT INTO case_race_ethnicity (case_data_id, race_ethnicity_id) VALUES ' 
+            //   var raceQuery = raceInsert + raceValue$
+            //   console.log('reSqlQuery, valueArray', raceQuery, raceValueArray)
                     
-              client.query(raceQuery, raceValueArray, function (queryErr, raceResult) {
-                done();
-                  if (queryErr) {
-                      console.log(queryErr)
-                      res.sendStatus(500);
-                      } //end race query 
-                    }) //end client query
-            } // end race/ethnicity
+            //   client.query(raceQuery, raceValueArray, function (queryErr, raceResult) {
+            //     done();
+            //       if (queryErr) {
+            //           console.log(queryErr)
+            //           res.sendStatus(500);
+            //           } //end race query 
+            //         }) //end client query
+            // } // end race/ethnicity
               // if (edit.case_lawenforcement_denial !== []) { 
               //           //start agency Query
               //           var tempAgencyArray = []
-              //           var agencyArray = []
-              //           var agencyCount = 1
+              //           var agencyArray = [edit.mcm_number]
+              //           var agencyCount = 2
                         
               //           var createAgencyQuery = function() {
               //             for (let l = 0; l < edit.case_lawenforcement_denial.length; l++) {
-              //               tempAgencyArray.push('('+resultObj.rows[0].id+ ', (Select id FROM law_enforcement WHERE agency = $'+agencyCount++ + '), $' +agencyCount++ +')')
+              //               tempAgencyArray.push('((Select id FROM case_data WHERE mcm_number = $1), (Select id FROM law_enforcement WHERE agency = $'+agencyCount++ + '), $' +agencyCount++ +')')
               //               agencyArray.push(edit.case_lawenforcement_denial[l].name, edit.case_lawenforcement_denial[l].denial);
               //               }  //end for loop
               //             } //end creqte Query function
