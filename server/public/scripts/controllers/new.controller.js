@@ -211,6 +211,10 @@ myApp.controller('NewController', function (UserService) {
   }, {
     name: "Sexual Minority",
     value: false
+  },
+  {
+    name: "None",
+    value: false
   }
   ]
 
@@ -229,6 +233,10 @@ myApp.controller('NewController', function (UserService) {
     value: false
   }, {
     name: "Native American",
+    value: false
+  },
+  {
+    name: "None",
     value: false
   }
   ]
@@ -342,11 +350,18 @@ myApp.controller('NewController', function (UserService) {
         newIntake.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
           return vulnerability.value == true;
         });
+        if (vm.newIntake.case_vulnerabilities.length === 0) {
+          vm.case_vulnerabilities[21].value = true;
+          vm.newIntake.case_vulnerabilities.push(vm.case_vulnerabilities[21]);
+        }
       }).then(function () {
         newIntake.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
           return ethnicity.value == true;
-
         });
+        if (vm.newIntake.race_ethnicity.length === 0) {
+          vm.race_ethnicity[5].value = true;
+          vm.newIntake.race_ethnicity.push(vm.race_ethnicity[5]);
+        }
       }).then(function () {
         vm.jurisdictions = [{
           name: vm.LawEnforcementAgencyonCaseIn1,
