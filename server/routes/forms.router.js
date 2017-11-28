@@ -309,7 +309,7 @@ router.put('/editIntake', function (req, res) {
         console.log('caseDataQuery, caseDataValue', caseDataQuery, caseDataValueArray)
         client.query(caseDataQuery, caseDataValueArray, function (queryErr, resultObj) {  // --5
           done(); 
-          if (queryErr) { // for id
+          if (queryErr) { 
             console.log('caseData query Error', queryErr)
             res.sendStatus(500); 
           } else { // - vulnerabilities query  --6

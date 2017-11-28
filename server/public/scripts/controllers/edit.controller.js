@@ -289,9 +289,9 @@ myApp.controller('EditController', function(UserService) {
         background: '#fff url(assets/page.JPG)'
 
         }).then(function () {
-        // vm.editedForm.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
-        //   return vulnerability.value == true;
-        // });
+        vm.editedForm.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
+          return vulnerability.value == true;
+        });
           for (var i = 0; i < vm.case_vulnerabilities.length; i++) {
             if (vm.case_vulnerabilities[i].value == true) {
               vm.editedForm.case_vulnerabilities.push(vm.case_vulnerabilities[i]);
@@ -306,7 +306,7 @@ myApp.controller('EditController', function(UserService) {
         });
       }).then(function (){
         console.log('editedForm', vm.editedForm);
-        // UserService.updateForm(vm.editedForm)
+        UserService.updateForm(vm.editedForm)
       })
       
     }
