@@ -158,7 +158,7 @@ myApp.controller('EditController', function(UserService) {
           vm.agency = UserService.caseBeingEdited.data[0].agency;                 
           vm.jurisdictional_denial = [];  
           vm.disposition = UserService.caseBeingEdited.data[0].disposition;
-          vm.referralType = UserService.caseBeingEdited.data[0].referral_type;               
+          vm.referralType = UserService.caseBeingEdited.data[0].referral_type;  
           
           vm.vulnArray = [];
           vm.raceArray = [];
@@ -262,6 +262,9 @@ myApp.controller('EditController', function(UserService) {
           vm.DateClosed = new Date(closeYear + '-' + closeMonth + '-' + closeDay);
           console.log('vm.DateClosed', vm.DateClosed);
 
+          // vm.cityName = vm.cities[vm.caseBeingEdited.data[0].city].city_name;
+          console.log('vm.city', vm.city);
+
           vm.familyMembers = vm.caseBeingEdited.data[0].people_served;
 
           for (var b = 0; b < vm.caseBeingEdited.data.length; b++) {
@@ -302,7 +305,7 @@ myApp.controller('EditController', function(UserService) {
         last_seen: vm.DateLastSeenIn,
         reported_missing: vm.DateReportedMissingtoPoliceIn,
         close_date: vm.DateClosed,
-        city: vm.city,
+        city: vm.CityMissingFormIn,
         county: vm.county,
         state: vm.state,
         familyMembers: vm.familyMembers, // people_served ?
