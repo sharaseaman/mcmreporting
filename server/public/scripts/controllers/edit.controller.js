@@ -135,6 +135,15 @@ myApp.controller('EditController', function(UserService) {
         }).then(function () {
           vm.caseBeingEdited = UserService.caseBeingEdited;
           vm.age = UserService.caseBeingEdited.data[0].age;
+          vm.gender = UserService.caseBeingEdited.data[0].gender;
+          vm.city = UserService.caseBeingEdited.data[0].city;
+          vm.county = UserService.caseBeingEdited.data[0].county;
+          vm.state = UserService.caseBeingEdited.data[0].state;   
+          vm.start_case_type = UserService.caseBeingEdited.data[0].start_case_type;   
+          vm.end_case_type = UserService.caseBeingEdited.data[0].end_case_type;     
+          vm.agency = UserService.caseBeingEdited.data[0].agency;                 
+          vm.jurisdictional_denial = UserService.caseBeingEdited.data[0].end_case_type;                 
+          
           vm.vulnArray = [];
           vm.raceArray = [];
           // vm.DateLastSeenIn = UserService.caseBeingEdited.data[0].last_seen;
@@ -208,18 +217,7 @@ myApp.controller('EditController', function(UserService) {
           }
           
           console.log('Add value', vm.case_vulnerabilities[0].value);
-          
-          // vm.DateLastSeenIn = 02/10/2016;
-          // vm.DateReportedMissingtoPoliceIn = '06/23/17';
-          // vm.familyMembers = 1;
-          // vm.OfficeDetectiveIn1 = 'Joe Black';
-          // vm.LEPhoneNumberIn1 = '(651)-555-5555';
-          // vm.StreetAddressIn1 = '123 Main Street';
-          // vm.OfficeDetectiveIn2 = 'John Boy';
-          // vm.LEPhoneNumberIn2 = '(612)-555-5555';
-          // vm.StreetAddressIn2 = '221 B Baker Street';
-          // vm.schoolDisctrict = 123;
-          // vm.gender = UserService.caseBeingEdited.data[0].age;
+        
           
 
           console.log('vm.caseBeingEdited', vm.caseBeingEdited);
@@ -234,7 +232,7 @@ myApp.controller('EditController', function(UserService) {
     }
 
     vm.updateData = function () {
-      console.log('In updateData');
+      console.log('In controller updateData');
       vm.editedForm = {
         mcm_number: vm.caseIn,
         age: vm.age,
@@ -280,7 +278,7 @@ myApp.controller('EditController', function(UserService) {
         });
       }).then(function (){
         console.log('editedForm', vm.editedForm);
-        // UserService.updateForm(vm.editedForm)
+        UserService.updateForm(vm.editedForm)
       })
       
     }

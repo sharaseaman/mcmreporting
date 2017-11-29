@@ -2,7 +2,7 @@
 
 <div layout='row' layout-fill layout-margin>
   <md-input-container>
-    <input id="caseNum" ng-model="ec.caseIn" type="text" placeholder="MCM Case Number" required>
+    <input id="caseNum" ng-model="ec.caseIn" type="text" placeholder="MCM Case Number">
     <md-button type="button" ng-click="ec.getData(ec.caseIn)" class="teal">Enter</md-button>
   </md-input-container>
 </div>
@@ -10,7 +10,7 @@
 
 <form role="form" class='form-vertical'></form>
 <div class="md-form form-group" ng-submit="ec.updateData()" ng-if="ec.showEditForm">
-<!-- <div class="md-form form-group" ng-submit="ec.updateData()"> -->
+  <!-- <div class="md-form form-group" ng-submit="ec.updateData()"> -->
 
   <div layout='row' layout-fill layout-margin>
     <md-input-container>
@@ -18,29 +18,32 @@
     </md-input-container>
     <md-input-container>
       <label>Gender</label>
-      <md-select name="Gender" id="gender" ng-model="ec.gender" selected="ec.gender">
+      <md-select name="Gender" id="gender" ng-model="ec.gender" ng-value selected="ec.gender" ng-selected="true">
         <md-option value="Male">Male</md-option>
         <md-option value="Female">Female</md-option>
         <md-option value="Non-binary">Non-binary</md-option>
       </md-select>
     </md-input-container>
-    
-    <md-checkbox ng-model="ec.AfricanAmericanIn" ng-click="ec.changeRace(ec.race_ethnicity[0])" aria-label="African American" ng-checked="ec.race_ethnicity[0].value">
+
+
+    <md-checkbox ng-model="ec.AfricanAmericanIn" ng-click="ec.changeRace(ec.race_ethnicity[0])" aria-label="African American"
+      ng-checked="ec.race_ethnicity[0].value">
       African American
     </md-checkbox>
-    
-    <md-checkbox ng-model="ec.AsianPacificIslanderIn" ng-click="ec.changeRace(ec.race_ethnicity[1])" aria-label="Asian Pacific Islander" ng-checked="ec.race_ethnicity[1].value">
+
+    <md-checkbox ng-model="ec.AsianPacificIslanderIn" ng-click="ec.changeRace(ec.race_ethnicity[1])" aria-label="Asian Pacific Islander"
+      ng-checked="ec.race_ethnicity[1].value">
       Asian Pacific Islander
     </md-checkbox>
-    
+
     <md-checkbox ng-model="ec.CaucasianIn" ng-click="ec.changeRace(ec.race_ethnicity[2])" aria-label="Caucasian" ng-checked="ec.race_ethnicity[2].value">
       Caucasian
     </md-checkbox>
-    
+
     <md-checkbox ng-model="ec.LatinxIn" ng-click="ec.changeRace(ec.race_ethnicity[3])" aria-label="Latinx" ng-checked="ec.race_ethnicity[3].value">
       Latinx
     </md-checkbox>
-    
+
     <md-checkbox ng-model="ec.NativeAmericanIn" ng-click="ec.changeRace(ec.race_ethnicity[4])" aria-label="Native American" ng-checked="ec.race_ethnicity[4].value">
       Native American
     </md-checkbox>
@@ -55,7 +58,8 @@
       ADD/ADHD
     </md-checkbox>
 
-    <md-checkbox ng-model="ec.AutisimIn" aria-label="ASD(Autism Spectrum Disorder)" ng-click="ec.changeVul(ec.case_vulnerabilities[1])" ng-checked="ec.case_vulnerabilities[1].value">
+    <md-checkbox ng-model="ec.AutisimIn" aria-label="ASD(Autism Spectrum Disorder)" ng-click="ec.changeVul(ec.case_vulnerabilities[1])"
+      ng-checked="ec.case_vulnerabilities[1].value">
       ASD (Autism Spectrum Disorder)
     </md-checkbox>
 
@@ -73,11 +77,13 @@
       Bi-Polar Disorder
     </md-checkbox>
 
-    <md-checkbox ng-model="ec.DepressionClinicalIn" aria-label="Depression(clinical)" ng-click="ec.changeVul(ec.case_vulnerabilities[5])" ng-checked="ec.case_vulnerabilities[5].value">
+    <md-checkbox ng-model="ec.DepressionClinicalIn" aria-label="Depression(clinical)" ng-click="ec.changeVul(ec.case_vulnerabilities[5])"
+      ng-checked="ec.case_vulnerabilities[5].value">
       Depression (clinical)
     </md-checkbox>
 
-    <md-checkbox ng-model="ec.DespressionSituationalIn" aria-label="Depression (situational)" ng-click="ec.changeVul(ec.case_vulnerabilities[6])" ng-checked="ec.case_vulnerabilities[6].value">
+    <md-checkbox ng-model="ec.DespressionSituationalIn" aria-label="Depression (situational)" ng-click="ec.changeVul(ec.case_vulnerabilities[6])"
+      ng-checked="ec.case_vulnerabilities[6].value">
       Depression (situational)
     </md-checkbox>
 
@@ -89,11 +95,13 @@
 
   <div layout='row' layout-fill layout-margin>
 
-    <md-checkbox ng-model="ec.EconomicIn" aria-label="EconomicExploitation(history)" ng-click="ec.changeVul(ec.case_vulnerabilities[8])" ng-checked="ec.case_vulnerabilities[8].value">
+    <md-checkbox ng-model="ec.EconomicIn" aria-label="EconomicExploitation(history)" ng-click="ec.changeVul(ec.case_vulnerabilities[8])"
+      ng-checked="ec.case_vulnerabilities[8].value">
       Economic exploitation (history)
     </md-checkbox>
 
-    <md-checkbox ng-model="ec.EmotionalAbuseIn" aria-label="Emotional Abuse (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[9])" ng-checked="ec.case_vulnerabilities[9].value">
+    <md-checkbox ng-model="ec.EmotionalAbuseIn" aria-label="Emotional Abuse (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[9])"
+      ng-checked="ec.case_vulnerabilities[9].value">
       Emotional Abuse (history)
     </md-checkbox>
 
@@ -101,15 +109,18 @@
       Gang Association
     </md-checkbox>
 
-    <md-checkbox ng-model="ec.ODDIn" aria-label="ODD (Oppositional Defiant Disorder)" ng-click="ec.changeVul(ec.case_vulnerabilities[11])" ng-checked="ec.case_vulnerabilities[11].value">
+    <md-checkbox ng-model="ec.ODDIn" aria-label="ODD (Oppositional Defiant Disorder)" ng-click="ec.changeVul(ec.case_vulnerabilities[11])"
+      ng-checked="ec.case_vulnerabilities[11].value">
       ODD (Oppositional Defiant Disorder)
     </md-checkbox>
 
-    <md-checkbox ng-model="ec.LaborIn" aria-label="Labor Exploitation (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[12])" ng-checked="ec.case_vulnerabilities[12].value">
+    <md-checkbox ng-model="ec.LaborIn" aria-label="Labor Exploitation (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[12])"
+      ng-checked="ec.case_vulnerabilities[12].value">
       Labor Exploitation (history)
     </md-checkbox>
 
-    <md-checkbox ng-model="ec.LuringAdultIn" aria-label="Luring/grooming by adult" ng-click="ec.changeVul(ec.case_vulnerabilities[13])" ng-checked="ec.case_vulnerabilities[13].value">
+    <md-checkbox ng-model="ec.LuringAdultIn" aria-label="Luring/grooming by adult" ng-click="ec.changeVul(ec.case_vulnerabilities[13])"
+      ng-checked="ec.case_vulnerabilities[13].value">
       Luring/grooming by adult
     </md-checkbox>
 
@@ -117,42 +128,48 @@
   </div>
   <div layout='row' layout-fill layout-margin>
 
-    <md-checkbox ng-model="ec.LuringChildIn" aria-label="Luring/grooming by child" ng-click="ec.changeVul(ec.case_vulnerabilities[14])" ng-checked="ec.case_vulnerabilities[14].value">
+    <md-checkbox ng-model="ec.LuringChildIn" aria-label="Luring/grooming by child" ng-click="ec.changeVul(ec.case_vulnerabilities[14])"
+      ng-checked="ec.case_vulnerabilities[14].value">
       Luring/grooming by child
     </md-checkbox>
 
 
-    <md-checkbox ng-model="ec.MissingFromCareIn" aria-label="Missing From Care" ng-click="ec.changeVul(ec.case_vulnerabilities[15])" ng-checked="ec.case_vulnerabilities[15].value">
+    <md-checkbox ng-model="ec.MissingFromCareIn" aria-label="Missing From Care" ng-click="ec.changeVul(ec.case_vulnerabilities[15])"
+      ng-checked="ec.case_vulnerabilities[15].value">
       Missing From Care
     </md-checkbox>
 
-    <md-checkbox ng-model="ec.PhysicalAbuseIn" aria-label="Physical Abuse (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[16])" ng-checked="ec.case_vulnerabilities[16].value">
+    <md-checkbox ng-model="ec.PhysicalAbuseIn" aria-label="Physical Abuse (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[16])"
+      ng-checked="ec.case_vulnerabilities[16].value">
       Physical Abuse (history)
     </md-checkbox>
 
-    <md-checkbox ng-model="ec.RunawayIn" aria-label="Runaway (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[17])" ng-checked="ec.case_vulnerabilities[17].value">
+    <md-checkbox ng-model="ec.RunawayIn" aria-label="Runaway (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[17])"
+      ng-checked="ec.case_vulnerabilities[17].value">
       Physical Abuse (history)
     </md-checkbox>
 
-    <md-checkbox ng-model="ec.SexualAbuseIn" aria-label="Sexual Abuse (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[18])" ng-checked="ec.case_vulnerabilities[18].value">
+    <md-checkbox ng-model="ec.SexualAbuseIn" aria-label="Sexual Abuse (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[18])"
+      ng-checked="ec.case_vulnerabilities[18].value">
       Sexual Abuse (history)
     </md-checkbox>
 
-    <md-checkbox ng-model="ec.SexualExploitationIn" aria-label="Sexual Exploitation (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[19])" ng-checked="ec.case_vulnerabilities[19].value">
+    <md-checkbox ng-model="ec.SexualExploitationIn" aria-label="Sexual Exploitation (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[19])"
+      ng-checked="ec.case_vulnerabilities[19].value">
       Sexual Abuse (history)
     </md-checkbox>
 
-    <md-checkbox ng-model="ec.SexualMinorityIn" aria-label="Sexual Exploitation (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[20])" ng-checked="ec.case_vulnerabilities[20].value">
+    <md-checkbox ng-model="ec.SexualMinorityIn" aria-label="Sexual Exploitation (history)" ng-click="ec.changeVul(ec.case_vulnerabilities[20])"
+      ng-checked="ec.case_vulnerabilities[20].value">
       Sexual Minority (LGBTQ, etc.)
     </md-checkbox>
 
   </div>
 
-  
+
 
   <div layout='row' layout-fill layout-margin>
     <md-input-container>
-      <!-- <input id="DateLastSeen" ng-model="ec.DateLastSeenIn" type="date" style="width:150px;" placeholder="Date Last Seen"> -->
       <input id="DateLastSeen" ng-model="ec.DateLastSeenIn" type="date" style="width:150px;" placeholder="Date Last Seen">
     </md-input-container>
     <md-input-container>
@@ -160,28 +177,28 @@
       <input id="DateReportedMissingtoPolice" ng-model="ec.DateReportedMissingtoPoliceIn" style="width:250px;" type="text" placeholder="Date Reported Missing to Police">
     </md-input-container>
 
-    <md-input-container flex>
+    <md-input-container>
       <label>City Missing From</label>
-      <md-select ng-model="ec.CityMissingFormIn" ng-change="ec.itemChange()" required>
+          
+      <md-select name="City Missing From" id="city" ng-model="ec.CityMissingFormIn" ng-change="ec.itemChange()" ng-value selected="{{ec.city}}" ng-selected="true">
         <md-option value="" disabled md-selected>City Missing From</md-option>
-        <!-- <md-option ng-repeat="cityObj in ec.cities" ng-value="cityObj.city"> {{cityObj.city_name}}</md-option> -->
+        <md-option ng-repeat="cityObj in ec.cities" ng-value="cityObj.city"> {{cityObj.city_name}}</md-option>
         <!-- <md-option  ng-value="West Saint Paul" selected>West Saint Paul</md-option> -->
       </md-select>
     </md-input-container>
 
     <md-input-container style="margin-right: 10px;width: 20%;">
       <label>County Missing From</label>
-      <md-select ng-model="ec.CountyMissingFormIn" ng-change="ec.itemChange()" required>
+      <md-select ng-model="ec.CountyMissingFormIn" ng-change="ec.itemChange()"ng-value selected="{{ec.county}}" ng-selected="true">
         <md-option value="" disabled md-selected>County Missing From</md-option>
-        <!-- <md-option ng-repeat="countyObj in ec.counties" ng-value="countyObj.county"> {{countyObj.county_name}}</md-option> -->
+        <md-option ng-repeat="countyObj in ec.counties" ng-value="countyObj.county">{{countyObj.county_name}}</md-option>
         <md-option ng-value="">Dakota</md-option>
       </md-select>
     </md-input-container>
 
     <md-input-container>
-      <label>State Missing From</label>
-      <md-select name="StateMissingFrom" ng-model="nwc.StateMissingFromIn" ng-change="nwc.itemChange()" type="number" placeholder="State Missing From"
-        required>
+      <label>State Missing From</label>              
+      <md-select name="StateMissingFrom" id="StateMissingFrom" ng-model="ec.state" ng-change="ec.itemChange()" ng-value selected="ec.state" ng-selected="true">
         <md-option value="" disabled md-selected>State Missing From</md-option>
         <md-option value="AL">Alabama</md-option>
         <md-option value="AK">Alaska</md-option>
@@ -206,7 +223,7 @@
         <md-option value="MD">Maryland</md-option>
         <md-option value="MA">Massachusetts</md-option>
         <md-option value="MI">Michigan</md-option>
-        <md-option value="MN" Selected>Minnesota</md-option>
+        <md-option value="MN">Minnesota</md-option>
         <md-option value="MS">Mississippi</md-option>
         <md-option value="MO">Missouri</md-option>
         <md-option value="MT">Montana</md-option>
@@ -245,47 +262,49 @@
       <input id="familyMembers" ng-model="ec.familyMembers" type="text" placeholder="Number of Family Members Involved in Search">
     </md-input-container>
 
-    <md-input-container>      
-    <md-select name="Starting Case Type" placeholder="Starting Case Type" id="yes" ng-model="ec.startingCaseType" required>
-      <md-option value="" disabled selected>Case Type</md-option>
-      <md-option value="Runaway">Runaway</md-option>
-      <md-option value="Abduction by Family Member" selected>Abduction by Family Member</md-option>
-      <md-option value="Abduction by Acquaintance">Abduction by Acquaintance</md-option>
-      <md-option value="Stranger Abduction">Stranger Abduction</md-option>
-      <md-option value="LIM">LIM</md-option>
-    </md-select>
-  </md-input-container>
-      
+    <md-input-container>
+      <label>Case Type When Opened</label>          
+      <md-select name="Starting Case Type" id="StartingCaseType" ng-model="ec.start_case_type" ng-change="ec.itemChange()" ng-value selected="ec.start_case_type" ng-selected="true">
+        <md-option value="" disabled selected>Case Type</md-option>        
+        <md-option value="Runaway">Runaway</md-option>
+        <md-option value="Abduction by Family Member">Abduction by Family Member</md-option>
+        <md-option value="Abduction by Acquaintance">Abduction by Acquaintance</md-option>
+        <md-option value="Stranger Abduction">Stranger Abduction</md-option>
+        <md-option value="LIM">LIM</md-option>
+      </md-select>
+    </md-input-container>
+
 
     <md-input-container>
       <input id="DateClosed" ng-model="ec.DateClosed" style="width:150px;" type="date" placeholder="Date Closed">
     </md-input-container>
 
-    <md-input-container>      
-    <md-select name="Ending Case Type" placeholder="Ending Case Type" id="yes" ng-model="ec.endingCaseType">
-      <md-option value="" disabled selected>Case Type</md-option>
-      <md-option value="null"></md-option>
-      <md-option value="Runaway">Runaway</md-option>
-      <md-option value="Abduction by Family Member">Abduction by Family Member</md-option>
-      <md-option value="Abduction by Acquaintance">Abduction by Acquaintance</md-option>
-      <md-option value="Stranger Abduction">Stranger Abduction</md-option>
-      <md-option value="LIM">LIM</md-option>
-    </md-select>
-  </md-input-container>
-      
+    <md-input-container>
+      <label>Case Type When Closed</label>
+
+      <md-select name="Ending Case Type" id="yes" ng-model="ec.end_case_type" ng-value selected="ec.end_case_type">
+        <md-option value="" disabled selected>Case Type</md-option>
+        <md-option value="null"></md-option>
+        <md-option value="Runaway">Runaway</md-option>
+        <md-option value="Abduction by Family Member">Abduction by Family Member</md-option>
+        <md-option value="Abduction by Acquaintance">Abduction by Acquaintance</md-option>
+        <md-option value="Stranger Abduction">Stranger Abduction</md-option>
+        <md-option value="LIM">LIM</md-option>
+      </md-select>
+    </md-input-container>
+
   </div>
 
   <div layout='row' layout-fill layout-margin>
-  
+
     <md-input-container>
       <label>Law Enforcement Agency On Case</label>
-      <md-select ng-model="ec.LawEnforcementAgencyonCaseIn1" ng-change="ec.itemChange()" style="width:280px;">
+      <md-select ng-model="ec.LawEnforcementAgencyonCaseIn1" ng-change="ec.itemChange()" style="width:280px;" placeholder="{{ec.agency}}">
         <md-option value="" disabled md-selected>Law Enforcement Agency</md-option>
-        <!-- <md-option ng-value="West Saint Paul Police Dept" selected>West Saint Paul Police Dept</md-option> -->
       </md-select>
     </md-input-container>
-  
-  
+
+
 
     <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
@@ -298,7 +317,7 @@
   </div>
 
   <div layout='row' layout-fill layout-margin>
-  
+
     <md-input-container>
       <label>Law Enforcement Agency On Case</label>
       <md-select ng-model="ec.LawEnforcementAgencyonCaseIn2" ng-change="ec.itemChange()" style="width:280px;">
@@ -306,7 +325,7 @@
         <!-- <md-option ng-value="Brooklyn Center Police Dept" selected>Brooklyn Center Police Dept</md-option> -->
       </md-select>
     </md-input-container>
-  
+
     <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
       <md-select ng-model="ec.JurisdictionalDenialIn2" ng-change="ec.itemChange()" placeholder="Jurisdictional denial">
@@ -318,7 +337,7 @@
   </div>
 
   <div layout='row' layout-fill layout-margin>
-  
+
     <md-input-container>
       <label>Law Enforcement Agency On Case</label>
       <md-select ng-model="ec.LawEnforcementAgencyonCaseIn3" ng-change="ec.itemChange()" style="width:280px;">
@@ -326,9 +345,9 @@
         <md-option ng-repeat="AgencyObj in ec.agencies" ng-value="AgencyObj.agency"> {{AgencyObj.agency}}</md-option>
       </md-select>
     </md-input-container>
-  
-  
-  
+
+
+
     <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
       <md-select ng-model="ec.JurisdictionalDenialIn3" ng-change="nwc.itemChange()" placeholder="Jurisdictional denial" id="yes">
@@ -340,7 +359,7 @@
   </div>
 
   <div layout='row' layout-fill layout-margin>
-  
+
     <md-input-container>
       <label>Law Enforcement Agency On Case</label>
       <md-select ng-model="ec.LawEnforcementAgencyonCaseIn4" ng-change="ec.itemChange()" style="width:280px;">
@@ -348,25 +367,8 @@
         <md-option ng-repeat="AgencyObj in ec.agencies" ng-value="AgencyObj.agency"> {{AgencyObj.agency}}</md-option>
       </md-select>
     </md-input-container>
-  
-  
-    <!-- <md-input-container>
-      <input id="CaseNumber" ng-model="ec.CaseNumberIn4" type="number" placeholder="Case Number">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="Office/Detective" ng-model="ec.OfficeDetectiveIn4" type="text" placeholder="Officer/Detective">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="LEPhoneNumber" ng-model="ec.LEPhoneNumberIn4" type="number" placeholder="LE Phone Number">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="StreetAddress" ng-model="ec.StreetAddressIn4" type="text" placeholder="Street Address">
-    </md-input-container>
-  
-   -->
+
+
     <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
       <md-select ng-model="ec.JurisdictionalDenialIn4" ng-change="ec.itemChange()" placeholder="Jurisdictional denial" id="yes">
@@ -378,7 +380,7 @@
   </div>
 
   <div layout='row' layout-fill layout-margin>
-  
+
     <md-input-container>
       <label>Law Enforcement Agency On Case</label>
       <md-select ng-model="ec.LawEnforcementAgencyonCaseIn5" ng-change="ec.itemChange()" style="width:280px;">
@@ -386,25 +388,9 @@
         <md-option ng-repeat="AgencyObj in ec.agencies" ng-value="AgencyObj.agency"> {{AgencyObj.agency}}</md-option>
       </md-select>
     </md-input-container>
-  
-  
-    <!-- <md-input-container>
-      <input id="CaseNumber" ng-model="ec.CaseNumberIn5" type="number" placeholder="Case Number">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="Office/Detective" ng-model="ec.OfficeDetectiveIn5" type="text" placeholder="Officer/Detective">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="LEPhoneNumber" ng-model="ec.LEPhoneNumberIn5" type="number" placeholder="LE Phone Number">
-    </md-input-container>
-  
-    <md-input-container>
-      <input id="StreetAddress" ng-model="ec.StreetAddressIn5" type="text" placeholder="Street Address">
-    </md-input-container>
-   -->
-  
+
+
+
     <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
       <md-select ng-model="ec.JurisdictionalDenialIn5" ng-change="ec.itemChange()" placeholder="Jurisdictional denial" id="yes">
@@ -420,37 +406,34 @@
       <input type="text" name="" id="schoolDisctrict" placeholder="School District Number" ng-model="ec.schoolDisctrict">
     </md-input-container>
 
-    <md-input-container>      
-    <md-select name="Disposition" placeholder="Disposition" id="disposition" ng-model="ec.disposition">
-      <md-option value="" disabled selected>Outcome</md-option>
-      <md-option value="Missing Found Safe">Missing Found Safe</md-option>
-      <md-option value="Missing Found Injured">Missing Found Injured</md-option>
-      <md-option value="Missing Found Deceased">Missing Found Deceased</md-option>
-    </md-select>
-  </md-input-container>
-      
+    <md-input-container>
+      <md-select name="Disposition" placeholder="Disposition" id="disposition" ng-model="ec.disposition">
+        <md-option value="" disabled selected>Outcome</md-option>
+        <md-option value="Missing Found Safe">Missing Found Safe</md-option>
+        <md-option value="Missing Found Injured">Missing Found Injured</md-option>
+        <md-option value="Missing Found Deceased">Missing Found Deceased</md-option>
+      </md-select>
+    </md-input-container>
 
 
 
-  <md-input-container>    
-    <md-select name="Referral Type" placeholder="Referral Type" id="yes" ng-model="ec.referralType">
-      <md-option value="" disabled selected>Referral Type</md-option>
-      <md-option value="Word of Mouth" selected>Word of Mouth</md-option>
-      <md-option value="Facebook">Facebook</md-option>
-      <md-option value="Website">Website</md-option>
-      <md-option value="Referral by Law Enforcement">Referral by Law Enforcement</md-option>
-      <md-option value="Referral by County Worker">Referral by County Worker</md-option>
-    </md-select>
-  </md-input-container>
-      
+
+    <md-input-container>
+      <md-select name="Referral Type" placeholder="Referral Type" id="yes" ng-model="ec.referralType">
+        <md-option value="" disabled selected>Referral Type</md-option>
+        <md-option value="Word of Mouth" selected>Word of Mouth</md-option>
+        <md-option value="Facebook">Facebook</md-option>
+        <md-option value="Website">Website</md-option>
+        <md-option value="Referral by Law Enforcement">Referral by Law Enforcement</md-option>
+        <md-option value="Referral by County Worker">Referral by County Worker</md-option>
+      </md-select>
+    </md-input-container>
+
   </div>
 
   <div layout="row" layout-fill layout-margin>
-    <!-- <md-input-container>
-      <input type="text" name="Additional Notes" id="notes" placeholder="Additional Notes">
-    </md-input-container>
-  </div> -->
 
-  <md-button type="submit" class="teal" ng-click="ec.updateData()">Submit</md-button>
-</div>
-</form>
+
+    <md-button type="submit" class="teal" ng-click="ec.updateData()">Submit</md-button>
+  </div>
+  </form>
