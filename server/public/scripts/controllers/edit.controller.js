@@ -153,10 +153,12 @@ myApp.controller('EditController', function(UserService) {
           vm.city = UserService.caseBeingEdited.data[0].city;
           vm.county = UserService.caseBeingEdited.data[0].county;
           vm.state = UserService.caseBeingEdited.data[0].state;   
-          vm.start_case_type = UserService.caseBeingEdited.data[0].start_case_type;   
+          vm.start_case_type = UserService.caseBeingEdited.data[0].start_case_type; 
           vm.end_case_type = UserService.caseBeingEdited.data[0].end_case_type;     
           vm.agency = UserService.caseBeingEdited.data[0].agency;                 
-          vm.jurisdictional_denial = UserService.caseBeingEdited.data[0].end_case_type;                 
+          vm.jurisdictional_denial = [];  
+          vm.disposition = UserService.caseBeingEdited.data[0].disposition;
+          vm.referralType = UserService.caseBeingEdited.data[0].referral_type;               
           
           vm.vulnArray = [];
           vm.raceArray = [];
@@ -261,6 +263,20 @@ myApp.controller('EditController', function(UserService) {
           console.log('vm.DateClosed', vm.DateClosed);
 
           vm.familyMembers = vm.caseBeingEdited.data[0].people_served;
+
+          for (var b = 0; b < vm.caseBeingEdited.data.length; b++) {
+            var tempPoliceDept = { id: vm.caseBeingEdited.data[b].law_enforcement_id, value: vm.caseBeingEdited.data[b].jurisdictional_denial};
+            var duplicateDenials = 0
+            for (var c = 0; c < vm.jurisdictional_denial.length; c++) {
+              if (vm.jurisdictional_denial[c].id == tempPoliceDept.id && vm.jurisdictional_denial[c].value == tempPoliceDept.value) {
+                duplicateDenials++;
+              }
+            }
+            if (duplicateDenials === 0) {
+              vm.jurisdictional_denial.push(tempPoliceDept);
+            }
+          }
+          console.log('vm.jurisdictional_denial', vm.jurisdictional_denial);
           
           // vm.schoolDisctrict = 123;
           // vm.gender = UserService.caseBeingEdited.data[0].age;
@@ -297,7 +313,7 @@ myApp.controller('EditController', function(UserService) {
         referral_type: vm.referralType,
         case_vulnerabilities: [],
         race_ethnicity: [],
-        case_lawenforcement_denial: []
+        case_lawenforcement_denial: vm.jurisdictional_denial
       }
       swal({
         title: 'Required fields submitted to database.',
