@@ -106,7 +106,6 @@ myApp.controller('NewController', function (UserService) {
   vm.PRAZIPCodeIn = '';
   vm.PRAHomePhoneIn = '';
   vm.PRAWorkPhoneIn = '';
-  vm.PRAHomePhoneIn = '';
   vm.PRACellPhoneIn = '';
   vm.PRAEmailIn = '';
   vm.OtherHistoryIn = '';
@@ -136,8 +135,38 @@ myApp.controller('NewController', function (UserService) {
   vm.NativeAmericanIn = '';
   vm.CaucasianIn = '';
   vm.LatinxIn = '';
-  // vm.formatDateCaseClosedIn = '';
-
+  vm.EyeBrowFeaturesIn = '';
+  vm.LEPhoneNumberIn1 = '';
+  vm.LEPhoneNumberIn2 = '';
+  vm.LEPhoneNumberIn3 = '';
+  vm.LEPhoneNumberIn4 = '';
+  vm.LEPhoneNumberIn5 = '';
+  vm.OtherLEIn5 = '';
+  vm.LawEnforcementAgencyonCaseIn1 = '';
+  vm.LawEnforcementAgencyonCaseIn2 = '';
+  vm.LawEnforcementAgencyonCaseIn3 = '';
+  vm.LawEnforcementAgencyonCaseIn4 = '';
+  vm.LawEnforcementAgencyonCaseIn5 = '';
+  vm.CaseNumberIn1 = '';
+  vm.CaseNumberIn2 = '';
+  vm.CaseNumberIn3 = '';
+  vm.CaseNumberIn4 = '';
+  vm.CaseNumberIn5 = '';
+  vm.JurisdictionalDenialIn1 = '';
+  vm.JurisdictionalDenialIn2 = '';
+  vm.JurisdictionalDenialIn3 = '';
+  vm.JurisdictionalDenialIn4 = '';
+  vm.JurisdictionalDenialIn5 = '';
+  vm.StreetAddressIn1 = '';
+  vm.StreetAddressIn2 = '';
+  vm.StreetAddressIn3 = '';
+  vm.StreetAddressIn4 = '';
+  vm.StreetAddressIn5 = '';
+  vm.OfficeDetectiveIn1 = ''; 
+  vm.OfficeDetectiveIn2 = '';
+  vm.OfficeDetectiveIn3 = '';
+  vm.OfficeDetectiveIn4 = '';
+  vm.OfficeDetectiveIn5 = '';
 
   vm.case_vulnerabilities = [{
     name: "ADD/ADHD",
@@ -211,6 +240,10 @@ myApp.controller('NewController', function (UserService) {
   }, {
     name: "Sexual Minority",
     value: false
+  },
+  {
+    name: "None",
+    value: false
   }
   ]
 
@@ -229,6 +262,10 @@ myApp.controller('NewController', function (UserService) {
     value: false
   }, {
     name: "Native American",
+    value: false
+  },
+  {
+    name: "None",
     value: false
   }
   ]
@@ -342,11 +379,18 @@ myApp.controller('NewController', function (UserService) {
         newIntake.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
           return vulnerability.value == true;
         });
+        if (newIntake.case_vulnerabilities.length === 0) {
+          case_vulnerabilities[21].value = true;
+          newIntake.case_vulnerabilities.push(case_vulnerabilities[21]);
+        }
       }).then(function () {
         newIntake.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
           return ethnicity.value == true;
-
         });
+        if (newIntake.race_ethnicity.length === 0) {
+          race_ethnicity[5].value = true;
+          newIntake.race_ethnicity.push(race_ethnicity[5]);
+        }
       }).then(function () {
         vm.jurisdictions = [{
           name: vm.LawEnforcementAgencyonCaseIn1,
@@ -471,27 +515,27 @@ myApp.controller('NewController', function (UserService) {
     pdf.setFontType('normal');
     pdf.setFontSize(12);
     pdf.text(10, 170, 'Hair Color: ' + vm.HairColorIn);
-    pdf.text(80, 170, 'Hair Style: ' + vm.HairStyleIn);
-    pdf.text(130, 170, 'Eye Color: ' + vm.EyeColorIn);
-    pdf.text(10, 180, 'Glasses/Contacts: ' + vm.GlassesOrContactsIn);
-    pdf.text(80, 180, 'Facial Hair: ' + vm.FacialHairIn);
-    pdf.text(130, 180, 'Eye Brow Features: ' + vm.EyeBrowFeaturesIn);
+    pdf.text(10, 180, 'Hair Style: ' + vm.HairStyleIn);
+    pdf.text(110, 170, 'Eye Color: ' + vm.EyeColorIn);
+    pdf.text(110, 190, 'Glasses/Contacts: ' + vm.GlassesOrContactsIn);
+    pdf.text(10, 190, 'Facial Hair: ' + vm.FacialHairIn);
+    pdf.text(110, 180, 'Eye Brow Features: ' + vm.EyeBrowFeaturesIn);
 
-    pdf.text(10, 190, 'Race/Ethnicity: ');
-    pdf.text(50, 190, 'African American: ' + vm.AfricanAmericanIn);
-    pdf.text(50, 200, 'Asian Pacific Islander: ' + vm.AsianPacificIslanderIn);
-    pdf.text(120, 200, 'Native American: ' + vm.NativeAmericanIn);
-    pdf.text(120, 190, 'Caucasion: ' + vm.CaucasianIn);
-    pdf.text(160, 190, 'Latinx: ' + vm.LatinxIn);
+    pdf.text(10, 200, 'Race/Ethnicity: ');
+    pdf.text(50, 200, 'African American: ' + vm.AfricanAmericanIn);
+    pdf.text(50, 210, 'Asian Pacific Islander: ' + vm.AsianPacificIslanderIn);
+    pdf.text(120, 210, 'Native American: ' + vm.NativeAmericanIn);
+    pdf.text(120, 200, 'Caucasion: ' + vm.CaucasianIn);
+    pdf.text(160, 200, 'Latinx: ' + vm.LatinxIn);
 
-    pdf.text(10, 210, 'Tattoos or Piercings: ' + vm.commentTattoosIn);
-    pdf.text(10, 220, 'Dental Characteristics: ' + vm.DentalCharacteristicsIn);
-    pdf.text(10, 230, 'Scars or Birthmarks: ' + vm.ScarsOrBirthmarksIn);
+    pdf.text(10, 220, 'Tattoos or Piercings: ' + vm.commentTattoosIn);
+    pdf.text(10, 230, 'Dental Characteristics: ' + vm.DentalCharacteristicsIn);
+    pdf.text(10, 240, 'Scars or Birthmarks: ' + vm.ScarsOrBirthmarksIn);
 
-    pdf.text(10, 240, 'Additional Information: ');
+    pdf.text(10, 250, 'Additional Information: ');
     var formatOtherInfoIn = vm.OtherInfoIn;
     var setOtherInfoIn = pdf.splitTextToSize(formatOtherInfoIn, 200);
-    pdf.text(10, 245, setOtherInfoIn);
+    pdf.text(10, 255, setOtherInfoIn);
 
 
     //page 2
@@ -569,24 +613,24 @@ myApp.controller('NewController', function (UserService) {
     pdf.text(100, 150, 'Case Status: ' + vm.CaseStatusIn);
     pdf.text(10, 160, 'Case Type When Opened:  ' + vm.CaseTypeWhenOpenedIn);
     pdf.text(10, 170, 'Case Type When Closed:   ' + vm.CaseTypeWhenClosedIn);
-    pdf.text(100, 170, 'Date Case Closed: ' + vm.formatDateCaseClosedIn);
-    pdf.text(10, 180, 'Referral Type: ' + vm.ReferralTypeIn);
+    pdf.text(10, 180, 'Date Case Closed: ' + vm.formatDateCaseClosedIn);
+    pdf.text(10, 190, 'Referral Type: ' + vm.ReferralTypeIn);
 
-    pdf.line(10, 188, 206, 188);
+    pdf.line(10, 198, 206, 198);
 
     // Specific Questions to Occurrence
     pdf.setFontType('bold');
     pdf.setFontSize(14);
-    pdf.text(10, 200, 'Specific Questions to Occurrence');
+    pdf.text(10, 210, 'Specific Questions to Occurrence');
     pdf.setFontType('normal');
     pdf.setFontSize(12);
-    pdf.text(10, 210, 'Was the Person with Anyone: ' + vm.commentWithOthersIn);
-    pdf.text(10, 220, 'High Risk Activity: ' + vm.commentHighRiskIn);
-    pdf.text(10, 230, 'Disturbing Situation: ' + vm.DisturbingSituationIn);
+    pdf.text(10, 220, 'Was the Person with Anyone: ' + vm.commentWithOthersIn);
+    pdf.text(10, 230, 'High Risk Activity: ' + vm.commentHighRiskIn);
+    pdf.text(10, 240, 'Disturbing Situation: ' + vm.DisturbingSituationIn);
     var formatcommentSpecificQuestions = vm.commentSpecificQuestions;
     var setcommentSpecificQuestions = pdf.splitTextToSize(formatcommentSpecificQuestions, 200);
-    pdf.text(10, 240, 'Additional Comments: ');
-    pdf.text(10, 246, setcommentSpecificQuestions);
+    pdf.text(10, 250, 'Additional Comments: ');
+    pdf.text(10, 256, setcommentSpecificQuestions);
 
     //page 3
     pdf.addPage();
@@ -625,11 +669,11 @@ myApp.controller('NewController', function (UserService) {
     pdf.setFontType('normal');
     pdf.setFontSize(12);
     pdf.text(10, 130, 'Year: ' + vm.VehicleYearIn);
-    pdf.text(50, 130, 'Make: ' + vm.VehicleMakeIn);
-    pdf.text(90, 130, 'Model: ' + vm.VehicleModelIn);
-    pdf.text(130, 130, 'Color: ' + vm.vehicleColorIn);
+    pdf.text(60, 130, 'Make: ' + vm.VehicleMakeIn);
+    pdf.text(110, 130, 'Model: ' + vm.VehicleModelIn);
+    pdf.text(155, 130, 'Color: ' + vm.vehicleColorIn);
     pdf.text(10, 140, 'License #: ' + vm.VehicleLicenseIn);
-    pdf.text(50, 140, 'Photo Available: ' + vm.PhotoAvailableIn);
+    pdf.text(60, 140, 'Photo Available: ' + vm.PhotoAvailableIn);
     pdf.line(10, 148, 206, 148);
 
     //History
@@ -675,41 +719,48 @@ myApp.controller('NewController', function (UserService) {
     pdf.text(80, 70, 'Case Number: ' + vm.CaseNumberIn1);
     pdf.text(130, 70, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn1);
     pdf.text(10, 76, 'Street Address: ' + vm.StreetAddressIn1);
-    pdf.text(80, 76, 'Officer/Detective: ' + vm.OfficeDetectiveIn1);
-    pdf.text(140, 76, 'Phone #: ' + vm.LEPhoneNumberIn1);
-    pdf.text(10, 82, 'Notes');
+    pdf.text(10, 82, 'Officer/Detective: ' + vm.OfficeDetectiveIn1);
+    pdf.text(130, 82, 'Phone #: ' + vm.LEPhoneNumberIn1);
+    pdf.text(10, 88, 'Notes:');
 
-    pdf.text(10, 97, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn2);
-    pdf.text(80, 97, 'Case Number: ' + vm.CaseNumberIn2);
-    pdf.text(130, 97, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn2);
-    pdf.text(10, 103, 'Street Address: ' + vm.StreetAddressIn2);
-    pdf.text(80, 103, 'Officer/Detective: ' + vm.OfficeDetectiveIn2);
-    pdf.text(140, 103, 'Phone #: ' + vm.LEPhoneNumberIn2);
-    pdf.text(10, 109, 'Notes');
+    pdf.text(10, 100, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn2);
+    pdf.text(80, 100, 'Case Number: ' + vm.CaseNumberIn2);
+    pdf.text(130, 100, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn2);
+    pdf.text(10, 106, 'Street Address: ' + vm.StreetAddressIn2);
+    pdf.text(10, 112, 'Officer/Detective: ' + vm.OfficeDetectiveIn2);
+    pdf.text(130, 112, 'Phone #: ' + vm.LEPhoneNumberIn2);
+    pdf.text(10, 118, 'Notes:');
 
-    pdf.text(10, 124, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn3);
-    pdf.text(80, 124, 'Case Number: ' + vm.CaseNumberIn3);
-    pdf.text(130, 124, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn3);
-    pdf.text(10, 130, 'Street Address: ' + vm.StreetAddressIn3);
-    pdf.text(80, 130, 'Officer/Detective: ' + vm.OfficeDetectiveIn3);
-    pdf.text(140, 130, 'Phone #: ' + vm.LEPhoneNumberIn3);
-    pdf.text(10, 136, 'Notes');
+    pdf.text(10, 130, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn3);
+    pdf.text(80, 130, 'Case Number: ' + vm.CaseNumberIn3);
+    pdf.text(130, 130, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn3);
+    pdf.text(10, 136, 'Street Address: ' + vm.StreetAddressIn3);
+    pdf.text(10, 142, 'Officer/Detective: ' + vm.OfficeDetectiveIn3);
+    pdf.text(130, 142, 'Phone #: ' + vm.LEPhoneNumberIn3);
+    pdf.text(10, 148, 'Notes:');
 
-    pdf.text(10, 151, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn4);
-    pdf.text(80, 151, 'Case Number: ' + vm.CaseNumberIn4);
-    pdf.text(130, 151, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn4);
-    pdf.text(10, 157, 'Street Address: ' + vm.StreetAddressIn4);
-    pdf.text(80, 157, 'Officer/Detective: ' + vm.OfficeDetectiveIn4);
-    pdf.text(140, 157, 'Phone #: ' + vm.LEPhoneNumberIn4);
-    pdf.text(10, 163, 'Notes:');
+    pdf.text(10, 160, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn4);
+    pdf.text(80, 160, 'Case Number: ' + vm.CaseNumberIn4);
+    pdf.text(130, 160, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn4);
+    pdf.text(10, 166, 'Street Address: ' + vm.StreetAddressIn4);
+    pdf.text(10, 172, 'Officer/Detective: ' + vm.OfficeDetectiveIn4);
+    pdf.text(130, 172, 'Phone #: ' + vm.LEPhoneNumberIn4);
+    pdf.text(10, 178, 'Notes:');
 
-    pdf.text(10, 178, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn5);
-    pdf.text(80, 178, 'Case Number: ' + vm.CaseNumberIn5);
-    pdf.text(130, 178, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn5);
-    pdf.text(10, 184, 'Street Address: ' + vm.StreetAddressIn5);
-    pdf.text(80, 184, 'Officer/Detective: ' + vm.OfficeDetectiveIn5);
-    pdf.text(140, 184, 'Phone #: ' + vm.LEPhoneNumberIn5);
-    pdf.text(140, 190, 'Notes:');
+    pdf.text(10, 190, 'Agency: ' + vm.LawEnforcementAgencyonCaseIn5);
+    pdf.text(80, 190, 'Case Number: ' + vm.CaseNumberIn5);
+    pdf.text(130, 190, 'Jurisdictional Denial: ' + vm.JurisdictionalDenialIn5);
+    pdf.text(10, 196, 'Street Address: ' + vm.StreetAddressIn5);
+    pdf.text(10, 202, 'Officer/Detective: ' + vm.OfficeDetectiveIn5);
+    pdf.text(130, 202, 'Phone #: ' + vm.LEPhoneNumberIn5);
+    pdf.text(10, 208, 'Notes:');
+
+    // pdf.text(10,220, 'Other:' + vm.OtherLEIn5);
+    var formatcommentOtherLEIn5 = vm.OtherLEIn5;
+    var setcommentOtherLEIn5 = pdf.splitTextToSize(formatcommentOtherLEIn5, 200);
+    pdf.text(10, 220, 'Additional Comments: ');
+    pdf.text(10, 226, setcommentOtherLEIn5);
+
 
     pdf.addPage();
     pdf.addImage(imgData, 'JPEG', 5, 10, 60, 30);
@@ -745,11 +796,6 @@ myApp.controller('NewController', function (UserService) {
 
     pdf.text(140, 258, 'Date:');
     pdf.line(150, 259, 206, 259);
-
-
-
-
-    //name / signture / date / referred by
 
     pdf.save();
   }

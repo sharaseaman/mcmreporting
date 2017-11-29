@@ -1,10 +1,12 @@
 myApp.controller('EditController', function(UserService) {
     console.log('EditController created');
-    var vm = this;
+    var vm = this;  
     vm.userService = UserService;
     vm.editedForm = {};
     vm.showEditForm = false;
     vm.caseBeingEdited = {};
+    vm.genders = ['Male', 'Female', 'Non-binary'];
+    vm.remainingGendersArray = [];
     vm.case_vulnerabilities = [{
       name: "ADD/ADHD",
       value: false
@@ -74,8 +76,13 @@ myApp.controller('EditController', function(UserService) {
     {
       name: "Sexual exploitation (history)",
       value: false
-    }, {
+    }, 
+    {
       name: "Sexual Minority",
+      value: false
+    },
+    {
+      name: "None",
       value: false
     }
     ]
@@ -83,18 +90,25 @@ myApp.controller('EditController', function(UserService) {
     vm.race_ethnicity = [{
       name: "African American",
       value: false
-    }, {
+    }, 
+    {
       name: "Asian Pacific Islander",
       value: false
-    }, {
+    }, 
+    {
       name: "Caucasian",
       value: false
     },
     {
       name: "Latinx",
       value: false
-    }, {
+    }, 
+    {
       name: "Native American",
+      value: false
+    },
+    {
+      name: "None",
       value: false
     }
     ]
@@ -217,7 +231,39 @@ myApp.controller('EditController', function(UserService) {
           }
           
           console.log('Add value', vm.case_vulnerabilities[0].value);
-        
+          
+          
+          var lastSeenYear = vm.caseBeingEdited.data[0].last_seen.slice(0,4);
+          var lastSeenMonth = vm.caseBeingEdited.data[0].last_seen.slice(5,7);
+          var lastSeenDay = vm.caseBeingEdited.data[0].last_seen.slice(8,10);
+          lastSeenDay = parseInt(lastSeenDay) + 1;
+          lastSeenDay = lastSeenDay.toString();
+          console.log('stuff', lastSeenYear, lastSeenMonth, lastSeenDay);
+          vm.DateLastSeenIn = new Date(lastSeenYear + '-' + lastSeenMonth + '-' + lastSeenDay);
+          console.log('vm.DateLastSeenIn', vm.DateLastSeenIn);
+
+          var reportedYear = vm.caseBeingEdited.data[0].reported_missing.slice(0,4);
+          var reportedMonth = vm.caseBeingEdited.data[0].reported_missing.slice(5, 7);
+          var reportedDay = vm.caseBeingEdited.data[0].reported_missing.slice(8, 10);
+          reportedDay = parseInt(reportedDay) + 1;
+          reportedDay = reportedDay.toString();
+          console.log('stuff', reportedYear, reportedMonth, reportedDay);
+          vm.DateReportedMissingtoPoliceIn = new Date(reportedYear + '-' + reportedMonth + '-' + reportedDay);
+          console.log('vm.DateLastSeenIn', vm.DateReportedMissingtoPoliceIn);
+
+          var closeYear = vm.caseBeingEdited.data[0].close_date.slice(0, 4);
+          var closeMonth = vm.caseBeingEdited.data[0].close_date.slice(5, 7);
+          var closeDay = vm.caseBeingEdited.data[0].close_date.slice(8, 10);
+          closeDay = parseInt(closeDay) + 1;
+          closeDay = closeDay.toString();
+          console.log('stuff', closeYear, closeMonth, closeDay);
+          vm.DateClosed = new Date(closeYear + '-' + closeMonth + '-' + closeDay);
+          console.log('vm.DateClosed', vm.DateClosed);
+
+          vm.familyMembers = vm.caseBeingEdited.data[0].people_served;
+          
+          // vm.schoolDisctrict = 123;
+          // vm.gender = UserService.caseBeingEdited.data[0].age;
           
 
           console.log('vm.caseBeingEdited', vm.caseBeingEdited);
@@ -261,21 +307,24 @@ myApp.controller('EditController', function(UserService) {
         background: '#fff url(assets/page.JPG)'
 
         }).then(function () {
-        // vm.editedForm.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
-        //   return vulnerability.value == true;
-        // });
-          for (var i = 0; i < vm.case_vulnerabilities.length; i++) {
-            if (vm.case_vulnerabilities[i].value == true) {
-              vm.editedForm.case_vulnerabilities.push(vm.case_vulnerabilities[i]);
-            }
-          
+        vm.editedForm.case_vulnerabilities = vm.case_vulnerabilities.filter(function (vulnerability) {
+          return vulnerability.value == true;
+        });
+        if (vm.editedForm.case_vulnerabilities.length === 0) {
+          vm.case_vulnerabilities[21].value = true;
+          vm.editedForm.case_vulnerabilities.push(vm.case_vulnerabilities[21]);
         }
         console.log('vulnerabilities', vm.editedForm.case_vulnerabilities);
+        
+        
       }).then(function () {
         vm.editedForm.race_ethnicity = vm.race_ethnicity.filter(function (ethnicity) {
           return ethnicity.value == true;
-
         });
+        if (vm.editedForm.race_ethnicity.length === 0) {
+          vm.race_ethnicity[5].value = true;
+          vm.editedForm.race_ethnicity.push(vm.race_ethnicity[5]);
+        }
       }).then(function (){
         console.log('editedForm', vm.editedForm);
         UserService.updateForm(vm.editedForm)
