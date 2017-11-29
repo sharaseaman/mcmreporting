@@ -265,7 +265,6 @@
     <md-input-container>
       <label>Case Type When Opened</label>          
       <md-select name="Starting Case Type" id="StartingCaseType" ng-model="ec.start_case_type" ng-change="ec.itemChange()" ng-value selected="ec.start_case_type" ng-selected="true">
-        <md-option value="" disabled selected>Case Type</md-option>        
         <md-option value="Runaway">Runaway</md-option>
         <md-option value="Abduction by Family Member">Abduction by Family Member</md-option>
         <md-option value="Abduction by Acquaintance">Abduction by Acquaintance</md-option>
@@ -283,7 +282,6 @@
       <label>Case Type When Closed</label>
 
       <md-select name="Ending Case Type" id="yes" ng-model="ec.end_case_type" ng-value selected="ec.end_case_type">
-        <md-option value="" disabled selected>Case Type</md-option>
         <md-option value="null"></md-option>
         <md-option value="Runaway">Runaway</md-option>
         <md-option value="Abduction by Family Member">Abduction by Family Member</md-option>
@@ -308,10 +306,9 @@
 
     <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
-      <md-select ng-model="nwc.JurisdictionalDenialIn1" ng-change="ec.itemChange()" placeholder="Jurisdictional denial">
-        <md-option value="" disabled md-selected>Jurisdictional denial?</md-option>
-        <md-option value="Yes">Yes</md-option>
-        <md-option value="No">No </md-option>
+      <md-select ng-model="ec.jurisdictional_denial[0].value" ng-change="ec.itemChange()" placeholder="Jurisdictional denial" ng-value selected="ec.jurisdictional_denial[0].value">
+        <md-option value="true">Yes</md-option>
+        <md-option value="false">No </md-option>
       </md-select>
     </md-input-container>
   </div>
@@ -322,16 +319,14 @@
       <label>Law Enforcement Agency On Case</label>
       <md-select ng-model="ec.LawEnforcementAgencyonCaseIn2" ng-change="ec.itemChange()" style="width:280px;">
         <md-option value="" disabled md-selected>Law Enforcement Agency</md-option>
-        <!-- <md-option ng-value="Brooklyn Center Police Dept" selected>Brooklyn Center Police Dept</md-option> -->
       </md-select>
     </md-input-container>
 
     <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
-      <md-select ng-model="ec.JurisdictionalDenialIn2" ng-change="ec.itemChange()" placeholder="Jurisdictional denial">
-        <md-option value="" disabled md-selected>Jurisdictional denial?</md-option>
-        <md-option value="Yes">Yes</md-option>
-        <md-option value="No">No </md-option>
+      <md-select ng-model="ec.jurisdictional_denial[1].value" ng-change="ec.itemChange()" placeholder="Jurisdictional denial" ng-value selected="ec.jurisdictional_denial[1].value">
+        <md-option value="true">Yes</md-option>
+        <md-option value="false">No </md-option>
       </md-select>
     </md-input-container>
   </div>
@@ -350,10 +345,9 @@
 
     <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
-      <md-select ng-model="ec.JurisdictionalDenialIn3" ng-change="nwc.itemChange()" placeholder="Jurisdictional denial" id="yes">
-        <md-option value="" disabled md-selected>Jurisdictional denial?</md-option>
-        <md-option value="Yes">Yes</md-option>
-        <md-option value="No">No </md-option>
+      <md-select ng-model="ec.jurisdictional_denial[2].value" ng-change="nwc.itemChange()" placeholder="Jurisdictional denial" id="yes" ng-value selected="ec.jurisdictional_denial[2].value">
+        <md-option value="true">Yes</md-option>
+        <md-option value="false">No </md-option>
       </md-select>
     </md-input-container>
   </div>
@@ -371,10 +365,9 @@
 
     <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
-      <md-select ng-model="ec.JurisdictionalDenialIn4" ng-change="ec.itemChange()" placeholder="Jurisdictional denial" id="yes">
-        <md-option value="" disabled md-selected>Jurisdictional denial?</md-option>
-        <md-option value="Yes">Yes</md-option>
-        <md-option value="No">No </md-option>
+      <md-select ng-model="ec.jurisdictional_denial[3].value" ng-change="ec.itemChange()" placeholder="Jurisdictional denial" id="yes" ng-value selected="ec.jurisdictional_denial[3].value">
+        <md-option value="true">Yes</md-option>
+        <md-option value="false">No </md-option>
       </md-select>
     </md-input-container style="width:280px;">
   </div>
@@ -393,10 +386,9 @@
 
     <md-input-container style="width:280px;">
       <label>Jurisdictional Denial?</label>
-      <md-select ng-model="ec.JurisdictionalDenialIn5" ng-change="ec.itemChange()" placeholder="Jurisdictional denial" id="yes">
-        <md-option value="" disabled md-selected>Jurisdictional denial?</md-option>
-        <md-option value="Yes">Yes</md-option>
-        <md-option value="No">No </md-option>
+      <md-select ng-model="ec.jurisdictional_denial[4].value" ng-change="ec.itemChange()" placeholder="Jurisdictional denial" id="yes" ng-value selected="ec.jurisdictional_denial[4].value">
+        <md-option value="true">Yes</md-option>
+        <md-option value="false">No </md-option>
       </md-select>
     </md-input-container style="width:280px;">
   </div>
@@ -408,7 +400,6 @@
 
     <md-input-container>
       <md-select name="Disposition" placeholder="Disposition" id="disposition" ng-model="ec.disposition">
-        <md-option value="" disabled selected>Outcome</md-option>
         <md-option value="Missing Found Safe">Missing Found Safe</md-option>
         <md-option value="Missing Found Injured">Missing Found Injured</md-option>
         <md-option value="Missing Found Deceased">Missing Found Deceased</md-option>
@@ -417,11 +408,9 @@
 
 
 
-<<<<<<< HEAD
-=======
+
   <md-input-container>    
-    <md-select name="Referral Type" placeholder="Referral Type" id="yes" ng-model="ec.referralType">
-      <md-option value="" disabled selected>Referral Type</md-option>
+    <md-select name="Referral Type" placeholder="Referral Type" id="yes" ng-model="ec.referralType" ng-value selected="ec.referralType">
       <md-option value="Word of Mouth">Word of Mouth</md-option>
       <md-option value="Facebook">Facebook</md-option>
       <md-option value="Website">Website</md-option>
@@ -431,20 +420,7 @@
   </md-input-container>
       
   </div>
->>>>>>> master
 
-    <md-input-container>
-      <md-select name="Referral Type" placeholder="Referral Type" id="yes" ng-model="ec.referralType">
-        <md-option value="" disabled selected>Referral Type</md-option>
-        <md-option value="Word of Mouth" selected>Word of Mouth</md-option>
-        <md-option value="Facebook">Facebook</md-option>
-        <md-option value="Website">Website</md-option>
-        <md-option value="Referral by Law Enforcement">Referral by Law Enforcement</md-option>
-        <md-option value="Referral by County Worker">Referral by County Worker</md-option>
-      </md-select>
-    </md-input-container>
-
-  </div>
 
   <div layout="row" layout-fill layout-margin>
 
