@@ -219,7 +219,7 @@
       
 
     <div layout='row' layout-fill layout-margin>
-      <label>Race/Ethnicity</label>
+      <label>Race/Ethnicity (Required)</label>
       
       <md-checkbox ng-model="nwc.AfricanAmericanIn" ng-click="nwc.changeRace(nwc.race_ethnicity[0])" aria-label="African American">
         African American
@@ -306,7 +306,7 @@
 
       <md-input-container flex>
         <label>Jurisdictional Denial?</label>
-        <md-select ng-model="nwc.JurisdictionalDenialIn1" ng-change="nwc.itemChange()" placeholder="Jurisdictional denial" id="yes">
+        <md-select ng-model="nwc.JurisdictionalDenialIn1" ng-change="nwc.itemChange()" placeholder="Jurisdictional denial">
           <md-option value="" disabled md-selected>Jurisdictional denial?</md-option>
           <md-option value="TRUE">Yes</md-option>
           <md-option value="FALSE">No </md-option>
@@ -345,7 +345,7 @@
 
       <md-input-container flex>
         <label>Jurisdictional Denial?</label>
-        <md-select ng-model="nwc.JurisdictionalDenialIn2" ng-change="nwc.itemChange()" placeholder="Jurisdictional denial" id="yes">
+        <md-select ng-model="nwc.JurisdictionalDenialIn2" ng-change="nwc.itemChange()" placeholder="Jurisdictional denial">
           <md-option value="" disabled md-selected>Jurisdictional denial?</md-option>
           <md-option value="True">Yes</md-option>
           <md-option value="False">No </md-option>
@@ -753,41 +753,45 @@
     </div>
 
     <div id="vulnerabilitiesPdf">
-    <h3>Vulnerabilities</h3>
+    <h3>Vulnerabilities (Required)</h3>
 
     <div layout='row' layout-fill layout-margin>
 
-      <md-checkbox ng-model="nwc.ADDIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[0])" aria-label="ADD/ADHD">
+        <md-checkbox ng-model="nwc.None" ng-click="nwc.changeVul(nwc.case_vulnerabilities[0])" aria-label="ADD/ADHD">
+          None
+        </md-checkbox>
+
+      <md-checkbox ng-model="nwc.ADDIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[1])" aria-label="ADD/ADHD">
         ADD/ADHD
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.AutismIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[1])" aria-label="ASD">
+      <md-checkbox ng-model="nwc.AutismIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[2])" aria-label="ASD">
         ASD (Autism Spectrum Disorder)
       </md-checkbox>
 
 
-      <md-checkbox ng-model="nwc.AlcoholIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[2])" aria-label="Alcohol use/abuse">
+      <md-checkbox ng-model="nwc.AlcoholIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[3])" aria-label="Alcohol use/abuse">
         Alcohol Use/Abuse
       </md-checkbox>
 
 
-      <md-checkbox ng-model="nwc.AnxietyIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[3])" aria-label="Anxiety">
+      <md-checkbox ng-model="nwc.AnxietyIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[4])" aria-label="Anxiety">
         Anxiety
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.BiPolarIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[4])" aria-label="BiPolarDisorder">
+      <md-checkbox ng-model="nwc.BiPolarIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[5])" aria-label="BiPolarDisorder">
         Bi-Polar Disorder
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.DepressionClinicalIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[5])" aria-label="Depression(clinical)">
+      <md-checkbox ng-model="nwc.DepressionClinicalIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[6])" aria-label="Depression(clinical)">
         Depression (clinical)
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.DepressionSituationalIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[6])" aria-label="Depression (situational)">
+      <md-checkbox ng-model="nwc.DepressionSituationalIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[7])" aria-label="Depression (situational)">
         Depression (situational)
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.DrugUseIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[7])" aria-label="Drug Use/Abuse">
+      <md-checkbox ng-model="nwc.DrugUseIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[8])" aria-label="Drug Use/Abuse">
         Drug Use/Abuse
       </md-checkbox>
 
@@ -795,27 +799,27 @@
 
     <div layout='row' layout-fill layout-margin>
 
-      <md-checkbox ng-model="nwc.EconomicIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[8])" aria-label="EconomicExploitation(history)">
+      <md-checkbox ng-model="nwc.EconomicIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[9])" aria-label="EconomicExploitation(history)">
         Economic exploitation (history)
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.EmotionalAbuseIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[9])" aria-label="Emotional Abuse (history)">
+      <md-checkbox ng-model="nwc.EmotionalAbuseIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[10])" aria-label="Emotional Abuse (history)">
         Emotional Abuse (history)
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.GangIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[10])" aria-label="Gang Association">
+      <md-checkbox ng-model="nwc.GangIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[11])" aria-label="Gang Association">
         Gang Association
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.ODDIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[11])" aria-label="ODD (Oppositional Defiant Disorder)">
+      <md-checkbox ng-model="nwc.ODDIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[12])" aria-label="ODD (Oppositional Defiant Disorder)">
         ODD (Oppositional Defiant Disorder)
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.LaborIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[12])" aria-label="Labor Exploitation (history)">
+      <md-checkbox ng-model="nwc.LaborIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[13])" aria-label="Labor Exploitation (history)">
         Labor Exploitation (history)
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.LuringAdultIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[13])" aria-label="Luring/grooming by adult">
+      <md-checkbox ng-model="nwc.LuringAdultIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[14])" aria-label="Luring/grooming by adult">
         Luring/grooming by adult
       </md-checkbox>
 
@@ -823,32 +827,32 @@
     </div>
     <div layout='row' layout-fill layout-margin>
 
-      <md-checkbox ng-model="nwc.LuringChildIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[14])"  aria-label="Luring/grooming by child">
+      <md-checkbox ng-model="nwc.LuringChildIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[15])"  aria-label="Luring/grooming by child">
         Luring/grooming by child
       </md-checkbox>
 
 
-      <md-checkbox ng-model="nwc.MissingFromCareIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[15])"  aria-label="Missing From Care">
+      <md-checkbox ng-model="nwc.MissingFromCareIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[16])"  aria-label="Missing From Care">
         Missing From Care
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.PhysicalAbuseIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[16])"  aria-label="Physical Abuse (history)">
+      <md-checkbox ng-model="nwc.PhysicalAbuseIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[17])"  aria-label="Physical Abuse (history)">
         Physical Abuse (history)
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.RunawayIn" aria-label="Runaway (history)">
+      <md-checkbox ng-model="nwc.RunawayIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[18])" aria-label="Runaway (history)">
         Runaway (history)
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.SexualAbuseIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[18])" aria-label="Sexual Abuse (history)">
+      <md-checkbox ng-model="nwc.SexualAbuseIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[19])" aria-label="Sexual Abuse (history)">
         Sexual Abuse (history)
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.SexualExploitationIn" aria-label="Sexual Exploitation (history)">
+      <md-checkbox ng-model="nwc.SexualExploitationIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[20])"aria-label="Sexual Exploitation (history)">
         Sexual Exploitation (history)
       </md-checkbox>
 
-      <md-checkbox ng-model="nwc.SexualMinorityIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[20])"  aria-label="Sexual Exploitation (history)">
+      <md-checkbox ng-model="nwc.SexualMinorityIn" ng-click="nwc.changeVul(nwc.case_vulnerabilities[21])"  aria-label="Sexual Exploitation (history)">
         Sexual Minority (LGBTQ, etc.)
       </md-checkbox>
 

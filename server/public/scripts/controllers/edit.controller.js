@@ -149,6 +149,15 @@ myApp.controller('EditController', function(UserService) {
         }).then(function () {
           vm.caseBeingEdited = UserService.caseBeingEdited;
           vm.age = UserService.caseBeingEdited.data[0].age;
+          vm.gender = UserService.caseBeingEdited.data[0].gender;
+          vm.city = UserService.caseBeingEdited.data[0].city;
+          vm.county = UserService.caseBeingEdited.data[0].county;
+          vm.state = UserService.caseBeingEdited.data[0].state;   
+          vm.start_case_type = UserService.caseBeingEdited.data[0].start_case_type;   
+          vm.end_case_type = UserService.caseBeingEdited.data[0].end_case_type;     
+          vm.agency = UserService.caseBeingEdited.data[0].agency;                 
+          vm.jurisdictional_denial = UserService.caseBeingEdited.data[0].end_case_type;                 
+          
           vm.vulnArray = [];
           vm.raceArray = [];
           // vm.DateLastSeenIn = UserService.caseBeingEdited.data[0].last_seen;
@@ -269,7 +278,7 @@ myApp.controller('EditController', function(UserService) {
     }
 
     vm.updateData = function () {
-      console.log('In updateData');
+      console.log('In controller updateData');
       vm.editedForm = {
         mcm_number: vm.caseIn,
         age: vm.age,
