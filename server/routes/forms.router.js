@@ -272,18 +272,19 @@ router.get('/caseToEdit/:id', function (req, res) {
       } else {
         var valueArray = [mcmCase]
         console.log('valueArray', valueArray)
-        client.query('SELECT * FROM case_data FULL JOIN case_lawenforcement_denial ON case_lawenforcement_denial.case_data_id = case_data.id FULL JOIN law_enforcement ON case_lawenforcement_denial.law_enforcement_id = law_enforcement.id FULL join case_race_ethnicity ON case_race_ethnicity.case_data_id = case_data.id FULL Join race_ethnicity On case_race_ethnicity.race_ethnicity_id =race_ethnicity.id FULL Join case_vulnerabilities On case_vulnerabilities.case_data_id =case_data.id FULL Join vulnerabilities On case_vulnerabilities.vulnerabilities_id = vulnerabilities.id Where mcm_number = $1', valueArray, function (queryErr, resultObj) {
+        editQuery = 'SELECT * FROM case_data FULL JOIN case_lawenforcement_denial ON case_lawenforcement_denial.case_data_id = case_data.id FULL JOIN law_enforcement ON case_lawenforcement_denial.law_enforcement_id = law_enforcement.id FULL join case_race_ethnicity ON case_race_ethnicity.case_data_id = case_data.id FULL Join race_ethnicity On case_race_ethnicity.race_ethnicity_id = race_ethnicity.id FULL Join case_vulnerabilities On case_vulnerabilities.case_data_id = case_data.id FULL Join vulnerabilities On case_vulnerabilities.vulnerabilities_id = vulnerabilities.id FULL JOIN cities on case_data.city = cities.id FULL JOIN counties on case_data.county = counties.id Where mcm_number = $1;' 
+        client.query(editQuery, valueArray, function (queryErr, resultObj) {
           done();
           if (queryErr) {
-            console.log('done 500')
+            console.log('done 500', queryErr)
             res.sendStatus(500);
           } else {
             res.send(resultObj.rows);
             console.log('resultobj', resultObj.rows)
           }
-        });
-      }
-    })
+        }) // end query
+      } // end pool else
+    }) // end pool connect
   } else {
     // failure best handled on the server. do redirect here.
     console.log('not logged in');
